@@ -1,0 +1,31 @@
+---
+// ButtonGroup component for displaying multiple buttons with consistent spacing
+export interface Props {
+  direction?: 'horizontal' | 'vertical';
+  gap?: 'sm' | 'md' | 'lg';
+  class?: string;
+}
+
+const { 
+  direction = 'horizontal', 
+  gap = 'md', 
+  class: className = '' 
+} = Astro.props;
+
+const directionClasses = {
+  horizontal: 'flex',
+  vertical: 'flex flex-col'
+};
+
+const gapClasses = {
+  sm: 'gap-2',
+  md: 'gap-4',
+  lg: 'gap-6'
+};
+
+const groupClass = `${directionClasses[direction]} ${gapClasses[gap]} ${className}`;
+---
+
+<div class={groupClass}>
+  <slot />
+</div>

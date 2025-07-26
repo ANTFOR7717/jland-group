@@ -1,0 +1,53 @@
+---
+// ProjectGallery Component - Reusable project images gallery
+// Displays multiple project images in a flexible grid layout
+
+export interface Props {
+  images: Array<{
+    url: string;
+    alt?: string;
+  }>;
+  variant?: 'horizontal' | 'grid' | 'masonry';
+  imageSize?: 'sm' | 'md' | 'lg';
+  gap?: 'sm' | 'md' | 'lg';
+  class?: string;
+}
+
+const {
+  images,
+  variant = 'horizontal',
+  imageSize = 'md',
+  gap = 'md',
+  class: className = ''
+} = Astro.props;
+
+import ProjectImage from './ProjectImage.astro';
+
+// Layout variant styles
+const variantStyles = {
+  horizontal: 'flex',
+  grid: 'grid grid-cols-3',
+  masonry: 'columns-3'
+};
+
+// Gap styles
+const gapStyles = {
+  sm: 'gap-2',
+  md: 'gap-4',
+  lg: 'gap-6'
+};
+
+const layoutClass = variantStyles[variant];
+const gapClass = gapStyles[gap];
+---
+
+<div class={`${layoutClass} ${gapClass} ${className}`}>
+  {images.map((image) => (
+    <ProjectImage 
+      imageUrl={image.url}
+      alt={image.alt || 'Project image'}
+      variant="gallery"
+      size={imageSize}
+    />
+  ))}
+</div>

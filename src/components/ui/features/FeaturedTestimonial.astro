@@ -1,0 +1,70 @@
+---
+// FeaturedTestimonial Component - Reusable featured testimonial card
+// Supports different variants and background styles
+
+import { CustomerProfile } from '../index.ts';
+// Note: Text requires direct import due to TypeScript compatibility
+import Text from '../display/Text.astro';
+
+export interface Props {
+  quote: string;
+  customerName: string;
+  location: string;
+  avatarUrl: string;
+  rating?: number;
+  variant?: 'default' | 'dark' | 'light';
+  width?: string;
+  class?: string;
+}
+
+const {
+  quote,
+  customerName,
+  location,
+  avatarUrl,
+  rating = 5,
+  variant = 'default',
+  width = '592px',
+  class: className = ''
+} = Astro.props;
+
+// Variant styling
+const variantStyles = {
+  default: {
+    background: 'rgba(38, 35, 39, 0.70)',
+    textColor: 'white' as const
+  },
+  dark: {
+    background: 'rgba(0, 0, 0, 0.70)',
+    textColor: 'white' as const
+  },
+  light: {
+    background: 'rgba(255, 255, 255, 0.90)',
+    textColor: 'default' as const
+  }
+};
+
+const currentStyle = variantStyles[variant];
+---
+
+<div 
+  class={`rounded-lg flex flex-col gap-6 p-6 ${className}`}
+  style={`background: ${currentStyle.background}; width: ${width};`}
+>
+  <Text 
+    color={currentStyle.textColor} 
+    weight="medium" 
+    class="text-xl leading-[32.5px]"
+  >
+    "{quote}"
+  </Text>
+  
+  <CustomerProfile 
+    name={customerName}
+    location={location}
+    avatarUrl={avatarUrl}
+    variant="testimonial"
+    showRating={true}
+    rating={rating}
+  />
+</div>

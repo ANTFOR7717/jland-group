@@ -1,0 +1,53 @@
+---
+// Icon Component - Centralized icon management
+// Adheres to Tailwind CSS only styling as required
+
+export interface Props {
+  name: 'email' | 'phone' | 'location' | 'star' | 'check' | 'arrow' | 'verified' | 'facebook' | 'twitter' | 'instagram' | 'linkedin' | 'shield' | 'clock' | 'phone-contact' | 'email-contact';
+  size?: 'xs' | 'sm' | 'md' | 'lg';
+  class?: string;
+}
+
+const {
+  name,
+  size = 'md',
+  class: className = '',
+  ...rest
+} = Astro.props;
+
+// Size-specific classes
+const sizeClasses = {
+  xs: 'w-3 h-3',
+  sm: 'w-4 h-4',
+  md: 'w-5 h-5',
+  lg: 'w-6 h-6'
+};
+
+// Icon-specific images from the existing components
+const iconImages = {
+  phone: 'https://static.motiffcontent.com/private/resource/image/1984510688a461b-71b41986-5321-4e52-9f5a-87af90c86ad6.svg',
+  email: 'https://static.motiffcontent.com/private/resource/image/1984510688a28a5-14983036-8018-4d69-868c-4ea7b27e0a3e.svg',
+  location: 'https://static.motiffcontent.com/private/resource/image/1984510688b66a5-131d6f12-db88-465f-9af5-1e155372dd0e.svg',
+  star: 'https://static.motiffcontent.com/private/resource/image/198450a8347b778-b250ca13-0a5d-46f0-a54a-b8624697c966.svg',
+  check: 'https://static.motiffcontent.com/private/resource/image/198450a834af66b-94117c93-53e4-45f2-8993-f0a93379ec52.svg',
+  arrow: 'https://static.motiffcontent.com/private/resource/image/198452f6125d81b-f8ba7373-bed1-4c8d-a17d-286b2df07e7a.svg',
+  verified: 'https://static.motiffcontent.com/private/resource/image/198452407b2e44e-915626db-dd31-4900-ab83-b8578b35375d.svg',
+  facebook: 'https://static.motiffcontent.com/private/resource/image/1984510688dc1de-4db560ab-a225-44ea-a18b-94e8dd6c23a0.svg',
+  twitter: 'https://static.motiffcontent.com/private/resource/image/1984510688ddfda-bdc9fa85-2955-45df-8d5f-8829ac7d5b69.svg',
+  instagram: 'https://static.motiffcontent.com/private/resource/image/1984510688e91a8-52cc4a7d-26bc-4aed-a1ad-78ea94370c98.svg',
+  linkedin: 'https://static.motiffcontent.com/private/resource/image/1984510688f11f4-d7206832-6d42-4170-a2c2-19221eec4bdb.svg',
+  shield: 'https://static.motiffcontent.com/private/resource/image/198450a834af66b-94117c93-53e4-45f2-8993-f0a93379ec52.svg',
+  clock: 'https://static.motiffcontent.com/private/resource/image/198450a834bea50-8d969c62-032e-4c3b-aa10-5347a22ff31b.svg',
+  'phone-contact': 'https://static.motiffcontent.com/private/resource/image/198482defce92e5-13ccf4cd-43e8-49a7-ac3c-a6e7c032ab1a.svg',
+  'email-contact': 'https://static.motiffcontent.com/private/resource/image/198482defcfed39-27144e5e-5d99-44de-be4c-dd9213b01294.svg'
+};
+
+const iconClass = `${sizeClasses[size]} bg-cover bg-no-repeat ${className}`;
+const iconImage = iconImages[name];
+---
+
+<div 
+  class={iconClass}
+  style={`background-image: url('${iconImage}');`}
+  {...rest}
+></div>

@@ -1,0 +1,129 @@
+---
+// Testimonials Component
+---
+
+<section class="py-16" style="background-color: #262327;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold mb-4" style="color: #F8F9FA;">What Our Customers Say</h2>
+      <p class="text-lg" style="color: #C1B9BC;">Don't just take our word for it - hear from our satisfied customers</p>
+    </div>
+
+    <!-- Testimonials Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Testimonial 1 -->
+      <div class="p-6 rounded-lg" style="background-color: #F8F9FA; border: 2px solid #FDB813;">
+        <!-- Star Rating -->
+        <div class="flex mb-4">
+          <div class="w-4 h-4 mr-1" style="background-image: url('https://static.motiffcontent.com/private/resource/image/198451fba3477cf-3769b59d-f171-4026-9b6b-e75d5c3fef50.svg'); background-size: contain; background-repeat: no-repeat;"></div>
+          <div class="w-4 h-4 mr-1" style="background-image: url('https://static.motiffcontent.com/private/resource/image/198451fba3477cf-3769b59d-f171-4026-9b6b-e75d5c3fef50.svg'); background-size: contain; background-repeat: no-repeat;"></div>
+          <div class="w-4 h-4 mr-1" style="background-image: url('https://static.motiffcontent.com/private/resource/image/198451fba3477cf-3769b59d-f171-4026-9b6b-e75d5c3fef50.svg'); background-size: contain; background-repeat: no-repeat;"></div>
+          <div class="w-4 h-4 mr-1" style="background-image: url('https://static.motiffcontent.com/private/resource/image/198451fba3477cf-3769b59d-f171-4026-9b6b-e75d5c3fef50.svg'); background-size: contain; background-repeat: no-repeat;"></div>
+          <div class="w-4 h-4" style="background-image: url('https://static.motiffcontent.com/private/resource/image/198451fba3477cf-3769b59d-f171-4026-9b6b-e75d5c3fef50.svg'); background-size: contain; background-repeat: no-repeat;"></div>
+        </div>
+        
+        <!-- Testimonial Text -->
+        <p class="mb-6 text-base leading-relaxed" style="color: #262327;">"J Land Group did an amazing job on our roof replacement. Professional, timely, and the quality of work exceeded our expectations. Highly recommend!"</p>
+        
+        <!-- Customer Info -->
+        <div class="flex items-center">
+          <div class="w-12 h-12 rounded-full mr-4" style="background-image: url('https://static.motiffcontent.com/private/resource/image/198439e0630fba4-021c3edf-0bdd-4d68-8313-d45e303dc69c.jpeg'); background-size: cover; background-position: center; border: 2px solid #FDB813;"></div>
+          <div>
+            <h4 class="font-semibold" style="color: #262327;">Sarah Johnson</h4>
+            <p class="text-sm" style="color: #7D7877;">Urbana, MD</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="p-6 rounded-lg" style="background-color: #F8F9FA; border: 2px solid #FDB813;">
+        <!-- Star Rating -->
+        <div class="flex mb-4">
+          <div class="w-4 h-4 mr-1" style="background-image: url('https://static.motiffcontent.com/private/resource/image/198451fba3477cf-3769b59d-f171-4026-9b6b-e75d5c3fef50.svg'); background-size: contain; background-repeat: no-repeat;"></div>
+          <div class="w-4 h-4 mr-1" style="background-image: url('https://static.motiffcontent.com/private/resource/image/198451fba3477cf-3769b59d-f171-4026-9b6b-e75d5c3fef50.svg'); background-size: contain; background-repeat: no-repeat;"></div>
+          <div class="w-4 h-4 mr-1" style="background-image: url('https://static.motiffcontent.com/private/resource/image/198451fba3477cf-3769b59d-f171-4026-9b6b-e75d5c3fef50.svg'); background-size: contain; background-repeat: no-repeat;"></div>
+          <div class="w-4 h-4 mr-1" style="background-image: url('https://static.motiffcontent.com/private/resource/image/198451fba3477cf-3769b59d-f171-4026-9b6b-e75d5c3fef50.svg'); background-size: contain; background-repeat: no-repeat;"></div>
+          <div class="w-4 h-4" style="background-image: url('https://static.motiffcontent.com/private/resource/image/198451fba3477cf-3769b59d-f171-4026-9b6b-e75d5c3fef50.svg'); background-size: contain; background-repeat: no-repeat;"></div>
+        </div>
+        
+        <!-- Testimonial Text -->
+        <p class="mb-6 text-base leading-relaxed" style="color: #262327;">"Outstanding service from start to finish. The team was knowledgeable, clean, and completed the project on time and within budget."</p>
+        
+        <!-- Customer Info -->
+        <div class="flex items-center">
+          <div class="w-12 h-12 rounded-full mr-4" style="background-image: url('https://static.motiffcontent.com/private/resource/image/198439e0630fba4-021c3edf-0bdd-4d68-8313-d45e303dc69c.jpeg'); background-size: cover; background-position: center; border: 2px solid #FDB813;"></div>
+          <div>
+            <h4 class="font-semibold" style="color: #262327;">Robert Miller</h4>
+            <p class="text-sm" style="color: #7D7877;">Frederick, MD</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 3 -->
+      <div class="p-6 rounded-lg" style="background-color: #F8F9FA; border: 2px solid #FDB813;">
+        <!-- Star Rating -->
+        <div class="flex mb-4">
+          <div class="w-4 h-4 mr-1" style="background-image: url('https://static.motiffcontent.com/private/resource/image/198451fba3477cf-3769b59d-f171-4026-9b6b-e75d5c3fef50.svg'); background-size: contain; background-repeat: no-repeat;"></div>
+          <div class="w-4 h-4 mr-1" style="background-image: url('https://static.motiffcontent.com/private/resource/image/198451fba3477cf-3769b59d-f171-4026-9b6b-e75d5c3fef50.svg'); background-size: contain; background-repeat: no-repeat;"></div>
+          <div class="w-4 h-4 mr-1" style="background-image: url('https://static.motiffcontent.com/private/resource/image/198451fba3477cf-3769b59d-f171-4026-9b6b-e75d5c3fef50.svg'); background-size: contain; background-repeat: no-repeat;"></div>
+          <div class="w-4 h-4 mr-1" style="background-image: url('https://static.motiffcontent.com/private/resource/image/198451fba3477cf-3769b59d-f171-4026-9b6b-e75d5c3fef50.svg'); background-size: contain; background-repeat: no-repeat;"></div>
+          <div class="w-4 h-4" style="background-image: url('https://static.motiffcontent.com/private/resource/image/198451fba3477cf-3769b59d-f171-4026-9b6b-e75d5c3fef50.svg'); background-size: contain; background-repeat: no-repeat;"></div>
+        </div>
+        
+        <!-- Testimonial Text -->
+        <p class="mb-6 text-base leading-relaxed" style="color: #262327;">"Excellent service from start to finish. The team was knowledgeable and helpful throughout the entire process."</p>
+        
+        <!-- Customer Info -->
+        <div class="flex items-center">
+          <div class="w-12 h-12 rounded-full mr-4" style="background-image: url('https://static.motiffcontent.com/private/resource/image/198439e0630fba4-021c3edf-0bdd-4d68-8313-d45e303dc69c.jpeg'); background-size: cover; background-position: center; border: 2px solid #FDB813;"></div>
+          <div>
+            <h4 class="font-semibold" style="color: #262327;">Michael Thompson</h4>
+            <p class="text-sm" style="color: #7D7877;">Frederick, MD</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project Showcase -->
+    <div class="mt-16">
+      <h3 class="text-2xl font-bold text-center mb-8" style="color: #F8F9FA;">Recent Projects</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Project 1 -->
+        <div class="relative overflow-hidden rounded-lg">
+          <div class="w-full h-64" style="background-image: url('https://static.motiffcontent.com/private/resource/image/198439e0630fba4-021c3edf-0bdd-4d68-8313-d45e303dc69c.jpeg'); background-size: cover; background-position: center;"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-4" style="background: linear-gradient(transparent, rgba(38, 35, 39, 0.8));">
+            <h4 class="font-semibold" style="color: #F8F9FA;">Residential Roof Replacement</h4>
+            <p class="text-sm" style="color: #C1B9BC;">Complete shingle replacement with upgraded materials</p>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="relative overflow-hidden rounded-lg">
+          <div class="w-full h-64" style="background-image: url('https://static.motiffcontent.com/private/resource/image/198439e0630fba4-021c3edf-0bdd-4d68-8313-d45e303dc69c.jpeg'); background-size: cover; background-position: center;"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-4" style="background: linear-gradient(transparent, rgba(38, 35, 39, 0.8));">
+            <h4 class="font-semibold" style="color: #F8F9FA;">Commercial Flat Roof</h4>
+            <p class="text-sm" style="color: #C1B9BC;">TPO membrane installation for office building</p>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="relative overflow-hidden rounded-lg">
+          <div class="w-full h-64" style="background-image: url('https://static.motiffcontent.com/private/resource/image/198439e0630fba4-021c3edf-0bdd-4d68-8313-d45e303dc69c.jpeg'); background-size: cover; background-position: center;"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-4" style="background: linear-gradient(transparent, rgba(38, 35, 39, 0.8));">
+            <h4 class="font-semibold" style="color: #F8F9FA;">Storm Damage Repair</h4>
+            <p class="text-sm" style="color: #C1B9BC;">Emergency repair and restoration services</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="text-center mt-12">
+      <p class="text-lg mb-6" style="color: #C1B9BC;">Ready to join our satisfied customers?</p>
+      <button class="px-8 py-3 rounded-lg font-semibold text-lg transition-opacity hover:opacity-90" style="background-color: #FDB813; color: #262327;">
+        GET YOUR FREE ESTIMATE
+      </button>
+    </div>
+  </div>
+</section>

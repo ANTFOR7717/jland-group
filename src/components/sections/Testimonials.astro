@@ -1,0 +1,104 @@
+---
+// Testimonials Component - Two Column Layout
+// Refactored to use UI components and Tailwind CSS only
+
+import { Card, Container, CardGrid, ContentBlock } from '../ui/index.js';
+import { Layout, SectionHeader, Spacer } from '../ui/index.js';
+import { Section } from '../ui/index.js';
+import { ProjectGallery, FeaturedTestimonial } from '../ui/index.js';
+// Note: Heading requires direct import due to TypeScript compatibility
+import Heading from '../ui/display/Heading.astro';
+---
+
+<Section background="dark" padding="sm" style="padding: 0;">
+  <Layout 
+    variant="two-column"
+    leftBackground="dark" 
+    rightBackground="light" 
+    minHeight="654px"
+    leftPadding="lg"
+    rightPadding="md"
+    gap="lg"
+  >
+    <!-- Left Column Content -->
+    <div slot="left">
+      <ContentBlock spacing="md" class="w-[592px]">
+        <Heading level={2} size="3xl" color="white" class="text-[30px] leading-9">
+          What Our Clients Say
+        </Heading>
+        
+        <!-- Featured Testimonial -->
+        <FeaturedTestimonial 
+          quote="J Land Contracting replaced our entire roof after a major storm. Their team was professional, efficient, and left our property spotless. The quality of work exceeded our expectations, and they finished ahead of schedule!"
+          customerName="Michael Thompson"
+          location="Frederick, MD"
+          avatarUrl="https://static.motiffcontent.com/private/resource/image/198439e0630fba4-021c3edf-0bdd-4d68-8313-d45e303dc69c.jpeg"
+          rating={5}
+          variant="default"
+          width="592px"
+        />
+        
+        <!-- Recent Projects Section -->
+        <Spacer size="md" direction="top">
+          <Heading level={3} size="lg" color="white" class="text-lg leading-7 mb-4">
+            Recent Projects
+          </Heading>
+          
+          <ProjectGallery 
+            images={[
+              { url: 'https://static.motiffcontent.com/private/resource/image/198439e06312e19-3617da4f-25b1-4ec9-a211-ae4b956a1f96.jpeg', alt: 'Recent roofing project 1' },
+              { url: 'https://static.motiffcontent.com/private/resource/image/198439e0632ac42-537096b0-c4b0-4331-a955-2019e09d0417.jpeg', alt: 'Recent roofing project 2' },
+              { url: 'https://static.motiffcontent.com/private/resource/image/198439e0632c98d-de834c2c-bbfe-41da-817e-375166ee8594.jpeg', alt: 'Recent roofing project 3' }
+            ]}
+            variant="horizontal"
+            imageSize="md"
+            gap="md"
+          />
+        </Spacer>
+      </ContentBlock>
+    </div>
+    
+    <!-- Right Column Content -->
+    <div slot="right">
+      <!-- Customer Reviews Header -->
+      <Section background="transparent" padding="sm">
+        <Container size="md" class="flex justify-center">
+          <SectionHeader 
+             title="Customer Reviews"
+             level={2}
+             size="2xl"
+             showRating={true}
+             rating={4.9}
+             totalReviews={124}
+             layout="horizontal"
+             alignment="left"
+             spacing="sm"
+           />
+        </Container>
+      </Section>
+      
+      <!-- Reviews List -->
+      <CardGrid variant="testimonial" columns={1} gap="md" maxWidth="max-w-2xl">
+        <Card 
+          variant="review"
+          customerName="Sarah Johnson"
+          location="Urbana, MD"
+          rating={5}
+          serviceType="Roof Replacement"
+          reviewText="Excellent service from start to finish. The team was knowledgeable and helpful throughout the entire process."
+          timeAgo="2 weeks ago"
+        />
+        
+        <Card 
+          variant="review"
+          customerName="Robert Miller"
+          location="Frederick, MD"
+          rating={5}
+          serviceType="Commercial Roof"
+          reviewText="Outstanding service from start to finish. The team was knowledgeable, clean, and completed the project on time and within budget."
+          timeAgo="1 month ago"
+        />
+      </CardGrid>
+    </div>
+  </Layout>
+</Section>

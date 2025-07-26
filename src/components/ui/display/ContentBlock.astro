@@ -1,0 +1,26 @@
+---
+// ContentBlock component for structured content with heading and text
+export interface Props {
+  maxWidth?: string;
+  spacing?: 'sm' | 'md' | 'lg';
+  class?: string;
+}
+
+const { 
+  maxWidth = 'max-w-[803px]',
+  spacing = 'md',
+  class: className = '' 
+} = Astro.props;
+
+const spacingClasses = {
+  sm: 'gap-2',
+  md: 'gap-4',
+  lg: 'gap-6'
+};
+
+const blockClass = `flex flex-col ${spacingClasses[spacing]} ${maxWidth} ${className}`;
+---
+
+<div class={blockClass}>
+  <slot />
+</div>

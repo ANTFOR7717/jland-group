@@ -1,0 +1,116 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MobileResponsiveDesignKG",
+  "description": "Complete knowledge graph for mobile & responsive design theories and practices.",
+  "knowledge_graph": {
+
+    "theories": [
+      {
+        "id": "theory:golden_ratio",
+        "name": "Golden Ratio",
+        "symbol": "φ ≈ 1.618",
+        "description": "Proportional rule that creates naturally pleasing layouts; width-to-height ≈ 1.618.",
+        "math": "a/b = (a+b)/a = φ",
+        "mobile_usage": ["typographic scale", "card aspect ratios", "spacing rhythm"],
+        "responsive_usage": ["fluid grid columns", "hero image ratios"],
+        "related": ["theory:rule_of_thirds", "theory:modular_scale"]
+      },
+      {
+        "id": "theory:rule_of_thirds",
+        "name": "Rule of Thirds",
+        "description": "Divide canvas into 3×3 grid; place key elements on intersections.",
+        "mobile_usage": ["camera UI overlays", "hero imagery"],
+        "responsive_usage": ["CSS Grid 3-column breakpoints"]
+      },
+      {
+        "id": "theory:gestalt",
+        "name": "Gestalt Principles",
+        "principles": [
+          { "name": "Proximity",   "mobile_example": "grouped FAB buttons" },
+          { "name": "Similarity",  "mobile_example": "iconography style" },
+          { "name": "Closure",     "mobile_example": "partial card swipe indicators" }
+        ]
+      },
+      {
+        "id": "theory:modular_scale",
+        "name": "Modular Scale",
+        "description": "Type scale derived from a ratio (often φ) to ensure harmonic hierarchy.",
+        "mobile_usage": ["rem-based text sizing"],
+        "responsive_usage": ["fluid type via clamp()"]
+      }
+    ],
+
+    "breakpoints": [
+      { "range": "xs",  "min": 0,    "max": 479,  "class": "mobile-portrait" },
+      { "range": "sm",  "min": 480,  "max": 767,  "class": "mobile-landscape" },
+      { "range": "md",  "min": 768,  "max": 1023, "class": "tablet" },
+      { "range": "lg",  "min": 1024, "max": 1279, "class": "laptop" },
+      { "range": "xl",  "min": 1280, "max": 1919, "class": "desktop" },
+      { "range": "2xl", "min": 1920, "max": null, "class": "ultrawide" }
+    ],
+
+    "patterns": [
+      {
+        "id": "pattern:fluid_grid",
+        "name": "Fluid Grid",
+        "description": "Percentage-based columns that expand/contract with viewport.",
+        "css_props": ["grid-template-columns: repeat(auto-fit,minmax())", "gap: clamp()"],
+        "theories": ["theory:golden_ratio", "theory:rule_of_thirds"]
+      },
+      {
+        "id": "pattern:flexible_images",
+        "name": "Flexible Images",
+        "css_props": ["max-width:100%", "height:auto"],
+        "responsive_usage": ["hero banners", "gallery grids"]
+      },
+      {
+        "id": "pattern:mobile_first",
+        "name": "Mobile-First CSS",
+        "description": "Base styles target xs/sm; progressive enhancement via min-width queries.",
+        "query_pattern": "@media (min-width: <bp>)"
+      }
+    ],
+
+    "typography": {
+      "scale": {
+        "base": "1rem",
+        "ratio": "1.618",
+        "sizes": {
+          "xs":  "clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem)",
+          "sm":  "clamp(0.875rem, 0.8rem + 0.375vw, 1rem)",
+          "base":"clamp(1rem,    0.9rem + 0.5vw,   1.125rem)",
+          "lg":  "clamp(1.25rem, 1.1rem + 0.75vw,  1.5rem)",
+          "xl":  "clamp(1.625rem,1.4rem + 1.125vw, 2rem)",
+          "2xl": "clamp(2rem,    1.7rem + 1.5vw,   2.625rem)"
+        }
+      },
+      "line_height": "1.618",
+      "measure": "65ch"
+    },
+
+    "accessibility": {
+      "touch_target": { "min_size": "48×48 px", "spacing": "8 px" },
+      "focus_indicators": "3:1 contrast & 2px outline",
+      "prefers_reduced_motion": "respects `prefers-reduced-motion`"
+    },
+
+    "performance": {
+      "lazy_loading": { "img": "loading='lazy'", "iframe": "loading='lazy'" },
+      "responsive_images": ["<img srcset sizes>", "picture element"],
+      "critical_css": "inline <style> for above-the-fold"
+    },
+
+    "tools": [
+      { "name": "TailwindCSS", "features": ["utility-first", "responsive prefixes", "config breakpoints"] },
+      { "name": "CSS clamp()", "features": ["fluid type/spacing"] },
+      { "name": "Container Queries", "features": ["component-level responsiveness"] }
+    ],
+
+    "edges": [
+      { "from": "theory:golden_ratio", "to": "pattern:fluid_grid",  "relation": "influences" },
+      { "from": "theory:rule_of_thirds", "to": "pattern:flexible_images", "relation": "guides_placement" },
+      { "from": "pattern:mobile_first", "to": "breakpoints", "relation": "depends_on" },
+      { "from": "typography.scale", "to": "theory:modular_scale", "relation": "implements" }
+    ]
+  }
+}

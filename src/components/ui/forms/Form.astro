@@ -1,0 +1,40 @@
+---
+// Form Component - Consistent form wrapper
+// Adheres to Tailwind CSS only styling as required
+
+export interface Props {
+  action?: string;
+  method?: 'GET' | 'POST';
+  class?: string;
+  variant?: 'quote' | 'newsletter' | 'default';
+}
+
+const {
+  action,
+  method = 'POST',
+  class: className = '',
+  variant = 'default',
+  ...rest
+} = Astro.props;
+
+// Base classes for all forms
+const baseClasses = 'flex flex-col';
+
+// Variant-specific classes
+const variantClasses = {
+  default: 'gap-4',
+  quote: 'gap-4',
+  newsletter: 'gap-3'
+};
+
+const formClasses = `${baseClasses} ${variantClasses[variant]} ${className}`;
+---
+
+<form 
+  class={formClasses}
+  action={action}
+  method={method}
+  {...rest}
+>
+  <slot />
+</form>

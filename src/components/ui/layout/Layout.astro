@@ -1,0 +1,178 @@
+---
+// Generic Layout Component with variant support
+// Supports different layout patterns through variants
+
+export interface Props {
+  variant?: 'two-column' | 'single-column' | 'three-column' | 'sidebar';
+  leftBackground?: 'dark' | 'light' | 'primary' | 'secondary';
+  rightBackground?: 'dark' | 'light' | 'primary' | 'secondary';
+  centerBackground?: 'dark' | 'light' | 'primary' | 'secondary';
+  minHeight?: string;
+  leftPadding?: 'sm' | 'md' | 'lg' | 'xl';
+  rightPadding?: 'sm' | 'md' | 'lg' | 'xl';
+  centerPadding?: 'sm' | 'md' | 'lg' | 'xl';
+  gap?: 'sm' | 'md' | 'lg' | 'xl';
+  class?: string;
+}
+
+const {
+  variant = 'two-column',
+  leftBackground = 'dark',
+  rightBackground = 'light',
+  centerBackground = 'light',
+  minHeight = '654px',
+  leftPadding = 'lg',
+  rightPadding = 'md',
+  centerPadding = 'md',
+  gap = 'lg',
+  class: className = ''
+} = Astro.props;
+
+// Background color mapping
+const backgroundColors = {
+  dark: '#262327',
+  light: '#F8F9FA',
+  primary: '#FDB813',
+  secondary: '#C1B9BC'
+};
+
+// Padding size mapping
+const paddingClasses = {
+  sm: 'p-8',
+  md: 'p-12',
+  lg: 'p-16',
+  xl: 'p-20'
+};
+
+// Gap size mapping
+const gapClasses = {
+  sm: 'gap-4',
+  md: 'gap-8',
+  lg: 'gap-16',
+  xl: 'gap-24'
+};
+
+// Layout variant classes
+const variantClasses = {
+  'two-column': 'flex',
+  'single-column': 'flex flex-col',
+  'three-column': 'grid grid-cols-3',
+  'sidebar': 'flex'
+};
+
+// Column width classes based on variant
+const getColumnClasses = (variant: string) => {
+  switch (variant) {
+    case 'two-column':
+      return {
+        left: 'flex flex-col w-1/2',
+        right: 'flex flex-col w-1/2'
+      };
+    case 'single-column':
+      return {
+        main: 'flex flex-col w-full'
+      };
+    case 'three-column':
+      return {
+        left: 'flex flex-col',
+        center: 'flex flex-col',
+        right: 'flex flex-col'
+      };
+    case 'sidebar':
+      return {
+        left: 'flex flex-col w-1/4',
+        right: 'flex flex-col w-3/4'
+      };
+    default:
+      return {
+        left: 'flex flex-col w-1/2',
+        right: 'flex flex-col w-1/2'
+      };
+  }
+};
+
+const columnClasses = getColumnClasses(variant);
+---
+
+<div class={`${variantClasses[variant]} min-h-[${minHeight}] ${className}`}>
+  {variant === 'two-column' && (
+    <>
+      <!-- Left Column -->
+      <div 
+        class={`${columnClasses.left} ${paddingClasses[leftPadding]} ${gapClasses[gap]}`}
+        style={`background-color: ${backgroundColors[leftBackground]};`}
+      >
+        <slot name="left" />
+      </div>
+      
+      <!-- Right Column -->
+      <div 
+        class={`${columnClasses.right} ${paddingClasses[rightPadding]} ${gapClasses[gap]}`}
+        style={`background-color: ${backgroundColors[rightBackground]};`}
+      >
+        <slot name="right" />
+      </div>
+    </>
+  )}
+
+  {variant === 'single-column' && (
+    <!-- Single Column -->
+    <div 
+      class={`${columnClasses.main} ${paddingClasses[leftPadding]} ${gapClasses[gap]}`}
+      style={`background-color: ${backgroundColors[leftBackground]};`}
+    >
+      <slot name="main" />
+      <slot /> <!-- Default slot for backward compatibility -->
+    </div>
+  )}
+
+  {variant === 'three-column' && (
+    <>
+      <!-- Left Column -->
+      <div 
+        class={`${columnClasses.left} ${paddingClasses[leftPadding]} ${gapClasses[gap]}`}
+        style={`background-color: ${backgroundColors[leftBackground]};`}
+      >
+        <slot name="left" />
+      </div>
+      
+      <!-- Center Column -->
+      <div 
+        class={`${columnClasses.center} ${paddingClasses[centerPadding]} ${gapClasses[gap]}`}
+        style={`background-color: ${backgroundColors[centerBackground]};`}
+      >
+        <slot name="center" />
+      </div>
+      
+      <!-- Right Column -->
+      <div 
+        class={`${columnClasses.right} ${paddingClasses[rightPadding]} ${gapClasses[gap]}`}
+        style={`background-color: ${backgroundColors[rightBackground]};`}
+      >
+        <slot name="right" />
+      </div>
+    </>
+  )}
+
+  {variant === 'sidebar' && (
+    <>
+      <!-- Sidebar -->
+      <div 
+        class={`${columnClasses.left} ${paddingClasses[leftPadding]} ${gapClasses[gap]}`}
+        style={`background-color: ${backgroundColors[leftBackground]};`}
+      >
+        <slot name="sidebar" />
+        <slot name="left" /> <!-- Backward compatibility -->
+      </div>
+      
+      <!-- Main Content -->
+      <div 
+        class={`${columnClasses.right} ${paddingClasses[rightPadding]} ${gapClasses[gap]}`}
+        style={`background-color: ${backgroundColors[rightBackground]};`}
+      >
+        <slot name="main" />
+        <slot name="right" /> <!-- Backward compatibility -->
+      </div>
+    </>
+  )}
+</div>

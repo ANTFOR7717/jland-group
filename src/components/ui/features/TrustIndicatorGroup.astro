@@ -1,0 +1,33 @@
+---
+// TrustIndicatorGroup component for displaying multiple trust indicators
+export interface Props {
+  direction?: 'horizontal' | 'vertical';
+  gap?: 'sm' | 'md' | 'lg';
+  variant?: 'default' | 'hero';
+  class?: string;
+}
+
+const { 
+  direction = 'horizontal', 
+  gap = 'lg', 
+  variant = 'default',
+  class: className = '' 
+} = Astro.props;
+
+const directionClasses = {
+  horizontal: 'flex items-center',
+  vertical: 'flex flex-col items-start'
+};
+
+const gapClasses = {
+  sm: 'gap-4',
+  md: 'gap-6',
+  lg: 'gap-8'
+};
+
+const groupClass = `${directionClasses[direction]} ${gapClasses[gap]} ${className}`;
+---
+
+<div class={groupClass}>
+  <slot />
+</div>

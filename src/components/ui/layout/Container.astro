@@ -1,0 +1,33 @@
+---
+// Container Component - Consistent content wrapper
+// Adheres to Tailwind CSS only styling as required
+
+export interface Props {
+  size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
+  class?: string;
+}
+
+const {
+  size = 'xl',
+  class: className = '',
+  ...rest
+} = Astro.props;
+
+// Size-specific max-width classes
+const sizeClasses = {
+  sm: 'max-w-2xl',
+  md: 'max-w-4xl',
+  lg: 'max-w-6xl',
+  xl: 'max-w-7xl',
+  full: 'max-w-full'
+};
+
+// Base classes for all containers
+const baseClasses = 'mx-auto px-16';
+
+const containerClasses = `${baseClasses} ${sizeClasses[size]} ${className}`;
+---
+
+<div class={containerClasses} {...rest}>
+  <slot />
+</div>

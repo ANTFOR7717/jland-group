@@ -1,0 +1,72 @@
+---
+// Heading Component - Consistent typography hierarchy
+// Adheres to Tailwind CSS only styling as required
+
+export interface Props {
+  level: 1 | 2 | 3 | 4 | 5 | 6;
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl';
+  class?: string;
+  color?: 'default' | 'white' | 'muted' | 'primary';
+  style?: string;
+}
+
+const {
+  level,
+  size,
+  class: className = '',
+  color = 'default',
+  ...rest
+} = Astro.props;
+
+// Default size mapping based on heading level
+const defaultSizes = {
+  1: '4xl',
+  2: '3xl',
+  3: 'xl',
+  4: 'lg',
+  5: 'md',
+  6: 'sm'
+};
+
+const actualSize = size || defaultSizes[level] as keyof typeof sizeClasses;
+
+// Size-specific classes
+const sizeClasses = {
+  xs: 'text-xs',
+  sm: 'text-sm',
+  md: 'text-base',
+  lg: 'text-lg',
+  xl: 'text-xl',
+  '2xl': 'text-2xl',
+  '3xl': 'text-3xl',
+  '4xl': 'text-4xl'
+};
+
+// Color-specific classes and styles
+const colorClasses = {
+  default: 'text-brand-primary',
+  white: 'text-white',
+  primary: 'text-brand-primary',
+  muted: 'text-brand-secondary'
+};
+
+const colorStyles = {
+  default: 'color: #262327;',
+  white: 'color: #F8F9FA;',
+  primary: 'color: #262327;',
+  muted: 'color: #C1B9BC;'
+};
+
+// Base classes for all headings
+const baseClasses = 'font-bold leading-tight';
+
+const headingClasses = `${baseClasses} ${sizeClasses[actualSize]} ${colorClasses[color]} ${className}`;
+const headingStyle = `${colorStyles[color]} ${Astro.props.style || ''}`;
+---
+
+{level === 1 && <h1 class={headingClasses} style={headingStyle} {...rest}><slot /></h1>}
+{level === 2 && <h2 class={headingClasses} style={headingStyle} {...rest}><slot /></h2>}
+{level === 3 && <h3 class={headingClasses} style={headingStyle} {...rest}><slot /></h3>}
+{level === 4 && <h4 class={headingClasses} style={headingStyle} {...rest}><slot /></h4>}
+{level === 5 && <h5 class={headingClasses} style={headingStyle} {...rest}><slot /></h5>}
+{level === 6 && <h6 class={headingClasses} style={headingStyle} {...rest}><slot /></h6>}

@@ -1,0 +1,45 @@
+---
+// DecorativeLine component for consistent decorative line elements across the site
+export interface Props {
+  variant?: 'primary' | 'secondary' | 'accent';
+  width?: 'sm' | 'md' | 'lg';
+  alignment?: 'left' | 'center' | 'right';
+  class?: string;
+}
+
+const { 
+  variant = 'primary',
+  width = 'md',
+  alignment = 'left',
+  class: className = '' 
+} = Astro.props;
+
+// Decorative line variants with their respective SVG URLs
+const variants = {
+  primary: 'https://static.motiffcontent.com/private/resource/image/19847a91b1c45aa-f9b7ad44-c36a-47e5-a05e-5ab2e2f83806.svg',
+  secondary: 'https://static.motiffcontent.com/private/resource/image/19847a91b1ee3cc-735db27d-fbc9-4f70-9b61-a0fca25048ef.svg',
+  accent: 'https://static.motiffcontent.com/private/resource/image/19847a91b208b3d-f919518a-8138-4b90-b882-255110712fc8.svg'
+};
+
+// Width configurations
+const widthClasses = {
+  sm: 'w-12', // 48px
+  md: 'w-16', // 64px
+  lg: 'w-24'  // 96px
+};
+
+// Alignment configurations
+const alignmentClasses = {
+  left: '',
+  center: 'mx-auto',
+  right: 'ml-auto'
+};
+
+const decorativeLineClass = `bg-cover h-[3px] ${widthClasses[width]} ${alignmentClasses[alignment]} ${className}`;
+const backgroundImage = variants[variant];
+---
+
+<div 
+  class={decorativeLineClass}
+  style={`background-image: url('${backgroundImage}')`}
+></div>

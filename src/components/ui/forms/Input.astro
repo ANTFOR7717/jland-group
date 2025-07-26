@@ -1,0 +1,51 @@
+---
+// Input Component - Reusable input field with consistent styling
+// Adheres to Tailwind CSS only styling as required
+
+export interface Props {
+  type?: 'text' | 'email' | 'tel' | 'textarea';
+  placeholder?: string;
+  name: string;
+  required?: boolean;
+  class?: string;
+  rows?: number; // for textarea
+  value?: string;
+}
+
+const {
+  type = 'text',
+  placeholder,
+  name,
+  required = false,
+  class: className = '',
+  rows = 4,
+  value,
+  ...rest
+} = Astro.props;
+
+// Base classes for all inputs
+const baseClasses = 'bg-white rounded px-4 py-3 focus:outline-none focus:ring-2 focus:border-transparent';
+
+// Input-specific styling
+const inputStyle = 'border: 1px solid #7D7877; color: #9CA3AF;';
+const focusStyle = 'focus:ring-yellow-400';
+
+const inputClasses = `${baseClasses} ${focusStyle} ${className}`;
+
+const commonProps = {
+  class: inputClasses,
+  style: inputStyle,
+  name,
+  placeholder,
+  required,
+  value,
+  ...rest
+};
+---
+
+{type === 'textarea' ? (
+  <textarea rows={rows} {...commonProps}>
+  </textarea>
+) : (
+  <input type={type} {...commonProps} />
+)}

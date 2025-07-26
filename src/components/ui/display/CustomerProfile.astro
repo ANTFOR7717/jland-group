@@ -1,0 +1,67 @@
+---
+// CustomerProfile Component - Reusable customer avatar and info display
+// Supports different variants for testimonials and reviews
+
+export interface Props {
+  name: string;
+  location: string;
+  avatarUrl: string;
+  variant?: 'testimonial' | 'review';
+  showRating?: boolean;
+  rating?: number;
+  class?: string;
+}
+
+const {
+  name,
+  location,
+  avatarUrl,
+  variant = 'testimonial',
+  showRating = false,
+  rating = 5,
+  class: className = ''
+} = Astro.props;
+
+import Text from './Text.astro';
+import StarRating from './StarRating.astro';
+
+// Variant-specific styles
+const variantStyles = {
+  testimonial: {
+    container: 'flex items-center gap-4 mt-1',
+    avatar: 'rounded-full w-16 h-16 bg-cover border-2 mt-0.5 border-yellow-500',
+    info: 'flex flex-col',
+    nameColor: 'white' as const,
+    locationColor: 'muted' as const
+  },
+  review: {
+    container: 'flex justify-between items-start',
+    avatar: 'rounded-full w-12 h-12 bg-cover border border-gray-200',
+    info: 'flex flex-col',
+    nameColor: 'default' as const,
+    locationColor: 'secondary' as const
+  }
+};
+
+const styles = variantStyles[variant];
+---
+
+<div class={`${styles.container} ${className}`}>
+  <div 
+    class={styles.avatar}
+    style={`background-image: url('${avatarUrl}');`}
+  ></div>
+  <div class={styles.info}>
+    <Text color={styles.nameColor} weight="semibold" class="leading-6">
+      {name}
+    </Text>
+    <Text color={styles.locationColor} class="leading-6">
+      {location}
+    </Text>
+    {showRating && (
+      <div class="mt-1">
+        <StarRating rating={rating} variant={variant} size="sm" />
+      </div>
+    )}
+  </div>
+</div>

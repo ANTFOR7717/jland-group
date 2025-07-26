@@ -1,0 +1,102 @@
+---
+// Hero component matching the Motiff design
+// Updated to use abstracted UI components
+import { Button, Badge } from '../ui/index.js';
+import { Input, Form, Card } from '../ui/index.js';
+import { ContentGrid, ContentBlock } from '../ui/index.js';
+import { ButtonGroup } from '../ui/index.js';
+import { HeroSection, TrustIndicator, TrustIndicatorGroup } from '../ui/index.js';
+// Note: Heading and Text require direct imports due to TypeScript compatibility
+import Heading from '../ui/display/Heading.astro';
+import Text from '../ui/display/Text.astro';
+---
+
+<HeroSection backgroundImage="https://static.motiffcontent.com/private/resource/image/198450a83464522-96fe5512-672e-4c61-a5cf-8bb3295a188c.svg">
+  <!-- Main Content Area -->
+  <ContentGrid columns={2} gap="xl" padding="lg" class="mt-5 grid-cols-1 md:grid-cols-2">
+    <!-- Left Content -->
+    <ContentBlock maxWidth="max-w-[803px] max-w-full md:max-w-[803px]">
+      <!-- Main Heading -->
+      <div class="flex flex-col gap-4 gap-3 sm:gap-4">
+        <Heading level={1} color="white" class="max-w-[623px] leading-10 text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight sm:leading-10">
+          Frederick's Most Experienced Roofing Experts
+        </Heading>
+        <Text variant="lead" color="white" class="max-w-[640px] text-lg sm:text-xl">
+          Quality Commercial & Residential Roofing Solutions Since 2005
+        </Text>
+        <Text variant="body" color="muted" class="text-lg leading-7 max-w-[543px] text-base sm:text-lg leading-6 sm:leading-7">
+          Serving Frederick, MD and surrounding areas with premium roofing services
+        </Text>
+      </div>
+      
+      <!-- CTA Buttons -->
+      <ButtonGroup gap="md" class="mt-4 flex-col sm:flex-row">
+        <Button variant="primary" size="lg" class="w-full sm:w-auto min-h-[48px]">
+          FREE ROOF INSPECTION
+        </Button>
+        <Button variant="secondary" size="lg" class="w-full sm:w-auto min-h-[48px]">
+          VIEW OUR PROJECTS
+        </Button>
+      </ButtonGroup>
+      
+      <!-- Trust Indicators -->
+      <TrustIndicatorGroup variant="hero" class="mt-6 flex-col sm:flex-row">
+        <TrustIndicator rating={5} text="5-Star Rating" variant="hero" />
+        <TrustIndicator icon="shield" text="Licensed & Insured" variant="hero" />
+        <TrustIndicator icon="clock" text="24-Hour Emergency Service" variant="hero" />
+      </TrustIndicatorGroup>
+      
+      <!-- Badges -->
+      <ContentGrid variant="badges" gap="md" padding="none" class="mt-6 grid-cols-1 sm:grid-cols-2">
+        <Badge variant="bbb" size="md" class="max-w-[182px] gap-1 max-w-full sm:max-w-[182px] justify-center sm:justify-start">
+          <span class="text-sm font-bold">BBB</span>
+          <span class="text-xs font-normal">Accredited Business</span>
+        </Badge>
+        <Badge variant="google" size="md" class="max-w-[200px] gap-1 max-w-full sm:max-w-[200px] justify-center sm:justify-start">
+          <span class="text-sm font-bold"><span style="color: #4285F4;">G</span><span style="color: #EA4335;">o</span><span style="color: #FBBC05;">o</span><span style="color: #4285F4;">g</span><span style="color: #34A853;">l</span><span style="color: #EA4335;">e</span></span>
+          <span class="text-xs font-normal text-black">Verified Business</span>
+        </Badge>
+      </ContentGrid>
+    </ContentBlock>
+    
+    <!-- Quote Form -->
+    <Card variant="quote" quoteWidth="md" class="mt-8 md:mt-0">
+      <Form variant="quote">
+        <Input 
+          type="text" 
+          placeholder="Full Name" 
+          name="fullName"
+          required
+          class="min-h-[48px]"
+        />
+        <Input 
+          type="tel" 
+          placeholder="Phone Number" 
+          name="phone"
+          required
+          class="min-h-[48px]"
+        />
+        <Input 
+          type="email" 
+          placeholder="Email Address" 
+          name="email"
+          required
+          class="min-h-[48px]"
+        />
+        <Input 
+          type="text" 
+          value="roof-inspection" 
+          name="service"
+          class="min-h-[48px]"
+        />
+        <Button 
+          type="submit" 
+          variant="primary"
+          class="mt-2 w-full sm:w-auto min-h-[48px]"
+        >
+          GET QUOTE NOW
+        </Button>
+      </Form>
+    </Card>
+  </ContentGrid>
+</HeroSection>

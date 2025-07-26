@@ -1,0 +1,43 @@
+---
+// NavLink Component - Consistent navigation styling
+// Adheres to Tailwind CSS only styling as required
+
+export interface Props {
+  href: string;
+  active?: boolean;
+  class?: string;
+  variant?: 'header' | 'footer';
+}
+
+const {
+  href,
+  active = false,
+  class: className = '',
+  variant = 'header',
+  ...rest
+} = Astro.props;
+
+// Base classes for all nav links
+const baseClasses = 'transition-colors';
+
+// Variant-specific classes and styles
+const variantClasses = {
+  header: 'text-white font-semibold hover:text-accent-primary',
+  footer: 'text-base leading-6 hover:opacity-80'
+};
+
+const variantStyles = {
+  header: '',
+  footer: 'color: #7D7877;'
+};
+
+// Active state classes
+const activeClasses = active ? 'text-accent-primary' : '';
+
+const linkClasses = `${baseClasses} ${variantClasses[variant]} ${activeClasses} ${className}`;
+const linkStyle = variantStyles[variant];
+---
+
+<a href={href} class={linkClasses} style={linkStyle} {...rest}>
+  <slot />
+</a>

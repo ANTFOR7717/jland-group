@@ -1,0 +1,25 @@
+---
+// HeroSection component for hero layout with background image
+export interface Props {
+  backgroundImage: string;
+  height?: string;
+  fontFamily?: string;
+  class?: string;
+}
+
+const { 
+  backgroundImage,
+  height = 'h-[650px]',
+  fontFamily = 'Montserrat',
+  class: className = '' 
+} = Astro.props;
+
+const sectionClass = `relative ${height} w-full overflow-hidden bg-cover bg-center ${className}`;
+const backgroundStyle = `background-image: url('${backgroundImage}'); font-family: '${fontFamily}'`;
+---
+
+<section class={sectionClass} style={backgroundStyle}>
+  <div class="flex flex-col h-full justify-between py-28 px-0">
+    <slot />
+  </div>
+</section>

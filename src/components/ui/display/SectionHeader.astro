@@ -1,0 +1,94 @@
+---
+// SectionHeader component for section titles with optional decorative elements and rating display
+export interface Props {
+  title: string;
+  level?: 1 | 2 | 3 | 4 | 5 | 6;
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl';
+  alignment?: 'left' | 'center' | 'right';
+  decorativeImage?: string;
+  spacing?: 'sm' | 'md' | 'lg';
+  showRating?: boolean;
+  rating?: number;
+  totalReviews?: number;
+  ratingText?: string;
+  layout?: 'horizontal' | 'vertical';
+  class?: string;
+}
+
+const { 
+  title,
+  level = 2,
+  size = '4xl',
+  alignment = 'center',
+  decorativeImage,
+  spacing = 'lg',
+  showRating = false,
+  rating = 5,
+  totalReviews = 0,
+  ratingText,
+  layout = 'horizontal',
+  class: className = '' 
+} = Astro.props;
+
+import Heading from './Heading.astro';
+import Text from './Text.astro';
+
+const alignmentClasses = {
+  left: 'text-left',
+  center: 'text-center',
+  right: 'text-right'
+};
+
+const spacingClasses = {
+  sm: 'mb-8',
+  md: 'mb-10',
+  lg: 'mb-12'
+};
+
+const headerClass = `${alignmentClasses[alignment]} ${spacingClasses[spacing]} ${className}`;
+
+// Layout classes for rating display
+const layoutClasses = {
+  horizontal: 'flex items-center justify-between',
+  vertical: 'flex flex-col gap-2'
+};
+
+// Generate rating text if not provided
+const displayRatingText = ratingText || (totalReviews > 0 ? `${rating}/5 (${totalReviews} Reviews)` : `${rating}/5`);
+---
+
+<div class={headerClass}>
+  {showRating ? (
+    <div class={layoutClasses[layout]}>
+      <Heading level={level} size={size}>
+        {title}
+      </Heading>
+      
+      <div class="flex items-center gap-2">
+        <!-- Custom star rating for exact design match -->
+        <div class="flex items-center gap-0">
+          <div class="w-5 h-[17.78px] bg-cover" style="background-image: url('https://static.motiffcontent.com/private/resource/image/198452407abbf37-34e1ad89-f315-4011-a272-e444a2125a65.svg');"></div>
+          <div class="w-5 h-[17.78px] bg-cover" style="background-image: url('https://static.motiffcontent.com/private/resource/image/198452407abbf37-34e1ad89-f315-4011-a272-e444a2125a65.svg');"></div>
+          <div class="w-5 h-[17.78px] bg-cover" style="background-image: url('https://static.motiffcontent.com/private/resource/image/198452407abbf37-34e1ad89-f315-4011-a272-e444a2125a65.svg');"></div>
+          <div class="w-5 h-[17.78px] bg-cover" style="background-image: url('https://static.motiffcontent.com/private/resource/image/198452407abbf37-34e1ad89-f315-4011-a272-e444a2125a65.svg');"></div>
+          <div class="w-5 h-[17.78px] bg-cover" style="background-image: url('https://static.motiffcontent.com/private/resource/image/198452407abbf37-34e1ad89-f315-4011-a272-e444a2125a65.svg');"></div>
+        </div>
+        
+        <Text color="default" weight="semibold" class="leading-6">
+          {displayRatingText}
+        </Text>
+      </div>
+    </div>
+  ) : (
+    <>
+      <Heading level={level} size={size} class="mb-4">
+        {title}
+      </Heading>
+      
+      {decorativeImage && (
+        <!-- Decorative Underline -->
+        <div class="w-24 h-1 mx-auto bg-cover bg-no-repeat flex-shrink-0" style={`background-image: url('${decorativeImage}')`}></div>
+      )}
+    </>
+  )}
+</div>

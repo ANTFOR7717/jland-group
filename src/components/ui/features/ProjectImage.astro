@@ -1,0 +1,45 @@
+---
+// ProjectImage Component - Reusable project image display
+// Supports different sizes and variants for project galleries
+
+export interface Props {
+  imageUrl: string;
+  alt?: string;
+  variant?: 'gallery' | 'featured' | 'thumbnail';
+  size?: 'sm' | 'md' | 'lg';
+  class?: string;
+}
+
+const {
+  imageUrl,
+  alt = 'Project image',
+  variant = 'gallery',
+  size = 'md',
+  class: className = ''
+} = Astro.props;
+
+// Size-specific styles
+const sizeStyles = {
+  sm: 'w-32 h-20',
+  md: 'w-[186.65px] h-24',
+  lg: 'w-64 h-40'
+};
+
+// Variant-specific styles
+const variantStyles = {
+  gallery: 'bg-cover rounded',
+  featured: 'bg-cover rounded-lg shadow-md',
+  thumbnail: 'bg-cover rounded-sm border border-gray-200'
+};
+
+const baseClasses = 'bg-center';
+const sizeClass = sizeStyles[size];
+const variantClass = variantStyles[variant];
+---
+
+<div 
+  class={`${baseClasses} ${sizeClass} ${variantClass} ${className}`}
+  style={`background-image: url('${imageUrl}');`}
+  role="img"
+  aria-label={alt}
+></div>

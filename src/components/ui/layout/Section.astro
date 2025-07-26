@@ -1,0 +1,54 @@
+---
+// Section Component - Consistent section wrapper
+// Adheres to Tailwind CSS only styling as required
+
+export interface Props {
+  background?: 'white' | 'gray' | 'dark' | 'light' | 'transparent';
+  padding?: 'none' | 'sm' | 'md' | 'lg';
+  class?: string;
+  style?: string;
+}
+
+const {
+  background = 'white',
+  padding = 'lg',
+  class: className = '',
+  style = '',
+  ...rest
+} = Astro.props;
+
+// Background-specific classes and styles
+const backgroundClasses = {
+  white: 'bg-white',
+  gray: 'bg-gray-100',
+  dark: '',
+  light: '',
+  transparent: 'bg-transparent'
+};
+
+const backgroundStyles = {
+  white: '',
+  gray: '',
+  dark: 'background-color: #262327;',
+  light: 'background-color: #F8F9FA;',
+  transparent: ''
+};
+
+// Padding-specific classes
+const paddingClasses = {
+  none: '',
+  sm: 'py-6',
+  md: 'py-12',
+  lg: 'py-16'
+};
+
+// Base classes for all sections
+const baseClasses = 'w-full';
+
+const sectionClasses = `${baseClasses} ${backgroundClasses[background]} ${paddingClasses[padding]} ${className}`;
+const sectionStyle = `${backgroundStyles[background]} ${style}`;
+---
+
+<section class={sectionClasses} style={sectionStyle} {...rest}>
+  <slot />
+</section>

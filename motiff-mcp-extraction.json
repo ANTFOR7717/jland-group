@@ -1,0 +1,196 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MotiffDesignExtractionPrompt",
+  "description": "Two-phase, pixel-perfect extraction protocol for any Motiff design.",
+  "type": "object",
+  "additionalProperties": false,
+
+  "phase": {
+    "type": "string",
+    "enum": ["planning", "execution"],
+    "description": "Current phase. Must be 'planning' first, then 'execution' after explicit user approval."
+  },
+
+  "task_type": { "const": "motiff_implementation" },
+  "language":  { "const": "Astro" },
+
+  "motiff": {
+    "type": "object",
+    "required": ["node_id", "screenshot_url"],
+    "properties": {
+      "node_id":      { "type": "string", "description": "Motiff node identifier for MCP extraction." },
+      "screenshot_url": { "type": "string", "format": "uri", "description": "Visual reference URL." }
+    }
+  },
+
+  "design_specs": {
+    "type": ["object", "null"],
+    "description": "Auto-populated during planning phase via MCP server.",
+    "properties": {
+      "html_structure": { "type": "string" },
+      "colors": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["property", "hex"],
+          "properties": {
+            "property": { "type": "string", "enum": ["color", "background", "border-color", "fill", "stroke"] },
+            "hex":      { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+            "opacity":  { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        }
+      },
+      "spacing": {
+        "type": "array",
+        "items": { "$ref": "#/definitions/dimension" }
+      },
+      "dimensions": {
+        "type": "array",
+        "items": { "$ref": "#/definitions/dimension" }
+      },
+      "assets": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["type", "url"],
+          "properties": {
+            "type": { "type": "string", "enum": ["img", "svg", "bg-image", "icon"] },
+            "url":  { "type": "string", "format": "uri" },
+            "alt":  { "type": "string" }
+          }
+        }
+      },
+      "typography": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["selector", "font_family", "font_size", "font_weight"],
+          "properties": {
+            "selector":       { "type": "string" },
+            "font_family":    { "type": "string" },
+            "font_size":      { "type": "string", "pattern": "^\\d+(\\.\\d+)?px$" },
+            "font_weight":    { "type": "integer" },
+            "line_height":    { "type": "string" },
+            "letter_spacing": { "type": "string" },
+            "text_align":     { "type": "string" },
+            "color":          { "type": "string" }
+          }
+        }
+      },
+      "layout": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["selector", "display"],
+          "properties": {
+            "selector": { "type": "string" },
+            "display":  { "type": "string" },
+            "position": { "type": "string" },
+            "z_index":  { "type": "integer" },
+            "transform":{ "type": "string" },
+            "overflow": { "type": "string" }
+          }
+        }
+      },
+      "effects": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["selector", "property"],
+          "properties": {
+            "selector": { "type": "string" },
+            "property": { "type": "string", "enum": ["box-shadow", "border-radius", "border-width", "opacity", "backdrop-filter"] },
+            "value":    { "type": "string" }
+          }
+        }
+      },
+      "interactive_states": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["selector", "state", "property", "value"],
+          "properties": {
+            "selector": { "type": "string" },
+            "state":    { "type": "string", "enum": ["hover", "focus", "active"] },
+            "property": { "type": "string" },
+            "value":    { "type": "string" }
+          }
+        }
+      }
+    }
+  },
+
+  "qa_checklist": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "required": ["item", "passed"],
+      "properties": {
+        "item":  { "type": "string" },
+        "passed":{ "type": "boolean" }
+      }
+    },
+    "default": [
+      { "item": "Background colors use exact hex values via inline styles", "passed": false },
+      { "item": "Text colors use exact hex values via inline styles", "passed": false },
+      { "item": "All asset URLs copied precisely", "passed": false },
+      { "item": "Spacing & sizing pixel-perfect (padding, margins)", "passed": false },
+      { "item": "Dimensions exact (width, height)", "passed": false },
+      { "item": "Typography specifications preserved", "passed": false },
+      { "item": "Border properties match (color, width, radius)", "passed": false },
+      { "item": "Shadow and effect properties maintained", "passed": false },
+      { "item": "Hover states and interactions implemented", "passed": false },
+      { "item": "Responsive behavior preserved", "passed": false }
+    ]
+  },
+  "output_schema": {
+    "type": "object",
+    "required": ["summary", "files_to_create"],
+    "properties": {
+      "summary": {
+        "type": "string",
+        "description": "Concise plan (planning) or final QA summary (execution)."
+      },
+      "files_to_create": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["file_path", "file_type", "content"],
+          "properties": {
+            "file_path": { "type": "string" },
+            "file_type": { "type": "string", "enum": ["source_code", "explanation_markdown", "qa_report"] },
+            "content":   { "type": "string" }
+          }
+        }
+      }
+    }
+  },
+
+  "system": {
+    "persona": "Pixel-perfect Motiff implementer; zero approximation.",
+    "rules": [
+      "1. Use MCP server to fetch node HTML & screenshot before planning.",
+      "2. Planning phase → emit extracted design_specs + QA checklist.",
+      "3. Execution phase → emit Astro component with inline styles only.",
+      "4. Never use Tailwind color classes; always exact hex/rgba.",
+      "5. Assets: copy URLs verbatim; preserve dimensions.",
+      "6. QA checklist must report 10/10 true before marking complete.",
+      "7. Hover/focus states extracted and implemented 1:1.",
+      "8. Responsive behaviour preserved via media queries or container queries.",
+      "9. If any field unavailable → ask user, do not guess.",
+      "10. On failure → create /issues/<timestamp>.md with exact discrepancy."
+    ]
+  },
+ "definitions": {
+    "dimension": {
+      "type": "object",
+      "required": ["selector", "property", "value", "unit"],
+      "properties": {
+        "selector": { "type": "string" },
+        "property": { "type": "string", "enum": ["width", "height", "padding", "margin", "border-radius", "border-width"] },
+        "value":    { "type": "number" },
+        "unit":     { "type": "string", "enum": ["px", "%", "rem", "em"] }
+      }
+    }
+  }
+}

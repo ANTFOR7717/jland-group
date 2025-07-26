@@ -1,0 +1,36 @@
+---
+// Trust Indicator component for displaying trust signals with icon and text
+export interface Props {
+  icon?: 'email' | 'phone' | 'location' | 'star' | 'check' | 'arrow' | 'verified' | 'facebook' | 'twitter' | 'instagram' | 'linkedin' | 'shield' | 'clock';
+  text: string;
+  variant?: 'default' | 'hero';
+  class?: string;
+  rating?: number;
+}
+
+const { icon, text, variant = 'default', class: className = '', rating } = Astro.props;
+
+import { Icon, StarRating } from '../index.js';
+// Note: Text requires direct import due to TypeScript compatibility
+import Text from '../display/Text.astro';
+
+// Handle special cases for star rating
+const isStarRating = rating !== undefined;
+const starVariant = variant === 'hero' ? 'hero' : 'review';
+
+const variantClasses = {
+  default: 'flex items-center gap-2',
+  hero: 'flex items-center gap-2'
+};
+
+const textColor = variant === 'hero' ? 'white' : 'default';
+---
+
+<div class={`${variantClasses[variant]} ${className}`}>
+  {isStarRating ? (
+    <StarRating rating={rating} variant={starVariant} />
+  ) : icon ? (
+    <Icon name={icon} size="sm" />
+  ) : null}
+  <Text variant="body" color={textColor} weight="medium">{text}</Text>
+</div>

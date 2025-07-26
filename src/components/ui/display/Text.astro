@@ -1,0 +1,61 @@
+---
+// Text Component - Consistent text styling
+// Adheres to Tailwind CSS only styling as required
+
+export interface Props {
+  variant?: 'body' | 'lead' | 'small' | 'caption';
+  color?: 'default' | 'muted' | 'accent' | 'white' | 'primary' | 'secondary';
+  class?: string;
+  weight?: 'normal' | 'medium' | 'semibold' | 'bold';
+}
+
+const {
+  variant = 'body',
+  color = 'default',
+  class: className = '',
+  weight = 'normal',
+  ...rest
+} = Astro.props;
+
+// Variant-specific classes
+const variantClasses = {
+  body: 'text-base leading-6',
+  lead: 'text-xl leading-7 font-medium',
+  small: 'text-sm leading-5',
+  caption: 'text-xs leading-4'
+};
+
+// Color-specific classes and styles
+const colorClasses = {
+  default: 'text-gray-900',
+  muted: 'text-gray-600',
+  accent: 'text-accent-primary',
+  white: 'text-white',
+  primary: 'text-brand-primary',
+  secondary: 'text-brand-secondary'
+};
+
+const colorStyles = {
+  default: 'color: #262327;',
+  muted: 'color: #C1B9BC;',
+  accent: 'color: #FDB813;',
+  white: 'color: #F8F9FA;',
+  primary: 'color: #262327;',
+  secondary: 'color: #7D7877;'
+};
+
+// Weight-specific classes
+const weightClasses = {
+  normal: 'font-normal',
+  medium: 'font-medium',
+  semibold: 'font-semibold',
+  bold: 'font-bold'
+};
+
+const textClasses = `${variantClasses[variant]} ${colorClasses[color]} ${weightClasses[weight]} ${className}`;
+const textStyle = colorStyles[color];
+---
+
+<p class={textClasses} style={textStyle} {...rest}>
+  <slot />
+</p>

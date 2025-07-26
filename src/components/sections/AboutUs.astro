@@ -1,0 +1,89 @@
+---
+// AboutUs Component - Pixel-perfect implementation from Motiff design
+import { Container, Section, SectionHeader, ContentBlock, Card, Layout, DecorativeLine, Statistics, NumberedSection } from '../ui/index.js';
+import Heading from '../ui/display/Heading.astro';
+import Text from '../ui/display/Text.astro';
+---
+
+<Section background="light" padding="sm">
+  <Container size="full" class="overflow-hidden gap-1.5 flex flex-col items-stretch font-inter text-base font-normal">
+    
+    <!-- Main Title -->
+    <SectionHeader 
+      title="About Our Company" 
+      level={1} 
+      size="4xl" 
+      alignment="center" 
+      spacing="lg" 
+      decorativeImage="https://static.motiffcontent.com/private/resource/image/19847a91b1c45aa-f9b7ad44-c36a-47e5-a05e-5ab2e2f83806.svg"
+    />
+
+
+    <!-- Main Content Area -->
+    <Layout 
+      variant="two-column"
+      leftBackground="light" 
+      rightBackground="light" 
+      minHeight="709.32px"
+      leftPadding="sm"
+      rightPadding="sm"
+      gap="xl"
+      class="mt-[0.84px]"
+    >
+      <!-- Left Column -->
+      <div slot="left" class="mt-[9.16px] gap-2 flex flex-col items-stretch">
+        <!-- Section 01 -->
+        <NumberedSection 
+          number="01" 
+          title="Our History" 
+          description="Founded in 2005, we started as a small family business with a passion for quality craftsmanship and customer service. Over the years, we've grown into a trusted industry leader serving thousands of satisfied customers."
+        />
+
+        <!-- Section 02 -->
+        <NumberedSection 
+          number="02" 
+          title="Our Mission" 
+          description="We are dedicated to providing exceptional service with integrity and transparency. Our goal is to exceed customer expectations with premium materials, expert installation, and responsive support throughout the entire process."
+        />
+
+        <!-- Section 03 -->
+        <NumberedSection 
+          number="03" 
+          title="Our Values" 
+          description="Quality, reliability, and sustainability guide everything we do. We believe in building lasting relationships with our customers, treating every home as if it were our own, and making a positive impact in the communities we serve."
+        />
+
+        <!-- Stats Section -->
+        <Statistics 
+          stats={[
+            { value: "15+", label: "Years Experience" },
+            { value: "5,000+", label: "Projects Completed" },
+            { value: "98%", label: "Customer Satisfaction" }
+          ]}
+        />
+      </div>
+      
+      <!-- Right Column - Image -->
+      <Card 
+        slot="right"
+        variant="image" 
+        backgroundImage="https://static.motiffcontent.com/private/resource/image/1984480fa5766b5-fb2a2a53-eb11-4ceb-9ebd-a59eab1fb61d.jpeg"
+        width="608px"
+        height="709.32px"
+      />
+    </Layout>
+
+    <!-- Commitment Section -->
+    <Container size="xl" class="mt-[58px] flex justify-center">
+      <Card variant="default" class="gap-3 flex flex-col items-stretch">
+        <Heading level={2} size="2xl" color="default" class="text-center mt-[33px] ml-[364px] mr-[364px]">
+          Our Commitment to Excellence
+        </Heading>
+        <Text variant="body" color="secondary" class="text-center ml-[169px] mr-[169px] min-h-[72px]">
+          Every project we undertake reflects our dedication to quality craftsmanship, attention to detail, and commitment to customer satisfaction. We stand behind our work with industry-leading warranties and personalized service.
+        </Text>
+        <DecorativeLine variant="accent" width="lg" alignment="center" class="mt-1 mb-[33px]" />
+      </Card>
+    </Container>
+   </Container>
+ </Section>

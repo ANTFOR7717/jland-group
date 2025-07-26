@@ -1,0 +1,61 @@
+---
+// ContentGrid component for flexible content layouts
+export interface Props {
+  columns?: 1 | 2 | 3;
+  gap?: 'sm' | 'md' | 'lg' | 'xl';
+  alignment?: 'start' | 'center' | 'end' | 'between';
+  padding?: 'none' | 'sm' | 'md' | 'lg';
+  variant?: 'default' | 'badges';
+  class?: string;
+}
+
+const { 
+  columns = 2,
+  gap = 'xl',
+  alignment = 'between',
+  padding = 'lg',
+  variant = 'default',
+  class: className = '' 
+} = Astro.props;
+
+const columnClasses = {
+  1: 'flex flex-col',
+  2: 'flex justify-between items-start',
+  3: 'grid grid-cols-1 lg:grid-cols-3'
+};
+
+const gapClasses = {
+  sm: 'gap-4',
+  md: 'gap-8',
+  lg: 'gap-12',
+  xl: 'gap-48'
+};
+
+const alignmentClasses = {
+  start: 'items-start',
+  center: 'items-center',
+  end: 'items-end',
+  between: 'justify-between'
+};
+
+const paddingClasses = {
+  none: '',
+  sm: 'px-4 sm:px-4',
+  md: 'px-4 sm:px-8',
+  lg: 'px-4 sm:px-16'
+};
+
+// Variant-specific classes
+const variantClasses = {
+  default: '',
+  badges: 'flex flex-wrap items-center'
+};
+
+const gridClass = variant === 'badges' 
+  ? `${variantClasses[variant]} ${gapClasses[gap]} ${paddingClasses[padding]} ${className}`
+  : `${columnClasses[columns]} ${gapClasses[gap]} ${paddingClasses[padding]} ${className}`;
+---
+
+<div class={gridClass}>
+  <slot />
+</div>

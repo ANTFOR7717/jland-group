@@ -1,11 +1,59 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import { getEntry } from 'astro:content';
+import Header from '../components/layout/Header.astro';
+import Hero from '../components/sections/Hero.astro';
+import Services from '../components/sections/Services.astro';
+import Testimonials from '../components/sections/Testimonials.astro';
+import Process from '../components/sections/Process.astro';
+import Partners from '../components/sections/Partners.astro';
+import Footer from '../components/layout/Footer.astro';
 import Layout from '../layouts/Layout.astro';
+import Contact from '../components/sections/Contact.astro';
+import FAQ from '../components/sections/FAQ.astro';
+import AboutUs from '../components/sections/AboutUs.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// Fetch services data at page level
+const [servicesData, construction, showcase] = await Promise.all([
+  getEntry('services', 'roofing'),
+  getEntry('services', 'construction'),
+  getEntry('services', 'showcase')
+]);
+
+// Validate results in one place
+if (!servicesData || !construction || !showcase) {
+  throw new Error('One or more services data entries are missing');
+}
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="J Land Group - Professional Roofing Services">
+	<Header />
+	<Hero />
+	<Partners />
+	<Testimonials />
+	<Services 
+		columns={3}
+		variant="roofing" 
+		title={servicesData.data.title}
+		decorativeImage={servicesData.data.decorativeImage}
+		services={servicesData.data.services}
+	/>
+	<Process />
+		<Services 
+		columns={4}
+		variant="construction" 
+		title={construction.data.title}
+		decorativeImage={construction.data.decorativeImage}
+		services={construction.data.services}
+	/>
+	<AboutUs />
+			<Services 
+		columns={2}
+		variant="showcase" 
+		title={showcase.data.title}
+		decorativeImage={showcase.data.decorativeImage}
+		services={showcase.data.services}
+	/>
+	 <FAQ />
+	 <Contact />
+	<Footer />
 </Layout>

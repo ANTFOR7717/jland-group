@@ -1,0 +1,41 @@
+---
+// Spacer Component - Consistent spacing wrapper
+// Adheres to Tailwind CSS only styling as required
+
+export interface Props {
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  direction?: 'top' | 'bottom' | 'vertical' | 'horizontal' | 'all';
+  class?: string;
+}
+
+const {
+  size = 'md',
+  direction = 'top',
+  class: className = '',
+  ...rest
+} = Astro.props;
+
+// Size-specific spacing classes
+const sizeClasses = {
+  xs: '2',
+  sm: '4',
+  md: '8',
+  lg: '12',
+  xl: '16'
+};
+
+// Direction-specific classes
+const directionClasses = {
+  top: `mt-${sizeClasses[size]}`,
+  bottom: `mb-${sizeClasses[size]}`,
+  vertical: `my-${sizeClasses[size]}`,
+  horizontal: `mx-${sizeClasses[size]}`,
+  all: `m-${sizeClasses[size]}`
+};
+
+const spacerClasses = `${directionClasses[direction]} ${className}`;
+---
+
+<div class={spacerClasses} {...rest}>
+  <slot />
+</div>

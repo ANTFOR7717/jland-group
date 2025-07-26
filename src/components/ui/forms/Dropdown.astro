@@ -1,0 +1,129 @@
+---
+// Generic Dropdown Component with variant support
+// Supports different styles and behaviors through variants
+
+export interface Props {
+  title: string;
+  content: string;
+  id: string;
+  variant?: 'faq' | 'menu' | 'accordion';
+  maxWidth?: string;
+  class?: string;
+}
+
+const { 
+  title, 
+  content, 
+  id, 
+  variant = 'faq', 
+  maxWidth = "max-w-lg",
+  class: className = ''
+} = Astro.props;
+
+// Variant-specific classes
+const variantClasses = {
+  faq: {
+    container: 'border-b border-brand-border',
+    header: 'flex flex-row justify-between pt-2 pb-2 cursor-pointer',
+    title: 'flex items-center text-brand-primary leading-7 w-full min-h-7',
+    toggle: 'flex justify-center items-center border border-accent-primary rounded-full p-1 mt-0.5 transition-transform duration-300',
+    content: 'overflow-hidden transition-all duration-300 ease-in-out max-h-0',
+    contentInner: 'pb-2 text-brand-secondary text-sm leading-6'
+  },
+  menu: {
+    container: 'border border-gray-200 rounded-lg shadow-sm',
+    header: 'flex flex-row justify-between p-3 cursor-pointer hover:bg-gray-50',
+    title: 'flex items-center text-gray-900 font-medium w-full',
+    toggle: 'flex justify-center items-center w-5 h-5 transition-transform duration-200',
+    content: 'overflow-hidden transition-all duration-200 ease-in-out max-h-0',
+    contentInner: 'p-3 pt-0 text-gray-600 text-sm'
+  },
+  accordion: {
+    container: 'border-b border-gray-100',
+    header: 'flex flex-row justify-between py-3 cursor-pointer',
+    title: 'flex items-center text-gray-800 font-semibold w-full',
+    toggle: 'flex justify-center items-center w-6 h-6 transition-transform duration-300',
+    content: 'overflow-hidden transition-all duration-300 ease-in-out max-h-0',
+    contentInner: 'pb-3 text-gray-600'
+  }
+};
+
+const classes = variantClasses[variant];
+
+// Toggle icon based on variant
+const getToggleIcon = (variant: string) => {
+  switch (variant) {
+    case 'faq':
+      return 'https://static.motiffcontent.com/private/resource/image/19847e876283a63-5e5ba9a1-2ae7-4015-a901-21ac0f330072.svg';
+    case 'menu':
+    case 'accordion':
+    default:
+      return 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTQgNkw4IDEwTDEyIDYiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4K';
+  }
+};
+---
+
+<div class={`dropdown-item ${classes.container} ${className}`}>
+  <div class={`dropdown-header ${classes.header}`} data-dropdown={id}>
+    <div class={`${classes.title} ${maxWidth}`}>
+      {title}
+    </div>
+    <div class={`dropdown-toggle ${classes.toggle}`}>
+      <div class="w-3.5 h-3.5 bg-cover" style={`background-image: url('${getToggleIcon(variant)}');`}></div>
+    </div>
+  </div>
+  <div class={`dropdown-content ${classes.content}`} data-content={id}>
+    <div class={classes.contentInner}>
+      {content}
+    </div>
+  </div>
+</div>
+
+<script>
+  // Generic Dropdown functionality
+  function initializeDropdown() {
+    const dropdownHeaders = document.querySelectorAll('.dropdown-header');
+    
+    dropdownHeaders.forEach(header => {
+      header.addEventListener('click', function(this: HTMLElement) {
+        const dropdownId = this.getAttribute('data-dropdown');
+        const content = document.querySelector(`[data-content="${dropdownId}"]`) as HTMLElement;
+        const toggle = this.querySelector('.dropdown-toggle') as HTMLElement;
+        
+        if (!content || !toggle) return;
+        
+        const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+        
+        // Close all other dropdown items
+        dropdownHeaders.forEach(otherHeader => {
+          if (otherHeader !== this) {
+            const otherId = otherHeader.getAttribute('data-dropdown');
+            const otherContent = document.querySelector(`[data-content="${otherId}"]`) as HTMLElement;
+            const otherToggle = otherHeader.querySelector('.dropdown-toggle') as HTMLElement;
+            
+            if (otherContent && otherToggle) {
+              otherContent.style.maxHeight = '0px';
+              otherToggle.style.transform = 'rotate(0deg)';
+            }
+          }
+        });
+        
+        // Toggle current dropdown item
+        if (isOpen) {
+          content.style.maxHeight = '0px';
+          toggle.style.transform = 'rotate(0deg)';
+        } else {
+          content.style.maxHeight = content.scrollHeight + 'px';
+          toggle.style.transform = 'rotate(45deg)';
+        }
+      });
+    });
+  }
+
+  // Initialize on DOM content loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeDropdown);
+  } else {
+    initializeDropdown();
+  }
+</script>

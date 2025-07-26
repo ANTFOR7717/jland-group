@@ -1,0 +1,57 @@
+---
+// StarRating Component - Reusable star rating display
+// Adheres to Tailwind CSS only styling as required
+
+export interface Props {
+  rating: number;
+  maxRating?: number;
+  size?: 'sm' | 'md' | 'lg';
+  showNumber?: boolean;
+  class?: string;
+  variant?: 'hero' | 'testimonial' | 'review';
+}
+
+const {
+  rating,
+  maxRating = 5,
+  size = 'md',
+  showNumber = false,
+  class: className = '',
+  variant = 'hero',
+  ...rest
+} = Astro.props;
+
+// Size-specific classes
+const sizeClasses = {
+  sm: 'w-4 h-4',
+  md: 'w-5 h-5',
+  lg: 'w-6 h-6'
+};
+
+// Variant-specific star images
+const starImages = {
+  hero: 'https://static.motiffcontent.com/private/resource/image/198450a8347b778-b250ca13-0a5d-46f0-a54a-b8624697c966.svg',
+  testimonial: 'https://static.motiffcontent.com/private/resource/image/198452407a74a5a-a0d9ea63-d305-4863-a02a-2c58f568cdd4.svg',
+  review: 'https://static.motiffcontent.com/private/resource/image/198452407ae46de-06364c10-b99d-48c0-86af-3fce6d8f15fb.svg'
+};
+
+const starClass = sizeClasses[size];
+const starImage = starImages[variant];
+
+// Generate array of stars
+const stars = Array.from({ length: maxRating }, (_, index) => index < rating);
+---
+
+<div class={`flex items-center gap-0 ${className}`} {...rest}>
+  {stars.map((filled) => (
+    <div 
+      class={`${starClass} bg-cover bg-no-repeat`}
+      style={`background-image: url('${starImage}');`}
+    ></div>
+  ))}
+  {showNumber && (
+    <span class="ml-2 text-white font-medium">
+      {rating}-Star Rating
+    </span>
+  )}
+</div>

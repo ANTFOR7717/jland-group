@@ -1,0 +1,68 @@
+---
+// NumberedSection component for numbered section headers with decorative lines
+export interface Props {
+  number: string;
+  title?: string;
+  description?: string;
+  spacing?: 'none' | 'sm' | 'md' | 'lg';
+  minHeight?: 'sm' | 'md' | 'lg' | 'xl';
+  class?: string;
+}
+
+const { 
+  number,
+  title,
+  description,
+  spacing = 'lg',
+  minHeight = 'lg',
+  class: className = '' 
+} = Astro.props;
+
+import Heading from './Heading.astro';
+import Text from './Text.astro';
+import DecorativeLine from './DecorativeLine.astro';
+
+const spacingClasses = {
+  none: '',
+  sm: 'mt-6',
+  md: 'mt-8',
+  lg: 'mt-12'
+};
+
+const minHeightClasses = {
+  sm: 'min-h-16',
+  md: 'min-h-20',
+  lg: 'min-h-24',
+  xl: 'min-h-32'
+};
+
+const sectionClass = `${spacingClasses[spacing]} ${className}`;
+---
+
+<div class={sectionClass}>
+  <!-- Section Number -->
+  <div class="flex items-start min-h-10">
+    <Heading level={1} size="4xl" color="default" class="w-[43px] items-center flex text-ellipsis min-h-10">
+      {number}
+    </Heading>
+  </div>
+  
+  <!-- Decorative Line -->
+  <div class="w-[560.84px] flex items-start min-h-[3px]">
+    <DecorativeLine variant="primary" width="md" alignment="left" />
+  </div>
+  
+  {title && (
+    <div class="w-[560.84px] mt-2 flex items-start min-h-7">
+      <Heading level={3} size="xl" color="default" class="items-center flex text-ellipsis min-h-7">
+        {title}
+      </Heading>
+    </div>
+  )}
+  
+  {description && (
+    <Text variant="body" color="secondary" class={`w-[560.84px] leading-6 items-center flex text-ellipsis ${minHeightClasses[minHeight]}`}>
+      {description}
+    </Text>
+  )}
+</div>
