@@ -1,21 +1,36 @@
 ---
 // Header component with transparent background
+import HamburgerMenu from '../ui/navigation/HamburgerMenu.astro';
 ---
 
 <header class="absolute top-0 left-0 right-0 z-50 bg-transparent">
-  <div class="flex justify-between items-center px-16 py-5">
+  <div class="flex justify-between items-center px-4 md:px-8 lg:px-16 py-5">
     <!-- Logo -->
     <div class="text-white text-2xl font-bold leading-8 w-71">
       J LAND CONTRACTING
     </div>
     
-    <!-- Navigation -->
-    <nav class="flex items-center gap-8 text-white font-semibold">
+    <!-- Hamburger Menu (Visible on Mobile Only) -->
+    <HamburgerMenu />
+
+    <!-- Navigation (Hidden on Mobile) -->
+    <nav id="mobile-nav" class="hidden md:flex items-center md:gap-4 lg:gap-8 text-white font-semibold">
       <a href="#services" class="hover:text-accent-primary transition-colors">Services</a>
       <a href="#about" class="hover:text-accent-primary transition-colors">About</a>
       <a href="#projects" class="hover:text-accent-primary transition-colors">Projects</a>
       <a href="#testimonials" class="hover:text-accent-primary transition-colors">Testimonials</a>
       <a href="#contact" class="hover:text-accent-primary transition-colors">Contact</a>
+    </nav>
+  </div>
+  
+  <!-- Mobile Navigation Menu (Initially Hidden) -->
+  <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 right-0 bg-black bg-opacity-90 backdrop-blur-sm">
+    <nav class="flex flex-col items-center py-4 gap-4 text-white font-semibold">
+      <a href="#services" class="hover:text-accent-primary transition-colors py-2">Services</a>
+      <a href="#about" class="hover:text-accent-primary transition-colors py-2">About</a>
+      <a href="#projects" class="hover:text-accent-primary transition-colors py-2">Projects</a>
+      <a href="#testimonials" class="hover:text-accent-primary transition-colors py-2">Testimonials</a>
+      <a href="#contact" class="hover:text-accent-primary transition-colors py-2">Contact</a>
     </nav>
   </div>
 </header>

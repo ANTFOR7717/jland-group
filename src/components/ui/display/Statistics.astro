@@ -18,40 +18,18 @@ import DecorativeLine from './DecorativeLine.astro';
 
 <div class={`border-t border-[#C1B9BC] mt-10 mr-0.5 gap-1 flex flex-col items-stretch pt-8 ${className}`}>
   
-  <!-- Stats Numbers -->
-  <div class="gap-31 flex flex-row items-stretch px-7">
-    {stats.map((stat, index) => (
-      <div class={`text-[#262327] text-3xl font-bold leading-9 text-center justify-center items-center flex text-ellipsis min-h-9 ${
-        index === 0 ? 'w-14' : 
-        index === 1 ? 'w-28 ml-0.5' : 
-        'w-16 ml-3'
-      }`}>
-        {stat.value}
+  <!-- Stats Grid -->
+  <div class="grid grid-cols-1 gap-y-4 text-center md:grid-cols-3 md:gap-x-8">
+    {stats.map((stat) => (
+      <div class="flex flex-col items-center gap-2">
+        <div class="text-[#262327] text-3xl md:text-4xl font-bold leading-9 text-center justify-center items-center flex text-ellipsis min-h-9">
+          {stat.value}
+        </div>
+        <div class="text-[#7D7877] text-sm md:text-base leading-5 text-center justify-center items-center flex text-ellipsis min-h-5">
+          {stat.label}
+        </div>
+        <DecorativeLine variant="secondary" width="sm" class="" />
       </div>
     ))}
-  </div>
-  
-  <!-- Stats Labels -->
-  <div class="w-[560px] flex items-start min-h-9">
-    <div class="w-[510.73px] flex flex-row justify-between relative">
-      <div class="gap-3 flex flex-col items-stretch">
-        <div class="w-[329.7px] flex flex-row justify-between">
-          <div class="text-[#7D7877] text-sm leading-5 text-center w-29 justify-center items-center flex text-ellipsis min-h-5">
-            {stats[0]?.label}
-          </div>
-          <div class="text-[#7D7877] text-sm leading-5 text-center w-33 justify-center items-center flex text-ellipsis min-h-5">
-            {stats[1]?.label}
-          </div>
-        </div>
-        <div class="w-[329.7px] flex flex-row justify-between">
-          <DecorativeLine variant="secondary" width="sm" class="ml-8" />
-          <DecorativeLine variant="secondary" width="sm" class="mr-10" />
-        </div>
-      </div>
-      <DecorativeLine variant="secondary" width="sm" class="mt-8" />
-      <div class="text-[#7D7877] text-sm leading-5 text-center w-37 justify-center items-center flex text-ellipsis absolute left-[413.47px] top-0 min-h-5">
-        {stats[2]?.label}
-      </div>
-    </div>
   </div>
 </div>

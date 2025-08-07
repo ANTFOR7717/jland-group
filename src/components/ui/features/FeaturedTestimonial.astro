@@ -13,7 +13,6 @@ export interface Props {
   avatarUrl: string;
   rating?: number;
   variant?: 'default' | 'dark' | 'light';
-  width?: string;
   class?: string;
 }
 
@@ -24,7 +23,6 @@ const {
   avatarUrl,
   rating = 5,
   variant = 'default',
-  width = '592px',
   class: className = ''
 } = Astro.props;
 
@@ -48,8 +46,8 @@ const currentStyle = variantStyles[variant];
 ---
 
 <div 
-  class={`rounded-lg flex flex-col gap-6 p-6 ${className}`}
-  style={`background: ${currentStyle.background}; width: ${width};`}
+  class={`rounded-lg flex flex-col gap-6 p-6 w-full ${className}`}
+  style={`background: ${currentStyle.background};`}
 >
   <Text 
     color={currentStyle.textColor} 

@@ -48,20 +48,20 @@ const sectionClass = `${spacingClasses[spacing]} ${className}`;
   </div>
   
   <!-- Decorative Line -->
-  <div class="w-[560.84px] flex items-start min-h-[3px]">
+  <div class="w-full flex items-start min-h-[3px]">
     <DecorativeLine variant="primary" width="md" alignment="left" />
   </div>
   
   {title && (
-    <div class="w-[560.84px] mt-2 flex items-start min-h-7">
-      <Heading level={3} size="xl" color="default" class="items-center flex text-ellipsis min-h-7">
+    <div class="w-full mt-2 flex items-start min-h-7">
+      <Heading level={3} size="xl" color="default" class="items-center flex text-ellipsis min-h-7 text-lg md:text-xl">
         {title}
       </Heading>
     </div>
   )}
   
   {description && (
-    <Text variant="body" color="secondary" class={`w-[560.84px] leading-6 items-center flex text-ellipsis ${minHeightClasses[minHeight]}`}>
+    <Text variant="body" color="secondary" class={`w-full leading-6 items-center flex text-ellipsis text-sm md:text-base ${minHeightClasses[minHeight]}`}>
       {description}
     </Text>
   )}

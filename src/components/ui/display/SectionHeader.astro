@@ -40,16 +40,16 @@ const alignmentClasses = {
 };
 
 const spacingClasses = {
-  sm: 'mb-8',
-  md: 'mb-10',
-  lg: 'mb-12'
+  sm: 'mb-4 md:mb-8',
+  md: 'mb-6 md:mb-10',
+  lg: 'mb-4 md:mb-8'
 };
 
 const headerClass = `${alignmentClasses[alignment]} ${spacingClasses[spacing]} ${className}`;
 
 // Layout classes for rating display
 const layoutClasses = {
-  horizontal: 'flex items-center justify-between',
+  horizontal: 'flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between',
   vertical: 'flex flex-col gap-2'
 };
 
@@ -60,7 +60,7 @@ const displayRatingText = ratingText || (totalReviews > 0 ? `${rating}/5 (${tota
 <div class={headerClass}>
   {showRating ? (
     <div class={layoutClasses[layout]}>
-      <Heading level={level} size={size}>
+      <Heading level={level} size={size} class="text-3xl md:text-4xl">
         {title}
       </Heading>
       
@@ -81,7 +81,7 @@ const displayRatingText = ratingText || (totalReviews > 0 ? `${rating}/5 (${tota
     </div>
   ) : (
     <>
-      <Heading level={level} size={size} class="mb-4">
+      <Heading level={level} size={size} class="mb-4 text-3xl md:text-4xl">
         {title}
       </Heading>
       

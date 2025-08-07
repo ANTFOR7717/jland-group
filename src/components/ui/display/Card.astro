@@ -43,8 +43,8 @@ const {
   reviewText,
   timeAgo,
   backgroundImage,
-  width = '608px',
-  height = '709.32px',
+  width,
+  height,
   quoteWidth = 'md',
   ...rest
 } = Astro.props;
@@ -65,23 +65,38 @@ const quoteWidthClasses = {
   lg: 'w-[400px]'
 };
 
-// Variant-specific classes
+// Variant-specific classes (without width/height to avoid conflicts)
 const variantClasses = {
   default: 'shadow-lg border border-brand-border p-6 rounded-xl',
-  service: 'shadow-lg border border-brand-border flex flex-col items-stretch flex-shrink-0 p-6 w-full max-w-sm rounded-xl',
-  roofing: 'shadow-lg border border-brand-border flex flex-col items-stretch flex-shrink-0 p-6 w-full max-w-sm rounded-xl',
-  construction: 'shadow-lg border border-brand-border flex flex-col items-stretch flex-shrink-0 p-6 w-full max-w-sm rounded-xl',
-  showcase: 'shadow-lg border border-brand-border flex flex-col items-stretch flex-shrink-0 p-6 w-full max-w-sm rounded-xl',
+  service: 'shadow-lg border border-brand-border flex flex-col items-stretch flex-shrink-0 p-6 rounded-xl',
+  roofing: 'shadow-lg border border-brand-border flex flex-col items-stretch flex-shrink-0 p-6 rounded-xl',
+  construction: 'shadow-lg border border-brand-border flex flex-col items-stretch flex-shrink-0 p-6 rounded-xl',
+  showcase: 'shadow-lg border border-brand-border flex flex-col items-stretch flex-shrink-0 p-6 rounded-xl',
   testimonial: 'shadow-md border border-brand-border p-5 flex flex-col rounded-xl',
-  review: 'shadow-md border border-brand-border p-5 flex flex-col rounded-xl w-[576px]',
+  review: 'shadow-md border border-brand-border p-5 flex flex-col rounded-xl',
   image: 'shadow-lg rounded-lg bg-cover',
   quote: `shadow-md shadow-black/10 rounded-lg p-6 flex-shrink-0 ${quoteWidthClasses[quoteWidth]}`
 };
 
-const cardClasses = `${baseClasses} ${variantClasses[variant]} ${className}`;
+// Default width classes for variants when no custom width is provided
+const defaultWidthClasses = {
+  service: width ? '' : 'w-full max-w-sm',
+  roofing: width ? '' : 'w-full max-w-sm',
+  construction: width ? '' : 'w-full max-w-sm',
+  showcase: width ? '' : 'w-full max-w-sm',
+  review: width ? '' : 'w-full max-w-none sm:max-w-[576px]',
+  default: '',
+  testimonial: '',
+  image: '',
+  quote: ''
+};
+
+// Apply custom height and width if provided, otherwise use defaults
+const sizeClasses = `${height ? height : ''} ${width ? width : defaultWidthClasses[variant] || ''}`;
+const cardClasses = `${baseClasses} ${variantClasses[variant]} ${sizeClasses} ${className}`.trim().replace(/\s+/g, ' ');
 ---
 
-<div class={cardClasses} style={variant === 'image' && backgroundImage ? `background-image: url('${backgroundImage}'); width: ${width}; height: ${height}; margin-left: 0.16px;` : undefined} {...rest}>
+<div class={cardClasses} style={variant === 'image' && backgroundImage ? `background-image: url('${backgroundImage}'); margin-left: 0.16px;` : undefined} {...rest}>
   {variant === 'image' ? (
     <slot />
   ) : variant === 'quote' ? (
@@ -141,13 +156,13 @@ const cardClasses = `${baseClasses} ${variantClasses[variant]} ${className}`;
           </Text>
         </Badge>
         <Icon name="verified" size="xs" class="mt-1.5 ml-1" />
-        <Text variant="caption" color="secondary" class="w-[103.1px] mt-1 min-h-4">
+        <Text variant="caption" color="secondary" class="w-full max-w-none sm:w-[103.1px] mt-1 min-h-4">
           Verified Customer
         </Text>
       </div>
       
       <!-- Review Text -->
-      <Text color="default" class="w-[507.1px] mt-3 mr-[28.9px] min-h-12 leading-6">
+      <Text color="default" class="w-full max-w-none sm:w-[507.1px] mt-3 sm:mr-[28.9px] min-h-12 leading-6">
         {reviewText}
       </Text>
       
