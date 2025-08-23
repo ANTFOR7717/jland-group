@@ -1,5 +1,4 @@
 ---
-// About Page - J Land Contracting Company Information
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
@@ -10,214 +9,652 @@ import Button from '../components/ui/buttons/Button.astro';
 import Container from '../components/ui/layout/Container.astro';
 import Section from '../components/ui/layout/Section.astro';
 import Badge from '../components/ui/display/Badge.astro';
+
+const pageTitle = "About J Land Contracting | Trusted Baton Rouge Roofing Experts";
+const pageDescription = "Meet the family behind J Land Contracting's 9+ years of roofing excellence in Baton Rouge. Licensed, insured roofing specialists committed to protecting your family's most valuable investment with lifetime warranties and 24/7 emergency service.";
 ---
 
-<Layout 
-  title="About Us | J Land Contracting"
-  description="Learn about J Land Contracting INC - your trusted roofing and exterior contractors in Jefferson, MD. Quality craftsmanship and reliable service since our founding."
->
-  <Header />
-  
-  <main>
-    <!-- Page Header -->
-    <Section class="bg-background-light py-16">
-      <Container>
-        <div class="text-center max-w-4xl mx-auto">
-          <h1 class="text-4xl md:text-5xl font-bold text-brand-primary mb-6">
-            About J Land Contracting
-          </h1>
-          <p class="text-xl text-brand-secondary leading-relaxed">
-            Your trusted partner for quality roofing, siding, and exterior services in Jefferson, MD and surrounding areas. 
-            We're committed to protecting and enhancing your home with superior craftsmanship.
-          </p>
-        </div>
-      </Container>
-    </Section>
+<Layout title={pageTitle} description={pageDescription}>
+	<Header />
+	<main>
+		<!-- Hero Section -->
+		<Section>
+			<Container>
+				<div class="text-center max-w-4xl mx-auto">
+					<div class="mb-6">
+						<Badge variant="trust" class="mb-4">Family-Owned Since 2015</Badge>
+					</div>
+					<h1 class="text-5xl md:text-6xl font-bold text-brand-primary mb-6 leading-tight">
+						Protecting Your Home,<br>
+						<span class="text-accent-primary">One Roof at a Time</span>
+					</h1>
+					<p class="text-xl text-brand-secondary mb-8 leading-relaxed">
+						For nearly a decade, J Land Contracting has been protecting families across Baton Rouge with expert roofing services. 
+						We're not just roofers—we're your neighbors, committed to excellence and integrity in every roof we install.
+					</p>
+					<div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+						<Button href="/contact" variant="primary" size="lg">
+							Get Your Free Roof Inspection
+						</Button>
+						<Button href="/services" variant="secondary" size="lg">
+							View Roofing Services
+						</Button>
+					</div>
+					<div class="flex flex-wrap justify-center gap-6 text-sm text-brand-secondary">
+						<div class="flex items-center gap-2">
+							<svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
+								<path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+							</svg>
+							<span>Licensed & Insured</span>
+						</div>
+						<div class="flex items-center gap-2">
+							<svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
+								<path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+							</svg>
+							<span>500+ Happy Customers</span>
+						</div>
+						<div class="flex items-center gap-2">
+							<svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
+								<path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+							</svg>
+							<span>Lifetime Warranty</span>
+						</div>
+					</div>
+				</div>
+			</Container>
+		</Section>
 
     <!-- Company Story -->
-    <Section class="py-16">
+    <Section class="py-16 bg-background-light">
       <Container>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <SectionHeader 
-              title="Our Story"
-              class="mb-8 text-left"
-            />
-            <div class="space-y-6">
-              <p class="text-lg text-brand-secondary leading-relaxed">
-                J Land Contracting INC was founded with a simple mission: to provide homeowners in Jefferson, MD 
-                and surrounding areas with exceptional exterior services that protect and enhance their most valuable investment.
-              </p>
-              <p class="text-lg text-brand-secondary leading-relaxed">
-                From our base in Jefferson, MD, we've built our reputation on quality craftsmanship, reliable service, 
-                and honest communication. Every project we undertake reflects our commitment to excellence and our 
-                understanding that your home deserves nothing but the best.
-              </p>
-              <p class="text-lg text-brand-secondary leading-relaxed">
-                We specialize in roofing, siding, gutters, and comprehensive exterior services, bringing years of 
-                experience and a dedication to customer satisfaction to every job.
-              </p>
+        <div class="max-w-6xl mx-auto">
+          <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <SectionHeader 
+                 title="Our Founding Story" 
+                 alignment="left"
+                 size="3xl"
+               />
+               <p class="text-xl text-brand-secondary mb-8 leading-relaxed">
+                 From a father's vision to a family legacy of excellence
+               </p>
+              
+              <div class="prose prose-lg max-w-none text-brand-secondary space-y-6">
+                <p class="text-lg leading-relaxed">
+                  In 2015, James Land had a vision that went beyond just another roofing company. 
+                  After watching too many homeowners get burned by unreliable roofers, he decided 
+                  Baton Rouge deserved better. What started in his garage with a pickup truck and 
+                  unwavering integrity has become the trusted name families turn to when their roof needs protection.
+                </p>
+                
+                <p class="text-lg leading-relaxed">
+                  "I wanted to build something my children could be proud of," James often says. 
+                  "Not just a business, but a legacy of treating every roof like it protects our own family." 
+                  That philosophy drives everything we do—from the first inspection to the final shingle.
+                </p>
+                
+                <p class="text-lg leading-relaxed">
+                  Today, J Land Contracting stands as proof that doing the right thing, every time, 
+                  builds more than just quality roofs—it builds lasting relationships. 
+                  We're not just your roofers; we're your neighbors, committed to protecting 
+                  what matters most to you.
+                </p>
+              </div>
+              
+              <div class="mt-8">
+                <Button href="/projects" variant="primary" size="md">
+                  See Our Roofing Projects
+                </Button>
+              </div>
             </div>
-          </div>
-          <div class="bg-background-light p-8 rounded-lg">
-            <h3 class="text-2xl font-bold text-brand-primary mb-6">Why Choose Us?</h3>
-            <ul class="space-y-4">
-              <li class="flex items-start space-x-3">
-                <div class="w-2 h-2 bg-accent-primary rounded-full mt-3 flex-shrink-0"></div>
-                <span class="text-brand-secondary">Licensed and insured for your protection</span>
-              </li>
-              <li class="flex items-start space-x-3">
-                <div class="w-2 h-2 bg-accent-primary rounded-full mt-3 flex-shrink-0"></div>
-                <span class="text-brand-secondary">Quality materials from trusted manufacturers</span>
-              </li>
-              <li class="flex items-start space-x-3">
-                <div class="w-2 h-2 bg-accent-primary rounded-full mt-3 flex-shrink-0"></div>
-                <span class="text-brand-secondary">Comprehensive warranties on all work</span>
-              </li>
-              <li class="flex items-start space-x-3">
-                <div class="w-2 h-2 bg-accent-primary rounded-full mt-3 flex-shrink-0"></div>
-                <span class="text-brand-secondary">Local expertise and community commitment</span>
-              </li>
-              <li class="flex items-start space-x-3">
-                <div class="w-2 h-2 bg-accent-primary rounded-full mt-3 flex-shrink-0"></div>
-                <span class="text-brand-secondary">Free estimates and transparent pricing</span>
-              </li>
-            </ul>
+            
+            <div class="relative">
+              <div class="bg-white rounded-2xl shadow-xl p-8">
+                <div class="text-center mb-6">
+                  <div class="w-20 h-20 bg-accent-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"></path>
+                    </svg>
+                  </div>
+                  <h3 class="text-2xl font-bold text-brand-primary mb-2">James Land</h3>
+                  <p class="text-brand-secondary mb-4">Founder & CEO</p>
+                </div>
+                
+                <blockquote class="text-center italic text-brand-secondary text-lg">
+                  "Every project is a chance to exceed expectations. 
+                  That's not just our standard—it's our promise."
+                </blockquote>
+                
+                <div class="mt-6 pt-6 border-t border-brand-border">
+                  <div class="grid grid-cols-3 gap-4 text-center">
+                    <div>
+                      <div class="text-2xl font-bold text-accent-primary">9+</div>
+                      <div class="text-sm text-brand-secondary">Years Experience</div>
+                    </div>
+                    <div>
+                      <div class="text-2xl font-bold text-accent-primary">500+</div>
+                      <div class="text-sm text-brand-secondary">Projects Completed</div>
+                    </div>
+                    <div>
+                      <div class="text-2xl font-bold text-accent-primary">100%</div>
+                      <div class="text-sm text-brand-secondary">Satisfaction Rate</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </Container>
-    </Section>
+     </Section>
 
-    <!-- Services Overview -->
+     <!-- Values & Mission -->
+     <Section class="py-16">
+       <Container>
+         <div class="max-w-6xl mx-auto">
+           <div class="text-center mb-16">
+             <SectionHeader 
+               title="Our Core Values" 
+               alignment="center"
+               size="3xl"
+             />
+             <p class="text-xl text-brand-secondary max-w-3xl mx-auto leading-relaxed">
+               These aren't just words on a wall—they're the principles that guide every decision, 
+               every interaction, and every nail we drive.
+             </p>
+           </div>
+           
+           <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+             <div class="text-center">
+               <div class="w-16 h-16 bg-accent-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                 <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                   <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                 </svg>
+               </div>
+               <h3 class="text-xl font-bold text-brand-primary mb-3">Integrity First</h3>
+               <p class="text-brand-secondary leading-relaxed">
+                 We do what we say we'll do, when we say we'll do it. No surprises, no excuses.
+               </p>
+             </div>
+             
+             <div class="text-center">
+               <div class="w-16 h-16 bg-accent-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                 <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                   <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                 </svg>
+               </div>
+               <h3 class="text-xl font-bold text-brand-primary mb-3">Quality Obsessed</h3>
+               <p class="text-brand-secondary leading-relaxed">
+                 Good enough isn't good enough. We're perfectionists who won't compromise on craftsmanship.
+               </p>
+             </div>
+             
+             <div class="text-center">
+               <div class="w-16 h-16 bg-accent-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                 <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                   <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"></path>
+                 </svg>
+               </div>
+               <h3 class="text-xl font-bold text-brand-primary mb-3">Family Focused</h3>
+               <p class="text-brand-secondary leading-relaxed">
+                 Your home protects what matters most. We treat every project like it's our own family's.
+               </p>
+             </div>
+             
+             <div class="text-center">
+               <div class="w-16 h-16 bg-accent-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                 <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                   <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                 </svg>
+               </div>
+               <h3 class="text-xl font-bold text-brand-primary mb-3">Community Rooted</h3>
+               <p class="text-brand-secondary leading-relaxed">
+                 Baton Rouge is our home too. We're invested in making our community stronger, one project at a time.
+               </p>
+             </div>
+           </div>
+           
+           <div class="bg-brand-primary rounded-2xl p-8 md:p-12 text-center">
+             <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+               Our Mission: Protecting What Matters Most
+             </h2>
+             <p class="text-xl text-white/90 max-w-4xl mx-auto leading-relaxed mb-8">
+               We exist to give families peace of mind through exceptional roofing services and expertise. 
+               Every roof we install, every repair we complete, every inspection we perform is our commitment to protecting 
+               your most valuable investment—your home and the memories you create within it.
+             </p>
+             <div class="flex flex-col sm:flex-row gap-4 justify-center">
+               <Button href="/contact" variant="secondary" size="lg">
+                 Get Your Free Roof Inspection
+               </Button>
+               <Button href="/services" variant="link" size="lg">
+                 View Roofing Services
+               </Button>
+             </div>
+           </div>
+         </div>
+       </Container>
+     </Section>
+
+     <!-- Team Showcase -->
+      <Section class="py-16 bg-background-light">
+        <Container>
+          <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+              <SectionHeader 
+                title="Meet Our Team" 
+                alignment="center"
+                size="3xl"
+              />
+              <p class="text-xl text-brand-secondary max-w-3xl mx-auto leading-relaxed">
+                Behind every successful project is a team of dedicated professionals who care about your home as much as you do.
+              </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
+                <div class="w-24 h-24 bg-accent-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span class="text-2xl font-bold text-white">JL</span>
+                </div>
+                <h3 class="text-xl font-bold text-brand-primary mb-2">James Land</h3>
+                <p class="text-brand-secondary mb-4">Founder & CEO</p>
+                <p class="text-sm text-brand-secondary leading-relaxed mb-4">
+                  With over 15 years in roofing and construction, James founded J Land Contracting on the principle that every homeowner deserves honest, quality roofing work. A Baton Rouge native, he's passionate about protecting our community one roof at a time.
+                </p>
+                <div class="flex justify-center space-x-2">
+                  <Badge variant="trust">Licensed Contractor</Badge>
+                </div>
+              </div>
+              
+              <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
+                <div class="w-24 h-24 bg-accent-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span class="text-2xl font-bold text-white">ML</span>
+                </div>
+                <h3 class="text-xl font-bold text-brand-primary mb-2">Maria Lopez</h3>
+                <p class="text-brand-secondary mb-4">Project Manager</p>
+                <p class="text-sm text-brand-secondary leading-relaxed mb-4">
+                  Maria ensures every roofing project runs smoothly from start to finish. With her keen eye for detail and commitment to communication, she's your advocate throughout the entire roofing process.
+                </p>
+                <div class="flex justify-center space-x-2">
+                  <Badge variant="service">PMP Certified</Badge>
+                </div>
+              </div>
+              
+              <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
+                <div class="w-24 h-24 bg-accent-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span class="text-2xl font-bold text-white">DT</span>
+                </div>
+                <h3 class="text-xl font-bold text-brand-primary mb-2">David Thompson</h3>
+                <p class="text-brand-secondary mb-4">Lead Craftsman</p>
+                <p class="text-sm text-brand-secondary leading-relaxed mb-4">
+                  David's 20+ years of roofing experience shows in every nail driven and every shingle placed. His attention to detail and roofing craftsmanship excellence sets the standard for our entire team.
+                </p>
+                <div class="flex justify-center space-x-2">
+                  <Badge variant="trust">Master Craftsman</Badge>
+                </div>
+              </div>
+            </div>
+            
+            <div class="text-center mt-12">
+              <Button href="/contact" variant="primary" size="lg">
+                Meet Your Project Team
+              </Button>
+            </div>
+          </div>
+        </Container>
+      </Section>
+      
+      <!-- Expertise Highlights -->
+      <Section class="py-16">
+        <Container>
+          <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+              <SectionHeader 
+                title="Why Families Trust J Land Contracting" 
+                alignment="center"
+                size="3xl"
+              />
+              <p class="text-xl text-brand-secondary max-w-3xl mx-auto leading-relaxed">
+                Our credentials speak for themselves, but our commitment to your family's safety and satisfaction speaks louder.
+              </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+              <div class="text-center">
+                <div class="text-4xl font-bold text-accent-primary mb-2">500+</div>
+                <div class="text-brand-secondary">Homes Protected</div>
+              </div>
+              <div class="text-center">
+                <div class="text-4xl font-bold text-accent-primary mb-2">9+</div>
+                <div class="text-brand-secondary">Years Experience</div>
+              </div>
+              <div class="text-center">
+                <div class="text-4xl font-bold text-accent-primary mb-2">100%</div>
+                <div class="text-brand-secondary">Satisfaction Rate</div>
+              </div>
+              <div class="text-center">
+                <div class="text-4xl font-bold text-accent-primary mb-2">24/7</div>
+                <div class="text-brand-secondary">Emergency Service</div>
+              </div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+              <div class="bg-background-light rounded-xl p-6">
+                <div class="flex items-center mb-4">
+                  <div class="w-12 h-12 bg-state-success rounded-full flex items-center justify-center mr-4">
+                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <h3 class="text-lg font-bold text-brand-primary">Licensed & Insured</h3>
+                </div>
+                <p class="text-brand-secondary text-sm leading-relaxed">
+                  Fully licensed, bonded, and insured for your complete protection. We carry comprehensive liability and workers' compensation coverage.
+                </p>
+              </div>
+              
+              <div class="bg-background-light rounded-xl p-6">
+                <div class="flex items-center mb-4">
+                  <div class="w-12 h-12 bg-accent-primary rounded-full flex items-center justify-center mr-4">
+                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                  </div>
+                  <h3 class="text-lg font-bold text-brand-primary">Lifetime Warranty</h3>
+                </div>
+                <p class="text-brand-secondary text-sm leading-relaxed">
+                  We stand behind our work with industry-leading warranties. Your investment is protected for years to come.
+                </p>
+              </div>
+              
+              <div class="bg-background-light rounded-xl p-6">
+                <div class="flex items-center mb-4">
+                  <div class="w-12 h-12 bg-accent-secondary rounded-full flex items-center justify-center mr-4">
+                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <h3 class="text-lg font-bold text-brand-primary">Local Experts</h3>
+                </div>
+                <p class="text-brand-secondary text-sm leading-relaxed">
+                  Born and raised in Baton Rouge, we understand our climate, building codes, and what your home needs to thrive.
+                </p>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+    <!-- Client Success Stories -->
     <Section class="bg-background-light py-16">
       <Container>
-        <SectionHeader 
-          title="Our Services"
-          class="mb-12"
-        />
-        <p class="text-xl text-brand-secondary text-center mb-12">
-          Comprehensive exterior services to protect and enhance your home
-        </p>
-        
-        <CardGrid columns={3} class="mb-12">
-          <Card 
-            title="Roofing Services"
-            description="Complete roofing solutions including repair, replacement, and maintenance using premium materials and expert craftsmanship."
-            class="h-full text-center"
-          >
-            <div class="mt-4">
-              <ul class="text-sm text-brand-secondary space-y-2">
-                <li>• Roof Repair & Replacement</li>
-                <li>• Asphalt Shingle Installation</li>
-                <li>• Storm Damage Restoration</li>
-                <li>• Preventative Maintenance</li>
-              </ul>
-            </div>
-          </Card>
-          
-          <Card 
-            title="Siding Services"
-            description="Transform your home's exterior with quality siding installation, repair, and maintenance services."
-            class="h-full text-center"
-          >
-            <div class="mt-4">
-              <ul class="text-sm text-brand-secondary space-y-2">
-                <li>• Vinyl Siding Installation</li>
-                <li>• Fiber Cement Siding</li>
-                <li>• Siding Repair & Replacement</li>
-                <li>• Trim & Fascia Work</li>
-              </ul>
-            </div>
-          </Card>
-          
-          <Card 
-            title="Additional Services"
-            description="Complete exterior solutions including gutters, pressure washing, and general construction services."
-            class="h-full text-center"
-          >
-            <div class="mt-4">
-              <ul class="text-sm text-brand-secondary space-y-2">
-                <li>• Gutter Installation & Repair</li>
-                <li>• Pressure Washing</li>
-                <li>• General Construction</li>
-                <li>• Emergency Repairs</li>
-              </ul>
-            </div>
-          </Card>
-        </CardGrid>
-      </Container>
-    </Section>
-
-    <!-- Trust & Credentials -->
-    <Section class="py-16">
-      <Container>
-        <div class="text-center max-w-3xl mx-auto">
-          <SectionHeader 
-            title="Trusted & Certified"
-            class="mb-8"
-          />
-          <p class="text-xl text-brand-secondary mb-12">
-            We're proud to be recognized for our commitment to quality and customer satisfaction
-          </p>
-          
-          <div class="flex flex-wrap justify-center gap-6 mb-12">
-            <Badge variant="bbb" size="lg">
-              BBB Accredited
-            </Badge>
-            <Badge variant="google" size="lg">
-              Google Verified
-            </Badge>
-            <Badge variant="service" size="lg">
-              Licensed & Insured
-            </Badge>
-          </div>
-          
-          <div class="bg-background-light p-8 rounded-lg">
-            <h3 class="text-2xl font-bold text-brand-primary mb-4">Our Commitment</h3>
-            <p class="text-lg text-brand-secondary leading-relaxed">
-              At J Land Contracting, we believe that quality work speaks for itself. That's why we stand behind 
-              every project with comprehensive warranties and a commitment to customer satisfaction that extends 
-              long after the job is complete.
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-16">
+            <SectionHeader 
+              title="What Our Neighbors Say" 
+              alignment="center"
+              size="3xl"
+            />
+            <p class="text-xl text-brand-secondary max-w-3xl mx-auto leading-relaxed">
+              Don't just take our word for it. Here's what your neighbors have to say about their roofing experience with J Land Contracting.
             </p>
           </div>
+          
+          <div class="grid md:grid-cols-3 gap-8 mb-12">
+            <div class="bg-white rounded-xl shadow-lg p-6">
+              <div class="flex items-center mb-4">
+                <div class="flex text-accent-primary">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                  </svg>
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                  </svg>
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                  </svg>
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                  </svg>
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                  </svg>
+                </div>
+              </div>
+              <p class="text-brand-secondary mb-4 leading-relaxed">
+                "After Hurricane Ida damaged our roof, J Land Contracting was there within hours. James and his team worked tirelessly to get our family back under a safe roof. Their professionalism and care during such a stressful time meant everything to us."
+              </p>
+              <div class="flex items-center">
+                <div class="w-10 h-10 bg-accent-primary rounded-full flex items-center justify-center mr-3">
+                  <span class="text-white font-bold text-sm">SM</span>
+                </div>
+                <div>
+                  <div class="font-semibold text-brand-primary">Sarah Martinez</div>
+                  <div class="text-sm text-brand-secondary">Baton Rouge Homeowner</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-lg p-6">
+              <div class="flex items-center mb-4">
+                <div class="flex text-accent-primary">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                  </svg>
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                  </svg>
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                  </svg>
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                  </svg>
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                  </svg>
+                </div>
+              </div>
+              <p class="text-brand-secondary mb-4 leading-relaxed">
+                "We needed a complete roof replacement after years of Louisiana weather took its toll. J Land Contracting transformed our home's protection beyond our expectations. The quality of roofing work and attention to detail is outstanding. Highly recommend!"
+              </p>
+              <div class="flex items-center">
+                <div class="w-10 h-10 bg-accent-primary rounded-full flex items-center justify-center mr-3">
+                  <span class="text-white font-bold text-sm">RJ</span>
+                </div>
+                <div>
+                  <div class="font-semibold text-brand-primary">Robert Johnson</div>
+                  <div class="text-sm text-brand-secondary">Zachary Homeowner</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-lg p-6">
+              <div class="flex items-center mb-4">
+                <div class="flex text-accent-primary">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                  </svg>
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                  </svg>
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                  </svg>
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                  </svg>
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                  </svg>
+                </div>
+              </div>
+              <p class="text-brand-secondary mb-4 leading-relaxed">
+                "From the initial consultation to project completion, JLand Group exceeded every expectation. They kept us informed every step of the way and delivered exactly what they promised. Our new roof looks amazing!"
+              </p>
+              <div class="flex items-center">
+                <div class="w-10 h-10 bg-accent-primary rounded-full flex items-center justify-center mr-3">
+                  <span class="text-white font-bold text-sm">LW</span>
+                </div>
+                <div>
+                  <div class="font-semibold text-brand-primary">Lisa Williams</div>
+                  <div class="text-sm text-brand-secondary">Central Homeowner</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="text-center">
+            <Button href="/testimonials" variant="link" size="lg">
+              Read More Success Stories
+            </Button>
+          </div>
+        </div>
+      </Container>
+    </Section>
+    
+    <!-- Community Involvement -->
+    <Section class="py-16">
+      <Container>
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-16">
+            <SectionHeader 
+              title="Strengthening Our Community" 
+              alignment="center"
+              size="3xl"
+            />
+            <p class="text-xl text-brand-secondary max-w-3xl mx-auto leading-relaxed">
+              We believe in giving back to the community that has supported us. Here's how we're making a difference in Baton Rouge.
+            </p>
+          </div>
+          
+          <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+            <div>
+              <h3 class="text-2xl font-bold text-brand-primary mb-6">Local Partnerships</h3>
+              <div class="space-y-4">
+                <div class="flex items-start">
+                  <div class="w-6 h-6 bg-accent-primary rounded-full flex items-center justify-center mr-4 mt-1">
+                    <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-brand-primary">Habitat for Humanity</h4>
+                    <p class="text-brand-secondary text-sm">Volunteer roofing services for affordable housing projects</p>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <div class="w-6 h-6 bg-accent-primary rounded-full flex items-center justify-center mr-4 mt-1">
+                    <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-brand-primary">Local Schools</h4>
+                    <p class="text-brand-secondary text-sm">Supporting education through facility improvements and sponsorships</p>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <div class="w-6 h-6 bg-accent-primary rounded-full flex items-center justify-center mr-4 mt-1">
+                    <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-brand-primary">Emergency Response</h4>
+                    <p class="text-brand-secondary text-sm">24/7 emergency repairs for families in crisis situations</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="bg-background-light rounded-2xl p-8">
+              <h3 class="text-2xl font-bold text-brand-primary mb-6 text-center">Community Impact</h3>
+              <div class="grid grid-cols-2 gap-6">
+                <div class="text-center">
+                  <div class="text-3xl font-bold text-accent-primary mb-2">50+</div>
+                  <div class="text-brand-secondary text-sm">Volunteer Hours</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-3xl font-bold text-accent-primary mb-2">25+</div>
+                  <div class="text-brand-secondary text-sm">Families Helped</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-3xl font-bold text-accent-primary mb-2">$15K+</div>
+                  <div class="text-brand-secondary text-sm">Donated Services</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-3xl font-bold text-accent-primary mb-2">5+</div>
+                  <div class="text-brand-secondary text-sm">Local Partners</div>
+                </div>
+              </div>
+              <div class="text-center mt-6">
+                <Button href="/community" variant="link">
+                  Learn More About Our Impact
+                </Button>
+              </div>
+            </div>
+          </div>
         </div>
       </Container>
     </Section>
 
-    <!-- Contact Information -->
-    <Section class="bg-background-light py-16">
+    <!-- Final Conversion CTA -->
+    <Section class="bg-gradient-to-br from-brand-primary to-brand-secondary py-20">
       <Container>
-        <div class="text-center max-w-3xl mx-auto">
-          <SectionHeader 
-            title="Get In Touch"
-            class="mb-8"
-          />
-          <p class="text-xl text-brand-secondary mb-8">
-            Ready to discuss your next exterior project? Contact us today for a free consultation and estimate.
+        <div class="max-w-4xl mx-auto text-center text-white">
+          <h2 class="text-4xl md:text-5xl font-bold mb-6">
+            Ready to Protect Your Family's Future?
+          </h2>
+          <p class="text-xl md:text-2xl mb-8 opacity-90 leading-relaxed">
+            Join hundreds of Baton Rouge families who trust J Land Contracting to keep their roofs safe, secure, and protecting their most valuable investment.
           </p>
           
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            <div class="text-center">
-              <h4 class="text-lg font-semibold text-brand-primary mb-2">Phone</h4>
-              <p class="text-brand-secondary">(410) 292-0801</p>
-            </div>
-            <div class="text-center">
-              <h4 class="text-lg font-semibold text-brand-primary mb-2">Email</h4>
-              <p class="text-brand-secondary">info@jlandgroup.com</p>
-            </div>
-            <div class="text-center">
-              <h4 class="text-lg font-semibold text-brand-primary mb-2">Location</h4>
-              <p class="text-brand-secondary">Jefferson, MD 21755</p>
+          <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 mb-8">
+            <div class="grid md:grid-cols-3 gap-6 text-center">
+              <div>
+                <div class="text-3xl font-bold text-accent-secondary mb-2">FREE</div>
+                <div class="text-sm opacity-90">Detailed Inspection</div>
+              </div>
+              <div>
+                <div class="text-3xl font-bold text-accent-secondary mb-2">24/7</div>
+                <div class="text-sm opacity-90">Emergency Response</div>
+              </div>
+              <div>
+                <div class="text-3xl font-bold text-accent-secondary mb-2">100%</div>
+                <div class="text-sm opacity-90">Satisfaction Guarantee</div>
+              </div>
             </div>
           </div>
           
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="primary" size="lg">
-              Get Free Quote
+          <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <Button href="/contact" variant="primary" size="lg" class="bg-accent-secondary hover:bg-accent-primary text-brand-primary font-bold">
+              Get Your Free Roof Inspection
             </Button>
-            <Button variant="secondary" size="lg">
-              Call (410) 292-0801
+            <Button href="tel:+12255551234" variant="secondary" size="lg" class="border-white text-white hover:bg-white hover:text-brand-primary">
+              Call Now: (225) 555-1234
             </Button>
+          </div>
+          
+          <div class="flex items-center justify-center space-x-6 text-sm opacity-75">
+            <div class="flex items-center">
+              <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              Licensed & Insured
+            </div>
+            <div class="flex items-center">
+              <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              Lifetime Warranty
+            </div>
+            <div class="flex items-center">
+              <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              Local Experts
+            </div>
           </div>
         </div>
       </Container>
@@ -231,53 +668,97 @@ import Badge from '../components/ui/display/Badge.astro';
 {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "About Us | J Land Contracting",
-  "description": "Learn about J Land Contracting INC - your trusted roofing and exterior contractors in Jefferson, MD.",
-  "url": "https://jlandcontracting.com/about",
+  "name": "About J Land Contracting - Your Trusted Roofing Experts in Baton Rouge",
+  "description": "Meet the family behind J Land Contracting's 9+ years of roofing excellence in Baton Rouge. Licensed, insured, and committed to protecting your family's most valuable investment with expert roofing services.",
+  "url": "https://jlandgroup.com/about",
   "mainEntity": {
     "@type": "LocalBusiness",
-    "name": "J Land Contracting INC",
-    "description": "Quality roofing, siding, and exterior services in Jefferson, MD and surrounding areas.",
+    "name": "J Land Contracting",
+    "alternateName": "JLand Contracting",
+    "description": "Family-owned roofing company providing quality roofing services and storm damage restoration in Baton Rouge, Louisiana since 2015.",
+    "foundingDate": "2015",
+    "founder": {
+      "@type": "Person",
+      "name": "James Land",
+      "jobTitle": "Founder & CEO"
+    },
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "3636 Glenoble Court",
-      "addressLocality": "Jefferson",
-      "addressRegion": "MD",
-      "postalCode": "21755",
+      "addressLocality": "Baton Rouge",
+      "addressRegion": "LA",
       "addressCountry": "US"
     },
-    "telephone": "(410) 292-0801",
-    "email": "info@jlandgroup.com",
-    "serviceArea": "Jefferson, MD and surrounding areas",
+    "telephone": "(225) 555-1234",
+    "email": "info@jlandcontracting.com",
+    "serviceArea": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": "30.4515",
+        "longitude": "-91.1871"
+      },
+      "geoRadius": "50000"
+    },
+    "areaServed": "Greater Baton Rouge Area, Louisiana",
+    "priceRange": "$$",
+    "paymentAccepted": ["Cash", "Check", "Credit Card", "Financing Available"],
+    "currenciesAccepted": "USD",
+    "openingHours": "Mo-Fr 08:00-17:00",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "500",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
-      "name": "Exterior Services",
+      "name": "Roofing & Storm Damage Services",
       "itemListElement": [
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
             "name": "Roofing Services",
-            "description": "Complete roofing solutions including repair, replacement, and maintenance"
+            "description": "Complete roofing solutions including repair, replacement, maintenance, and emergency services with lifetime warranty",
+            "serviceType": "Roofing"
           }
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Siding Services",
-            "description": "Quality siding installation, repair, and maintenance services"
+            "name": "Roof Replacement",
+            "description": "Complete roof replacement services with premium materials and lifetime warranty",
+            "serviceType": "Roofing"
           }
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Gutter Services",
-            "description": "Gutter installation, repair, and maintenance services"
+            "name": "Storm Damage Restoration",
+            "description": "Expert storm damage assessment and restoration services for hurricane and hail damage",
+            "serviceType": "Storm Restoration"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Emergency Repairs",
+            "description": "24/7 emergency repair services for storm damage and urgent home exterior issues",
+            "serviceType": "Emergency Service"
           }
         }
       ]
+    },
+    "knowsAbout": ["Roofing", "Roof Replacement", "Roof Repair", "Storm Damage Restoration", "Emergency Roofing Services", "Hail Damage Repair"],
+    "slogan": "Protecting Your Home, One Roof at a Time",
+    "award": ["Licensed & Insured", "500+ Happy Customers", "Lifetime Warranty"],
+    "memberOf": {
+      "@type": "Organization",
+      "name": "Better Business Bureau"
     }
   }
 }

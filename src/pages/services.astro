@@ -18,9 +18,53 @@ import { TrustIndicator, TrustIndicatorGroup } from '../components/ui/features';
 import { FeaturedTestimonial } from '../components/ui/features';
 import { StarRating } from '../components/ui/display';
 
-// Import services data
-const servicesData = await import('../content/services/services-page.json');
-const { hero, serviceCategories, whyChooseUs, serviceAreas, contact } = servicesData.default;
+// Import services data from existing collections
+import { getCollection } from 'astro:content';
+const allServices = await getCollection('services');
+const roofingServices = allServices.find(service => service.id === 'roofing')?.data;
+const constructionServices = allServices.find(service => service.id === 'construction')?.data;
+
+// Define page data structure
+const hero = {
+  title: "Professional Roofing & Construction Services",
+  subtitle: "Expert roofing, construction, and exterior services throughout Frederick, MD and surrounding areas. Licensed, insured, and backed by 20+ years of experience.",
+  ctaPrimary: { text: "Get Free Estimate", href: "#contact" },
+  ctaSecondary: { text: "Call (410) 292-0801", href: "tel:+14102920801" }
+};
+
+const serviceCategories = [
+  {
+    title: roofingServices?.title || "Roofing Services",
+    description: "Complete roofing solutions from repairs to full replacements using premium materials and expert craftsmanship.",
+    services: roofingServices?.services || []
+  },
+  {
+    title: constructionServices?.title || "Construction Services", 
+    description: "Full-service construction solutions for residential and commercial projects with attention to detail and quality.",
+    services: constructionServices?.services || []
+  }
+];
+
+const whyChooseUs = {
+  title: "Why Choose J Land Contracting?",
+  reasons: [
+    { title: "Licensed & Insured", description: "Fully licensed and insured for your peace of mind and protection.", icon: "shield" },
+    { title: "20+ Years Experience", description: "Two decades of expertise in roofing and construction services.", icon: "star" },
+    { title: "Quality Guarantee", description: "We stand behind our work with comprehensive warranties and guarantees.", icon: "verified" },
+    { title: "Local Experts", description: "Deep understanding of Maryland weather and building requirements.", icon: "location" },
+    { title: "Free Estimates", description: "Transparent pricing with detailed, no-obligation estimates.", icon: "calculator" },
+    { title: "Emergency Service", description: "24/7 emergency response for urgent roofing and construction needs.", icon: "clock" }
+  ]
+};
+
+const serviceAreas = ["Frederick, MD", "Jefferson, MD", "Urbana, MD", "Mount Airy, MD", "New Market, MD", "Monrovia, MD", "Ijamsville, MD", "Walkersville, MD"];
+
+const contact = {
+  title: "Ready to Start Your Project?",
+  phone: "(410) 292-0801",
+  email: "info@jlandgroup.com",
+  hours: "Mon-Fri: 7AM-6PM"
+};
 
 // Structured data for services
 const servicesStructuredData = {
