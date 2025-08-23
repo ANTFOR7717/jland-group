@@ -25,7 +25,7 @@ const variantClasses = {
   caption: 'text-xs leading-4'
 };
 
-// Color-specific classes and styles
+// Color-specific classes
 const colorClasses = {
   default: 'text-gray-900',
   muted: 'text-gray-600',
@@ -33,15 +33,6 @@ const colorClasses = {
   white: 'text-white',
   primary: 'text-brand-primary',
   secondary: 'text-brand-secondary'
-};
-
-const colorStyles = {
-  default: 'color: #262327;',
-  muted: 'color: #C1B9BC;',
-  accent: 'color: #FDB813;',
-  white: 'color: #F8F9FA;',
-  primary: 'color: #262327;',
-  secondary: 'color: #7D7877;'
 };
 
 // Weight-specific classes
@@ -53,9 +44,8 @@ const weightClasses = {
 };
 
 const textClasses = `${variantClasses[variant]} ${colorClasses[color]} ${weightClasses[weight]} ${className}`;
-const textStyle = colorStyles[color];
 ---
 
-<p class={textClasses} style={textStyle} {...rest}>
+<p class={textClasses} {...rest}>
   <slot />
 </p>

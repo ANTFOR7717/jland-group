@@ -2,21 +2,24 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
-import { Container } from '../components/ui/layout';
-import { Section } from '../components/ui/layout';
+import { 
+  Container, 
+  Section, 
+  Button, 
+  Card, 
+  CardGrid, 
+  Badge, 
+  Icon, 
+  Form, 
+  Input, 
+  ContentBlock, 
+  TrustIndicator, 
+  TrustIndicatorGroup, 
+  FeaturedTestimonial, 
+  StarRating 
+} from '../components/ui';
 import Heading from '../components/ui/display/Heading.astro';
 import Text from '../components/ui/display/Text.astro';
-import { Button } from '../components/ui/buttons';
-import { Card } from '../components/ui/display';
-import { CardGrid } from '../components/ui/display';
-import { Badge } from '../components/ui/display';
-import { Icon } from '../components/ui/display';
-import { Form } from '../components/ui/forms';
-import { Input } from '../components/ui/forms';
-import { ContentBlock } from '../components/ui/display';
-import { TrustIndicator, TrustIndicatorGroup } from '../components/ui/features';
-import { FeaturedTestimonial } from '../components/ui/features';
-import { StarRating } from '../components/ui/display';
 
 // Import services data from existing collections
 import { getCollection } from 'astro:content';
@@ -112,63 +115,48 @@ const servicesStructuredData = {
   
   <Header />
   <!-- Hero Section -->
-  <Section class="bg-gradient-to-br from-brand-primary to-brand-secondary text-white relative overflow-hidden">
-    <div class="absolute inset-0 bg-black/20"></div>
-    <Container class="relative z-10 py-20 lg:py-32">
-      <div class="max-w-4xl mx-auto text-center">
-        <Badge variant="info" class="mb-6 text-white border-white/30 bg-white/10">
-          Services
-        </Badge>
-        <Heading level={1} size="4xl" class="mb-6 font-bold leading-tight">
-          {hero.title}
-        </Heading>
-        <Text variant="lead" class="mb-8 text-white/90 max-w-3xl mx-auto">
-          {hero.subtitle}
-        </Text>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Button 
-            variant="primary" 
-            size="lg" 
-            href={hero.ctaPrimary.href}
-            class="bg-accent-primary text-brand-primary hover:bg-accent-secondary font-semibold px-8 py-4"
-          >
-            {hero.ctaPrimary.text}
+  <Section background="dark">
+    <Container>
+      <div class="text-center max-w-4xl mx-auto">
+        <div class="mb-6">
+          <div class="inline-flex items-center justify-center mb-4 text-white bg-brand-primary px-4 py-2 rounded-full font-semibold">Professional Services</div>
+        </div>
+        <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+          Expert Roofing &<br>
+          <span class="text-accent-primary">Construction Services</span>
+        </h1>
+        <p class="text-xl text-white mb-8 leading-relaxed">
+          Professional roofing, construction, and exterior services throughout Frederick, MD and surrounding areas. 
+          Licensed, insured, and backed by 20+ years of experience delivering quality results.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+          <Button href="#contact" variant="primary" size="lg" class="text-center text-sm sm:text-base">
+            Get Your Free Estimate
           </Button>
-          <Button 
-            variant="secondary" 
-            size="lg" 
-            href={hero.ctaSecondary.href}
-            class="border-accent-primary text-accent-primary hover:bg-accent-primary hover:text-brand-primary font-semibold"
-          >
-            {hero.ctaSecondary.text}
+          <Button href="tel:+14102920801" variant="primary" size="lg" class="bg-white text-brand-primary border-white hover:bg-gray-100 text-center text-sm sm:text-base">
+            Call (410) 292-0801
           </Button>
         </div>
-      </div>
-      
-      <!-- Trust Indicators -->
-      <div class="mt-16">
-        <TrustIndicatorGroup class="justify-center">
-          <TrustIndicator 
-            icon="shield" 
-            text="Licensed & Insured"
-            class="text-white/90"
-          />
-          <TrustIndicator 
-            icon="star" 
-            text="5-Star Rated"
-            class="text-white/90"
-          />
-          <TrustIndicator 
-            icon="clock" 
-            text="20+ Years Experience"
-            class="text-white/90"
-          />
-          <TrustIndicator 
-            icon="verified" 
-            text="500+ Happy Customers"
-            class="text-white/90"
-          />
-        </TrustIndicatorGroup>
+        <div class="flex flex-wrap justify-center gap-6 text-sm text-white">
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>Licensed & Insured</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>20+ Years Experience</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>500+ Happy Customers</span>
+          </div>
+        </div>
       </div>
     </Container>
   </Section>
@@ -188,7 +176,7 @@ const servicesStructuredData = {
       {serviceCategories.map((category: any, index: number) => (
         <div class="mb-20 last:mb-0">
           <div class="text-center mb-12">
-            <Badge variant="info" size="sm" class="mb-4 bg-accent-primary text-brand-primary px-3 py-1 rounded-full font-medium">
+            <Badge variant="info" size="sm" class="mb-4 bg-brand-primary text-white px-3 py-1 rounded-full font-medium">
               {category.title}
             </Badge>
             <Heading level={3} size="2xl" class="mb-4 font-bold text-brand-primary">
@@ -220,7 +208,7 @@ const servicesStructuredData = {
               variant="primary" 
               size="lg" 
               href="#contact"
-              class="font-semibold px-8 py-4"
+              class="font-semibold px-8 py-4 text-center text-sm sm:text-base"
             >
               View All Services
             </Button>
@@ -304,7 +292,7 @@ const servicesStructuredData = {
           variant="secondary" 
           size="lg" 
           href="#contact"
-          class="bg-accent-primary text-brand-primary hover:bg-accent-secondary font-semibold px-8 py-4"
+          class="bg-white text-brand-primary hover:bg-gray-100 font-semibold px-8 py-4 text-center text-sm sm:text-base"
         >
           Read More Reviews
         </Button>
@@ -337,7 +325,7 @@ const servicesStructuredData = {
             variant="primary" 
             size="lg" 
             href="#contact"
-            class="font-semibold"
+            class="font-semibold text-center text-sm sm:text-base"
           >
             Get Service Quote
           </Button>
@@ -389,7 +377,7 @@ const servicesStructuredData = {
             variant="secondary" 
             size="lg" 
             href="#contact"
-            class="bg-accent-primary text-brand-primary hover:bg-accent-secondary font-semibold px-8 py-4"
+            class="bg-white text-brand-primary hover:bg-gray-100 font-semibold px-8 py-4 text-center text-sm sm:text-base"
           >
             Get Free Estimate
           </Button>
@@ -397,7 +385,7 @@ const servicesStructuredData = {
             variant="link" 
             size="lg" 
             href="tel:+13015550123"
-            class="text-white hover:text-accent-primary font-semibold border border-white/30 px-8 py-4"
+            class="text-white hover:text-white font-semibold border border-white px-8 py-4 hover:bg-white/10 text-center text-sm sm:text-base"
           >
             Call Now
           </Button>

@@ -1,264 +1,246 @@
 ---
-// Projects Page - Showcase of J Land Contracting work
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 import SectionHeader from '../components/ui/display/SectionHeader.astro';
 import Card from '../components/ui/display/Card.astro';
 import CardGrid from '../components/ui/display/CardGrid.astro';
+import ProjectShowcaseCard from '../components/ui/display/ProjectShowcaseCard.astro';
 import Button from '../components/ui/buttons/Button.astro';
 import Container from '../components/ui/layout/Container.astro';
 import Section from '../components/ui/layout/Section.astro';
+import Heading from '../components/ui/display/Heading.astro';
+import Text from '../components/ui/display/Text.astro';
 
 // Import project data
 import roofingProjects from '../content/services/roofing.json';
 import constructionProjects from '../content/services/construction.json';
 import showcaseProjects from '../content/services/showcase.json';
+
+const metadata = {
+  title: 'Our Projects - J Land Group',
+  description: 'Explore our portfolio of completed roofing, siding, and construction projects across the region.',
+};
 ---
 
-<Layout 
-  title="Our Projects | J Land Contracting"
-  description="Explore our portfolio of roofing, siding, and commercial construction projects in Jefferson, MD and surrounding areas. Quality craftsmanship guaranteed."
->
+<Layout title="Our Projects - J Land Group">
   <Header />
   
-  <main>
-    <!-- Page Header -->
-    <Section class="bg-background-light py-16">
+    <!-- Hero Section -->
+    <Section background="dark">
       <Container>
         <div class="text-center max-w-4xl mx-auto">
-          <h1 class="text-4xl md:text-5xl font-bold text-brand-primary mb-6">
-            Our Projects
+          <div class="mb-6">
+            <div class="inline-flex items-center justify-center mb-4 text-white bg-brand-primary px-4 py-2 rounded-full font-semibold">20+ Years of Excellence</div>
+          </div>
+          <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+            Our Project Portfolio,<br>
+            <span class="text-accent-primary">Built to Last</span>
           </h1>
-          <p class="text-xl text-brand-secondary leading-relaxed">
-            Discover the quality craftsmanship and attention to detail that sets J Land Contracting apart. 
-            From residential roofing to commercial construction, we deliver exceptional results every time.
+          <p class="text-xl text-white mb-8 leading-relaxed">
+            Explore our portfolio of completed roofing, siding, and commercial projects throughout Frederick, MD and surrounding areas. Each project showcases our commitment to quality craftsmanship and customer satisfaction.
           </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+            <Button href="#contact" variant="primary" size="lg">
+              Start Your Project
+            </Button>
+            <Button href="tel:+14102920801" variant="primary" size="lg" class="bg-white text-brand-primary border-white hover:bg-gray-100">
+              Call (410) 292-0801
+            </Button>
+          </div>
+          <div class="flex flex-wrap justify-center gap-6 text-sm text-white">
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span>Licensed & Insured</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span>100+ Projects Completed</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span>Lifetime Warranty</span>
+            </div>
+          </div>
         </div>
       </Container>
     </Section>
 
     <!-- Asphalt Shingles Showcase -->
-    <Section class="py-16">
+    <Section class="py-20">
       <Container>
-        <SectionHeader 
-          title="Asphalt Shingle Projects"
-          class="mb-12"
-        />
-        <p class="text-xl text-brand-secondary text-center mb-8">
-          Premium roofing solutions that protect and enhance your home
-        </p>
+        <div class="text-center mb-20">
+          <div class="inline-flex items-center bg-brand-primary/10 text-brand-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
+            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
+            </svg>
+            Residential Roofing
+          </div>
+          <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-8">
+            Asphalt Shingles Showcase
+          </h2>
+          <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            Discover our premium asphalt shingle installations that combine durability with aesthetic appeal, 
+            backed by years of expertise and satisfied customers.
+          </p>
+        </div>
         
-        <CardGrid columns={3} class="mb-12">
-          <Card 
-            title="Residential Roof Replacement"
-            description="Complete asphalt shingle roof replacement featuring GAF Timberline HD shingles with 50-year warranty protection."
-            image="/images/projects/asphalt-shingle-1.jpg"
-            imageAlt="Modern home with new asphalt shingle roof"
-            class="h-full"
-          >
-            <div class="mt-4">
-              <p class="text-sm text-brand-secondary mb-2">
-                <strong>Location:</strong> Jefferson, MD
-              </p>
-              <p class="text-sm text-brand-secondary mb-4">
-                <strong>Materials:</strong> GAF Timberline HD Charcoal
-              </p>
-              <Button variant="secondary" size="sm">
-                View Details
-              </Button>
-            </div>
-          </Card>
-          
-          <Card 
-            title="Storm Damage Restoration"
-            description="Expert storm damage repair and full roof replacement with upgraded ventilation system and ice dam protection."
-            image="/images/projects/asphalt-shingle-2.jpg"
-            imageAlt="Storm damaged roof restored with quality shingles"
-            class="h-full"
-          >
-            <div class="mt-4">
-              <p class="text-sm text-brand-secondary mb-2">
-                <strong>Location:</strong> Frederick, MD
-              </p>
-              <p class="text-sm text-brand-secondary mb-4">
-                <strong>Materials:</strong> CertainTeed Landmark Pro
-              </p>
-              <Button variant="secondary" size="sm">
-                 View Details
-               </Button>
-            </div>
-          </Card>
-          
-          <Card 
-            title="Historic Home Renovation"
-            description="Careful restoration of historic home roof maintaining architectural integrity while upgrading to modern materials."
-            image="/images/projects/asphalt-shingle-3.jpg"
-            imageAlt="Historic home with beautifully restored roof"
-            class="h-full"
-          >
-            <div class="mt-4">
-              <p class="text-sm text-brand-secondary mb-2">
-                <strong>Location:</strong> Middletown, MD
-              </p>
-              <p class="text-sm text-brand-secondary mb-4">
-                <strong>Materials:</strong> Architectural Shingles
-              </p>
-              <Button variant="secondary" size="sm">
-                 View Details
-               </Button>
-            </div>
-          </Card>
-        </CardGrid>
+        <div class="space-y-12">
+          {roofingProjects.services.map((project: any, index: number) => (
+            <ProjectShowcaseCard 
+              project={{
+                title: project.title,
+                location: project.location,
+                description: project.description,
+                materials: project.materials,
+                image: project.image || '/images/projects/roofing-placeholder.jpg',
+                testimonial: project.testimonial ? {
+                  quote: project.testimonial.quote,
+                  author: project.testimonial.author,
+                  role: project.testimonial.role
+                } : undefined,
+                details: {
+                  duration: project.duration,
+                  size: project.size,
+                  challenge: project.challenge
+                },
+                cta: {
+                  text: 'View Project Details',
+                  href: '#contact'
+                }
+              }}
+              variant={index === 0 ? 'featured' : 'default'}
+              imagePosition={index % 2 === 0 ? 'left' : 'right'}
+            />
+          ))}
+        </div>
       </Container>
     </Section>
 
     <!-- Siding Projects Display -->
-    <Section class="bg-background-light py-16">
+    <Section class="bg-background-light py-20">
       <Container>
-        <SectionHeader 
-          title="Siding Projects"
-          class="mb-12"
-        />
-        <p class="text-xl text-brand-secondary text-center mb-8">
-          Transform your home's exterior with durable, beautiful siding solutions
-        </p>
+        <div class="text-center mb-20">
+          <div class="inline-flex items-center bg-brand-secondary/10 text-brand-secondary px-4 py-2 rounded-full text-sm font-semibold mb-6">
+            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+            </svg>
+            Exterior Siding
+          </div>
+          <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-8">
+            Siding Projects Display
+          </h2>
+          <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            Explore our comprehensive siding solutions that enhance both protection and curb appeal, 
+            transforming homes with quality materials and expert craftsmanship.
+          </p>
+        </div>
         
-        <CardGrid columns={3} class="mb-12">
-          <Card 
-            title="Vinyl Siding Installation"
-            description="Complete home transformation with premium vinyl siding, new trim work, and coordinated color scheme."
-            image="/images/projects/siding-1.jpg"
-            imageAlt="Home with beautiful new vinyl siding"
-            class="h-full"
-          >
-            <div class="mt-4">
-              <p class="text-sm text-brand-secondary mb-2">
-                <strong>Location:</strong> Brunswick, MD
-              </p>
-              <p class="text-sm text-brand-secondary mb-4">
-                <strong>Materials:</strong> CertainTeed Monogram Vinyl
-              </p>
-              <Button variant="secondary" size="sm">
-                  View Details
-                </Button>
-            </div>
-          </Card>
-          
-          <Card 
-            title="Fiber Cement Upgrade"
-            description="Upgrade to low-maintenance fiber cement siding with enhanced insulation and weather protection."
-            image="/images/projects/siding-2.jpg"
-            imageAlt="Modern home with fiber cement siding"
-            class="h-full"
-          >
-            <div class="mt-4">
-              <p class="text-sm text-brand-secondary mb-2">
-                <strong>Location:</strong> Point of Rocks, MD
-              </p>
-              <p class="text-sm text-brand-secondary mb-4">
-                <strong>Materials:</strong> James Hardie ColorPlus
-              </p>
-              <Button variant="secondary" size="sm">
-                 View Details
-               </Button>
-            </div>
-          </Card>
-          
-          <Card 
-            title="Mixed Material Design"
-            description="Creative combination of stone, siding, and trim elements creating stunning curb appeal and lasting value."
-            image="/images/projects/siding-3.jpg"
-            imageAlt="Home featuring mixed siding materials"
-            class="h-full"
-          >
-            <div class="mt-4">
-              <p class="text-sm text-brand-secondary mb-2">
-                <strong>Location:</strong> Knoxville, MD
-              </p>
-              <p class="text-sm text-brand-secondary mb-4">
-                <strong>Materials:</strong> Stone & Vinyl Combination
-              </p>
-              <Button variant="secondary" size="sm">
-                 View Details
-               </Button>
-            </div>
-          </Card>
-        </CardGrid>
+        <div class="space-y-12">
+          {constructionProjects.services.map((project: any, index: number) => (
+            <ProjectShowcaseCard 
+              project={{
+                title: project.title,
+                location: project.location,
+                description: project.description,
+                materials: project.materials,
+                image: project.image || '/images/projects/siding-placeholder.jpg',
+                testimonial: project.testimonial ? {
+                  quote: project.testimonial.quote,
+                  author: project.testimonial.author,
+                  role: project.testimonial.role
+                } : undefined,
+                details: {
+                  duration: project.duration,
+                  size: project.size,
+                  challenge: project.challenge
+                },
+                cta: {
+                  text: 'Learn More',
+                  href: '#contact'
+                }
+              }}
+              variant='default'
+              imagePosition={index % 2 === 0 ? 'right' : 'left'}
+            />
+          ))}
+        </div>
       </Container>
     </Section>
 
     <!-- Commercial Projects Section -->
-    <Section class="py-16">
+    <Section class="py-20">
       <Container>
-        <SectionHeader 
-          title="Commercial Projects"
-          class="mb-12"
-        />
-        <p class="text-xl text-brand-secondary text-center mb-8">
-          Professional construction services for businesses and commercial properties
-        </p>
+        <div class="text-center mb-20">
+          <div class="inline-flex items-center bg-gray-900/10 text-gray-900 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm2 3a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
+            </svg>
+            Commercial Construction
+          </div>
+          <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-8">
+            Commercial Projects Section
+          </h2>
+          <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            Discover our large-scale commercial roofing and construction projects that demonstrate our expertise 
+            in handling complex installations and delivering exceptional results on time and within budget.
+          </p>
+        </div>
         
-        <CardGrid columns={2} class="mb-12">
-          <Card 
-            title="Office Building Renovation"
-            description="Complete exterior renovation including new roofing system, siding, and energy-efficient improvements for modern office complex."
-            image="/images/projects/commercial-1.jpg"
-            imageAlt="Renovated office building exterior"
-            class="h-full"
-          >
-            <div class="mt-4">
-              <p class="text-sm text-brand-secondary mb-2">
-                <strong>Location:</strong> Frederick, MD
-              </p>
-              <p class="text-sm text-brand-secondary mb-4">
-                <strong>Scope:</strong> Roofing, Siding, Windows
-              </p>
-              <Button variant="secondary" size="sm">
-                 View Details
-               </Button>
-             </div>
-           </Card>
-           
-           <Card 
-             title="Retail Center Upgrades"
-             description="Comprehensive exterior improvements for shopping center including new roofing, facade updates, and parking lot enhancements."
-             image="/images/projects/commercial-2.jpg"
-             imageAlt="Updated retail center with modern facade"
-             class="h-full"
-           >
-             <div class="mt-4">
-               <p class="text-sm text-brand-secondary mb-2">
-                 <strong>Location:</strong> Hagerstown, MD
-               </p>
-               <p class="text-sm text-brand-secondary mb-4">
-                 <strong>Scope:</strong> Full Exterior Renovation
-               </p>
-               <Button variant="secondary" size="sm">
-                View Details
-              </Button>
-            </div>
-          </Card>
-        </CardGrid>
+        <div class="space-y-12">
+          {showcaseProjects.services.map((project: any, index: number) => (
+            <ProjectShowcaseCard 
+              project={{
+                title: project.title,
+                location: project.location,
+                description: project.description,
+                materials: project.materials,
+                image: project.image || '/images/projects/commercial-placeholder.jpg',
+                testimonial: project.testimonial ? {
+                  quote: project.testimonial.quote,
+                  author: project.testimonial.author,
+                  role: project.testimonial.role
+                } : undefined,
+                details: {
+                  duration: project.duration,
+                  size: project.size,
+                  challenge: project.challenge
+                },
+                cta: {
+                  text: 'View Case Study',
+                  href: '#contact'
+                }
+              }}
+              variant={index === 0 ? 'featured' : 'default'}
+              imagePosition={index % 2 === 0 ? 'left' : 'right'}
+            />
+          ))}
+        </div>
       </Container>
     </Section>
 
     <!-- Contact CTA -->
-    <Section class="bg-accent-primary py-16">
+    <Section class="bg-brand-secondary py-16">
       <Container>
         <div class="text-center max-w-3xl mx-auto">
-          <h2 class="text-3xl md:text-4xl font-bold text-brand-primary mb-6">
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
             Ready to Start Your Project?
           </h2>
-          <p class="text-xl text-brand-secondary mb-8">
+          <p class="text-xl text-gray-100 mb-8">
             Get a free consultation and quote for your roofing, siding, or construction project. 
             We're here to bring your vision to life with quality craftsmanship you can trust.
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="primary" size="lg">
+            <Button variant="primary" size="lg" class="text-center text-sm sm:text-base">
               Get Free Quote
             </Button>
-            <Button variant="secondary" size="lg">
+            <Button variant="secondary" size="lg" class="text-center text-sm sm:text-base">
               Call (410) 292-0801
             </Button>
           </div>

@@ -14,21 +14,21 @@ const pageTitle = "About J Land Contracting | Trusted Baton Rouge Roofing Expert
 const pageDescription = "Meet the family behind J Land Contracting's 9+ years of roofing excellence in Baton Rouge. Licensed, insured roofing specialists committed to protecting your family's most valuable investment with lifetime warranties and 24/7 emergency service.";
 ---
 
-<Layout title={pageTitle} description={pageDescription}>
+<Layout title={pageTitle}>
 	<Header />
 	<main>
 		<!-- Hero Section -->
-		<Section>
+		<Section background="dark">
 			<Container>
 				<div class="text-center max-w-4xl mx-auto">
 					<div class="mb-6">
-						<Badge variant="trust" class="mb-4">Family-Owned Since 2015</Badge>
+						<div class="inline-flex items-center justify-center mb-4 text-white bg-brand-primary px-4 py-2 rounded-full font-semibold">Family-Owned Since 2015</div>
 					</div>
-					<h1 class="text-5xl md:text-6xl font-bold text-brand-primary mb-6 leading-tight">
+					<h1 class="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
 						Protecting Your Home,<br>
 						<span class="text-accent-primary">One Roof at a Time</span>
 					</h1>
-					<p class="text-xl text-brand-secondary mb-8 leading-relaxed">
+					<p class="text-xl text-white mb-8 leading-relaxed">
 						For nearly a decade, J Land Contracting has been protecting families across Baton Rouge with expert roofing services. 
 						We're not just roofers—we're your neighbors, committed to excellence and integrity in every roof we install.
 					</p>
@@ -36,11 +36,11 @@ const pageDescription = "Meet the family behind J Land Contracting's 9+ years of
 						<Button href="/contact" variant="primary" size="lg">
 							Get Your Free Roof Inspection
 						</Button>
-						<Button href="/services" variant="secondary" size="lg">
+						<Button href="/services" variant="primary" size="lg" class="bg-white text-brand-primary border-white hover:bg-gray-100">
 							View Roofing Services
 						</Button>
 					</div>
-					<div class="flex flex-wrap justify-center gap-6 text-sm text-brand-secondary">
+					<div class="flex flex-wrap justify-center gap-6 text-sm text-white">
 						<div class="flex items-center gap-2">
 							<svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
 								<path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
@@ -75,11 +75,11 @@ const pageDescription = "Meet the family behind J Land Contracting's 9+ years of
                  alignment="left"
                  size="3xl"
                />
-               <p class="text-xl text-brand-secondary mb-8 leading-relaxed">
+               <p class="text-xl text-brand-primary mb-8 leading-relaxed">
                  From a father's vision to a family legacy of excellence
                </p>
               
-              <div class="prose prose-lg max-w-none text-brand-secondary space-y-6">
+              <div class="prose prose-lg max-w-none text-brand-primary space-y-6">
                 <p class="text-lg leading-relaxed">
                   In 2015, James Land had a vision that went beyond just another roofing company. 
                   After watching too many homeowners get burned by unreliable roofers, he decided 
@@ -102,7 +102,7 @@ const pageDescription = "Meet the family behind J Land Contracting's 9+ years of
               </div>
               
               <div class="mt-8">
-                <Button href="/projects" variant="primary" size="md">
+                <Button href="/projects" variant="primary" size="md" class="text-center text-sm sm:text-base">
                   See Our Roofing Projects
                 </Button>
               </div>
@@ -224,10 +224,10 @@ const pageDescription = "Meet the family behind J Land Contracting's 9+ years of
                your most valuable investment—your home and the memories you create within it.
              </p>
              <div class="flex flex-col sm:flex-row gap-4 justify-center">
-               <Button href="/contact" variant="secondary" size="lg">
+               <Button href="/contact" variant="primary" size="lg" class="text-center text-sm sm:text-base">
                  Get Your Free Roof Inspection
                </Button>
-               <Button href="/services" variant="link" size="lg">
+               <Button href="/services" variant="link" size="lg" class="text-center text-sm sm:text-base">
                  View Roofing Services
                </Button>
              </div>
@@ -246,7 +246,7 @@ const pageDescription = "Meet the family behind J Land Contracting's 9+ years of
                 alignment="center"
                 size="3xl"
               />
-              <p class="text-xl text-brand-secondary max-w-3xl mx-auto leading-relaxed">
+              <p class="text-xl text-brand-primary max-w-3xl mx-auto leading-relaxed">
                 Behind every successful project is a team of dedicated professionals who care about your home as much as you do.
               </p>
             </div>
@@ -257,8 +257,8 @@ const pageDescription = "Meet the family behind J Land Contracting's 9+ years of
                   <span class="text-2xl font-bold text-white">JL</span>
                 </div>
                 <h3 class="text-xl font-bold text-brand-primary mb-2">James Land</h3>
-                <p class="text-brand-secondary mb-4">Founder & CEO</p>
-                <p class="text-sm text-brand-secondary leading-relaxed mb-4">
+                <p class="text-brand-primary mb-4">Founder & CEO</p>
+                <p class="text-sm text-brand-primary leading-relaxed mb-4">
                   With over 15 years in roofing and construction, James founded J Land Contracting on the principle that every homeowner deserves honest, quality roofing work. A Baton Rouge native, he's passionate about protecting our community one roof at a time.
                 </p>
                 <div class="flex justify-center space-x-2">
@@ -271,12 +271,12 @@ const pageDescription = "Meet the family behind J Land Contracting's 9+ years of
                   <span class="text-2xl font-bold text-white">ML</span>
                 </div>
                 <h3 class="text-xl font-bold text-brand-primary mb-2">Maria Lopez</h3>
-                <p class="text-brand-secondary mb-4">Project Manager</p>
-                <p class="text-sm text-brand-secondary leading-relaxed mb-4">
+                <p class="text-brand-primary mb-4">Project Manager</p>
+                <p class="text-sm text-brand-primary leading-relaxed mb-4">
                   Maria ensures every roofing project runs smoothly from start to finish. With her keen eye for detail and commitment to communication, she's your advocate throughout the entire roofing process.
                 </p>
                 <div class="flex justify-center space-x-2">
-                  <Badge variant="service">PMP Certified</Badge>
+                  <Badge variant="info">PMP Certified</Badge>
                 </div>
               </div>
               
@@ -285,8 +285,8 @@ const pageDescription = "Meet the family behind J Land Contracting's 9+ years of
                   <span class="text-2xl font-bold text-white">DT</span>
                 </div>
                 <h3 class="text-xl font-bold text-brand-primary mb-2">David Thompson</h3>
-                <p class="text-brand-secondary mb-4">Lead Craftsman</p>
-                <p class="text-sm text-brand-secondary leading-relaxed mb-4">
+                <p class="text-brand-primary mb-4">Lead Craftsman</p>
+                <p class="text-sm text-brand-primary leading-relaxed mb-4">
                   David's 20+ years of roofing experience shows in every nail driven and every shingle placed. His attention to detail and roofing craftsmanship excellence sets the standard for our entire team.
                 </p>
                 <div class="flex justify-center space-x-2">
@@ -296,7 +296,7 @@ const pageDescription = "Meet the family behind J Land Contracting's 9+ years of
             </div>
             
             <div class="text-center mt-12">
-              <Button href="/contact" variant="primary" size="lg">
+              <Button href="/contact" variant="primary" size="lg" class="text-center text-sm sm:text-base">
                 Meet Your Project Team
               </Button>
             </div>
@@ -395,7 +395,7 @@ const pageDescription = "Meet the family behind J Land Contracting's 9+ years of
               alignment="center"
               size="3xl"
             />
-            <p class="text-xl text-brand-secondary max-w-3xl mx-auto leading-relaxed">
+            <p class="text-xl text-brand-primary max-w-3xl mx-auto leading-relaxed">
               Don't just take our word for it. Here's what your neighbors have to say about their roofing experience with J Land Contracting.
             </p>
           </div>
@@ -421,7 +421,7 @@ const pageDescription = "Meet the family behind J Land Contracting's 9+ years of
                   </svg>
                 </div>
               </div>
-              <p class="text-brand-secondary mb-4 leading-relaxed">
+              <p class="text-brand-primary mb-4 leading-relaxed">
                 "After Hurricane Ida damaged our roof, J Land Contracting was there within hours. James and his team worked tirelessly to get our family back under a safe roof. Their professionalism and care during such a stressful time meant everything to us."
               </p>
               <div class="flex items-center">
@@ -430,7 +430,7 @@ const pageDescription = "Meet the family behind J Land Contracting's 9+ years of
                 </div>
                 <div>
                   <div class="font-semibold text-brand-primary">Sarah Martinez</div>
-                  <div class="text-sm text-brand-secondary">Baton Rouge Homeowner</div>
+                  <div class="text-sm text-brand-primary">Baton Rouge Homeowner</div>
                 </div>
               </div>
             </div>
@@ -455,7 +455,7 @@ const pageDescription = "Meet the family behind J Land Contracting's 9+ years of
                   </svg>
                 </div>
               </div>
-              <p class="text-brand-secondary mb-4 leading-relaxed">
+              <p class="text-brand-primary mb-4 leading-relaxed">
                 "We needed a complete roof replacement after years of Louisiana weather took its toll. J Land Contracting transformed our home's protection beyond our expectations. The quality of roofing work and attention to detail is outstanding. Highly recommend!"
               </p>
               <div class="flex items-center">
@@ -464,7 +464,7 @@ const pageDescription = "Meet the family behind J Land Contracting's 9+ years of
                 </div>
                 <div>
                   <div class="font-semibold text-brand-primary">Robert Johnson</div>
-                  <div class="text-sm text-brand-secondary">Zachary Homeowner</div>
+                  <div class="text-sm text-brand-primary">Zachary Homeowner</div>
                 </div>
               </div>
             </div>
@@ -489,7 +489,7 @@ const pageDescription = "Meet the family behind J Land Contracting's 9+ years of
                   </svg>
                 </div>
               </div>
-              <p class="text-brand-secondary mb-4 leading-relaxed">
+              <p class="text-brand-primary mb-4 leading-relaxed">
                 "From the initial consultation to project completion, JLand Group exceeded every expectation. They kept us informed every step of the way and delivered exactly what they promised. Our new roof looks amazing!"
               </p>
               <div class="flex items-center">
@@ -498,14 +498,14 @@ const pageDescription = "Meet the family behind J Land Contracting's 9+ years of
                 </div>
                 <div>
                   <div class="font-semibold text-brand-primary">Lisa Williams</div>
-                  <div class="text-sm text-brand-secondary">Central Homeowner</div>
+                  <div class="text-sm text-brand-primary">Central Homeowner</div>
                 </div>
               </div>
             </div>
           </div>
           
           <div class="text-center">
-            <Button href="/testimonials" variant="link" size="lg">
+            <Button href="/testimonials" variant="link" size="lg" class="text-center text-sm sm:text-base">
               Read More Success Stories
             </Button>
           </div>
@@ -573,23 +573,23 @@ const pageDescription = "Meet the family behind J Land Contracting's 9+ years of
               <div class="grid grid-cols-2 gap-6">
                 <div class="text-center">
                   <div class="text-3xl font-bold text-accent-primary mb-2">50+</div>
-                  <div class="text-brand-secondary text-sm">Volunteer Hours</div>
+                  <div class="text-brand-primary text-sm">Volunteer Hours</div>
                 </div>
                 <div class="text-center">
                   <div class="text-3xl font-bold text-accent-primary mb-2">25+</div>
-                  <div class="text-brand-secondary text-sm">Families Helped</div>
+                  <div class="text-brand-primary text-sm">Families Helped</div>
                 </div>
                 <div class="text-center">
                   <div class="text-3xl font-bold text-accent-primary mb-2">$15K+</div>
-                  <div class="text-brand-secondary text-sm">Donated Services</div>
+                  <div class="text-brand-primary text-sm">Donated Services</div>
                 </div>
                 <div class="text-center">
                   <div class="text-3xl font-bold text-accent-primary mb-2">5+</div>
-                  <div class="text-brand-secondary text-sm">Local Partners</div>
+                  <div class="text-brand-primary text-sm">Local Partners</div>
                 </div>
               </div>
               <div class="text-center mt-6">
-                <Button href="/community" variant="link">
+                <Button href="/community" variant="link" class="text-center text-sm sm:text-base">
                   Learn More About Our Impact
                 </Button>
               </div>
@@ -628,10 +628,10 @@ const pageDescription = "Meet the family behind J Land Contracting's 9+ years of
           </div>
           
           <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <Button href="/contact" variant="primary" size="lg" class="bg-accent-secondary hover:bg-accent-primary text-brand-primary font-bold">
+            <Button href="/contact" variant="primary" size="lg" class="bg-accent-secondary hover:bg-accent-primary text-brand-primary font-bold text-center text-sm sm:text-base">
               Get Your Free Roof Inspection
             </Button>
-            <Button href="tel:+12255551234" variant="secondary" size="lg" class="border-white text-white hover:bg-white hover:text-brand-primary">
+            <Button href="tel:+12255551234" variant="secondary" size="lg" class="border-white text-white hover:bg-white hover:text-brand-primary text-center text-sm sm:text-base">
               Call Now: (225) 555-1234
             </Button>
           </div>

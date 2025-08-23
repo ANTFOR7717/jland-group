@@ -29,15 +29,15 @@ const {
 // Variant styling
 const variantStyles = {
   default: {
-    background: 'rgba(38, 35, 39, 0.70)',
+    backgroundClass: 'bg-brand-primary/90',
     textColor: 'white' as const
   },
   dark: {
-    background: 'rgba(0, 0, 0, 0.70)',
+    backgroundClass: 'bg-gray-900/95',
     textColor: 'white' as const
   },
   light: {
-    background: 'rgba(255, 255, 255, 0.90)',
+    backgroundClass: 'bg-white/95',
     textColor: 'default' as const
   }
 };
@@ -46,8 +46,7 @@ const currentStyle = variantStyles[variant];
 ---
 
 <div 
-  class={`rounded-lg flex flex-col gap-6 p-6 w-full ${className}`}
-  style={`background: ${currentStyle.background};`}
+  class={`rounded-lg flex flex-col gap-6 p-6 w-full ${currentStyle.backgroundClass} ${className}`}
 >
   <Text 
     color={currentStyle.textColor} 
