@@ -1,0 +1,284 @@
+---
+// About Page - J Land Contracting Company Information
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import SectionHeader from '../components/ui/display/SectionHeader.astro';
+import Card from '../components/ui/display/Card.astro';
+import CardGrid from '../components/ui/display/CardGrid.astro';
+import Button from '../components/ui/buttons/Button.astro';
+import Container from '../components/ui/layout/Container.astro';
+import Section from '../components/ui/layout/Section.astro';
+import Badge from '../components/ui/display/Badge.astro';
+---
+
+<Layout 
+  title="About Us | J Land Contracting"
+  description="Learn about J Land Contracting INC - your trusted roofing and exterior contractors in Jefferson, MD. Quality craftsmanship and reliable service since our founding."
+>
+  <Header />
+  
+  <main>
+    <!-- Page Header -->
+    <Section class="bg-background-light py-16">
+      <Container>
+        <div class="text-center max-w-4xl mx-auto">
+          <h1 class="text-4xl md:text-5xl font-bold text-brand-primary mb-6">
+            About J Land Contracting
+          </h1>
+          <p class="text-xl text-brand-secondary leading-relaxed">
+            Your trusted partner for quality roofing, siding, and exterior services in Jefferson, MD and surrounding areas. 
+            We're committed to protecting and enhancing your home with superior craftsmanship.
+          </p>
+        </div>
+      </Container>
+    </Section>
+
+    <!-- Company Story -->
+    <Section class="py-16">
+      <Container>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <SectionHeader 
+              title="Our Story"
+              class="mb-8 text-left"
+            />
+            <div class="space-y-6">
+              <p class="text-lg text-brand-secondary leading-relaxed">
+                J Land Contracting INC was founded with a simple mission: to provide homeowners in Jefferson, MD 
+                and surrounding areas with exceptional exterior services that protect and enhance their most valuable investment.
+              </p>
+              <p class="text-lg text-brand-secondary leading-relaxed">
+                From our base in Jefferson, MD, we've built our reputation on quality craftsmanship, reliable service, 
+                and honest communication. Every project we undertake reflects our commitment to excellence and our 
+                understanding that your home deserves nothing but the best.
+              </p>
+              <p class="text-lg text-brand-secondary leading-relaxed">
+                We specialize in roofing, siding, gutters, and comprehensive exterior services, bringing years of 
+                experience and a dedication to customer satisfaction to every job.
+              </p>
+            </div>
+          </div>
+          <div class="bg-background-light p-8 rounded-lg">
+            <h3 class="text-2xl font-bold text-brand-primary mb-6">Why Choose Us?</h3>
+            <ul class="space-y-4">
+              <li class="flex items-start space-x-3">
+                <div class="w-2 h-2 bg-accent-primary rounded-full mt-3 flex-shrink-0"></div>
+                <span class="text-brand-secondary">Licensed and insured for your protection</span>
+              </li>
+              <li class="flex items-start space-x-3">
+                <div class="w-2 h-2 bg-accent-primary rounded-full mt-3 flex-shrink-0"></div>
+                <span class="text-brand-secondary">Quality materials from trusted manufacturers</span>
+              </li>
+              <li class="flex items-start space-x-3">
+                <div class="w-2 h-2 bg-accent-primary rounded-full mt-3 flex-shrink-0"></div>
+                <span class="text-brand-secondary">Comprehensive warranties on all work</span>
+              </li>
+              <li class="flex items-start space-x-3">
+                <div class="w-2 h-2 bg-accent-primary rounded-full mt-3 flex-shrink-0"></div>
+                <span class="text-brand-secondary">Local expertise and community commitment</span>
+              </li>
+              <li class="flex items-start space-x-3">
+                <div class="w-2 h-2 bg-accent-primary rounded-full mt-3 flex-shrink-0"></div>
+                <span class="text-brand-secondary">Free estimates and transparent pricing</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <!-- Services Overview -->
+    <Section class="bg-background-light py-16">
+      <Container>
+        <SectionHeader 
+          title="Our Services"
+          class="mb-12"
+        />
+        <p class="text-xl text-brand-secondary text-center mb-12">
+          Comprehensive exterior services to protect and enhance your home
+        </p>
+        
+        <CardGrid columns={3} class="mb-12">
+          <Card 
+            title="Roofing Services"
+            description="Complete roofing solutions including repair, replacement, and maintenance using premium materials and expert craftsmanship."
+            class="h-full text-center"
+          >
+            <div class="mt-4">
+              <ul class="text-sm text-brand-secondary space-y-2">
+                <li>• Roof Repair & Replacement</li>
+                <li>• Asphalt Shingle Installation</li>
+                <li>• Storm Damage Restoration</li>
+                <li>• Preventative Maintenance</li>
+              </ul>
+            </div>
+          </Card>
+          
+          <Card 
+            title="Siding Services"
+            description="Transform your home's exterior with quality siding installation, repair, and maintenance services."
+            class="h-full text-center"
+          >
+            <div class="mt-4">
+              <ul class="text-sm text-brand-secondary space-y-2">
+                <li>• Vinyl Siding Installation</li>
+                <li>• Fiber Cement Siding</li>
+                <li>• Siding Repair & Replacement</li>
+                <li>• Trim & Fascia Work</li>
+              </ul>
+            </div>
+          </Card>
+          
+          <Card 
+            title="Additional Services"
+            description="Complete exterior solutions including gutters, pressure washing, and general construction services."
+            class="h-full text-center"
+          >
+            <div class="mt-4">
+              <ul class="text-sm text-brand-secondary space-y-2">
+                <li>• Gutter Installation & Repair</li>
+                <li>• Pressure Washing</li>
+                <li>• General Construction</li>
+                <li>• Emergency Repairs</li>
+              </ul>
+            </div>
+          </Card>
+        </CardGrid>
+      </Container>
+    </Section>
+
+    <!-- Trust & Credentials -->
+    <Section class="py-16">
+      <Container>
+        <div class="text-center max-w-3xl mx-auto">
+          <SectionHeader 
+            title="Trusted & Certified"
+            class="mb-8"
+          />
+          <p class="text-xl text-brand-secondary mb-12">
+            We're proud to be recognized for our commitment to quality and customer satisfaction
+          </p>
+          
+          <div class="flex flex-wrap justify-center gap-6 mb-12">
+            <Badge variant="bbb" size="lg">
+              BBB Accredited
+            </Badge>
+            <Badge variant="google" size="lg">
+              Google Verified
+            </Badge>
+            <Badge variant="service" size="lg">
+              Licensed & Insured
+            </Badge>
+          </div>
+          
+          <div class="bg-background-light p-8 rounded-lg">
+            <h3 class="text-2xl font-bold text-brand-primary mb-4">Our Commitment</h3>
+            <p class="text-lg text-brand-secondary leading-relaxed">
+              At J Land Contracting, we believe that quality work speaks for itself. That's why we stand behind 
+              every project with comprehensive warranties and a commitment to customer satisfaction that extends 
+              long after the job is complete.
+            </p>
+          </div>
+        </div>
+      </Container>
+    </Section>
+
+    <!-- Contact Information -->
+    <Section class="bg-background-light py-16">
+      <Container>
+        <div class="text-center max-w-3xl mx-auto">
+          <SectionHeader 
+            title="Get In Touch"
+            class="mb-8"
+          />
+          <p class="text-xl text-brand-secondary mb-8">
+            Ready to discuss your next exterior project? Contact us today for a free consultation and estimate.
+          </p>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div class="text-center">
+              <h4 class="text-lg font-semibold text-brand-primary mb-2">Phone</h4>
+              <p class="text-brand-secondary">(410) 292-0801</p>
+            </div>
+            <div class="text-center">
+              <h4 class="text-lg font-semibold text-brand-primary mb-2">Email</h4>
+              <p class="text-brand-secondary">info@jlandgroup.com</p>
+            </div>
+            <div class="text-center">
+              <h4 class="text-lg font-semibold text-brand-primary mb-2">Location</h4>
+              <p class="text-brand-secondary">Jefferson, MD 21755</p>
+            </div>
+          </div>
+          
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button variant="primary" size="lg">
+              Get Free Quote
+            </Button>
+            <Button variant="secondary" size="lg">
+              Call (410) 292-0801
+            </Button>
+          </div>
+        </div>
+      </Container>
+    </Section>
+  </main>
+  
+  <Footer />
+</Layout>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "About Us | J Land Contracting",
+  "description": "Learn about J Land Contracting INC - your trusted roofing and exterior contractors in Jefferson, MD.",
+  "url": "https://jlandcontracting.com/about",
+  "mainEntity": {
+    "@type": "LocalBusiness",
+    "name": "J Land Contracting INC",
+    "description": "Quality roofing, siding, and exterior services in Jefferson, MD and surrounding areas.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "3636 Glenoble Court",
+      "addressLocality": "Jefferson",
+      "addressRegion": "MD",
+      "postalCode": "21755",
+      "addressCountry": "US"
+    },
+    "telephone": "(410) 292-0801",
+    "email": "info@jlandgroup.com",
+    "serviceArea": "Jefferson, MD and surrounding areas",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Exterior Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Roofing Services",
+            "description": "Complete roofing solutions including repair, replacement, and maintenance"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Siding Services",
+            "description": "Quality siding installation, repair, and maintenance services"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Gutter Services",
+            "description": "Gutter installation, repair, and maintenance services"
+          }
+        }
+      ]
+    }
+  }
+}
+</script>

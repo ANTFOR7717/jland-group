@@ -1,0 +1,202 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  keywords?: string;
+  canonicalURL?: string;
+  ogImage?: string;
+  structuredData?: object;
+}
+
+const {
+  title,
+  description,
+  keywords,
+  canonicalURL,
+  ogImage = '/images/og-services.jpg',
+  structuredData
+} = Astro.props;
+
+const siteUrl = 'https://jlandgroup.com';
+const fullTitle = `${title} | J Land Group - Frederick, MD`;
+const fullCanonicalURL = canonicalURL || `${siteUrl}${Astro.url.pathname}`;
+
+// Default structured data for services page
+const defaultStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "J Land Group",
+  "description": "Professional roofing and construction services in Frederick, MD. Licensed, insured, and trusted by homeowners for over 20 years.",
+  "url": siteUrl,
+  "telephone": "+1-301-555-0123",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "3636 Glenoble Court",
+    "addressLocality": "Jefferson",
+    "addressRegion": "MD",
+    "postalCode": "21755",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "39.3498",
+    "longitude": "-77.4653"
+  },
+  "areaServed": [
+    "Frederick, MD",
+    "Hagerstown, MD",
+    "Westminster, MD",
+    "Gaithersburg, MD",
+    "Rockville, MD",
+    "Germantown, MD"
+  ],
+  "serviceType": [
+    "Roofing Services",
+    "Roof Repair",
+    "Roof Replacement",
+    "Construction Services",
+    "Home Additions",
+    "Kitchen Renovations",
+    "Bathroom Remodeling",
+    "Siding Installation",
+    "Window Replacement",
+    "Deck Construction"
+  ],
+  "priceRange": "$$",
+  "openingHours": [
+    "Mo-Fr 07:00-18:00",
+    "Sa 08:00-16:00"
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "reviewCount": "127"
+  },
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "Licensed Contractor",
+      "credentialCategory": "Professional License"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "Insured Business",
+      "credentialCategory": "Insurance Coverage"
+    }
+  ]
+};
+
+const finalStructuredData = structuredData || defaultStructuredData;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Essential Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- SEO Meta Tags -->
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    {keywords && <meta name="keywords" content={keywords} />}
+    <link rel="canonical" href={fullCanonicalURL} />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={fullCanonicalURL} />
+    <meta property="og:image" content={`${siteUrl}${ogImage}`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="J Land Group" />
+    <meta property="og:locale" content="en_US" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
+    
+    <!-- Business Information -->
+    <meta name="geo.region" content="US-MD" />
+    <meta name="geo.placename" content="Frederick, Maryland" />
+    <meta name="geo.position" content="39.3498;-77.4653" />
+    <meta name="ICBM" content="39.3498, -77.4653" />
+    
+    <!-- Favicon and Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    
+    <!-- Performance Optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://static.motiffcontent.com" />
+    
+    <!-- Font Loading with Display Swap -->
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" 
+      rel="stylesheet"
+    />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(finalStructuredData)} />
+    
+    <!-- Additional Performance Hints -->
+    <meta name="theme-color" content="#FDB813" />
+    <meta name="msapplication-TileColor" content="#FDB813" />
+    
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+  </head>
+  <body class="font-montserrat w-full min-h-screen bg-white text-brand-primary antialiased">
+    <slot />
+  </body>
+</html>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Performance optimization for images */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Focus styles for accessibility */
+  :focus-visible {
+    outline: 2px solid rgb(var(--color-accent-primary));
+    outline-offset: 2px;
+  }
+  
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>

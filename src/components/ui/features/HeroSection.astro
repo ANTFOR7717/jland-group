@@ -1,25 +1,70 @@
 ---
 // HeroSection component for hero layout with background image
+// Enhanced for optimal responsiveness and performance
 export interface Props {
   backgroundImage: string;
   height?: string;
   fontFamily?: string;
   class?: string;
+  priority?: boolean;
 }
 
 const { 
   backgroundImage,
-  height = 'min-h-[80vh]',  // Reduced height to allow partners section above fold
+  height = 'min-h-[100vh] sm:min-h-[90vh] md:min-h-[85vh] lg:min-h-[80vh]',
   fontFamily = 'Montserrat',
-  class: className = '' 
+  class: className = '',
+  priority = true
 } = Astro.props;
 
-const sectionClass = `relative ${height} w-full overflow-hidden bg-cover bg-center ${className}`;
-const backgroundStyle = `background-image: url('${backgroundImage}'); font-family: '${fontFamily}'`;
+const sectionClass = `relative ${height} w-full overflow-hidden bg-gray-100 ${className}`;
+const backgroundStyle = `font-family: '${fontFamily}';`;
 ---
 
+<!-- Preload critical background image -->
+{priority && (
+  <link rel="preload" as="image" href={backgroundImage} />
+)}
+
 <section class={sectionClass} style={backgroundStyle}>
-  <div class="flex flex-col h-full justify-between py-12 sm:py-12 md:py-16 lg:py-20 xl:py-20 px-0">
+  <!-- Background image with lazy loading optimization -->
+  <div 
+    class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-300 opacity-0"
+    style={`background-image: url('${backgroundImage}'); background-position: center center;`}
+    data-bg-loaded="false"
+  ></div>
+  
+  <!-- Content container with proper z-index -->
+  <div class="relative z-10 flex flex-col h-full justify-center py-8 sm:py-10 md:py-12 lg:py-16 xl:py-20 px-0">
     <slot />
   </div>
 </section>
+
+<script>
+  // Optimize background image loading to reduce CLS
+  document.addEventListener('DOMContentLoaded', function() {
+    const bgElements = document.querySelectorAll('[data-bg-loaded="false"]');
+    
+    bgElements.forEach(element => {
+      const htmlElement = element as HTMLElement;
+      const bgImage = htmlElement.style.backgroundImage;
+      if (bgImage) {
+        const imageUrl = bgImage.slice(5, -2); // Remove url(" and ")
+        const img = new Image();
+        
+        img.onload = function() {
+          htmlElement.style.opacity = '1';
+          htmlElement.setAttribute('data-bg-loaded', 'true');
+        };
+        
+        img.onerror = function() {
+          // Fallback: show element anyway to prevent layout issues
+          htmlElement.style.opacity = '1';
+          htmlElement.setAttribute('data-bg-loaded', 'true');
+        };
+        
+        img.src = imageUrl;
+      }
+    });
+  });
+</script>

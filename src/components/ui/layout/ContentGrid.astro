@@ -1,5 +1,6 @@
 ---
 // ContentGrid component for flexible content layouts
+// Enhanced for optimal responsiveness and space utilization
 export interface Props {
   columns?: 1 | 2 | 3;
   gap?: 'sm' | 'md' | 'lg' | 'xl';
@@ -18,17 +19,19 @@ const {
   class: className = '' 
 } = Astro.props;
 
+// Enhanced responsive column classes for better viewport utilization
 const columnClasses = {
   1: 'flex flex-col',
-  2: 'flex justify-between items-start',
-  3: 'grid grid-cols-1 lg:grid-cols-3'
+  2: 'flex flex-col lg:flex-row lg:justify-between lg:items-start',
+  3: 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
 };
 
+// Responsive gap classes for optimal spacing across viewports
 const gapClasses = {
-  sm: 'gap-4',
-  md: 'gap-8',
-  lg: 'gap-12',
-  xl: 'gap-48'
+  sm: 'gap-3 sm:gap-4',
+  md: 'gap-4 sm:gap-6 lg:gap-8',
+  lg: 'gap-6 sm:gap-8 lg:gap-12',
+  xl: 'gap-8 sm:gap-12 lg:gap-16 xl:gap-24 2xl:gap-32'
 };
 
 const alignmentClasses = {
@@ -38,17 +41,18 @@ const alignmentClasses = {
   between: 'justify-between'
 };
 
+// Enhanced responsive padding for better space utilization
 const paddingClasses = {
   none: '',
-  sm: 'px-4 sm:px-4',
-  md: 'px-4 sm:px-8',
-  lg: 'px-4 sm:px-16'
+  sm: 'px-4 sm:px-6',
+  md: 'px-4 sm:px-8 lg:px-12',
+  lg: 'px-4 sm:px-8 lg:px-16 xl:px-20'
 };
 
-// Variant-specific classes
+// Variant-specific classes with responsive enhancements
 const variantClasses = {
   default: '',
-  badges: 'flex flex-wrap items-center'
+  badges: 'flex flex-wrap items-center justify-center sm:justify-start'
 };
 
 const gridClass = variant === 'badges' 

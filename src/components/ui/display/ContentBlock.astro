@@ -1,5 +1,6 @@
 ---
 // ContentBlock component for structured content with heading and text
+// Enhanced for optimal content flow across viewports
 export interface Props {
   maxWidth?: string;
   spacing?: 'sm' | 'md' | 'lg';
@@ -7,15 +8,16 @@ export interface Props {
 }
 
 const { 
-  maxWidth = 'max-w-[803px]',
+  maxWidth = 'max-w-full sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-5xl',
   spacing = 'md',
   class: className = '' 
 } = Astro.props;
 
+// Enhanced responsive spacing for better content flow
 const spacingClasses = {
-  sm: 'gap-2',
-  md: 'gap-4',
-  lg: 'gap-6'
+  sm: 'gap-2 sm:gap-3',
+  md: 'gap-3 sm:gap-4 lg:gap-6',
+  lg: 'gap-4 sm:gap-6 lg:gap-8'
 };
 
 const blockClass = `flex flex-col ${spacingClasses[spacing]} ${maxWidth} ${className}`;

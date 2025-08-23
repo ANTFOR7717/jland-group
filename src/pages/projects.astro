@@ -1,0 +1,293 @@
+---
+// Projects Page - Showcase of J Land Contracting work
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import SectionHeader from '../components/ui/display/SectionHeader.astro';
+import Card from '../components/ui/display/Card.astro';
+import CardGrid from '../components/ui/display/CardGrid.astro';
+import Button from '../components/ui/buttons/Button.astro';
+import Container from '../components/ui/layout/Container.astro';
+import Section from '../components/ui/layout/Section.astro';
+
+// Import project data
+import roofingProjects from '../content/services/roofing.json';
+import constructionProjects from '../content/services/construction.json';
+import showcaseProjects from '../content/services/showcase.json';
+---
+
+<Layout 
+  title="Our Projects | J Land Contracting"
+  description="Explore our portfolio of roofing, siding, and commercial construction projects in Jefferson, MD and surrounding areas. Quality craftsmanship guaranteed."
+>
+  <Header />
+  
+  <main>
+    <!-- Page Header -->
+    <Section class="bg-background-light py-16">
+      <Container>
+        <div class="text-center max-w-4xl mx-auto">
+          <h1 class="text-4xl md:text-5xl font-bold text-brand-primary mb-6">
+            Our Projects
+          </h1>
+          <p class="text-xl text-brand-secondary leading-relaxed">
+            Discover the quality craftsmanship and attention to detail that sets J Land Contracting apart. 
+            From residential roofing to commercial construction, we deliver exceptional results every time.
+          </p>
+        </div>
+      </Container>
+    </Section>
+
+    <!-- Asphalt Shingles Showcase -->
+    <Section class="py-16">
+      <Container>
+        <SectionHeader 
+          title="Asphalt Shingle Projects"
+          class="mb-12"
+        />
+        <p class="text-xl text-brand-secondary text-center mb-8">
+          Premium roofing solutions that protect and enhance your home
+        </p>
+        
+        <CardGrid columns={3} class="mb-12">
+          <Card 
+            title="Residential Roof Replacement"
+            description="Complete asphalt shingle roof replacement featuring GAF Timberline HD shingles with 50-year warranty protection."
+            image="/images/projects/asphalt-shingle-1.jpg"
+            imageAlt="Modern home with new asphalt shingle roof"
+            class="h-full"
+          >
+            <div class="mt-4">
+              <p class="text-sm text-brand-secondary mb-2">
+                <strong>Location:</strong> Jefferson, MD
+              </p>
+              <p class="text-sm text-brand-secondary mb-4">
+                <strong>Materials:</strong> GAF Timberline HD Charcoal
+              </p>
+              <Button variant="secondary" size="sm">
+                View Details
+              </Button>
+            </div>
+          </Card>
+          
+          <Card 
+            title="Storm Damage Restoration"
+            description="Expert storm damage repair and full roof replacement with upgraded ventilation system and ice dam protection."
+            image="/images/projects/asphalt-shingle-2.jpg"
+            imageAlt="Storm damaged roof restored with quality shingles"
+            class="h-full"
+          >
+            <div class="mt-4">
+              <p class="text-sm text-brand-secondary mb-2">
+                <strong>Location:</strong> Frederick, MD
+              </p>
+              <p class="text-sm text-brand-secondary mb-4">
+                <strong>Materials:</strong> CertainTeed Landmark Pro
+              </p>
+              <Button variant="secondary" size="sm">
+                 View Details
+               </Button>
+            </div>
+          </Card>
+          
+          <Card 
+            title="Historic Home Renovation"
+            description="Careful restoration of historic home roof maintaining architectural integrity while upgrading to modern materials."
+            image="/images/projects/asphalt-shingle-3.jpg"
+            imageAlt="Historic home with beautifully restored roof"
+            class="h-full"
+          >
+            <div class="mt-4">
+              <p class="text-sm text-brand-secondary mb-2">
+                <strong>Location:</strong> Middletown, MD
+              </p>
+              <p class="text-sm text-brand-secondary mb-4">
+                <strong>Materials:</strong> Architectural Shingles
+              </p>
+              <Button variant="secondary" size="sm">
+                 View Details
+               </Button>
+            </div>
+          </Card>
+        </CardGrid>
+      </Container>
+    </Section>
+
+    <!-- Siding Projects Display -->
+    <Section class="bg-background-light py-16">
+      <Container>
+        <SectionHeader 
+          title="Siding Projects"
+          class="mb-12"
+        />
+        <p class="text-xl text-brand-secondary text-center mb-8">
+          Transform your home's exterior with durable, beautiful siding solutions
+        </p>
+        
+        <CardGrid columns={3} class="mb-12">
+          <Card 
+            title="Vinyl Siding Installation"
+            description="Complete home transformation with premium vinyl siding, new trim work, and coordinated color scheme."
+            image="/images/projects/siding-1.jpg"
+            imageAlt="Home with beautiful new vinyl siding"
+            class="h-full"
+          >
+            <div class="mt-4">
+              <p class="text-sm text-brand-secondary mb-2">
+                <strong>Location:</strong> Brunswick, MD
+              </p>
+              <p class="text-sm text-brand-secondary mb-4">
+                <strong>Materials:</strong> CertainTeed Monogram Vinyl
+              </p>
+              <Button variant="secondary" size="sm">
+                  View Details
+                </Button>
+            </div>
+          </Card>
+          
+          <Card 
+            title="Fiber Cement Upgrade"
+            description="Upgrade to low-maintenance fiber cement siding with enhanced insulation and weather protection."
+            image="/images/projects/siding-2.jpg"
+            imageAlt="Modern home with fiber cement siding"
+            class="h-full"
+          >
+            <div class="mt-4">
+              <p class="text-sm text-brand-secondary mb-2">
+                <strong>Location:</strong> Point of Rocks, MD
+              </p>
+              <p class="text-sm text-brand-secondary mb-4">
+                <strong>Materials:</strong> James Hardie ColorPlus
+              </p>
+              <Button variant="secondary" size="sm">
+                 View Details
+               </Button>
+            </div>
+          </Card>
+          
+          <Card 
+            title="Mixed Material Design"
+            description="Creative combination of stone, siding, and trim elements creating stunning curb appeal and lasting value."
+            image="/images/projects/siding-3.jpg"
+            imageAlt="Home featuring mixed siding materials"
+            class="h-full"
+          >
+            <div class="mt-4">
+              <p class="text-sm text-brand-secondary mb-2">
+                <strong>Location:</strong> Knoxville, MD
+              </p>
+              <p class="text-sm text-brand-secondary mb-4">
+                <strong>Materials:</strong> Stone & Vinyl Combination
+              </p>
+              <Button variant="secondary" size="sm">
+                 View Details
+               </Button>
+            </div>
+          </Card>
+        </CardGrid>
+      </Container>
+    </Section>
+
+    <!-- Commercial Projects Section -->
+    <Section class="py-16">
+      <Container>
+        <SectionHeader 
+          title="Commercial Projects"
+          class="mb-12"
+        />
+        <p class="text-xl text-brand-secondary text-center mb-8">
+          Professional construction services for businesses and commercial properties
+        </p>
+        
+        <CardGrid columns={2} class="mb-12">
+          <Card 
+            title="Office Building Renovation"
+            description="Complete exterior renovation including new roofing system, siding, and energy-efficient improvements for modern office complex."
+            image="/images/projects/commercial-1.jpg"
+            imageAlt="Renovated office building exterior"
+            class="h-full"
+          >
+            <div class="mt-4">
+              <p class="text-sm text-brand-secondary mb-2">
+                <strong>Location:</strong> Frederick, MD
+              </p>
+              <p class="text-sm text-brand-secondary mb-4">
+                <strong>Scope:</strong> Roofing, Siding, Windows
+              </p>
+              <Button variant="secondary" size="sm">
+                 View Details
+               </Button>
+             </div>
+           </Card>
+           
+           <Card 
+             title="Retail Center Upgrades"
+             description="Comprehensive exterior improvements for shopping center including new roofing, facade updates, and parking lot enhancements."
+             image="/images/projects/commercial-2.jpg"
+             imageAlt="Updated retail center with modern facade"
+             class="h-full"
+           >
+             <div class="mt-4">
+               <p class="text-sm text-brand-secondary mb-2">
+                 <strong>Location:</strong> Hagerstown, MD
+               </p>
+               <p class="text-sm text-brand-secondary mb-4">
+                 <strong>Scope:</strong> Full Exterior Renovation
+               </p>
+               <Button variant="secondary" size="sm">
+                View Details
+              </Button>
+            </div>
+          </Card>
+        </CardGrid>
+      </Container>
+    </Section>
+
+    <!-- Contact CTA -->
+    <Section class="bg-accent-primary py-16">
+      <Container>
+        <div class="text-center max-w-3xl mx-auto">
+          <h2 class="text-3xl md:text-4xl font-bold text-brand-primary mb-6">
+            Ready to Start Your Project?
+          </h2>
+          <p class="text-xl text-brand-secondary mb-8">
+            Get a free consultation and quote for your roofing, siding, or construction project. 
+            We're here to bring your vision to life with quality craftsmanship you can trust.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button variant="primary" size="lg">
+              Get Free Quote
+            </Button>
+            <Button variant="secondary" size="lg">
+              Call (410) 292-0801
+            </Button>
+          </div>
+        </div>
+      </Container>
+    </Section>
+  </main>
+  
+  <Footer />
+</Layout>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Our Projects | J Land Contracting",
+  "description": "Explore our portfolio of roofing, siding, and commercial construction projects in Jefferson, MD and surrounding areas.",
+  "url": "https://jlandcontracting.com/projects",
+  "mainEntity": {
+    "@type": "LocalBusiness",
+    "name": "J Land Contracting INC",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Jefferson, MD",
+      "postalCode": "21755",
+      "addressCountry": "US"
+    },
+    "telephone": "(410) 292-0801",
+    "serviceArea": "Jefferson, MD and surrounding areas"
+  }
+}
+</script>

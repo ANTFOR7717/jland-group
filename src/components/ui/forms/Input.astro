@@ -1,5 +1,6 @@
 ---
 // Input Component - Reusable input field with consistent styling
+// Enhanced for optimal responsiveness and mobile user experience
 // Adheres to Tailwind CSS only styling as required
 
 export interface Props {
@@ -23,18 +24,16 @@ const {
   ...rest
 } = Astro.props;
 
-// Base classes for all inputs
-const baseClasses = 'bg-white rounded px-4 py-3 focus:outline-none focus:ring-2 focus:border-transparent';
+// Enhanced responsive base classes for optimal mobile experience
+const baseClasses = 'bg-white rounded-lg border border-gray-300 px-3 py-3 sm:px-4 sm:py-3 md:px-4 md:py-4 w-full text-base sm:text-lg focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-200';
 
-// Input-specific styling
-const inputStyle = 'border: 1px solid #7D7877; color: #9CA3AF;';
-const focusStyle = 'focus:ring-yellow-400';
+// Enhanced focus and interaction states
+const focusStyle = 'focus:ring-yellow-400 focus:ring-opacity-50 hover:border-gray-400';
 
 const inputClasses = `${baseClasses} ${focusStyle} ${className}`;
 
 const commonProps = {
   class: inputClasses,
-  style: inputStyle,
   name,
   placeholder,
   required,

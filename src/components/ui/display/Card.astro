@@ -12,6 +12,9 @@ export interface Props {
   description?: string;
   buttonText?: string;
   buttonHref?: string;
+  features?: string[];
+  cta?: { text: string; href: string; };
+  icon?: string;
   // Review variant specific props
   customerName?: string;
   location?: string;
@@ -36,6 +39,9 @@ const {
   description,
   buttonText = 'Learn More',
   buttonHref = '#',
+  features,
+  cta,
+  icon,
   customerName,
   location,
   rating,
@@ -106,30 +112,54 @@ const cardClasses = `${baseClasses} ${variantClasses[variant]} ${sizeClasses} ${
       )}
       <slot />
     </>
-  ) : (variant === 'service' || variant === 'roofing' || variant === 'construction' || variant === 'showcase') && image && title && description ? (
-    <div class="space-y-4">
-      <img src={image} alt={imageAlt} class="w-full h-48 object-cover rounded-lg" />
+  ) : (variant === 'service' || variant === 'roofing' || variant === 'construction' || variant === 'showcase') && title ? (
+    <div class="space-y-4 h-full flex flex-col">
+      {image && (
+        <img src={image} alt={imageAlt || title} class="w-full h-48 object-cover rounded-lg" />
+      )}
       
-      <div class="space-y-3">
+      {icon && !image && (
+         <div class="flex justify-center mb-4">
+           <Icon name="star" class="w-12 h-12 text-accent-primary" />
+         </div>
+       )}
+      
+      <div class="space-y-3 flex-grow">
         <Heading level={3} size="xl" color="default">
           {title}
         </Heading>
         
-        <Text variant="body" color="default">
-          {description}
-        </Text>
+        {description && (
+          <Text variant="body" color="default">
+            {description}
+          </Text>
+        )}
         
-        <a 
-          href={buttonHref}
-          class="inline-flex items-center font-medium transition-colors"
-          style="color: #262327;"
-        >
-          {buttonText}
-          <svg class="w-4 h-4 ml-2" fill="none" stroke="#FDB813" stroke-width="2" viewBox="0 0 24 24">
-            <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path>
-          </svg>
-        </a>
+        {features && features.length > 0 && (
+           <ul class="space-y-2 mt-4">
+             {features.map((feature: string) => (
+               <li class="flex items-start space-x-2">
+                 <Icon name="check" class="w-4 h-4 text-accent-primary mt-0.5 flex-shrink-0" />
+                 <Text variant="small" color="default" class="flex-1">
+                   {feature}
+                 </Text>
+               </li>
+             ))}
+           </ul>
+         )}
       </div>
+      
+      {(cta || buttonHref) && (
+        <div class="mt-auto pt-4">
+          <a 
+            href={cta?.href || buttonHref}
+            class="inline-flex items-center justify-center w-full px-4 py-2 bg-accent-primary text-brand-primary font-medium rounded-lg hover:bg-accent-secondary transition-colors"
+          >
+            {cta?.text || buttonText}
+            <Icon name="arrow" class="w-4 h-4 ml-2" />
+          </a>
+        </div>
+      )}
     </div>
   ) : variant === 'review' && customerName && location && rating !== undefined && serviceType && reviewText && timeAgo ? (
     <div>
@@ -150,7 +180,7 @@ const cardClasses = `${baseClasses} ${variantClasses[variant]} ${sizeClasses} ${
       
       <!-- Service Badge and Verification -->
       <div class="flex items-center mt-2 gap-1">
-        <Badge variant="service" size="sm" class="w-[120px] px-2 py-1 flex items-center justify-center">
+        <Badge variant="default" size="sm" class="w-[120px] px-2 py-1 flex items-center justify-center">
           <Text variant="caption" color="default" class="w-[104px] min-h-4">
             {serviceType}
           </Text>
