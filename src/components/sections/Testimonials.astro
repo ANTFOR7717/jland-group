@@ -78,24 +78,24 @@ import Heading from '../ui/display/Heading.astro';
       
       <!-- Reviews List -->
       <CardGrid variant="testimonial" columns={1} gap="md" maxWidth="max-w-2xl">
+        {/* timeAgo="2 weeks ago" - implement later */}
         <Card 
           variant="review"
-          customerName="Sarah Johnson"
+          customerName="Jason Chung"
           location="Urbana, MD"
           rating={5}
           serviceType="Roof Replacement"
-          reviewText="Excellent service from start to finish. The team was knowledgeable and helpful throughout the entire process."
-          timeAgo="2 weeks ago"
+          reviewText="The roof replacement was clean and awesome! It was done in a day and a half! This looks like a company that you can definitely trust and rely on for roof replacement!"
         />
         
+        {/* timeAgo="1 month ago" - implement later */}
         <Card 
           variant="review"
-          customerName="Robert Miller"
+          customerName="Matthew Marcus"
           location="Frederick, MD"
           rating={5}
           serviceType="Commercial Roof"
-          reviewText="Outstanding service from start to finish. The team was knowledgeable, clean, and completed the project on time and within budget."
-          timeAgo="1 month ago"
+          reviewText="I could not have been happier with the job Danny and J Land Group completed for us. He was extremely helpful and friendly. The roof came out fantastic too. Thanks to him we got our roof replacement fully covered by our insurance! Thanks Danny!"
         />
       </CardGrid>
     </div>
