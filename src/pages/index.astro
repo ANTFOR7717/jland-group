@@ -11,12 +11,27 @@ import Layout from '../layouts/Layout.astro';
 import Contact from '../components/sections/Contact.astro';
 import FAQ from '../components/sections/FAQ.astro';
 import AboutUs from '../components/sections/AboutUs.astro';
+import { client } from '../lib/sanity/client';
 
 // Fetch services data at page level
 const [servicesData, construction, showcase] = await Promise.all([
   getEntry('services', 'roofing'),
   getEntry('services', 'construction'),
   getEntry('services', 'showcase')
+]);
+
+// Fetch Sanity data for child components
+const [heroVideo, recentProjectImages, allProjectImages, testimonialIcon] = await Promise.all([
+  client.fetch(`*[_type == "heroVideo"][0]{ "videoSrc": video.asset->url }`),
+  client.fetch(`*[_type == "projectPhoto" && "recent-project" in tags]{
+    "url": image.asset->url,
+    alt
+  }`),
+  client.fetch(`*[_type == "projectPhoto"]{
+    "url": image.asset->url,
+    alt
+  }`),
+  client.fetch(`*[_type == "testimonialIcon"][0]{ "avatarURL": icon.asset->url }`)
 ]);
 
 // Validate results in one place
@@ -27,34 +42,34 @@ if (!servicesData || !construction || !showcase) {
 
 <Layout title="J Land Group - Professional Roofing Services">
 	<Header />
-	<Hero />
+	<Hero videoSrc={heroVideo?.videoSrc} />
 	<Partners />
-	<Testimonials />
-	<Services 
+	<Testimonials images={recentProjectImages} testimonial={testimonialIcon} />
+	<Services
 		columns={3}
-		variant="roofing" 
+		variant="roofing"
 		title={servicesData.data.title}
 		decorativeImage={servicesData.data.decorativeImage}
 		services={servicesData.data.services}
 	/>
 	<Process />
-		<Services 
+		<Services
 		columns={4}
-		variant="construction" 
+		variant="construction"
 		title={construction.data.title}
 		decorativeImage={construction.data.decorativeImage}
 		services={construction.data.services}
 		width="w-70"
 	/>
 	<AboutUs />
-			<Services 
+			<Services
 		columns={2}
-		variant="showcase" 
+		variant="showcase"
 		title={showcase.data.title}
 		decorativeImage={showcase.data.decorativeImage}
 		services={showcase.data.services}
 	/>
 	 <FAQ />
 	 <Contact />
-	
+
 </Layout>

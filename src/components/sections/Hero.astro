@@ -1,6 +1,4 @@
 ---
-// Hero component matching the Motiff design
-// Updated to use abstracted UI components
 import { Button, Badge } from '../ui/index.js';
 import { Input, Form, Card } from '../ui/index.js';
 import { ContentGrid, ContentBlock } from '../ui/index.js';
@@ -9,15 +7,21 @@ import { HeroSection, TrustIndicator, TrustIndicatorGroup } from '../ui/index.js
 // Note: Heading and Text require direct imports due to TypeScript compatibility
 import Heading from '../ui/display/Heading.astro';
 import Text from '../ui/display/Text.astro';
+
+export interface Props {
+  videoSrc?: string;
+}
+
+const { videoSrc } = Astro.props;
 ---
 
-<HeroSection>
+
+<HeroSection videoSrc={videoSrc}>
   <!-- Main Content Area -->
   <ContentGrid columns={2} gap="xl" padding="lg" class="mt-5">
     <!-- Left Content -->
     <ContentBlock maxWidth="max-w-full md:max-w-[803px]">
 
-      
       <!-- Main Heading -->
       <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight max-w-[623px]">
         Professional Roofing Services<br>

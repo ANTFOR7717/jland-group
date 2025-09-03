@@ -8,6 +8,13 @@ import { Section } from '../ui/index.js';
 import { ProjectGallery, FeaturedTestimonial } from '../ui/index.js';
 // Note: Heading requires direct import due to TypeScript compatibility
 import Heading from '../ui/display/Heading.astro';
+
+export interface Props {
+  images?: any[];
+  testimonial?: any;
+}
+
+const { images = [], testimonial } = Astro.props;
 ---
 
 <Section background="dark" padding="sm" style="padding: 0;">
@@ -29,10 +36,10 @@ import Heading from '../ui/display/Heading.astro';
         
         <!-- Featured Testimonial -->
         <FeaturedTestimonial 
-          quote="J Land Contracting replaced our entire roof after a major storm. Their team was professional, efficient, and left our property spotless. The quality of work exceeded our expectations, and they finished ahead of schedule!"
-          customerName="Michael Thompson"
-          location="Frederick, MD"
-          avatarUrl="https://static.motiffcontent.com/private/resource/image/198439e0630fba4-021c3edf-0bdd-4d68-8313-d45e303dc69c.jpeg"
+          quote="Working with J Land Group has always been worry free. I have used them for years on every type of roofing issue from storm damage to homes completly destroyed by fire. They have always been on time, extremely professional and turn out a high quality product. This is the only exterior contractor we work with."
+          customerName="Mark Owens"
+          location="Westminster, MD"
+          avatarUrl={testimonial?.avatarURL}
           rating={5}
           variant="default"
         />
@@ -44,14 +51,10 @@ import Heading from '../ui/display/Heading.astro';
           </Heading>
           
           <ProjectGallery 
-            images={[
-              { url: 'https://static.motiffcontent.com/private/resource/image/198439e06312e19-3617da4f-25b1-4ec9-a211-ae4b956a1f96.jpeg', alt: 'Recent roofing project 1' },
-              { url: 'https://static.motiffcontent.com/private/resource/image/198439e0632ac42-537096b0-c4b0-4331-a955-2019e09d0417.jpeg', alt: 'Recent roofing project 2' },
-              { url: 'https://static.motiffcontent.com/private/resource/image/198439e0632c98d-de834c2c-bbfe-41da-817e-375166ee8594.jpeg', alt: 'Recent roofing project 3' }
-            ]}
+            images={images}
             variant="horizontal"
-            imageSize="md"
-            gap="md"
+            imageSize="lg"
+            gap="sm"
           />
         </Spacer>
       </ContentBlock>
@@ -85,16 +88,17 @@ import Heading from '../ui/display/Heading.astro';
           location="Urbana, MD"
           rating={5}
           serviceType="Roof Replacement"
+          timeAgo="3 months ago"
           reviewText="The roof replacement was clean and awesome! It was done in a day and a half! This looks like a company that you can definitely trust and rely on for roof replacement!"
         />
         
-        {/* timeAgo="1 month ago" - implement later */}
         <Card 
           variant="review"
           customerName="Matthew Marcus"
           location="Frederick, MD"
           rating={5}
           serviceType="Commercial Roof"
+          timeAgo="6 months ago"
           reviewText="I could not have been happier with the job Danny and J Land Group completed for us. He was extremely helpful and friendly. The roof came out fantastic too. Thanks to him we got our roof replacement fully covered by our insurance! Thanks Danny!"
         />
       </CardGrid>
