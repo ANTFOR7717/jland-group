@@ -176,9 +176,12 @@ const servicesStructuredData = {
       {serviceCategories.map((category: any, index: number) => (
         <div class="mb-20 last:mb-0">
           <div class="text-center mb-12">
-            <Badge variant="info" size="sm" class="mb-4 bg-brand-primary text-white px-3 py-1 rounded-full font-medium">
-              {category.title}
-            </Badge>
+ <div class="inline-flex items-center bg-brand-primary/10 text-brand-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M1 11V23H23V11L12 2L1 11ZM13 21H11V15H13V21ZM15 14H9V12H15V14Z" />
+                </svg>
+                Residential
+              </div>
             <Heading level={3} size="2xl" class="mb-4 font-bold text-brand-primary">
               {category.title}
             </Heading>

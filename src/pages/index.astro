@@ -12,6 +12,7 @@ import Contact from '../components/sections/Contact.astro';
 import FAQ from '../components/sections/FAQ.astro';
 import AboutUs from '../components/sections/AboutUs.astro';
 import { client } from '../lib/sanity/client';
+import { combineServiceData } from '../lib/helpers';
 
 // Fetch services data at page level
 const [servicesData, construction, showcase] = await Promise.all([
@@ -20,19 +21,27 @@ const [servicesData, construction, showcase] = await Promise.all([
   getEntry('services', 'showcase')
 ]);
 
-// Fetch Sanity data for child components
-const [heroVideo, recentProjectImages, allProjectImages, testimonialIcon] = await Promise.all([
-  client.fetch(`*[_type == "heroVideo"][0]{ "videoSrc": video.asset->url }`),
-  client.fetch(`*[_type == "projectPhoto" && "recent-project" in tags]{
-    "url": image.asset->url,
-    alt
-  }`),
-  client.fetch(`*[_type == "projectPhoto"]{
-    "url": image.asset->url,
-    alt
-  }`),
-  client.fetch(`*[_type == "testimonialIcon"][0]{ "avatarURL": icon.asset->url }`)
-]);
+// Fetch all Sanity data in a single optimized query
+const sanityData = await client.fetch(`{
+  "heroVideo": *[_type == "heroVideo"][0]{ "videoSrc": video.asset->url },
+  "testimonialIcon": *[_type == "testimonialIcon"][0]{ "avatarURL": icon.asset->url },
+  "projectPhotos": *[_type == "projectPhoto"]{ "url": image.asset->url, alt, tags },
+  "roofingServices": *[_type == "roofingServices"]{ title, description, buttonText, buttonHref },
+  "constructionServices": *[_type == "constructionServices"]{ title, description, buttonText, buttonHref }
+}`);
+
+// Process the fetched data
+const heroVideo = sanityData.heroVideo;
+const testimonialIcon = sanityData.testimonialIcon;
+const allProjectImages = (sanityData.projectPhotos as any[]).map(p => ({ url: p.url, alt: p.alt }));
+const constructionServicesContent =  (sanityData.constructionServices as any[]).map(p => ({ title: p.title, description: p.description, buttonText: p.buttonText, buttonHref: p.buttonHref }));
+const constructionServicesImages = (sanityData.projectPhotos as any[]).filter(p => p.tags?.includes("construction-services")).map(p => ({ image: p.url, imageAlt: p.alt, tags: p.tags }));
+const recentProjectImages = (sanityData.projectPhotos as any[]).filter(p => p.tags?.includes("recent-project")).map(p => ({ url: p.url, alt: p.alt }));
+const roofingServicesImages = (sanityData.projectPhotos as any[]).filter(p => p.tags?.includes("roofing-services")).map(p => ({ image: p.url, imageAlt: p.alt, tags: p.tags }));
+const roofingServicesContent = (sanityData.roofingServices as any[]).map(p => ({ title: p.title, description: p.description, buttonText: p.buttonText, buttonHref: p.buttonHref }));
+
+const roofingServices = combineServiceData(roofingServicesContent, roofingServicesImages);
+const constructionServices = combineServiceData(constructionServicesContent, constructionServicesImages);
 
 // Validate results in one place
 if (!servicesData || !construction || !showcase) {
@@ -48,9 +57,9 @@ if (!servicesData || !construction || !showcase) {
 	<Services
 		columns={3}
 		variant="roofing"
-		title={servicesData.data.title}
+		title={'Our Roofing Services'}
 		decorativeImage={servicesData.data.decorativeImage}
-		services={servicesData.data.services}
+		services={roofingServices}
 	/>
 	<Process />
 		<Services
@@ -58,7 +67,7 @@ if (!servicesData || !construction || !showcase) {
 		variant="construction"
 		title={construction.data.title}
 		decorativeImage={construction.data.decorativeImage}
-		services={construction.data.services}
+		services={constructionServices}
 		width="w-70"
 	/>
 	<AboutUs />
