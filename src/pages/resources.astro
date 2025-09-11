@@ -8,11 +8,11 @@ import Card from '../components/ui/display/Card.astro';
 import CardGrid from '../components/ui/display/CardGrid.astro';
 import Text from '../components/ui/display/Text.astro';
 
-const pageTitle = "Resources - J Land Contracting | Roofing Tools & Expert Insights";
-const pageDescription = "Access expert roofing resources, tools, and insights from J Land Contracting. Get professional guidance for your roofing project in Frederick, MD.";
+const pageTitle = "Resources - J Land Contracting | Roofing Science & Expert Tools";
+const pageDescription = "Explore roofing science education, professional tools, and expert insights from GAF Master Elite certified contractors. Learn about ventilation systems, water shedding physics, and system integrity.";
 ---
 
-<Layout title={pageTitle}>
+<Layout title={pageTitle} description={pageDescription}>
 		<!-- Hero Section - Exact pattern from about.astro -->
 		<Section background="dark">
 			<Container>
@@ -138,6 +138,91 @@ const pageDescription = "Access expert roofing resources, tools, and insights fr
     </Container>
   </Section>
 
+  <!-- Roofing Science Education Section -->
+  <Section class="py-16 lg:py-24">
+    <Container>
+      <SectionHeader
+        title="The Science of a Complete Roofing System"
+        alignment="center"
+      />
+      <Text variant="lead" color="muted" class="text-center max-w-3xl mx-auto mb-12">
+        Understanding the technical principles behind roofing systems helps ensure long-term performance and protection for your home.
+      </Text>
+
+      <div class="grid md:grid-cols-2 gap-12">
+        <!-- Ventilation Systems -->
+        <div class="bg-white p-8 rounded-lg shadow-lg">
+          <div class="mb-6">
+            <svg class="w-12 h-12 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.293l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-brand-primary mb-4">Ventilation Systems</h3>
+          <p class="text-gray-600 mb-4 leading-relaxed">
+            Proper attic ventilation is crucial for maintaining optimal roof performance. Without adequate airflow, heat and moisture can build up, leading to premature shingle deterioration and ice dam formation.
+          </p>
+          <p class="text-gray-600 leading-relaxed">
+            Our GAF Master Elite certified installations include strategic soffit vents, ridge vents, and gable vents to ensure balanced air circulation, preventing condensation and extending your roof's lifespan by up to 30+ years.
+          </p>
+        </div>
+
+        <!-- Water Shedding Physics -->
+        <div class="bg-white p-8 rounded-lg shadow-lg">
+          <div class="mb-6">
+            <svg class="w-12 h-12 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm9 0a1 1 0 011 1v1h1a1 1 0 110 2h-1v1a1 1 0 11-2 0V6h-1a1 1 0 110-2h1V3a1 1 0 011-1zM3 10a1 1 0 011 1v1h1a1 1 0 110 2H4v1a1 1 0 11-2 0v-1H1a1 1 0 110-2h1v-1a1 1 0 011-1zm13 0a1 1 0 011 1v1h1a1 1 0 110 2h-1v1a1 1 0 11-2 0v-1h-1a1 1 0 110-2h1v-1a1 1 0 011-1z" clip-rule="evenodd"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-brand-primary mb-4">Water Shedding Physics</h3>
+          <p class="text-gray-600 mb-4 leading-relaxed">
+            The physics of water flow across roofing surfaces is fundamental to system integrity. Water must be directed away from vulnerable areas through proper slope, flashing, and drainage systems.
+          </p>
+          <p class="text-gray-600 leading-relaxed">
+            Our installations incorporate engineered water shedding with proper pitch calculations and seamless valley flashing to prevent water intrusion, backed by our comprehensive system warranty.
+          </p>
+        </div>
+
+        <!-- Ice/Water Shield Importance -->
+        <div class="bg-white p-8 rounded-lg shadow-lg">
+          <div class="mb-6">
+            <svg class="w-12 h-12 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-brand-primary mb-4">Ice & Water Shield Protection</h3>
+          <p class="text-gray-600 mb-4 leading-relaxed">
+            Ice and water shields are critical barriers against moisture infiltration, especially in Maryland's freeze-thaw cycles. These self-adhering membranes prevent water backup during winter conditions.
+          </p>
+          <p class="text-gray-600 leading-relaxed">
+            We install GAF's premium ice and water shields in all critical areas, including eaves, valleys, and penetrations, ensuring complete protection against water damage and maintaining your home's structural integrity.
+          </p>
+        </div>
+
+        <!-- Ridge Cap Functions -->
+        <div class="bg-white p-8 rounded-lg shadow-lg">
+          <div class="mb-6">
+            <svg class="w-12 h-12 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l2-2z" clip-rule="evenodd"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-brand-primary mb-4">Ridge Cap Engineering</h3>
+          <p class="text-gray-600 mb-4 leading-relaxed">
+            The ridge cap serves as the roof's final line of defense against wind-driven rain and provides essential ventilation. Properly installed ridge caps prevent water infiltration at the roof's peak.
+          </p>
+          <p class="text-gray-600 leading-relaxed">
+            Our ridge cap installations use continuous cement and high-quality ridge shingles, ensuring weather-tight seals and optimal attic ventilation for maximum system performance and longevity.
+          </p>
+        </div>
+      </div>
+
+      <div class="text-center mt-12">
+        <Button href="/contact" variant="primary" size="lg">
+          Discuss Your System Needs
+        </Button>
+      </div>
+    </Container>
+  </Section>
+
   <!-- Tools Section -->
   <Section class="py-16 lg:py-24">
     <Container>
@@ -241,10 +326,10 @@ const pageDescription = "Access expert roofing resources, tools, and insights fr
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <Button href="/contact" variant="primary" size="lg">
-            Get Free Estimate
+            Request an Estimate
           </Button>
           <Button href="/services" variant="primary" size="lg" class="bg-white text-brand-primary border-white hover:bg-gray-100">
-            View Our Services
+            Learn More
           </Button>
         </div>
       </div>

@@ -20,17 +20,17 @@ const {
 } = Astro.props;
 
 const siteUrl = 'https://jlandgroup.com';
-const fullTitle = `${title} | J Land Group - Frederick, MD`;
+const fullTitle = `${title} | JLand Contracting - Frederick, MD`;
 const fullCanonicalURL = canonicalURL || `${siteUrl}${Astro.url.pathname}`;
 
 // Default structured data for services page
 const defaultStructuredData = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "name": "J Land Group",
+  "name": "JLand Contracting",
   "description": "Professional roofing and construction services in Frederick, MD. Licensed, insured, and trusted by homeowners for over 20 years.",
   "url": siteUrl,
-  "telephone": "+1-301-555-0123",
+  "telephone": "+1-240-456-7890",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "3636 Glenoble Court",
@@ -113,7 +113,7 @@ const finalStructuredData = structuredData || defaultStructuredData;
     <meta property="og:image" content={`${siteUrl}${ogImage}`} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:site_name" content="J Land Group" />
+    <meta property="og:site_name" content="JLand Contracting" />
     <meta property="og:locale" content="en_US" />
     
     <!-- Twitter Card Meta Tags -->

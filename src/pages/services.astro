@@ -29,10 +29,10 @@ const constructionServices = allServices.find(service => service.id === 'constru
 
 // Define page data structure
 const hero = {
-  title: "Professional Roofing & Construction Services",
-  subtitle: "Expert roofing, construction, and exterior services throughout Frederick, MD and surrounding areas. Licensed, insured, and backed by 20+ years of experience.",
-  ctaPrimary: { text: "Get Free Estimate", href: "#contact" },
-  ctaSecondary: { text: "Call (410) 292-0801", href: "tel:+14102920801" }
+  title: "Complete Roofing & Construction Solutions",
+  subtitle: "Through our commitment to craftsmanship and system integrity, we deliver solutions that protect your investment for generations. Our GAF Master Elite certification and 50-year warranties demonstrate our confidence in every project.",
+  ctaPrimary: { text: "Request an Estimate", href: "#contact" },
+  ctaSecondary: { text: "Call (240) 456-7890", href: "tel:+14102920801" }
 };
 
 const serviceCategories = [
@@ -64,7 +64,7 @@ const serviceAreas = ["Frederick, MD", "Jefferson, MD", "Urbana, MD", "Mount Air
 
 const contact = {
   title: "Ready to Start Your Project?",
-  phone: "(410) 292-0801",
+  phone: "(240) 456-7890",
   email: "info@jlandgroup.com",
   hours: "Mon-Fri: 7AM-6PM"
 };
@@ -75,7 +75,7 @@ const servicesStructuredData = {
   "@type": "Service",
   "provider": {
     "@type": "LocalBusiness",
-    "name": "J Land Group",
+    "name": "JLand Contracting",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "3636 Glenoble Court",
@@ -107,7 +107,7 @@ const servicesStructuredData = {
 <Layout>
   <Fragment slot="head">
     <title>Professional Roofing & Construction Services in Frederick, MD</title>
-    <meta name="description" content="J Land Group provides expert roofing, construction, and exterior services throughout Frederick, MD and surrounding areas. Licensed, insured, and backed by 20+ years of experience." />
+    <meta name="description" content="Expert roofing and construction services in Frederick, MD featuring GAF Master Elite certification, 50-year system warranties, and proven long-term performance for residential and commercial properties." />
     <meta name="keywords" content="roofing services Frederick MD, roof repair, roof replacement, construction services, exterior contractors, licensed roofers Maryland" />
     <link rel="canonical" href={`${Astro.site}${Astro.url.pathname}`} />
     <script type="application/ld+json" set:html={JSON.stringify(servicesStructuredData)} />
@@ -131,10 +131,10 @@ const servicesStructuredData = {
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
           <Button href="#contact" variant="primary" size="lg" class="text-center text-sm sm:text-base">
-            Get Your Free Estimate
+            Request an Estimate
           </Button>
           <Button href="tel:+14102920801" variant="primary" size="lg" class="bg-white text-brand-primary border-white hover:bg-gray-100 text-center text-sm sm:text-base">
-            Call (410) 292-0801
+            Call (240) 456-7890
           </Button>
         </div>
         <div class="flex flex-wrap justify-center gap-6 text-sm text-white">
@@ -142,19 +142,19 @@ const servicesStructuredData = {
             <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
             </svg>
-            <span>Licensed & Insured</span>
+            <span>GAF Master Elite Certified</span>
           </div>
           <div class="flex items-center gap-2">
             <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
             </svg>
-            <span>20+ Years Experience</span>
+            <span>50-Year System Warranties</span>
           </div>
           <div class="flex items-center gap-2">
             <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
             </svg>
-            <span>500+ Happy Customers</span>
+            <span>500+ Successful Projects</span>
           </div>
         </div>
       </div>
@@ -207,13 +207,13 @@ const servicesStructuredData = {
           </CardGrid>
           
           <div class="text-center">
-            <Button 
-              variant="primary" 
-              size="lg" 
+            <Button
+              variant="primary"
+              size="lg"
               href="#contact"
               class="font-semibold px-8 py-4 text-center text-sm sm:text-base"
             >
-              View All Services
+              Learn More
             </Button>
           </div>
         </div>
@@ -273,7 +273,7 @@ const servicesStructuredData = {
           variant="dark"
         />
         <FeaturedTestimonial 
-          quote="I could not have been happier with the job Danny and J Land Group completed for us. He was extremely helpful and friendly. The roof came out fantastic too. Thanks to him we got our roof replacement fully covered by our insurance! Thanks Danny!"
+          quote="I could not have been happier with the job Danny and JLand Contracting completed for us. He was extremely helpful and friendly. The roof came out fantastic too. Thanks to him we got our roof replacement fully covered by our insurance! Thanks Danny!"
           customerName="Matthew Marcus"
           location="Frederick, MD"
           avatarUrl="https://static.motiffcontent.com/private/resource/image/198439e0630fba4-021c3edf-0bdd-4d68-8313-d45e303dc69c.jpeg"
@@ -324,13 +324,13 @@ const servicesStructuredData = {
             ))}
           </div>
           
-          <Button 
-            variant="primary" 
-            size="lg" 
+          <Button
+            variant="primary"
+            size="lg"
             href="#contact"
             class="font-semibold text-center text-sm sm:text-base"
           >
-            Get Service Quote
+            Request an Estimate
           </Button>
         </div>
         
@@ -347,50 +347,50 @@ const servicesStructuredData = {
   </Section>
 
   <!-- Contact CTA Section -->
-  <Section class="py-20 bg-gradient-to-r from-brand-primary to-brand-secondary text-white">
+  <Section background="dark">
     <Container>
-      <div class="max-w-4xl mx-auto text-center">
-        <Heading level={2} size="3xl" class="mb-6 font-bold">
-          {contact.title}
-        </Heading>
-        <Text variant="lead" class="mb-8 text-white/90">
+      <div class="text-center max-w-4xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-white">
+          {contact.title} <span class="text-accent-primary">Project?</span>
+        </h2>
+        <p class="text-xl mb-8 text-white leading-relaxed">
           Ready to start your project? Get in touch with our expert team today.
-        </Text>
+        </p>
         
         <div class="grid md:grid-cols-3 gap-8 mb-12">
           <div class="text-center">
             <Icon name="phone" class="w-8 h-8 mx-auto mb-4 text-accent-primary" />
-            <Text class="font-semibold mb-2">Call Us Today</Text>
+            <Text class="font-semibold mb-2 text-white">Call Us Today</Text>
             <Text class="text-white/90">{contact.phone}</Text>
           </div>
           <div class="text-center">
             <Icon name="email" class="w-8 h-8 mx-auto mb-4 text-accent-primary" />
-            <Text class="font-semibold mb-2">Email Us</Text>
+            <Text class="font-semibold mb-2 text-white">Email Us</Text>
             <Text class="text-white/90">{contact.email}</Text>
           </div>
           <div class="text-center">
             <Icon name="clock" class="w-8 h-8 mx-auto mb-4 text-accent-primary" />
-            <Text class="font-semibold mb-2">Business Hours</Text>
+            <Text class="font-semibold mb-2 text-white">Business Hours</Text>
             <Text class="text-white/90">{contact.hours}</Text>
           </div>
         </div>
         
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button 
-            variant="secondary" 
-            size="lg" 
+          <Button
+            variant="primary"
+            size="lg"
             href="#contact"
-            class="bg-white text-brand-primary hover:bg-gray-100 font-semibold px-8 py-4 text-center text-sm sm:text-base"
+            class="text-center text-sm sm:text-base"
           >
-            Get Free Estimate
+            Request an Estimate
           </Button>
-          <Button 
-            variant="link" 
-            size="lg" 
-            href="tel:+13015550123"
-            class="text-white hover:text-white font-semibold border border-white px-8 py-4 hover:bg-white/10 text-center text-sm sm:text-base"
+          <Button
+            variant="primary"
+            size="lg"
+            href="/contact"
+            class="bg-white text-brand-primary border-white hover:bg-gray-100 text-center text-sm sm:text-base"
           >
-            Call Now
+            Learn More
           </Button>
         </div>
       </div>
