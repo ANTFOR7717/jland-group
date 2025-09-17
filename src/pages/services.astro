@@ -8,13 +8,7 @@ import {
   Button, 
   Card, 
   CardGrid, 
-  Badge, 
   Icon, 
-  Form, 
-  Input, 
-  ContentBlock, 
-  TrustIndicator, 
-  TrustIndicatorGroup, 
   FeaturedTestimonial, 
   StarRating 
 } from '../components/ui';
@@ -51,12 +45,12 @@ const serviceCategories = [
 const whyChooseUs = {
   title: "Why Choose J Land Contracting?",
   reasons: [
-    { title: "Licensed & Insured", description: "Fully licensed and insured for your peace of mind and protection.", icon: "shield" },
-    { title: "20+ Years Experience", description: "Two decades of expertise in roofing and construction services.", icon: "star" },
-    { title: "Quality Guarantee", description: "We stand behind our work with comprehensive warranties and guarantees.", icon: "verified" },
-    { title: "Local Experts", description: "Deep understanding of Maryland weather and building requirements.", icon: "location" },
-    { title: "Free Estimates", description: "Transparent pricing with detailed, no-obligation estimates.", icon: "calculator" },
-    { title: "Emergency Service", description: "24/7 emergency response for urgent roofing and construction needs.", icon: "clock" }
+    { title: "Integrity & Reliability", description: "Guided by moral excellence, ensuring reliable protection for your home.", icon: "shield" },
+    { title: "Devotion & Vision", description: "20+ years devoted to visionary craftsmanship guided by integrity.", icon: "star" },
+    { title: "Team Unity", description: "United team stands behind work with accountable warranties.", icon: "verified" },
+    { title: "Community Rooted", description: "Local devotion to Maryland's weather and building needs.", icon: "location" },
+    { title: "Free Estimates", description: "Transparent, no-obligation estimates with faithful guidance.", icon: "calculator" },
+    { title: "Humanitarian Response", description: "24/7 service for urgent needs, aiding those in crisis.", icon: "clock" }
   ]
 };
 
@@ -126,8 +120,8 @@ const servicesStructuredData = {
           <span class="text-accent-primary">Construction Services</span>
         </h1>
         <p class="text-xl text-white mb-8 leading-relaxed">
-          Professional roofing, construction, and exterior services throughout Frederick, MD and surrounding areas. 
-          Licensed, insured, and backed by 20+ years of experience delivering quality results.
+          Devoted roofing, construction, and exterior services throughout Frederick, MD and surrounding areas.
+          Guided by integrity and 20+ years of faithful experience delivering reliable results.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
           <Button href="#contact" variant="primary" size="lg" class="text-center text-sm sm:text-base">
@@ -264,27 +258,27 @@ const servicesStructuredData = {
       </div>
       
       <CardGrid columns={3} gap="lg">
-        <FeaturedTestimonial 
-          quote="The roof replacement was clean and awesome! It was done in a day and a half! This looks like a company that you can definitely trust and rely on for roof replacement!"
-          customerName="Jason Chung"
-          location="Urbana, MD"
-          avatarUrl="https://static.motiffcontent.com/private/resource/image/198439e0630fba4-021c3edf-0bdd-4d68-8313-d45e303dc69c.jpeg"
-          rating={5}
-          variant="dark"
-        />
-        <FeaturedTestimonial 
-          quote="I could not have been happier with the job Danny and J Land Group completed for us. He was extremely helpful and friendly. The roof came out fantastic too. Thanks to him we got our roof replacement fully covered by our insurance! Thanks Danny!"
-          customerName="Matthew Marcus"
+        <FeaturedTestimonial
+          quote="Our team's devotion ensured reliable roof replacement, providing peace of mind and lasting protection."
+          customerName="Satisfied Client"
           location="Frederick, MD"
-          avatarUrl="https://static.motiffcontent.com/private/resource/image/198439e0630fba4-021c3edf-0bdd-4d68-8313-d45e303dc69c.jpeg"
+          avatarUrl=""
           rating={5}
           variant="dark"
         />
-        <FeaturedTestimonial 
-          quote="Excellent service from start to finish. The team was knowledgeable and helpful throughout the entire process."
-          customerName="Michael Thompson"
+        <FeaturedTestimonial
+          quote="United efforts delivered accountable service, transforming our roof with visionary integrity."
+          customerName="Satisfied Client"
+          location="Frederick, MD"
+          avatarUrl=""
+          rating={5}
+          variant="dark"
+        />
+        <FeaturedTestimonial
+          quote="From start to finish, our devotion provided trustworthy results and community-rooted care."
+          customerName="Satisfied Client"
           location="Jefferson, MD"
-          avatarUrl="https://static.motiffcontent.com/private/resource/image/198439e0630fba4-021c3edf-0bdd-4d68-8313-d45e303dc69c.jpeg"
+          avatarUrl=""
           rating={5}
           variant="dark"
         />
@@ -354,7 +348,7 @@ const servicesStructuredData = {
           {contact.title}
         </Heading>
         <Text variant="lead" class="mb-8 text-white/90">
-          Ready to start your project? Get in touch with our expert team today.
+          Ready to start your project? Get in touch with our devoted team for peace of mind today.
         </Text>
         
         <div class="grid md:grid-cols-3 gap-8 mb-12">

@@ -71,9 +71,9 @@ import ContentBlock from '../ui/display/ContentBlock.astro';
   </Container>
 
   <!-- Contact Form -->
-  <Container size="md" class="px-8">
-    <Form variant="default" class="space-y-6">
-      <ContentBlock class="grid grid-cols-1 md:grid-cols-2 gap-6" maxWidth="w-full" spacing="sm">
+  <Container size="sm" class="px-4 sm:px-6 md:px-8">
+    <Form variant="default" class="space-y-4 sm:space-y-6">
+      <ContentBlock class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6" maxWidth="w-full" spacing="sm">
         <ContentBlock maxWidth="w-full" spacing="sm">
           <Text variant="small" weight="medium" color="default" class="block mb-2">
             Your Name
@@ -88,11 +88,19 @@ import ContentBlock from '../ui/display/ContentBlock.astro';
         </ContentBlock>
       </ContentBlock>
 
-      <ContentBlock maxWidth="w-full" spacing="sm">
-        <Text variant="small" weight="medium" color="default" class="block mb-2">
-          Phone Number
-        </Text>
-        <Input type="tel" name="phone" placeholder="(123) 456-7890" class="w-full" />
+      <ContentBlock class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6" maxWidth="w-full" spacing="sm">
+        <ContentBlock maxWidth="w-full" spacing="sm">
+          <Text variant="small" weight="medium" color="default" class="block mb-2">
+            Phone Number
+          </Text>
+          <Input type="tel" name="phone" placeholder="(123) 456-7890" class="w-full" />
+        </ContentBlock>
+        <ContentBlock maxWidth="w-full" spacing="sm">
+          <Text variant="small" weight="medium" color="default" class="block mb-2">
+            Project Address
+          </Text>
+          <Input type="text" name="address" placeholder="Enter your project address..." class="w-full" />
+        </ContentBlock>
       </ContentBlock>
 
       <ContentBlock maxWidth="w-full" spacing="sm">
@@ -103,8 +111,8 @@ import ContentBlock from '../ui/display/ContentBlock.astro';
       </ContentBlock>
 
       <!-- Submit Button -->
-      <ContentBlock class="flex justify-center mt-[30px]" maxWidth="w-full" spacing="sm">
-        <Button variant="primary" size="lg" type="submit">
+      <ContentBlock class="flex justify-center mt-6 sm:mt-8" maxWidth="w-full" spacing="sm">
+        <Button variant="primary" size="lg" type="submit" class="w-full sm:w-auto">
           Submit Request
         </Button>
       </ContentBlock>
@@ -112,28 +120,53 @@ import ContentBlock from '../ui/display/ContentBlock.astro';
   </Container>
 
   <!-- Contact Icons and Info -->
-  <Section background="transparent" padding="none" class="flex justify-center items-center gap-16 mt-6">
+  <Section background="transparent" padding="none" class="flex justify-center items-center gap-8 sm:gap-12 md:gap-16 mt-6 px-4">
     <Button href="tel:+14102920801" variant="link" class="flex flex-col items-center no-underline hover:opacity-90 !text-inherit !font-normal !p-0 !rounded-none">
-      <ContentBlock class="bg-gray-50 border border-[#C1B9BC] rounded-full p-4 flex w-12 h-12 justify-center items-center mb-3" maxWidth="w-12" spacing="sm">
+      <ContentBlock class="bg-gray-50 border border-[#C1B9BC] rounded-full p-3 sm:p-4 flex w-10 h-10 sm:w-12 sm:h-12 justify-center items-center mb-2 sm:mb-3" maxWidth="w-12" spacing="sm">
         <Icon name="phone-contact" size="sm" />
       </ContentBlock>
-      <Text weight="medium" class="text-center mb-1">
+      <Text weight="medium" class="text-center mb-1 text-sm sm:text-base">
         Call Us
       </Text>
-      <Text color="secondary" class="text-center">
-        (240) 456-7890
+      <Text color="secondary" class="text-center text-xs sm:text-sm">
+        (410) 292-0801
       </Text>
     </Button>
     <Button href="mailto:info@jlandgroup.com" variant="link" class="flex flex-col items-center no-underline hover:opacity-90 !text-inherit !font-normal !p-0 !rounded-none">
-      <ContentBlock class="bg-gray-50 border border-[#C1B9BC] rounded-full p-4 flex w-12 h-12 justify-center items-center mb-3" maxWidth="w-12" spacing="sm">
+      <ContentBlock class="bg-gray-50 border border-[#C1B9BC] rounded-full p-3 sm:p-4 flex w-10 h-10 sm:w-12 sm:h-12 justify-center items-center mb-2 sm:mb-3" maxWidth="w-12" spacing="sm">
         <Icon name="email-contact" size="sm" />
       </ContentBlock>
-      <Text weight="medium" class="text-center mb-1">
+      <Text weight="medium" class="text-center mb-1 text-sm sm:text-base">
         Email Us
       </Text>
-      <Text color="secondary" class="text-center">
+      <Text color="secondary" class="text-center text-xs sm:text-sm">
         info@jlandgroup.com
       </Text>
     </Button>
   </Section>
 </Section>
+
+<!-- Google Places API Script -->
+<script src={`https://maps.googleapis.com/maps/api/js?key=${import.meta.env.GOOGLE_MAPS_API_KEY}&libraries=places`}></script>
+
+<script>
+  // Simple Google Places address validation
+  document.addEventListener('DOMContentLoaded', function() {
+    const addressInput = document.querySelector('input[name="address"]') as HTMLInputElement;
+    
+    if (addressInput && (window as any).google) {
+      const google = (window as any).google;
+      const autocomplete = new google.maps.places.Autocomplete(addressInput, {
+        types: ['address'],
+        componentRestrictions: { country: 'us' }
+      });
+      
+      autocomplete.addListener('place_changed', function() {
+        const place = autocomplete.getPlace();
+        if (place.formatted_address) {
+          addressInput.value = place.formatted_address;
+        }
+      });
+    }
+  });
+</script>

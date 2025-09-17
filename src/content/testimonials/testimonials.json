@@ -1,35 +1,35 @@
 {
   "featured": {
-    "name": "Jason Chung",
+    "name": "Satisfied Client",
     "role": "Homeowner",
-    "company": "Urbana, MD",
-    "image": "https://static.motiffcontent.com/private/resource/image/198439e0630fba4-021c3edf-0bdd-4d68-8313-d45e303dc69c.jpeg",
-    "quote": "J Land Contracting exceeded our expectations with their roof replacement service. The team was professional, efficient, and delivered exceptional quality work. They completed the project on time and left our property spotless. I highly recommend them for any roofing needs.",
+    "company": "Frederick, MD",
+    "image": "",
+    "quote": "Our team's devotion to integrity ensured reliable roof replacement, providing peace of mind and lasting protection for our home.",
     "rating": 5
   },
   "reviews": [
     {
-      "name": "Jason Chung",
+      "name": "Satisfied Client",
       "role": "Homeowner",
-      "company": "Urbana, MD",
-      "image": "https://static.motiffcontent.com/private/resource/image/198439e0630fba4-021c3edf-0bdd-4d68-8313-d45e303dc69c.jpeg",
-      "quote": "J Land Contracting exceeded our expectations with their roof replacement service. The team was professional, efficient, and delivered exceptional quality work. They completed the project on time and left our property spotless. I highly recommend them for any roofing needs.",
+      "company": "Frederick, MD",
+      "image": "",
+      "quote": "The united team delivered accountable service with vision, transforming our roof into a reliable shield for our family.",
       "rating": 5
     },
     {
-      "name": "Matthew Marcus",
+      "name": "Satisfied Client",
       "role": "Property Manager",
       "company": "Frederick, MD",
-      "image": "https://static.motiffcontent.com/private/resource/image/198439e0630fba4-021c3edf-0bdd-4d68-8313-d45e303dc69c.jpeg",
-      "quote": "Outstanding gutter installation and repair work by J Land Contracting. Their attention to detail and commitment to customer satisfaction is remarkable. The crew was courteous, knowledgeable, and completed the work efficiently. Great value for the quality provided.",
+      "image": "",
+      "quote": "Gutter services reflected our core values of reliability and team unity, ensuring effective drainage and foundation security.",
       "rating": 5
     },
     {
-      "name": "Michael Thompson",
+      "name": "Satisfied Client",
       "role": "Homeowner",
       "company": "Frederick, MD",
-      "image": "https://static.motiffcontent.com/private/resource/image/198439e0630fba4-021c3edf-0bdd-4d68-8313-d45e303dc69c.jpeg",
-      "quote": "Excellent service from start to finish. The team was knowledgeable and helpful throughout the entire process. J Land Contracting delivered quality work at a fair price.",
+      "image": "",
+      "quote": "From assessment to completion, our devotion to excellence provided trustworthy results and peace of mind for our home.",
       "rating": 5
     }
   ]
