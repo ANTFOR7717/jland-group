@@ -13,14 +13,14 @@ import Icon from '../ui/display/Icon.astro';
 import ContentBlock from '../ui/display/ContentBlock.astro';
 ---
 
-<Section background="light" padding="none" class="flex flex-col items-stretch pb-12">
+<Section background="light" padding="none" class="flex flex-col items-stretch pb-8 sm:pb-12">
   <!-- Header Section -->
   <Section background="dark" padding="none" class="flex gap-3 flex-col items-stretch">
-    <Container size="md" class="text-center mt-8 mb-14">
-      <Heading level={2} color="white" class="text-ellipsis min-h-10 max-w-[601px] mx-auto">
+    <Container size="md" class="text-center mt-6 sm:mt-8 mb-8 sm:mb-14">
+      <Heading level={2} color="white" class="text-ellipsis min-h-8 sm:min-h-10 max-w-[601px] mx-auto text-xl sm:text-2xl md:text-3xl">
         Let's Discuss Your Project
       </Heading>
-      <Text variant="lead" color="muted" class="text-ellipsis min-h-7 max-w-[456px] mx-auto mt-3">
+      <Text variant="lead" color="muted" class="text-ellipsis min-h-6 sm:min-h-7 max-w-[456px] mx-auto mt-2 sm:mt-3 text-sm sm:text-base">
         Our experts are ready to help with your exterior needs
       </Text>
     </Container>
@@ -64,14 +64,14 @@ import ContentBlock from '../ui/display/ContentBlock.astro';
   </Section>
 
   <!-- Form Section -->
-  <Container size="sm" class="text-center mt-8">
-    <Heading level={3} size="2xl" class="text-ellipsis min-h-8 max-w-[228px] mx-auto">
+  <Container size="sm" class="text-center mt-6 sm:mt-8">
+    <Heading level={3} size="xl" class="text-ellipsis min-h-6 sm:min-h-8 max-w-[228px] mx-auto text-lg sm:text-xl md:text-2xl">
        Send Us a Message
      </Heading>
   </Container>
 
   <!-- Contact Form -->
-  <Container size="sm" class="px-4 sm:px-6 md:px-8">
+  <Container size="md" class="px-4 sm:px-6 md:px-8">
     <Form variant="default" class="space-y-4 sm:space-y-6">
       <ContentBlock class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6" maxWidth="w-full" spacing="sm">
         <ContentBlock maxWidth="w-full" spacing="sm">
@@ -120,26 +120,26 @@ import ContentBlock from '../ui/display/ContentBlock.astro';
   </Container>
 
   <!-- Contact Icons and Info -->
-  <Section background="transparent" padding="none" class="flex justify-center items-center gap-8 sm:gap-12 md:gap-16 mt-6 px-4">
+  <Section background="transparent" padding="none" class="flex justify-center items-center gap-6 sm:gap-8 md:gap-12 lg:gap-16 mt-4 sm:mt-6 px-4">
     <Button href="tel:+14102920801" variant="link" class="flex flex-col items-center no-underline hover:opacity-90 !text-inherit !font-normal !p-0 !rounded-none">
-      <ContentBlock class="bg-gray-50 border border-[#C1B9BC] rounded-full p-3 sm:p-4 flex w-10 h-10 sm:w-12 sm:h-12 justify-center items-center mb-2 sm:mb-3" maxWidth="w-12" spacing="sm">
+      <ContentBlock class="bg-gray-50 border border-[#C1B9BC] rounded-full p-2 sm:p-3 md:p-4 flex w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 justify-center items-center mb-1 sm:mb-2 md:mb-3" maxWidth="w-12" spacing="sm">
         <Icon name="phone-contact" size="sm" />
       </ContentBlock>
-      <Text weight="medium" class="text-center mb-1 text-sm sm:text-base">
+      <Text weight="medium" class="text-center mb-1 text-xs sm:text-sm md:text-base">
         Call Us
       </Text>
-      <Text color="secondary" class="text-center text-xs sm:text-sm">
+      <Text color="secondary" class="text-center text-xs">
         (410) 292-0801
       </Text>
     </Button>
     <Button href="mailto:info@jlandgroup.com" variant="link" class="flex flex-col items-center no-underline hover:opacity-90 !text-inherit !font-normal !p-0 !rounded-none">
-      <ContentBlock class="bg-gray-50 border border-[#C1B9BC] rounded-full p-3 sm:p-4 flex w-10 h-10 sm:w-12 sm:h-12 justify-center items-center mb-2 sm:mb-3" maxWidth="w-12" spacing="sm">
+      <ContentBlock class="bg-gray-50 border border-[#C1B9BC] rounded-full p-2 sm:p-3 md:p-4 flex w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 justify-center items-center mb-1 sm:mb-2 md:mb-3" maxWidth="w-12" spacing="sm">
         <Icon name="email-contact" size="sm" />
       </ContentBlock>
-      <Text weight="medium" class="text-center mb-1 text-sm sm:text-base">
+      <Text weight="medium" class="text-center mb-1 text-xs sm:text-sm md:text-base">
         Email Us
       </Text>
-      <Text color="secondary" class="text-center text-xs sm:text-sm">
+      <Text color="secondary" class="text-center text-xs">
         info@jlandgroup.com
       </Text>
     </Button>

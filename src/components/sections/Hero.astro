@@ -17,34 +17,34 @@ const { videoSrc } = Astro.props;
 
 <HeroSection videoSrc={videoSrc}>
   <!-- Main Content Area -->
-  <ContentGrid columns={2} gap="xl" padding="lg" class="mt-5">
+  <ContentGrid columns={2} gap="lg" padding="lg" class="mt-12 sm:mt-5 justify-center">
     <!-- Left Content -->
     <ContentBlock maxWidth="max-w-full md:max-w-[803px]">
 
       <!-- Main Heading -->
-      <h1 class="text-5xl md:text-5xl font-bold text-white mb-6 leading-tight max-w-[623px]">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight max-w-[623px]">
         Building Roofs. Restoring Trust.<br>
         <span class="text-accent-primary">Serving with Purpose.</span>
       </h1>
       
       <!-- Subtitle -->
-      <p class="text-xl text-white mb-8 leading-relaxed max-w-[640px]">
+      <p class="text-base sm:text-lg md:text-xl text-white mb-6 sm:mb-8 leading-relaxed max-w-[640px]">
         Guided by seriousness, integrity, and perfection. <br/>J Land Contracting protects families across Maryland with craft devoted roofing services.
         We're your neighbors, committed to reliable craftsmanship and meaningful commitments in every installation.
       </p>
       
       <!-- CTA Buttons -->
-      <div class="flex flex-col sm:flex-row gap-4 justify-start items-start mb-8">
-        <Button href="/contact" variant="primary" size="lg">
+      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center sm:justify-start items-center sm:items-start mb-6 sm:mb-8 w-full">
+        <Button href="/contact" variant="primary" size="lg" class="flex-1 sm:flex-none min-w-0">
           Get Your Free Roof Inspection
         </Button>
-        <Button href="/projects" variant="primary" size="lg" class="bg-white text-brand-primary border-white hover:bg-gray-100">
+        <Button href="/projects" variant="primary" size="lg" class="bg-white text-brand-primary border-white hover:bg-gray-100 flex-1 sm:flex-none min-w-0">
           View Our Projects
         </Button>
       </div>
       
       <!-- Trust Indicators -->
-      <div class="flex flex-wrap justify-start gap-6 text-sm text-white">
+      <div class="flex flex-wrap justify-start gap-4 sm:gap-6 text-xs sm:text-sm text-white">
         <div class="flex items-center gap-2">
           <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
@@ -67,7 +67,7 @@ const { videoSrc } = Astro.props;
     </ContentBlock>
     
     <!-- Quote Form -->
-    <Card variant="quote" quoteWidth="md" class="mt-8 md:mt-0">
+    <Card variant="quote" quoteWidth="lg" class="mt-6 sm:mt-8 md:mt-0 mx-auto md:mx-0 pb-4 sm:pb-0 w-full max-w-none sm:max-w-md mb-8">
       <form id="webLeadFormElem" class="flex flex-col gap-4 sm:gap-5 lg:gap-6 w-full relative">
         <!-- Success message -->
         <div id="webLeadFormMessageElem" class="hidden flex flex-col items-center justify-center text-center p-8 bg-white border-2 border-accent-primary rounded-xl min-h-[320px] shadow-accent" role="alert">
@@ -98,26 +98,26 @@ const { videoSrc } = Astro.props;
           </div>
         </div>
         
-        <Input 
-          type="text" 
-          placeholder="Full Name" 
+        <Input
+          type="text"
+          placeholder="Full Name"
           name="fullName"
           required
-          class="min-h-[48px]"
+          class="min-h-[44px] sm:min-h-[48px]"
         />
-        <Input 
-          type="tel" 
-          placeholder="Phone Number" 
+        <Input
+          type="tel"
+          placeholder="Phone Number"
           name="phone"
           required
-          class="min-h-[48px]"
+          class="min-h-[44px] sm:min-h-[48px]"
         />
-        <Input 
-          type="email" 
-          placeholder="Email Address" 
+        <Input
+          type="email"
+          placeholder="Email Address"
           name="email"
           required
-          class="min-h-[48px]"
+          class="min-h-[44px] sm:min-h-[48px]"
         />
         
         <!-- Service Selector -->
@@ -141,10 +141,10 @@ const { videoSrc } = Astro.props;
         <input type="hidden" name="firstName" id="firstName" />
         <input type="hidden" name="lastName" id="lastName" />
         
-        <Button 
-          type="submit" 
+        <Button
+          type="submit"
           variant="primary"
-          class="webLeadForm__submit mt-2 w-full sm:w-auto min-h-[48px]"
+          class="webLeadForm__submit mb-4 w-full sm:w-auto min-h-[44px] sm:min-h-[48px]"
         >
           GET QUOTE NOW
         </Button>

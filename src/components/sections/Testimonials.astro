@@ -17,20 +17,20 @@ export interface Props {
 const { images = [], testimonial } = Astro.props;
 ---
 
-<Section background="dark" padding="sm" style="padding: 0;">
-  <Layout 
+<Section background="dark" padding="sm" style="padding: 0; padding-top: 2rem; padding-bottom: 2rem;">
+  <Layout
     variant="two-column"
-    leftBackground="dark" 
-    rightBackground="light" 
+    leftBackground="dark"
+    rightBackground="light"
     minHeight="654px"
-    leftPadding="lg"
-    rightPadding="md"
-    gap="lg"
+    leftPadding="md"
+    rightPadding="sm"
+    gap="md"
   >
     <!-- Left Column Content -->
     <div slot="left">
       <ContentBlock spacing="md" class="w-full max-w-none sm:max-w-[592px]">
-        <Heading level={2} size="3xl" color="white" class="text-[30px] leading-9">
+        <Heading level={2} size="2xl" color="white" class="text-xl sm:text-2xl md:text-3xl leading-7 sm:leading-8 md:leading-9">
           What Our Clients Say
         </Heading>
         
@@ -46,11 +46,13 @@ const { images = [], testimonial } = Astro.props;
         
         <!-- Recent Projects Section -->
         <Spacer size="md" direction="top">
-          <Heading level={3} size="lg" color="white" class="text-lg leading-7 mb-4">
-            Recent Projects
-          </Heading>
-          
-          <ProjectGallery 
+          <div class="text-center">
+            <Heading level={3} size="md" color="white" class="text-sm sm:text-base md:text-lg leading-5 sm:leading-6 md:leading-7 mb-3 sm:mb-4">
+              Recent Projects
+            </Heading>
+          </div>
+
+          <ProjectGallery
             images={images}
             variant="horizontal"
             imageSize="lg"
@@ -65,10 +67,10 @@ const { images = [], testimonial } = Astro.props;
       <!-- Customer Reviews Header -->
       <Section background="transparent" padding="sm">
         <Container size="md" class="flex justify-center">
-          <SectionHeader 
+          <SectionHeader
              title="Customer Reviews"
              level={2}
-             size="2xl"
+             size="xl"
              showRating={true}
              rating={4.9}
              totalReviews={124}

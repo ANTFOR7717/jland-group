@@ -5,7 +5,7 @@ import Heading from '../ui/display/Heading.astro';
 import Text from '../ui/display/Text.astro';
 ---
 
-<Section background="light" padding="sm">
+<Section background="light" padding="sm" class="py-8 sm:py-12">
   <Container size="full" class="overflow-hidden gap-1.5 flex flex-col items-stretch font-inter text-base font-normal px-4 md:px-8">
     
     <!-- Main Title -->
@@ -20,15 +20,15 @@ import Text from '../ui/display/Text.astro';
 
 
     <!-- Main Content Area -->
-    <Layout 
+    <Layout
       variant="two-column"
-      leftBackground="light" 
-      rightBackground="light" 
-      minHeight="709.32px"
+      leftBackground="light"
+      rightBackground="light"
+      minHeight="600px"
       leftPadding="sm"
       rightPadding="sm"
-      gap="xl"
-      class="mt-[0.84px] flex-col lg:flex-row"
+      gap="md"
+      class="mt-2 flex-col lg:flex-row"
     >
       <!-- Left Column -->
       <div slot="left" class="mt-[9.16px] gap-2 flex flex-col items-stretch">
@@ -64,16 +64,16 @@ import Text from '../ui/display/Text.astro';
       </div>
       
       <!-- Right Column - Image -->
-      <Card 
+      <Card
         slot="right"
-        variant="image" 
+        variant="image"
         backgroundImage="https://static.motiffcontent.com/private/resource/image/1984480fa5766b5-fb2a2a53-eb11-4ceb-9ebd-a59eab1fb61d.jpeg"
-        class="h-64 w-full md:h-96 lg:h-[709.32px] lg:w-[608px]"
+        class="h-48 w-full sm:h-64 md:h-80 lg:h-[600px] lg:w-[608px]"
       />
     </Layout>
 
     <!-- Commitment Section -->
-    <Container size="xl" class="mt-[58px] flex justify-center">
+    <Container size="xl" class="mt-8 sm:mt-12 flex justify-center">
       <Card variant="default" class="gap-3 flex flex-col items-stretch p-4 md:p-8">
         <Heading level={2} size="2xl" color="default" class="text-center mt-[33px] mx-auto">
           Our Commitment to Excellence

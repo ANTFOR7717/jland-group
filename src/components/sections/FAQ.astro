@@ -91,14 +91,14 @@ const warrantyMaintenanceFAQs = [
 ];
 ---
 
-<Section background="light" padding="sm" class={className} {...rest}>
+<Section background="light" padding="sm" class={`py-8 sm:py-12 ${className}`} {...rest}>
   <Container size="xl">
     <!-- FAQ Container with proper UI components -->
     <ContentBlock maxWidth="max-w-6xl" class="mx-auto overflow-hidden font-montserrat flex flex-col items-stretch bg-background-light text-lg font-medium gap-2">
       <!-- Header Section -->
       <Spacer size="xl" direction="top">
         <ContentGrid columns={1} padding="lg" class="items-start min-h-11">
-          <Heading level={1} size="4xl" class="truncate w-full max-w-lg min-h-11">
+          <Heading level={1} size="3xl" class="truncate w-full max-w-lg min-h-9 text-2xl sm:text-3xl md:text-4xl">
             Frequently Asked Questions
           </Heading>
         </ContentGrid>
@@ -112,7 +112,7 @@ const warrantyMaintenanceFAQs = [
       <!-- Subtitle -->
       <Spacer size="xs" direction="top">
         <ContentGrid columns={1} padding="lg" class="items-start min-h-6">
-          <Text variant="body" color="secondary" class="truncate w-full max-w-2xl min-h-6">
+          <Text variant="body" color="secondary" class="truncate w-full max-w-2xl min-h-5 text-sm sm:text-base">
             Find answers to common questions about our roofing services, materials, and process.
           </Text>
         </ContentGrid>
@@ -121,7 +121,7 @@ const warrantyMaintenanceFAQs = [
       <!-- Roofing Materials Section -->
       <Spacer size="lg" direction="top">
         <ContentGrid columns={1} padding="lg" class="items-start min-h-8">
-          <Heading level={3} size="xl" class="truncate w-72 min-h-8 font-semibold">
+          <Heading level={3} size="lg" class="truncate w-72 min-h-6 font-semibold text-lg sm:text-xl">
             Roofing Materials
           </Heading>
         </ContentGrid>
@@ -143,7 +143,7 @@ const warrantyMaintenanceFAQs = [
       <!-- Installation Process Section -->
       <Spacer size="lg" direction="top">
         <ContentGrid columns={1} padding="lg" class="items-start min-h-8">
-          <Heading level={3} size="xl" class="truncate w-72 min-h-8 font-semibold">
+          <Heading level={3} size="lg" class="truncate w-72 min-h-6 font-semibold text-lg sm:text-xl">
             Installation Process
           </Heading>
         </ContentGrid>
@@ -165,7 +165,7 @@ const warrantyMaintenanceFAQs = [
       <!-- Warranty & Maintenance Section -->
       <Spacer size="lg" direction="top">
         <ContentGrid columns={1} padding="lg" class="items-start min-h-8">
-          <Heading level={3} size="xl" class="truncate w-72 min-h-8 font-semibold">
+          <Heading level={3} size="lg" class="truncate w-72 min-h-6 font-semibold text-lg sm:text-xl">
             Warranty & Maintenance
           </Heading>
         </ContentGrid>
