@@ -144,10 +144,22 @@ const { videoSrc } = Astro.props;
         <Button
           type="submit"
           variant="primary"
-          class="webLeadForm__submit mb-4 w-full sm:w-auto min-h-[44px] sm:min-h-[48px]"
+          class="webLeadForm__submit w-full sm:w-auto min-h-[44px] sm:min-h-[48px]"
         >
           GET QUOTE NOW
         </Button>
+
+        <!-- GreenSky Financing Header -->
+        <div class="-pb-10 mb-4 flex justify-center">
+          <a href="/financing#financing-options" class="block">
+            <img
+              src="https://www.greensky.com/merchantkit/images/finance_buttons/headers/header_640.jpg?v=3.0.612"
+              alt="Financing Options from GreenSky"
+              tabindex="0"
+              class="w-full max-w-[640px] h-auto rounded-lg shadow-sm hover:opacity-90 transition-opacity cursor-pointer"
+            />
+          </a>
+        </div>
       </form>
     </Card>
   </ContentGrid>

@@ -1,0 +1,128 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+import Section from '../components/ui/layout/Section.astro';
+import Container from '../components/ui/layout/Container.astro';
+import Heading from '../components/ui/display/Heading.astro';
+import Text from '../components/ui/display/Text.astro';
+import FinancingComponent from '../components/ui/Financing.astro';
+import UsageGuidelines from '../components/ui/UsageGuidelines.astro';
+
+const metadata = {
+  title: 'Financing Options - J Land Contracting',
+  description: 'Explore financing options for your roofing and construction projects with GreenSky. Get approved for flexible payment plans today.',
+};
+---
+
+<Layout title="Financing Options - J Land Contracting">
+
+  <!-- Hero Section -->
+  <Section background="dark">
+    <Container>
+      <div class="text-center max-w-4xl mx-auto">
+        <div class="mb-6">
+          <div class="inline-flex items-center justify-center mb-4 text-white bg-brand-primary px-4 py-2 rounded-full font-semibold">Flexible Financing</div>
+        </div>
+        <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+          Financing Made Simple,<br>
+          <span class="text-accent-primary">Projects Made Possible</span>
+        </h1>
+        <p class="text-xl text-white mb-8 leading-relaxed">
+          Discover flexible financing options through GreenSky to make your roofing and construction projects more affordable. Get approved quickly and start your project today.
+        </p>
+        <div class="flex flex-wrap justify-center gap-6 text-sm text-white">
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>Quick Approval Process</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>Flexible Payment Terms</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>No Hidden Fees</span>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </Section>
+  </div>
+
+  <!-- Financing Options Section -->
+  <div id="financing-options">
+    <Section class="py-20">
+    <Container>
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center bg-brand-primary/10 text-brand-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
+          <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" />
+          </svg>
+          Financing Options
+        </div>
+        <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-8">
+          Choose Your Financing Plan
+        </h2>
+        <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+          Select from our range of flexible financing options designed to make your project affordable and stress-free.
+        </p>
+      </div>
+
+      <div class="flex justify-center">
+        <FinancingComponent />
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Usage Guidelines Section -->
+  <Section class="bg-background-light py-20">
+    <Container>
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center bg-brand-secondary/10 text-brand-secondary px-4 py-2 rounded-full text-sm font-semibold mb-6">
+          <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+          </svg>
+          Important Information
+        </div>
+        <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-8">
+          Usage Guidelines
+        </h2>
+        <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+          Please review the following guidelines for using GreenSky financing options.
+        </p>
+      </div>
+
+      <div class="max-w-4xl mx-auto">
+        <UsageGuidelines />
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Contact CTA -->
+  <Section class="bg-brand-secondary py-16">
+    <Container>
+      <div class="text-center max-w-3xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+          Ready to Get Started?
+        </h2>
+        <p class="text-xl text-gray-100 mb-8">
+          Contact us today to discuss your project and financing options. We're here to help make your vision a reality.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" class="inline-flex items-center justify-center px-8 py-4 bg-white text-brand-secondary font-semibold rounded-lg hover:bg-gray-100 transition-colors">
+            Get Free Quote
+          </a>
+          <a href="tel:+14102920801" class="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-brand-secondary transition-colors">
+            Call (410) 292-0801
+          </a>
+        </div>
+      </div>
+    </Container>
+  </Section>
+</Layout>
