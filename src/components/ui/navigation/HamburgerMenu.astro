@@ -13,20 +13,25 @@ const {
 ---
 
 <div class={`md:hidden ${className}`} {...rest}>
-  <Button variant="hamburger" id="menu-toggle" />
+  <Button
+    variant="hamburger"
+    id="menu-toggle"
+    onclick="toggleMobileMenu()"
+  />
 </div>
 
 <script is:inline>
-  document.addEventListener('DOMContentLoaded', function() {
-    const menuToggle = document.getElementById('menu-toggle');
+  function toggleMobileMenu() {
     const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenu) {
+      mobileMenu.classList.toggle('hidden');
+    }
+  }
 
-    if (menuToggle && mobileMenu) {
-      menuToggle.addEventListener('click', function() {
-        mobileMenu.classList.toggle('hidden');
-      });
-
-      // Close menu when clicking on a link
+  // Close menu when clicking on a link
+  document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenu) {
       const mobileLinks = mobileMenu.querySelectorAll('a');
       mobileLinks.forEach(link => {
         link.addEventListener('click', function() {
