@@ -35,7 +35,12 @@ const { videoSrc } = Astro.props;
       
       <!-- CTA Buttons -->
       <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center sm:justify-start items-center sm:items-start mb-6 sm:mb-8 w-full">
-        <Button href="/contact" variant="primary" size="lg" class="flex-1 sm:flex-none min-w-0 text-sm sm:text-base md:text-lg leading-tight whitespace-nowrap">
+        <Button 
+          variant="primary" 
+          size="lg" 
+          class="flex-1 sm:flex-none min-w-0 text-sm sm:text-base md:text-lg leading-tight whitespace-nowrap"
+          onclick="var scr = document.createElement('script');scr.src='https://psai.azureedge.net/eea3332f-7784-4ba4-81d9-36b384371b29.js?v='+Date.now();document.getElementsByTagName('body')[0].appendChild(scr);"
+        >
           Get Your Free Roof Inspection
         </Button>
         <Button href="/projects" variant="primary" size="lg" class="bg-white text-brand-primary border-white hover:bg-gray-100 flex-1 sm:flex-none min-w-0 text-sm sm:text-base md:text-lg leading-tight whitespace-nowrap">
