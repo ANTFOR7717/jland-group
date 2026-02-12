@@ -28,7 +28,7 @@ export interface Props {
   height?: string;
   // Quote variant specific props
   quoteWidth?: 'sm' | 'md' | 'lg';
-  onclick?: string;
+  psaiTrigger?: string;
 }
 
 const {
@@ -53,7 +53,7 @@ const {
   width,
   height,
   quoteWidth = 'md',
-  onclick,
+  psaiTrigger,
   ...rest
 } = Astro.props;
 
@@ -155,7 +155,7 @@ const cardClasses = `${baseClasses} ${variantClasses[variant]} ${sizeClasses} ${
         <div class="mt-auto pt-4">
           <a 
             href={cta?.href || buttonHref}
-            onclick={onclick}
+            data-psai-trigger={psaiTrigger}
             class="inline-flex items-center justify-center w-full px-4 py-2 bg-accent-primary text-brand-primary font-medium rounded-lg hover:bg-accent-secondary transition-colors"
           >
             {cta?.text || buttonText}

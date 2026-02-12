@@ -107,4 +107,29 @@
 
 <script is:inline id='66e312ca-e6f0-41a6-b057-875a9c3245fa' type='text/javascript'>var scr = document.createElement('script');scr.src='https://psai.azureedge.net/66e312ca-e6f0-41a6-b057-875a9c3245fa.js?v='+Date.now();document.getElementsByTagName('body')[0].appendChild(scr);</script>
 
+<script is:inline>
+  // Central Event Delegate for PSAI Triggers
+  document.addEventListener('click', function(e) {
+    const trigger = e.target.closest('[data-psai-trigger]');
+    if (!trigger) return;
+
+    e.preventDefault();
+    const appId = trigger.getAttribute('data-psai-trigger');
+    
+    // Find the PSAI launcher associated with this appId
+    // PSAI script creates a container with id=appId
+    const psaiContainer = document.getElementById(appId);
+    if (psaiContainer) {
+      const launcher = psaiContainer.querySelector('.psai-app-trigger');
+      if (launcher) {
+        launcher.click();
+        return;
+      }
+    }
+    
+    // Fallback: If script isn't loaded yet or launcher not found, 
+    // we could show a loading state or retry.
+    console.warn('PSAI launcher not found for app:', appId);
+  });
+</script>
 </footer>
