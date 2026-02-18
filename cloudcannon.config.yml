@@ -1,37 +1,22 @@
 paths:
   uploads: public/uploads
   static: public
+
 collections_config:
   pages:
-    path:
-    glob:
-    name:
-    singular_name:
+    path: src/pages
+    glob: "**/*.astro"
+    name: Pages
+    singular_name: Page
     icon: notes
-    url:
+    url: "/[relative_base_path]/[slug]/"
     disable_url: false
-    include_developer_files:
-    documentation:
-    description:
-    preview:
-    sort:
-    sort_options:
-    view_options:
-    _editables:
     _enabled_editors:
-    _inputs:
-    _select_data:
-    _structures:
-    add_options:
-    create:
-    disable_add: false
-    disable_add_folder: false
-    disable_file_actions: false
-    new_preview_url:
-    schemas:
-    schema_key:
+      - visual
+
 _enabled_editors:
   - visual
+
 _editables:
   text:
     allow_custom_markup: true
@@ -48,7 +33,12 @@ _editables:
     superscript:
     underline:
     undo:
+
+editor:
+  default_path: /admin
+
 timezone: America/New_York
+
 markdown:
   engine: commonmark
   options:
