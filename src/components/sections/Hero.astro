@@ -9,12 +9,15 @@ import Text from '../ui/display/Text.astro';
 
 export interface Props {
   videoSrc?: string;
+  hero_financing_image_src?: string;
+  hero_financing_image_alt?: string;
 }
 
-const { videoSrc } = Astro.props;
-
-hero_financing_image_src: "https://www.greensky.com/merchantkit/images/finance_buttons/headers/header_640.jpg?v=3.0.612"
-hero_financing_image_alt: "Financing Options from GreenSky"
+const {
+  videoSrc,
+  hero_financing_image_src = "https://www.greensky.com/merchantkit/images/finance_buttons/headers/header_640.jpg?v=3.0.612",
+  hero_financing_image_alt = "Financing Options from GreenSky",
+} = Astro.props;
 ---
 
 
