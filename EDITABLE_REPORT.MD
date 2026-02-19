@@ -4,6 +4,25 @@ Comprehensive audit of every Astro component and page in the project. Each table
 
 ---
 
+## Implementation Status Summary
+
+| Component | Status | Inline Text | Prop-Based | Notes |
+|-----------|--------|-------------|------------|-------|
+| Hero.astro | ✅ Complete | 12 | 1 image | Reference implementation |
+| Header.astro | ✅ Complete | 15 | 0 | Logo text + nav links (desktop + mobile) |
+| Footer.astro | ✅ Complete | 24 | 0 | All inline text tagged |
+| Contact.astro | ✅ Complete | 15 | 0 | All inline text tagged |
+| FAQ.astro | ✅ Complete | 7 | 0 | Headings + CTA; FAQ data is prop-based |
+| Testimonials.astro | ✅ Partial | 2 | 12+ | Headings tagged; testimonials are props |
+| AboutUs.astro | ⏳ Pending | 0 | 18 | All content via props |
+| Process.astro | ⏳ Pending | 0 | 11 | All content via props |
+| Services.astro | ⏳ Pending | 0 | 6 | All content via props |
+| Partners.astro | ⏳ Pending | 0 | 12 images | Images only |
+| about.astro (page) | ✅ Partial | 20+ | 0 | Hero + story section done; more remaining |
+| services.astro (page) | ⏳ Pending | 30+ | 0 | Not started |
+
+---
+
 ## Section Components
 
 ### `Hero.astro`
@@ -23,6 +42,111 @@ Comprehensive audit of every Astro component and page in the project. Each table
 | 100 | `<p>` | "We typically respond within 2-4 hours…" | text | ✅ Tagged |
 | 154 | `<span>` in Button | "GET QUOTE NOW" | text | ✅ Tagged |
 | 160 | `<img>` | GreenSky financing header image | image | ✅ Tagged |
+
+---
+
+### `Header.astro`
+`src/components/layout/Header.astro`
+
+| data-key | Element | Current Content | Editable Type | Status |
+|----------|---------|----------------|---------------|--------|
+| header_logo_text | `<span>` | "J LAND CONTRACTING" | text | ✅ Tagged |
+| header_nav_services | `<a>` | "Services" | text | ✅ Tagged |
+| header_nav_about | `<a>` | "About" | text | ✅ Tagged |
+| header_nav_projects | `<a>` | "Projects" | text | ✅ Tagged |
+| header_nav_blog | `<a>` | "Blog" | text | ✅ Tagged |
+| header_nav_financing | `<a>` | "Financing" | text | ✅ Tagged |
+| header_nav_resources | `<a>` | "Resources" | text | ✅ Tagged |
+| header_nav_contact | `<a>` | "Contact" | text | ✅ Tagged |
+| header_mobile_nav_services | `<a>` | "Services" (mobile) | text | ✅ Tagged |
+| header_mobile_nav_about | `<a>` | "About" (mobile) | text | ✅ Tagged |
+| header_mobile_nav_projects | `<a>` | "Projects" (mobile) | text | ✅ Tagged |
+| header_mobile_nav_blog | `<a>` | "Blog" (mobile) | text | ✅ Tagged |
+| header_mobile_nav_financing | `<a>` | "Financing" (mobile) | text | ✅ Tagged |
+| header_mobile_nav_resources | `<a>` | "Resources" (mobile) | text | ✅ Tagged |
+| header_mobile_nav_contact | `<a>` | "Contact" (mobile) | text | ✅ Tagged |
+
+---
+
+### `Footer.astro`
+`src/components/layout/Footer.astro`
+
+| data-key | Element | Current Content | Editable Type | Status |
+|----------|---------|----------------|---------------|--------|
+| footer_company_name | `<h3>` | "J Land Contracting INC" | text | ✅ Tagged |
+| footer_company_description | `<p>` | Company description | text | ✅ Tagged |
+| footer_address | `<p>` | "3636 Glenoble Court, Jefferson, MD 21755" | text | ✅ Tagged |
+| footer_phone | `<p>` | "(410) 292-0801" | text | ✅ Tagged |
+| footer_email | `<p>` | "info@jlandgroup.com" | text | ✅ Tagged |
+| footer_quick_links_title | `<h4>` | "Quick Links" | text | ✅ Tagged |
+| footer_link_home | `<a>` | "Home" | text | ✅ Tagged |
+| footer_link_services | `<a>` | "Services" | text | ✅ Tagged |
+| footer_link_about | `<a>` | "About Us" | text | ✅ Tagged |
+| footer_link_projects | `<a>` | "Projects" | text | ✅ Tagged |
+| footer_link_blog | `<a>` | "Blog" | text | ✅ Tagged |
+| footer_link_financing | `<a>` | "Financing" | text | ✅ Tagged |
+| footer_link_contact | `<a>` | "Contact" | text | ✅ Tagged |
+| footer_services_title | `<h4>` | "Our Services" | text | ✅ Tagged |
+| footer_service_roofing | `<a>` | "Roofing" | text | ✅ Tagged |
+| footer_service_siding | `<a>` | "Siding" | text | ✅ Tagged |
+| footer_service_gutters | `<a>` | "Gutters" | text | ✅ Tagged |
+| footer_service_restoration | `<a>` | "Roof Restoration" | text | ✅ Tagged |
+| footer_newsletter_title | `<h4>` | "Stay Updated" | text | ✅ Tagged |
+| footer_newsletter_description | `<p>` | Newsletter description | text | ✅ Tagged |
+| footer_newsletter_button | `<button>` | "Subscribe" | text | ✅ Tagged |
+| footer_copyright | `<p>` | "© 2025 J Land Contracting..." | text | ✅ Tagged |
+| footer_link_privacy | `<a>` | "Privacy Policy" | text | ✅ Tagged |
+| footer_link_terms | `<a>` | "Terms of Service" | text | ✅ Tagged |
+
+---
+
+### `Contact.astro` (section component)
+`src/components/sections/Contact.astro`
+
+| data-key | Element | Current Content | Editable Type | Status |
+|----------|---------|----------------|---------------|--------|
+| contact_heading | `<Heading>` | "Let's Discuss Your Project" | text | ✅ Tagged |
+| contact_subheading | `<Text>` | "Our experts are ready to help…" | text | ✅ Tagged |
+| contact_form_heading | `<Heading>` | "Send Us a Message" | text | ✅ Tagged |
+| contact_label_name | `<Text>` | "Your Name" | text | ✅ Tagged |
+| contact_label_email | `<Text>` | "Email Address" | text | ✅ Tagged |
+| contact_label_phone | `<Text>` | "Phone Number" | text | ✅ Tagged |
+| contact_label_address | `<Text>` | "Project Address" | text | ✅ Tagged |
+| contact_label_message | `<Text>` | "Message" | text | ✅ Tagged |
+| contact_submit_button | `<Button>` | "Submit Request" | text | ✅ Tagged |
+| contact_call_label | `<Text>` | "Call Us" | text | ✅ Tagged |
+| contact_phone | `<Text>` | "(410) 292-0801" | text | ✅ Tagged |
+| contact_email_label | `<Text>` | "Email Us" | text | ✅ Tagged |
+| contact_email | `<Text>` | "info@jlandgroup.com" | text | ✅ Tagged |
+
+---
+
+### `FAQ.astro`
+`src/components/sections/FAQ.astro`
+
+| data-key | Element | Current Content | Editable Type | Status |
+|----------|---------|----------------|---------------|--------|
+| faq_heading | `<Heading>` | "Frequently Asked Questions" | text | ✅ Tagged |
+| faq_subtitle | `<Text>` | "Find answers to common questions…" | text | ✅ Tagged |
+| faq_section_materials | `<Heading>` | "Roofing Materials" | text | ✅ Tagged |
+| faq_section_installation | `<Heading>` | "Installation Process" | text | ✅ Tagged |
+| faq_section_warranty | `<Heading>` | "Warranty & Maintenance" | text | ✅ Tagged |
+| faq_cta_text | `<Text>` | "Still have questions?" | text | ✅ Tagged |
+| faq_cta_button | `<Button>` | "Learn More" | text | ✅ Tagged |
+
+> **Note:** FAQ questions/answers are defined as JavaScript data arrays in frontmatter. For CloudCannon editability, these should be migrated to content collections or data files.
+
+---
+
+### `Testimonials.astro`
+`src/components/sections/Testimonials.astro`
+
+| data-key | Element | Current Content | Editable Type | Status |
+|----------|---------|----------------|---------------|--------|
+| testimonials_heading | `<Heading>` | "What Our Clients Say" | text | ✅ Tagged |
+| testimonials_projects_heading | `<Heading>` | "Recent Projects" | text | ✅ Tagged |
+
+> **Note:** Testimonial content (quote, customerName, location, etc.) is passed via props from parent pages or data files.
 
 ---
 
@@ -53,51 +177,6 @@ Comprehensive audit of every Astro component and page in the project. Each table
 | 82 | `<Text>` | "Through 15+ years of hands-on experience…" | text |
 
 > **Note:** Content passed via Astro component props (e.g., `NumberedSection`, `Statistics`, `SectionHeader`) renders inside child UI components. These require `data-editable` tags on the rendered DOM elements inside those child components, or extraction into CloudCannon data files.
-
----
-
-### `Contact.astro` (section component)
-`src/components/sections/Contact.astro`
-
-| Line | Element | Current Content | Editable Type |
-|------|---------|----------------|---------------|
-| 21 | `<Heading>` | "Let's Discuss Your Project" | text |
-| 24 | `<Text>` | "Our experts are ready to help…" | text |
-| 35 | `<iframe>` src | Google Maps embed URL | source |
-| 69 | `<Heading>` | "Send Us a Message" | text |
-| 79 | `<Text>` | "Your Name" | text |
-| 84 | `<Text>` | "Email Address" | text |
-| 94 | `<Text>` | "Phone Number" | text |
-| 100 | `<Text>` | "Project Address" | text |
-| 108 | `<Text>` | "Message" | text |
-| 116 | Button text | "Submit Request" | text |
-| 129 | `<Text>` | "Call Us" | text |
-| 132 | `<Text>` | "(410) 292-0801" | text |
-| 140 | `<Text>` | "Email Us" | text |
-| 143 | `<Text>` | "info@jlandgroup.com" | text |
-
----
-
-### `FAQ.astro`
-`src/components/sections/FAQ.astro`
-
-| Line | Element | Current Content | Editable Type |
-|------|---------|----------------|---------------|
-| 101 | `<Heading>` | "Frequently Asked Questions" | text |
-| 115 | `<Text>` | "Find answers to common questions…" | text |
-| 124 | `<Heading>` | "Roofing Materials" | text |
-| 27 | FAQ data: question | "What roofing materials do you recommend…?" | text |
-| 28 | FAQ data: answer | "For your local climate, we recommend…" | text |
-| 33 | FAQ data: question | "How do I choose between different…?" | text |
-| 34 | FAQ data: answer | "Consider factors like climate resistance…" | text |
-| 39 | FAQ data: question | "Do you offer eco-friendly roofing options?" | text |
-| 40 | FAQ data: answer | "Yes! We offer recycled metal roofing…" | text |
-| 146 | `<Heading>` | "Installation Process" | text |
-| 48 | FAQ data: question | "How long does a typical roof installation take?" | text |
-| 49 | FAQ data: answer | "Most residential roof installations…" | text |
-| 54 | FAQ data: question | "Do I need to be home during…?" | text |
-| 55 | FAQ data: answer | "While it's not required…" | text |
-| 60 | FAQ data: question | "How do you protect my property…?" | text |
 | 61 | FAQ data: answer | "We use protective tarps…" | text |
 | 66 | FAQ data: question | "What happens if it rains…?" | text |
 | 67 | FAQ data: answer | "We monitor weather closely…" | text |
