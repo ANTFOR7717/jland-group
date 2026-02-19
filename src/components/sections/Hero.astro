@@ -22,13 +22,13 @@ const { videoSrc } = Astro.props;
     <ContentBlock maxWidth="max-w-full md:max-w-[803px]">
 
       <!-- Main Heading -->
-      <h1 data-editable="source" data-path="src/components/sections/Hero.astro" class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight max-w-[623px]">
+      <h1 data-editable="source" data-path="src/components/sections/Hero.astro" data-key="hero_heading" class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight max-w-[623px]">
         Building Roofs. Restoring Trust.<br>
         <span class="text-accent-primary">Serving with Purpose.</span>
       </h1>
       
       <!-- Subtitle -->
-      <p data-editable="source" data-path="src/components/sections/Hero.astro" class="text-base sm:text-lg md:text-xl text-white mb-6 sm:mb-8 leading-relaxed max-w-[640px]">
+      <p data-editable="source" data-path="src/components/sections/Hero.astro" data-key="hero_subtitle" class="text-base sm:text-lg md:text-xl text-white mb-6 sm:mb-8 leading-relaxed max-w-[640px]">
         Guided by seriousness, integrity, and perfection. <br/>J Land Contracting protects families across Maryland with craft devoted roofing services.
         We're your neighbors, committed to reliable craftsmanship and meaningful commitments in every installation.
       </p>
@@ -41,10 +41,10 @@ const { videoSrc } = Astro.props;
           class="flex-1 sm:flex-none min-w-0 text-sm sm:text-base md:text-lg leading-tight whitespace-nowrap"
           data-psai-trigger="eea3332f-7784-4ba4-81d9-36b384371b29"
         >
-          <span data-editable="source" data-path="src/components/sections/Hero.astro">Get Your Free Roof Inspection Now</span>
+          <span data-editable="source" data-path="src/components/sections/Hero.astro" data-key="hero_cta_primary">Get Your Free Roof Inspection Now</span>
         </Button>
         <Button href="/projects" variant="primary" size="lg" class="bg-white text-brand-primary border-white hover:bg-gray-100 flex-1 sm:flex-none min-w-0 text-sm sm:text-base md:text-lg leading-tight whitespace-nowrap">
-          <span data-editable="source" data-path="src/components/sections/Hero.astro">View Our Projects</span>
+          <span data-editable="source" data-path="src/components/sections/Hero.astro" data-key="hero_cta_secondary">View Our Projects</span>
         </Button>
       </div>
       
@@ -54,19 +54,19 @@ const { videoSrc } = Astro.props;
           <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
           </svg>
-          <span data-editable="source" data-path="src/components/sections/Hero.astro">Integrity & Reliability</span>
+          <span data-editable="source" data-path="src/components/sections/Hero.astro" data-key="hero_trust_1">Integrity & Reliability</span>
         </div>
         <div class="flex items-center gap-2">
           <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
           </svg>
-          <span data-editable="source" data-path="src/components/sections/Hero.astro">Devotion & Vision</span>
+          <span data-editable="source" data-path="src/components/sections/Hero.astro" data-key="hero_trust_2">Devotion & Vision</span>
         </div>
         <div class="flex items-center gap-2">
           <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
           </svg>
-          <span data-editable="source" data-path="src/components/sections/Hero.astro">Team Unity & Accountability</span>
+          <span data-editable="source" data-path="src/components/sections/Hero.astro" data-key="hero_trust_3">Team Unity & Accountability</span>
         </div>
       </div>
     </ContentBlock>
@@ -88,16 +88,16 @@ const { videoSrc } = Astro.props;
             <svg class="w-6 h-6 text-state-success flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
             </svg>
-            <h3 data-editable="source" data-path="src/components/sections/Hero.astro" class="font-bold text-brand-primary text-xl sm:text-2xl leading-tight">Request Submitted!</h3>
+            <h3 data-editable="source" data-path="src/components/sections/Hero.astro" data-key="hero_form_success_heading" class="font-bold text-brand-primary text-xl sm:text-2xl leading-tight">Request Submitted!</h3>
           </div>
           
           <!-- Personalized Contact Message -->
           <div class="space-y-3 max-w-sm mx-auto">
-            <p data-editable="source" data-path="src/components/sections/Hero.astro" class="text-brand-primary text-base sm:text-lg leading-relaxed font-medium">
+            <p data-editable="source" data-path="src/components/sections/Hero.astro" data-key="hero_form_success_message" class="text-brand-primary text-base sm:text-lg leading-relaxed font-medium">
               <span class="font-bold text-accent-primary">A J Land team member</span><br class="sm:hidden">
               <span class="sm:inline"> will contact you shortly!</span>
             </p>
-            <p data-editable="source" data-path="src/components/sections/Hero.astro" class="text-brand-secondary text-sm sm:text-base leading-relaxed">
+            <p data-editable="source" data-path="src/components/sections/Hero.astro" data-key="hero_form_success_subtext" class="text-brand-secondary text-sm sm:text-base leading-relaxed">
               We typically respond within 2-4 hours during business hours.
             </p>
           </div>
@@ -151,7 +151,7 @@ const { videoSrc } = Astro.props;
           variant="primary"
           class="webLeadForm__submit w-full sm:w-auto min-h-[44px] sm:min-h-[48px]"
         >
-          <span data-editable="source" data-path="src/components/sections/Hero.astro">GET QUOTE NOW</span>
+          <span data-editable="source" data-path="src/components/sections/Hero.astro" data-key="hero_form_submit">GET QUOTE NOW</span>
         </Button>
 
         <!-- GreenSky Financing Header -->
