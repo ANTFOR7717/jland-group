@@ -22,7 +22,7 @@ const { videoSrc } = Astro.props;
     <ContentBlock maxWidth="max-w-full md:max-w-[803px]">
 
       <!-- Main Heading -->
-      <editable-text data-prop="hero_heading">
+      <editable-text data-prop="string">
         <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight max-w-[623px]">
           Building Roofs. Restoring Trust.<br>
           <span class="text-accent-primary">Serving with Purpose.</span>
@@ -30,7 +30,7 @@ const { videoSrc } = Astro.props;
       </editable-text>
       
       <!-- Subtitle -->
-      <editable-text data-prop="hero_subtitle">
+      <editable-text data-prop="string">
         <p class="text-base sm:text-lg md:text-xl text-white mb-6 sm:mb-8 leading-relaxed max-w-[640px]">
           Guided by seriousness, integrity, and perfection. <br/>J Land Contracting protects families across Maryland with craft devoted roofing services.
           We're your neighbors, committed to reliable craftsmanship and meaningful commitments in every installation.
@@ -45,10 +45,10 @@ const { videoSrc } = Astro.props;
           class="flex-1 sm:flex-none min-w-0 text-sm sm:text-base md:text-lg leading-tight whitespace-nowrap"
           data-psai-trigger="eea3332f-7784-4ba4-81d9-36b384371b29"
         >
-          <editable-text data-prop="cta_primary_text"><span>Get Your Free Roof Inspection Now</span></editable-text>
+          <editable-text data-prop="string"><span>Get Your Free Roof Inspection Now</span></editable-text>
         </Button>
         <Button href="/projects" variant="primary" size="lg" class="bg-white text-brand-primary border-white hover:bg-gray-100 flex-1 sm:flex-none min-w-0 text-sm sm:text-base md:text-lg leading-tight whitespace-nowrap">
-          <editable-text data-prop="cta_secondary_text"><span>View Our Projects</span></editable-text>
+          <editable-text data-prop="string"><span>View Our Projects</span></editable-text>
         </Button>
       </div>
       
@@ -58,19 +58,19 @@ const { videoSrc } = Astro.props;
           <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
           </svg>
-          <editable-text data-prop="trust_indicator_1"><span>Integrity & Reliability</span></editable-text>
+          <editable-text data-prop="string"><span>Integrity & Reliability</span></editable-text>
         </div>
         <div class="flex items-center gap-2">
           <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
           </svg>
-          <editable-text data-prop="trust_indicator_2"><span>Devotion & Vision</span></editable-text>
+          <editable-text data-prop="string"><span>Devotion & Vision</span></editable-text>
         </div>
         <div class="flex items-center gap-2">
           <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
           </svg>
-          <editable-text data-prop="trust_indicator_3"><span>Team Unity & Accountability</span></editable-text>
+          <editable-text data-prop="string"><span>Team Unity & Accountability</span></editable-text>
         </div>
       </div>
     </ContentBlock>
@@ -92,18 +92,18 @@ const { videoSrc } = Astro.props;
             <svg class="w-6 h-6 text-state-success flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
             </svg>
-            <editable-text data-prop="form_success_heading"><h3 class="font-bold text-brand-primary text-xl sm:text-2xl leading-tight">Request Submitted!</h3></editable-text>
+            <editable-text data-prop="string"><h3 class="font-bold text-brand-primary text-xl sm:text-2xl leading-tight">Request Submitted!</h3></editable-text>
           </div>
           
           <!-- Personalized Contact Message -->
           <div class="space-y-3 max-w-sm mx-auto">
-            <editable-text data-prop="form_success_message">
+            <editable-text data-prop="string">
               <p class="text-brand-primary text-base sm:text-lg leading-relaxed font-medium">
                 <span class="font-bold text-accent-primary">A J Land team member</span><br class="sm:hidden">
                 <span class="sm:inline"> will contact you shortly!</span>
               </p>
             </editable-text>
-            <editable-text data-prop="form_success_subtext">
+            <editable-text data-prop="string">
               <p class="text-brand-secondary text-sm sm:text-base leading-relaxed">
                 We typically respond within 2-4 hours during business hours.
               </p>
@@ -159,7 +159,7 @@ const { videoSrc } = Astro.props;
           variant="primary"
           class="webLeadForm__submit w-full sm:w-auto min-h-[44px] sm:min-h-[48px]"
         >
-          <editable-text data-prop="form_submit_text"><span>GET QUOTE NOW</span></editable-text>
+          <editable-text data-prop="string"><span>GET QUOTE NOW</span></editable-text>
         </Button>
 
         <!-- GreenSky Financing Header -->
