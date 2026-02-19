@@ -12,6 +12,9 @@ export interface Props {
 }
 
 const { videoSrc } = Astro.props;
+
+hero_financing_image_src: "https://www.greensky.com/merchantkit/images/finance_buttons/headers/header_640.jpg?v=3.0.612"
+hero_financing_image_alt: "Financing Options from GreenSky"
 ---
 
 
@@ -161,8 +164,8 @@ const { videoSrc } = Astro.props;
               data-editable="image"
               data-prop-src="hero_financing_image_src"
               data-prop-alt="hero_financing_image_alt"
-              src="https://www.greensky.com/merchantkit/images/finance_buttons/headers/header_640.jpg?v=3.0.612"
-              alt="Financing Options from GreenSky"
+              src={hero_financing_image_src || "https://www.greensky.com/merchantkit/images/finance_buttons/headers/header_640.jpg?v=3.0.612"}
+              alt={hero_financing_image_alt || "Financing Options from GreenSky"}
               tabindex="0"
               class="w-full max-w-[640px] h-auto rounded-lg shadow-sm hover:opacity-90 transition-opacity cursor-pointer"
             />

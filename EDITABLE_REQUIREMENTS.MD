@@ -145,4 +145,112 @@ Is the text hardcoded in the .astro file?
 - [ ] Prop edits have: `data-editable="text"` + `data-prop` (or `<editable-text data-prop>`)
 - [ ] All `data-key` values are unique within their file
 - [ ] No attributes placed inside `{expressions}`
+- [ ] Editable images have `data-prop-src` (mandatory)
 - [ ] Tested in Visual Editor after rebuild
+
+---
+---
+
+# 🖼️ Editable Images — Separate from Text!
+
+> **Images use a DIFFERENT system than text.** Don't confuse the two.
+>
+> - **Text** → `data-editable="source"` or `data-editable="text"`
+> - **Images** → `data-editable="image"` + `data-prop-src`
+
+---
+
+## Image Editing at a Glance
+
+Editable images use `data-editable="image"` on `<img>` tags (or an `<editable-image>` wrapper).
+
+| Attribute | Required? | Purpose |
+|-----------|-----------|---------|
+| `data-editable="image"` | ✅ **Yes** | Marks the `<img>` as editable |
+| `data-prop-src="propName"` | ✅ **Yes** | Maps `src` to a frontmatter prop for upload/replace |
+| `data-prop-alt="propName"` | Optional | Maps `alt` text for accessibility editing |
+| `data-prop-title="propName"` | Optional | Maps `title` for tooltip editing |
+
+---
+
+## Image Requirements
+
+- Image data must be a **string** in frontmatter (e.g., `heroImage: '/img.jpg'`)
+- Add to **layouts** (`.astro`) for collections/pages
+- **Rebuild preview** after changes
+- **No `data-path`** — uses prop context, same as text prop regions
+
+---
+
+## ✅ Do's and ❌ Don'ts (Images)
+
+| ✅ Do | ❌ Don't |
+|-------|---------|
+| `data-editable="image"` `data-prop-src="heroImage"` on `<img>` | Forget `data-prop-src` → triggers **"data-prop required"** error |
+| Add `data-prop-alt="heroAlt"` for accessibility | Use `data-editable="image"` without an `<img>` child |
+| Set up parent text regions first, then add images | Hardcode `src` without a prop — can't upload/replace |
+| Configure uploads path in CloudCannon config for custom folder | Ignore data type — must be a **string path** |
+
+---
+
+## Example — Editable Image
+
+### Layout
+
+**File:** `src/layouts/Main.astro`
+
+```astro
+---
+const { heroImage, heroAlt } = Astro.props;
+---
+<html>
+<body>
+  <div style="text-align: center;">
+
+    <img data-editable="image"
+         data-prop-src="heroImage"
+         data-prop-alt="heroAlt"
+         src={heroImage}
+         alt={heroAlt}
+         style="max-width: 400px; height: auto;" />
+
+  </div>
+</body>
+</html>
+```
+
+### Page
+
+**File:** `src/pages/home.astro` (or `.md`)
+
+```astro
+---
+heroImage: '/default-hero.jpg'
+heroAlt: 'Default hero image'
+---
+<Main />
+```
+
+---
+
+## How It Works
+
+| Step | What Happens |
+|------|-------------|
+| **Visual Editor** | Yellow box appears on image → click → **Edit Image** panel opens |
+| **Edit Panel** | Upload, crop, paste URL, edit alt/title |
+| **Uploads** | Saved to `uploads/` (or your configured path); optimized/cropped in-place |
+| **Inline styles** | Apply to `<img>` or wrapper — live preview updates immediately |
+
+---
+
+## Quick Comparison: Text vs Images
+
+| | Text Regions | Image Regions |
+|---|---|---|
+| **Attribute** | `data-editable="source"` or `"text"` | `data-editable="image"` |
+| **Prop mapping** | `data-prop="propName"` or `data-key` | `data-prop-src="propName"` |
+| **Alt/metadata** | N/A | `data-prop-alt`, `data-prop-title` |
+| **Edits** | Text content inline | Upload/crop/URL panel |
+| **Data type** | String (text) | String (file path) |
+| **Uses `data-path`?** | Only for source edits | ❌ Never |
