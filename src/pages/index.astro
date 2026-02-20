@@ -63,13 +63,6 @@ if (!servicesData || !construction || !showcase) {
 	<Hero videoSrc={heroVideo?.videoSrc} />
 	<Partners />
 	<Testimonials images={recentProjectImages} testimonial={testimonialIcon} />
-	<Services
-		columns={3}
-		variant="roofing"
-		title={'Our Roofing Services'}
-		decorativeImage={servicesData.data.decorativeImage}
-		services={roofingServices}
-	/>
 	<Process />
 		<Services
 		columns={3}
@@ -78,14 +71,7 @@ if (!servicesData || !construction || !showcase) {
 		decorativeImage={construction.data.decorativeImage}
 		services={constructionServices}
 		/>
-	<AboutUs />
-			<Services
-		columns={2}
-		variant="showcase"
-		title={showcase.data.title}
-		decorativeImage={showcase.data.decorativeImage}
-		services={showcase.data.services}
-	/>
+	<AboutUs/>
 	 <FAQ />
 	 <Contact />
 

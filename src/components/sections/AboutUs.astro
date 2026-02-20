@@ -64,12 +64,18 @@ import Text from '../ui/display/Text.astro';
       </div>
       
       <!-- Right Column - Image -->
-      <Card
-        slot="right"
-        variant="image"
-        backgroundImage="https://static.motiffcontent.com/private/resource/image/1984480fa5766b5-fb2a2a53-eb11-4ceb-9ebd-a59eab1fb61d.jpeg"
-        class="h-48 w-full sm:h-64 md:h-80 lg:h-[600px] lg:w-[608px]"
+<div slot="right" class="flex items-center justify-center h-full">
+  <Card class="w-full lg:w-[608px] p-0 overflow-hidden rounded-2xl">
+    <div class="relative w-full aspect-video overflow-hidden rounded-2xl">
+      <iframe
+        src="https://streamable.com/e/468tvx"
+        allow="fullscreen"
+        allowfullscreen
+        class="absolute inset-0 w-full h-full border-0"
       />
+    </div>
+  </Card>
+</div>
     </Layout>
 
     <!-- Commitment Section -->
