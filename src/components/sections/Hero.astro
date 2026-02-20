@@ -9,9 +9,15 @@ import Text from '../ui/display/Text.astro';
 
 export interface Props {
   videoSrc?: string;
+  hero_financing_image_src?: string;
+  hero_financing_image_alt?: string;
 }
 
-const { videoSrc } = Astro.props;
+const {
+  videoSrc,
+  hero_financing_image_src = "https://www.greensky.com/merchantkit/images/finance_buttons/headers/header_640.jpg?v=3.0.612",
+  hero_financing_image_alt = "Financing Options from GreenSky",
+} = Astro.props;
 ---
 
 
@@ -22,21 +28,26 @@ const { videoSrc } = Astro.props;
     <ContentBlock maxWidth="max-w-full md:max-w-[803px]">
 
       <!-- Main Heading -->
-      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight max-w-[623px]">
+      <h1 data-editable="source" data-path="src/components/sections/Hero.astro" data-key="hero_heading" class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight max-w-[623px]">
         Building Roofs. Restoring Trust.<br>
         <span class="text-accent-primary">Serving with Purpose.</span>
       </h1>
       
       <!-- Subtitle -->
-      <p class="text-base sm:text-lg md:text-xl text-white mb-6 sm:mb-8 leading-relaxed max-w-[640px]">
+      <p data-editable="source" data-path="src/components/sections/Hero.astro" data-key="hero_subtitle" class="text-base sm:text-lg md:text-xl text-white mb-6 sm:mb-8 leading-relaxed max-w-[640px]">
         Guided by seriousness, integrity, and perfection. <br/>J Land Contracting protects families across Maryland with craft devoted roofing services.
         We're your neighbors, committed to reliable craftsmanship and meaningful commitments in every installation.
       </p>
       
       <!-- CTA Buttons -->
       <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center sm:justify-start items-center sm:items-start mb-6 sm:mb-8 w-full">
-        <Button href="/contact" variant="primary" size="lg" class="flex-1 sm:flex-none min-w-0 text-sm sm:text-base md:text-lg leading-tight whitespace-nowrap">
-          Get Your Free Roof Inspection
+        <Button 
+          variant="primary" 
+          size="lg" 
+          class="flex-1 sm:flex-none min-w-0 text-sm sm:text-base md:text-lg leading-tight whitespace-nowrap"
+          data-psai-trigger="eea3332f-7784-4ba4-81d9-36b384371b29"
+        >
+          <span data-editable="source" data-path="src/components/sections/Hero.astro" data-key="hero_cta_primary">Get Your Free Roof Inspection Now</span>
         </Button>
       </div>
       
@@ -46,19 +57,19 @@ const { videoSrc } = Astro.props;
           <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
           </svg>
-          <span>Integrity & Reliability</span>
+          <span data-editable="source" data-path="src/components/sections/Hero.astro" data-key="hero_trust_1">Integrity & Reliability</span>
         </div>
         <div class="flex items-center gap-2">
           <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
           </svg>
-          <span>Devotion & Vision</span>
+          <span data-editable="source" data-path="src/components/sections/Hero.astro" data-key="hero_trust_2">Devotion & Vision</span>
         </div>
         <div class="flex items-center gap-2">
           <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
           </svg>
-          <span>Team Unity & Accountability</span>
+          <span data-editable="source" data-path="src/components/sections/Hero.astro" data-key="hero_trust_3">Team Unity & Accountability</span>
         </div>
       </div>
     </ContentBlock>
@@ -80,16 +91,16 @@ const { videoSrc } = Astro.props;
             <svg class="w-6 h-6 text-state-success flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
             </svg>
-            <h3 class="font-bold text-brand-primary text-xl sm:text-2xl leading-tight">Request Submitted!</h3>
+            <h3 data-editable="source" data-path="src/components/sections/Hero.astro" data-key="hero_form_success_heading" class="font-bold text-brand-primary text-xl sm:text-2xl leading-tight">Request Submitted!</h3>
           </div>
           
           <!-- Personalized Contact Message -->
           <div class="space-y-3 max-w-sm mx-auto">
-            <p class="text-brand-primary text-base sm:text-lg leading-relaxed font-medium">
+            <p data-editable="source" data-path="src/components/sections/Hero.astro" data-key="hero_form_success_message" class="text-brand-primary text-base sm:text-lg leading-relaxed font-medium">
               <span class="font-bold text-accent-primary">A J Land team member</span><br class="sm:hidden">
               <span class="sm:inline"> will contact you shortly!</span>
             </p>
-            <p class="text-brand-secondary text-sm sm:text-base leading-relaxed">
+            <p data-editable="source" data-path="src/components/sections/Hero.astro" data-key="hero_form_success_subtext" class="text-brand-secondary text-sm sm:text-base leading-relaxed">
               We typically respond within 2-4 hours during business hours.
             </p>
           </div>
@@ -143,15 +154,18 @@ const { videoSrc } = Astro.props;
           variant="primary"
           class="webLeadForm__submit w-full sm:w-auto min-h-[44px] sm:min-h-[48px]"
         >
-          GET QUOTE NOW
+          <span data-editable="source" data-path="src/components/sections/Hero.astro" data-key="hero_form_submit">GET QUOTE NOW</span>
         </Button>
 
         <!-- GreenSky Financing Header -->
         <div class="-pb-10 mb-4 flex justify-center">
           <a href="/financing#financing-options" class="block">
             <img
-              src="https://www.greensky.com/merchantkit/images/finance_buttons/headers/header_640.jpg?v=3.0.612"
-              alt="Financing Options from GreenSky"
+              data-editable="image"
+              data-prop-src="hero_financing_image_src"
+              data-prop-alt="hero_financing_image_alt"
+              src={hero_financing_image_src || "https://www.greensky.com/merchantkit/images/finance_buttons/headers/header_640.jpg?v=3.0.612"}
+              alt={hero_financing_image_alt || "Financing Options from GreenSky"}
               tabindex="0"
               class="w-full max-w-[640px] h-auto rounded-lg shadow-sm hover:opacity-90 transition-opacity cursor-pointer"
             />

@@ -1,6 +1,6 @@
 Good Shepherd Insights | GSI, LLC.
 Frederick, MD
-(240) 456-7890
+(410) 292-0801
 Client Discovery: Content Strategy & Generation
 Last Updated: June 2025 				Document Owner: Owner/Founder
 1. PURPOSE & AI DIRECTIVE

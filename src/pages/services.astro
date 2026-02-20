@@ -33,7 +33,16 @@ const serviceCategories = [
   {
     title: roofingServices?.title || "Roofing Services",
     description: "Complete roofing solutions from repairs to full replacements using premium materials and expert craftsmanship.",
-    services: roofingServices?.services || []
+    services: (roofingServices?.services || []).map(service => {
+      if (service.title.toLowerCase().includes('roof inspection')) {
+        return {
+          ...service,
+          buttonText: 'Get Your Free Roof Inspection Now',
+          psaiTrigger: "eea3332f-7784-4ba4-81d9-36b384371b29"
+        };
+      }
+      return service;
+    })
   },
   {
     title: constructionServices?.title || "Construction Services", 

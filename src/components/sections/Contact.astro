@@ -18,10 +18,10 @@ import ContentBlock from '../ui/display/ContentBlock.astro';
   <Section background="dark" padding="none" class="flex gap-3 flex-col items-stretch">
     <Container size="md" class="text-center mt-6 sm:mt-8 mb-8 sm:mb-14">
       <Heading level={2} color="white" class="text-ellipsis min-h-8 sm:min-h-10 max-w-[601px] mx-auto text-xl sm:text-2xl md:text-3xl">
-        Let's Discuss Your Project
+        <span data-editable="source" data-path="src/components/sections/Contact.astro" data-key="contact_heading">Let's Discuss Your Project</span>
       </Heading>
       <Text variant="lead" color="muted" class="text-ellipsis min-h-6 sm:min-h-7 max-w-[456px] mx-auto mt-2 sm:mt-3 text-sm sm:text-base">
-        Our experts are ready to help with your exterior needs
+        <span data-editable="source" data-path="src/components/sections/Contact.astro" data-key="contact_subheading">Our experts are ready to help with your exterior needs</span>
       </Text>
     </Container>
   </Section>
@@ -66,7 +66,7 @@ import ContentBlock from '../ui/display/ContentBlock.astro';
   <!-- Form Section -->
   <Container size="sm" class="text-center mt-6 sm:mt-8">
     <Heading level={3} size="xl" class="text-ellipsis min-h-6 sm:min-h-8 max-w-[228px] mx-auto text-lg sm:text-xl md:text-2xl">
-       Send Us a Message
+       <span data-editable="source" data-path="src/components/sections/Contact.astro" data-key="contact_form_heading">Send Us a Message</span>
      </Heading>
   </Container>
 
@@ -76,13 +76,13 @@ import ContentBlock from '../ui/display/ContentBlock.astro';
       <ContentBlock class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6" maxWidth="w-full" spacing="sm">
         <ContentBlock maxWidth="w-full" spacing="sm">
           <Text variant="small" weight="medium" color="default" class="block mb-2">
-            Your Name
+            <span data-editable="source" data-path="src/components/sections/Contact.astro" data-key="contact_label_name">Your Name</span>
           </Text>
           <Input type="text" name="name" placeholder="John Smith" class="w-full" />
         </ContentBlock>
         <ContentBlock maxWidth="w-full" spacing="sm">
           <Text variant="small" weight="medium" color="default" class="block mb-2">
-            Email Address
+            <span data-editable="source" data-path="src/components/sections/Contact.astro" data-key="contact_label_email">Email Address</span>
           </Text>
           <Input type="email" name="email" placeholder="john@example.com" class="w-full" />
         </ContentBlock>
@@ -91,13 +91,13 @@ import ContentBlock from '../ui/display/ContentBlock.astro';
       <ContentBlock class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6" maxWidth="w-full" spacing="sm">
         <ContentBlock maxWidth="w-full" spacing="sm">
           <Text variant="small" weight="medium" color="default" class="block mb-2">
-            Phone Number
+            <span data-editable="source" data-path="src/components/sections/Contact.astro" data-key="contact_label_phone">Phone Number</span>
           </Text>
           <Input type="tel" name="phone" placeholder="(123) 456-7890" class="w-full" />
         </ContentBlock>
         <ContentBlock maxWidth="w-full" spacing="sm">
           <Text variant="small" weight="medium" color="default" class="block mb-2">
-            Project Address
+            <span data-editable="source" data-path="src/components/sections/Contact.astro" data-key="contact_label_address">Project Address</span>
           </Text>
           <Input type="text" name="address" placeholder="Enter your project address..." class="w-full" />
         </ContentBlock>
@@ -105,7 +105,7 @@ import ContentBlock from '../ui/display/ContentBlock.astro';
 
       <ContentBlock maxWidth="w-full" spacing="sm">
         <Text variant="small" weight="medium" color="default" class="block mb-2">
-          Message
+          <span data-editable="source" data-path="src/components/sections/Contact.astro" data-key="contact_label_message">Message</span>
         </Text>
         <Input type="textarea" name="message" placeholder="Tell us about your exterior project..." rows={6} class="w-full" ></Input>
       </ContentBlock>
@@ -113,7 +113,7 @@ import ContentBlock from '../ui/display/ContentBlock.astro';
       <!-- Submit Button -->
       <ContentBlock class="flex justify-center mt-6 sm:mt-8" maxWidth="w-full" spacing="sm">
         <Button variant="primary" size="lg" type="submit" class="w-full sm:w-auto">
-          Submit Request
+          <span data-editable="source" data-path="src/components/sections/Contact.astro" data-key="contact_submit_button">Submit Request</span>
         </Button>
       </ContentBlock>
     </Form>
@@ -126,10 +126,10 @@ import ContentBlock from '../ui/display/ContentBlock.astro';
         <Icon name="phone-contact" size="sm" />
       </ContentBlock>
       <Text weight="medium" class="text-center mb-1 text-xs sm:text-sm md:text-base">
-        Call Us
+        <span data-editable="source" data-path="src/components/sections/Contact.astro" data-key="contact_call_label">Call Us</span>
       </Text>
       <Text color="secondary" class="text-center text-xs">
-        (410) 292-0801
+        <span data-editable="source" data-path="src/components/sections/Contact.astro" data-key="contact_phone">(410) 292-0801</span>
       </Text>
     </Button>
     <Button href="mailto:info@jlandgroup.com" variant="link" class="flex flex-col items-center no-underline hover:opacity-90 !text-inherit !font-normal !p-0 !rounded-none">
@@ -137,10 +137,10 @@ import ContentBlock from '../ui/display/ContentBlock.astro';
         <Icon name="email-contact" size="sm" />
       </ContentBlock>
       <Text weight="medium" class="text-center mb-1 text-xs sm:text-sm md:text-base">
-        Email Us
+        <span data-editable="source" data-path="src/components/sections/Contact.astro" data-key="contact_email_label">Email Us</span>
       </Text>
       <Text color="secondary" class="text-center text-xs">
-        info@jlandgroup.com
+        <span data-editable="source" data-path="src/components/sections/Contact.astro" data-key="contact_email">info@jlandgroup.com</span>
       </Text>
     </Button>
   </Section>
