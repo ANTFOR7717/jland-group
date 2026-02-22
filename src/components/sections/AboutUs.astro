@@ -21,6 +21,7 @@ export interface Props {
   values?: { title: string; description: string };
   stats?: { value: string; label: string }[];
   commitment?: { title: string; text: string };
+  videoSrc?: string;
 }
 
 const {
@@ -49,6 +50,7 @@ const {
     title: "Our Commitment to Excellence",
     text: "Through 15+ years of hands-on experience and thousands of projects, we deliver expert knowledge of roofing systems, insurance processes, and quality installations that exceed expectations. Backed by certifications and a focus on ethical service, we ensure every client receives reliable support, comprehensive warranties, and the assurance of a job done right – fostering trust and long-term satisfaction.",
   },
+  videoSrc = "https://streamable.com/e/468tvx",
 } = Astro.props;
 ---
 
@@ -106,18 +108,17 @@ const {
       </div>
 
       <!-- Right Column - Image -->
-<div slot="right" class="flex items-center justify-center h-full">
-  <Card class="w-full lg:w-[608px] p-0 overflow-hidden rounded-2xl">
-    <div class="relative w-full aspect-video overflow-hidden rounded-2xl">
-      <iframe
-        src="https://streamable.com/e/468tvx"
-        allow="fullscreen"
-        allowfullscreen
-        class="absolute inset-0 w-full h-full border-0"
-      />
-    </div>
-  </Card>
-</div>
+      <div slot="right" class="flex items-center justify-center h-full">
+        <Card class="w-full lg:w-[608px] p-0 overflow-hidden rounded-2xl">
+          <div class="relative w-full aspect-video overflow-hidden rounded-2xl">
+            <iframe
+              src={videoSrc}
+              allow="fullscreen"
+              allowfullscreen
+              class="absolute inset-0 w-full h-full border-0"></iframe>
+          </div>
+        </Card>
+      </div>
     </Layout>
 
     <!-- Commitment Section -->

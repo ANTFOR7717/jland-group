@@ -1,642 +1,580 @@
 # CloudCannon Editable Fields Report
 
-Comprehensive audit of every Astro component and page in the project. Each table lists every visible text and image element that can be tagged with `data-editable="text"` or `data-editable="image"` for CloudCannon Visual Editor inline editing.
+Comprehensive audit of every Astro component and page in the project. Each section lists every visible text and image element, its content source, and editability status.
+
+> **Last audited:** 2026-02-22
+
+---
+
+## Architecture Summary
+
+The project uses **four content strategies**:
+
+1. **Inline `data-editable` tags** — Used in section components (`Hero`, `Contact`, `FAQ`, `Header`, `Footer`) where text is hardcoded in the component and tagged with `data-editable="source"` attributes for CloudCannon Visual Editor inline editing.
+2. **Content collection frontmatter** — Used in all page-level files. Content is defined in `src/content/pages/*.md` and accessed via `getEntry("pages", "...")`. Props from these files flow down to child components.
+3. **Component props with defaults** — Section components (`AboutUs`, `Process`, `Testimonials`, `Services`, `Partners`, `FAQ`) receive all content via props. Default values exist as fallbacks in the component frontmatter.
+4. **Sanity CMS** — Used on the home page (`index.astro`) to fetch hero video, testimonial avatar, project photos, and roofing/construction service card data (titles, descriptions, images).
 
 ---
 
 ## Implementation Status Summary
 
-| Component | Status | Inline Text | Prop-Based | Notes |
-|-----------|--------|-------------|------------|-------|
-| Hero.astro | ✅ Complete | 12 | 1 image | Reference implementation |
-| Header.astro | ✅ Complete | 15 | 0 | Logo text + nav links (desktop + mobile) |
-| Footer.astro | ✅ Complete | 24 | 0 | All inline text tagged |
-| Contact.astro | ✅ Complete | 15 | 0 | All inline text tagged |
-| FAQ.astro | ✅ Complete | 7 | 0 | Headings + CTA; FAQ data is prop-based |
-| Testimonials.astro | ✅ Partial | 2 | 12+ | Headings tagged; testimonials are props |
-| AboutUs.astro | ⏳ Pending | 0 | 18 | All content via props |
-| Process.astro | ⏳ Pending | 0 | 11 | All content via props |
-| Services.astro | ⏳ Pending | 0 | 6 | All content via props |
-| Partners.astro | ⏳ Pending | 0 | 12 images | Images only |
-| about.astro (page) | ✅ Partial | 20+ | 0 | Hero + story section done; more remaining |
-| services.astro (page) | ⏳ Pending | 30+ | 0 | Not started |
+| Component | Content Source | `data-editable` Tags | Content Collection | Notes |
+|-----------|--------------|---------------------|-------------------|-------|
+| Hero.astro | Props + inline defaults | ✅ 12 text + 1 image | Via index.md | Reference implementation |
+| Header.astro | Inline hardcoded | ✅ 15 text | ❌ | Logo text + nav links (desktop + mobile) |
+| Footer.astro | Inline + props | ✅ 24 text | Via index.md (socialLinks) | Social links now prop-driven |
+| Contact.astro (section) | Inline hardcoded | ✅ 12 text | ❌ | Form labels + headings tagged |
+| FAQ.astro | Props + inline defaults | ✅ 7 text | Via index.md | All Q&A data now from props |
+| Testimonials.astro | Props only | ❌ 0 | Via index.md | All content via props |
+| AboutUs.astro | Props only | ❌ 0 | Via index.md | Video URL now a prop |
+| Process.astro | Props only | ❌ 0 | Via index.md | All content via props |
+| Services.astro | Props only | ❌ 0 | Via service collections + Sanity | All content via props |
+| Partners.astro | Props + inline defaults | ❌ 0 | Via index.md | Logo array now a prop |
+| index.astro (page) | Content collection + Sanity | ❌ 0 | ✅ index.md | Props to child components |
+| about.astro (page) | Content collection | ❌ 0 | ✅ about.md | All content from frontmatter |
+| services.astro (page) | Content collection + JSON | ❌ 0 | ✅ services.md | Some hardcoded strings remain |
+| contact.astro (page) | Content collection | ❌ 0 | ✅ contact.md | All content from frontmatter |
+| blog.astro (page) | Content collection | ❌ 0 | ✅ blog.md | Some hardcoded strings remain |
+| financing.astro (page) | Content collection | ❌ 0 | ✅ financing.md | All content from frontmatter |
+| projects.astro (page) | Content collection + JSON | ❌ 0 | ✅ projects.md | Project data from JSON files |
+| resources.astro (page) | Content collection | ❌ 0 | ✅ resources.md | All content from frontmatter |
 
 ---
 
-## Section Components
+## Sanity CMS Content (Home Page Only)
+
+The home page (`index.astro`) fetches the following from **Sanity CMS** via `src/lib/sanity/client`:
+
+| Sanity Type | Data Fetched | Used By |
+|------------|-------------|---------|
+| `heroVideo` | `video.asset->url` | `Hero.astro` (`videoSrc` prop) |
+| `testimonialIcon` | `icon.asset->url` | `Testimonials.astro` (`avatarURL`) |
+| `projectPhoto` | `image.asset->url`, `alt`, `tags` | `Testimonials.astro` (recent project images), `Services.astro` (service card images) |
+| `roofingServices` | `title`, `description`, `buttonText`, `buttonHref` | `Services.astro` (roofing variant) |
+| `constructionServices` | `title`, `description`, `buttonText`, `buttonHref` | `Services.astro` (construction variant) |
+
+> **Note:** Service card text content (titles, descriptions, button text) on the home page comes from **Sanity**, not from the `.md` frontmatter files. This content is managed through the Sanity Studio dashboard.
+
+---
+
+## JSON Collection Data
+
+The following JSON files provide service/project data to `services.astro` and `projects.astro`:
+
+| File | Content | Used By |
+|------|---------|---------|
+| `src/content/services/roofing.json` | `title`, `decorativeImage`, `services[]` (image, title, description, buttonText) | `index.astro` (fallback), `services.astro`, `projects.astro` |
+| `src/content/services/construction.json` | Same structure | `index.astro` (fallback), `services.astro`, `projects.astro` |
+| `src/content/services/showcase.json` | Same structure | `index.astro`, `projects.astro` |
+
+> These JSON files are editable via CloudCannon's data editor.
+
+---
+
+## Section Components (with `data-editable` tags)
 
 ### `Hero.astro`
-`src/components/sections/Hero.astro`
+`src/components/sections/Hero.astro` — **400 lines**
 
-| Line | Element | Current Content | Editable Type | Status |
-|------|---------|----------------|---------------|--------|
-| 25 | `<h1>` | "Building Roofs. Restoring Trust. Serving with Purpose." | text | ✅ Tagged |
-| 31 | `<p>` | "Guided by seriousness, integrity…" (subtitle) | text | ✅ Tagged |
-| 44 | `<span>` in Button | "Get Your Free Roof Inspection Now" | text | ✅ Tagged |
-| 47 | `<span>` in Button | "View Our Projects" | text | ✅ Tagged |
-| 57 | `<span>` | "Integrity & Reliability" | text | ✅ Tagged |
-| 63 | `<span>` | "Devotion & Vision" | text | ✅ Tagged |
-| 69 | `<span>` | "Team Unity & Accountability" | text | ✅ Tagged |
-| 91 | `<h3>` | "Request Submitted!" | text | ✅ Tagged |
-| 96 | `<p>` | "A J Land team member will contact you shortly!" | text | ✅ Tagged |
-| 100 | `<p>` | "We typically respond within 2-4 hours…" | text | ✅ Tagged |
-| 154 | `<span>` in Button | "GET QUOTE NOW" | text | ✅ Tagged |
-| 160 | `<img>` | GreenSky financing header image | image | ✅ Tagged |
+| Line | Element | data-key | Current Content | Editable Type | Status |
+|------|---------|----------|----------------|---------------|--------|
+| 52–58 | `<h1>` | `hero_heading` | "Building Roofs. Restoring Trust. Serving with Purpose." | text | ✅ Tagged |
+| 61–67 | `<p>` | `hero_subtitle` | "Guided by seriousness, integrity…" | text | ✅ Tagged |
+| 79–83 | `<span>` in Button | `hero_cta_primary` | "Get Your Free Roof Inspection Now" | text | ✅ Tagged |
+| 91–95 | `<span>` in Button | `hero_cta_secondary` | "View Our Projects" | text | ✅ Tagged |
+| 117–123 | `<span>` (×3, dynamic) | `hero_trust_1/2/3` | "Integrity & Reliability" etc. | text | ✅ Tagged |
+| 174–181 | `<h3>` | `hero_form_success_heading` | "Request Submitted!" | text | ✅ Tagged |
+| 186–196 | `<p>` | `hero_form_success_message` | "A J Land team member will contact you shortly!" | text | ✅ Tagged |
+| 197–204 | `<p>` | `hero_form_success_subtext` | "We typically respond within 2-4 hours…" | text | ✅ Tagged |
+| 256–260 | `<span>` in Button | `hero_form_submit` | "GET QUOTE NOW" | text | ✅ Tagged |
+| 266–278 | `<img>` | (image attrs) | GreenSky financing header image | image | ✅ Tagged |
 
----
+**Props interface:**
+```typescript
+export interface Props {
+  videoSrc?: string;
+  hero_financing_image_src?: string;
+  hero_financing_image_alt?: string;
+  heading?: string;
+  subtitle?: string;
+  cta_primary?: string;
+  cta_secondary?: string;
+  trust_indicators?: string[];
+}
+```
 
-### `Header.astro`
-`src/components/layout/Header.astro`
-
-| data-key | Element | Current Content | Editable Type | Status |
-|----------|---------|----------------|---------------|--------|
-| header_logo_text | `<span>` | "J LAND CONTRACTING" | text | ✅ Tagged |
-| header_nav_services | `<a>` | "Services" | text | ✅ Tagged |
-| header_nav_about | `<a>` | "About" | text | ✅ Tagged |
-| header_nav_projects | `<a>` | "Projects" | text | ✅ Tagged |
-| header_nav_blog | `<a>` | "Blog" | text | ✅ Tagged |
-| header_nav_financing | `<a>` | "Financing" | text | ✅ Tagged |
-| header_nav_resources | `<a>` | "Resources" | text | ✅ Tagged |
-| header_nav_contact | `<a>` | "Contact" | text | ✅ Tagged |
-| header_mobile_nav_services | `<a>` | "Services" (mobile) | text | ✅ Tagged |
-| header_mobile_nav_about | `<a>` | "About" (mobile) | text | ✅ Tagged |
-| header_mobile_nav_projects | `<a>` | "Projects" (mobile) | text | ✅ Tagged |
-| header_mobile_nav_blog | `<a>` | "Blog" (mobile) | text | ✅ Tagged |
-| header_mobile_nav_financing | `<a>` | "Financing" (mobile) | text | ✅ Tagged |
-| header_mobile_nav_resources | `<a>` | "Resources" (mobile) | text | ✅ Tagged |
-| header_mobile_nav_contact | `<a>` | "Contact" (mobile) | text | ✅ Tagged |
-
----
-
-### `Footer.astro`
-`src/components/layout/Footer.astro`
-
-| data-key | Element | Current Content | Editable Type | Status |
-|----------|---------|----------------|---------------|--------|
-| footer_company_name | `<h3>` | "J Land Contracting INC" | text | ✅ Tagged |
-| footer_company_description | `<p>` | Company description | text | ✅ Tagged |
-| footer_address | `<p>` | "3636 Glenoble Court, Jefferson, MD 21755" | text | ✅ Tagged |
-| footer_phone | `<p>` | "(410) 292-0801" | text | ✅ Tagged |
-| footer_email | `<p>` | "info@jlandgroup.com" | text | ✅ Tagged |
-| footer_quick_links_title | `<h4>` | "Quick Links" | text | ✅ Tagged |
-| footer_link_home | `<a>` | "Home" | text | ✅ Tagged |
-| footer_link_services | `<a>` | "Services" | text | ✅ Tagged |
-| footer_link_about | `<a>` | "About Us" | text | ✅ Tagged |
-| footer_link_projects | `<a>` | "Projects" | text | ✅ Tagged |
-| footer_link_blog | `<a>` | "Blog" | text | ✅ Tagged |
-| footer_link_financing | `<a>` | "Financing" | text | ✅ Tagged |
-| footer_link_contact | `<a>` | "Contact" | text | ✅ Tagged |
-| footer_services_title | `<h4>` | "Our Services" | text | ✅ Tagged |
-| footer_service_roofing | `<a>` | "Roofing" | text | ✅ Tagged |
-| footer_service_siding | `<a>` | "Siding" | text | ✅ Tagged |
-| footer_service_gutters | `<a>` | "Gutters" | text | ✅ Tagged |
-| footer_service_restoration | `<a>` | "Roof Restoration" | text | ✅ Tagged |
-| footer_newsletter_title | `<h4>` | "Stay Updated" | text | ✅ Tagged |
-| footer_newsletter_description | `<p>` | Newsletter description | text | ✅ Tagged |
-| footer_newsletter_button | `<button>` | "Subscribe" | text | ✅ Tagged |
-| footer_copyright | `<p>` | "© 2025 J Land Contracting..." | text | ✅ Tagged |
-| footer_link_privacy | `<a>` | "Privacy Policy" | text | ✅ Tagged |
-| footer_link_terms | `<a>` | "Terms of Service" | text | ✅ Tagged |
+> Content sourced from `src/content/pages/index.md` → `hero_*` fields. Video from **Sanity CMS**.
 
 ---
 
 ### `Contact.astro` (section component)
-`src/components/sections/Contact.astro`
+`src/components/sections/Contact.astro` — **172 lines**
 
-| data-key | Element | Current Content | Editable Type | Status |
-|----------|---------|----------------|---------------|--------|
-| contact_heading | `<Heading>` | "Let's Discuss Your Project" | text | ✅ Tagged |
-| contact_subheading | `<Text>` | "Our experts are ready to help…" | text | ✅ Tagged |
-| contact_form_heading | `<Heading>` | "Send Us a Message" | text | ✅ Tagged |
-| contact_label_name | `<Text>` | "Your Name" | text | ✅ Tagged |
-| contact_label_email | `<Text>` | "Email Address" | text | ✅ Tagged |
-| contact_label_phone | `<Text>` | "Phone Number" | text | ✅ Tagged |
-| contact_label_address | `<Text>` | "Project Address" | text | ✅ Tagged |
-| contact_label_message | `<Text>` | "Message" | text | ✅ Tagged |
-| contact_submit_button | `<Button>` | "Submit Request" | text | ✅ Tagged |
-| contact_call_label | `<Text>` | "Call Us" | text | ✅ Tagged |
-| contact_phone | `<Text>` | "(410) 292-0801" | text | ✅ Tagged |
-| contact_email_label | `<Text>` | "Email Us" | text | ✅ Tagged |
-| contact_email | `<Text>` | "info@jlandgroup.com" | text | ✅ Tagged |
+| Line | Element | data-key | Current Content | Editable Type | Status |
+|------|---------|----------|----------------|---------------|--------|
+| 21 | `<span>` in Heading | `contact_heading` | "Let's Discuss Your Project" | text | ✅ Tagged |
+| 24 | `<span>` in Text | `contact_subheading` | "Our experts are ready to help…" | text | ✅ Tagged |
+| 69 | `<span>` in Heading | `contact_form_heading` | "Send Us a Message" | text | ✅ Tagged |
+| 79 | `<span>` in Text | `contact_label_name` | "Your Name" | text | ✅ Tagged |
+| 85 | `<span>` in Text | `contact_label_email` | "Email Address" | text | ✅ Tagged |
+| 94 | `<span>` in Text | `contact_label_phone` | "Phone Number" | text | ✅ Tagged |
+| 100 | `<span>` in Text | `contact_label_address` | "Project Address" | text | ✅ Tagged |
+| 108 | `<span>` in Text | `contact_label_message` | "Message" | text | ✅ Tagged |
+| 116 | `<span>` in Button | `contact_submit_button` | "Submit Request" | text | ✅ Tagged |
+| 129 | `<span>` in Text | `contact_call_label` | "Call Us" | text | ✅ Tagged |
+| 132 | `<span>` in Text | `contact_phone` | "(410) 292-0801" | text | ✅ Tagged |
+| 140 | `<span>` in Text | `contact_email_label` | "Email Us" | text | ✅ Tagged |
+| 143 | `<span>` in Text | `contact_email` | "info@jlandgroup.com" | text | ✅ Tagged |
+
+> **Note:** This component has no props interface — all text is hardcoded with `data-editable` tags. The Google Maps iframe URL (line 35) and placeholder texts are also hardcoded.
 
 ---
 
 ### `FAQ.astro`
-`src/components/sections/FAQ.astro`
+`src/components/sections/FAQ.astro` — **202 lines**
 
-| data-key | Element | Current Content | Editable Type | Status |
-|----------|---------|----------------|---------------|--------|
-| faq_heading | `<Heading>` | "Frequently Asked Questions" | text | ✅ Tagged |
-| faq_subtitle | `<Text>` | "Find answers to common questions…" | text | ✅ Tagged |
-| faq_section_materials | `<Heading>` | "Roofing Materials" | text | ✅ Tagged |
-| faq_section_installation | `<Heading>` | "Installation Process" | text | ✅ Tagged |
-| faq_section_warranty | `<Heading>` | "Warranty & Maintenance" | text | ✅ Tagged |
-| faq_cta_text | `<Text>` | "Still have questions?" | text | ✅ Tagged |
-| faq_cta_button | `<Button>` | "Learn More" | text | ✅ Tagged |
+| Line | Element | data-key | Current Content | Editable Type | Status |
+|------|---------|----------|----------------|---------------|--------|
+| ~102 | `<span>` in Heading | `faq_heading` | "Frequently Asked Questions" | text | ✅ Tagged |
+| ~116 | `<span>` in Text | `faq_subtitle` | "Find answers to common questions…" | text | ✅ Tagged |
+| dynamic | `<span>` per section | `faq_section_*` | Section titles (e.g. "Roofing Materials") | text | ✅ Tagged |
+| ~192 | `<span>` in Text | `faq_cta_text` | "Still have questions?" | text | ✅ Tagged |
+| ~195 | `<span>` in Button | `faq_cta_button` | "Learn More" | text | ✅ Tagged |
 
-> **Note:** FAQ questions/answers are defined as JavaScript data arrays in frontmatter. For CloudCannon editability, these should be migrated to content collections or data files.
+**Props interface (refactored):**
+```typescript
+export interface Props {
+  heading?: string;
+  subtitle?: string;
+  cta_text?: string;
+  cta_button?: string;
+  sections?: { title: string; items: { question: string; answer: string }[] }[];
+}
+```
 
----
-
-### `Testimonials.astro`
-`src/components/sections/Testimonials.astro`
-
-| data-key | Element | Current Content | Editable Type | Status |
-|----------|---------|----------------|---------------|--------|
-| testimonials_heading | `<Heading>` | "What Our Clients Say" | text | ✅ Tagged |
-| testimonials_projects_heading | `<Heading>` | "Recent Projects" | text | ✅ Tagged |
-
-> **Note:** Testimonial content (quote, customerName, location, etc.) is passed via props from parent pages or data files.
+> ✅ **Fixed:** FAQ Q&A data (10 items in 3 sections) now flows from `index.md` frontmatter via props. Previously hardcoded as JavaScript arrays.
 
 ---
 
-### `AboutUs.astro`
-`src/components/sections/AboutUs.astro`
-
-| Line | Element | Current Content | Editable Type |
-|------|---------|----------------|---------------|
-| 13 | `SectionHeader` title prop | "About Our Company" | text |
-| 18 | `SectionHeader` decorativeImage prop | Decorative SVG underline | image |
-| 37 | `NumberedSection` number prop | "01" | text |
-| 38 | `NumberedSection` title prop | "Our History" | text |
-| 39 | `NumberedSection` description prop | "Founded on a family legacy…" | text |
-| 44 | `NumberedSection` number prop | "02" | text |
-| 45 | `NumberedSection` title prop | "Our Mission" | text |
-| 46 | `NumberedSection` description prop | "We inform and guide homeowners…" | text |
-| 50 | `NumberedSection` number prop | "03" | text |
-| 52 | `NumberedSection` title prop | "Our Values" | text |
-| 53 | `NumberedSection` description prop | "Integrity and reliability define…" | text |
-| 59 | `Statistics` stat value | "15+" | text |
-| 59 | `Statistics` stat label | "Years Experience" | text |
-| 60 | `Statistics` stat value | "2,000+" | text |
-| 60 | `Statistics` stat label | "Projects Completed" | text |
-| 61 | `Statistics` stat value | "100%" | text |
-| 61 | `Statistics` stat label | "Customer Satisfaction" | text |
-| 70 | `Card` backgroundImage prop | Company image (JPEG) | image |
-| 79 | `<Heading>` | "Our Commitment to Excellence" | text |
-| 82 | `<Text>` | "Through 15+ years of hands-on experience…" | text |
-
-> **Note:** Content passed via Astro component props (e.g., `NumberedSection`, `Statistics`, `SectionHeader`) renders inside child UI components. These require `data-editable` tags on the rendered DOM elements inside those child components, or extraction into CloudCannon data files.
-| 61 | FAQ data: answer | "We use protective tarps…" | text |
-| 66 | FAQ data: question | "What happens if it rains…?" | text |
-| 67 | FAQ data: answer | "We monitor weather closely…" | text |
-| 168 | `<Heading>` | "Warranty & Maintenance" | text |
-| 76 | FAQ data: question | "What warranty do you offer…?" | text |
-| 77 | FAQ data: answer | "We provide comprehensive warranties…" | text |
-| 81 | FAQ data: question | "How often should I have my roof inspected?" | text |
-| 82 | FAQ data: answer | "We recommend professional roof inspections…" | text |
-| 87 | FAQ data: question | "What maintenance does a roof require?" | text |
-| 88 | FAQ data: answer | "Basic maintenance includes keeping gutters clean…" | text |
-| 191 | `<Text>` | "Still have questions?" | text |
-| 195 | Button text | "Learn More" | text |
-
-> **Note:** FAQ questions/answers are defined as JavaScript data arrays in frontmatter. For CloudCannon editability, these should be migrated to content collections or data files.
-
----
-
-### `Partners.astro`
-`src/components/sections/Partners.astro`
-
-| Line | Element | Current Content | Editable Type |
-|------|---------|----------------|---------------|
-| 11 | `<img>` | Geico Insurance logo | image |
-| 12 | `<img>` alt | "Geico Insurance" | text (alt) |
-| 20 | `<img>` | Allstate Insurance logo | image |
-| 21 | `<img>` alt | "Allstate Insurance" | text (alt) |
-| 29 | `<img>` | Statefarm Insurance logo | image |
-| 30 | `<img>` alt | "Statefarm Insurance" | text (alt) |
-| 38 | `<img>` | Progressive Insurance logo | image |
-| 39 | `<img>` alt | "Progressive Insurance" | text (alt) |
-| 47 | `<img>` | USAA Insurance logo | image |
-| 48 | `<img>` alt | "USAA Insurance" | text (alt) |
-| 56 | `<img>` | Nationwide Insurance logo | image |
-| 57 | `<img>` alt | "Nationwide Insurance" | text (alt) |
-
----
-
-### `Process.astro`
-`src/components/sections/Process.astro`
-
-| Line | Element | Current Content | Editable Type |
-|------|---------|----------------|---------------|
-| 13 | `SectionHeader` title prop | "Our Roofing Process" | text |
-| 18 | `SectionHeader` decorativeImage prop | Decorative SVG underline | image |
-| 37 | `NumberedSection` number | "01" | text |
-| 38 | `NumberedSection` description | "With integrity, we visit your home…" | text |
-| 45 | `NumberedSection` number | "02" | text |
-| 46 | `NumberedSection` description | "Devoted to your needs…" | text |
-| 53 | `NumberedSection` number | "03" | text |
-| 54 | `NumberedSection` description | "Our united team removes…" | text |
-| 61 | `NumberedSection` number | "04" | text |
-| 62 | `NumberedSection` description | "Devoted to excellence…" | text |
-| 69 | `NumberedSection` number | "05" | text |
-| 70 | `NumberedSection` description | "Accountable to our values…" | text |
-| 82 | `Card` backgroundImage prop | Process image (JPEG) | image |
-
----
-
-### `Services.astro`
-`src/components/sections/Services.astro`
-
-| Line | Element | Current Content | Editable Type |
-|------|---------|----------------|---------------|
-| 35 | `SectionHeader` title prop | Passed via `{title}` prop | text |
-| 39 | `SectionHeader` decorativeImage prop | Passed via `{decorativeImage}` prop | image |
-| 47 | `Card` image prop | Service card image | image |
-| 48 | `Card` imageAlt prop | Service card alt text | text (alt) |
-| 49 | `Card` title prop | Service title | text |
-| 50 | `Card` description prop | Service description | text |
-| 51 | `Card` buttonText prop | CTA button text | text |
-
-> **Note:** All content is passed via props from parent pages. Editable content originates from content collections and Sanity CMS data.
-
----
-
-### `Testimonials.astro`
-`src/components/sections/Testimonials.astro`
-
-| Line | Element | Current Content | Editable Type |
-|------|---------|----------------|---------------|
-| 33 | `<Heading>` | "What Our Clients Say" | text |
-| 39 | `FeaturedTestimonial` quote prop | "Working with JLand Contracting…" | text |
-| 40 | `FeaturedTestimonial` customerName prop | "Mark Owens" | text |
-| 41 | `FeaturedTestimonial` location prop | "Westminster, MD" | text |
-| 42 | `FeaturedTestimonial` avatarUrl prop | Customer avatar image | image |
-| 50 | `<Heading>` | "Recent Projects" | text |
-| 71 | `SectionHeader` title prop | "Customer Reviews" | text |
-| 75 | `SectionHeader` rating prop | 4.9 | text |
-| 76 | `SectionHeader` totalReviews prop | 124 | text |
-| 89 | `Card` customerName prop | "Jason Chung" | text |
-| 90 | `Card` location prop | "Urbana, MD" | text |
-| 92 | `Card` serviceType prop | "Roof Replacement" | text |
-| 93 | `Card` timeAgo prop | "3 months ago" | text |
-| 94 | `Card` reviewText prop | "The roof replacement was clean…" | text |
-| 99 | `Card` customerName prop | "Matthew Marcus" | text |
-| 100 | `Card` location prop | "Frederick, MD" | text |
-| 102 | `Card` serviceType prop | "Commercial Roof" | text |
-| 103 | `Card` timeAgo prop | "6 months ago" | text |
-| 104 | `Card` reviewText prop | "I could not have been happier…" | text |
-
----
-
-## Layout Components
+## Layout Components (with `data-editable` tags)
 
 ### `Header.astro`
-`src/components/layout/Header.astro`
+`src/components/layout/Header.astro` — **47 lines**
 
-| Line | Element | Current Content | Editable Type |
-|------|---------|----------------|---------------|
-| 12 | `<img>` | Logo image (`/favicon.svg`) | image |
-| 13 | `<img>` alt | "J Land Contracting Logo" | text (alt) |
-| 16 | `<span>` | "J LAND CONTRACTING" | text |
-| 25 | `<a>` | "Services" | text |
-| 26 | `<a>` | "About" | text |
-| 27 | `<a>` | "Projects" | text |
-| 28 | `<a>` | "Blog" | text |
-| 29 | `<a>` | "Financing" | text |
-| 30 | `<a>` | "Resources" | text |
-| 31 | `<a>` | "Contact" | text |
-| 38–44 | `<a>` (×7) | Mobile nav links (duplicate of above) | text |
+| Line | Element | data-key | Current Content | Editable Type | Status |
+|------|---------|----------|----------------|---------------|--------|
+| 16 | `<span>` | `header_logo_text` | "J LAND CONTRACTING" | text | ✅ Tagged |
+| 25 | `<span>` in `<a>` | `header_nav_services` | "Services" | text | ✅ Tagged |
+| 26 | `<span>` in `<a>` | `header_nav_about` | "About" | text | ✅ Tagged |
+| 27 | `<span>` in `<a>` | `header_nav_projects` | "Projects" | text | ✅ Tagged |
+| 28 | `<span>` in `<a>` | `header_nav_blog` | "Blog" | text | ✅ Tagged |
+| 29 | `<span>` in `<a>` | `header_nav_financing` | "Financing" | text | ✅ Tagged |
+| 30 | `<span>` in `<a>` | `header_nav_resources` | "Resources" | text | ✅ Tagged |
+| 31 | `<span>` in `<a>` | `header_nav_contact` | "Contact" | text | ✅ Tagged |
+| 38–44 | `<span>` (×7) | `header_mobile_nav_*` | Same labels (mobile menu) | text | ✅ Tagged |
+
+**Images:**
+| Line | Element | Content | Type | Status |
+|------|---------|---------|------|--------|
+| 13 | `<img>` | `/favicon.svg` (logo icon) | image | ❌ Not tagged |
+
+> **Note:** Header has no props — all content is hardcoded with `data-editable="source"` tags. Navigation link `href` values are hardcoded.
 
 ---
 
 ### `Footer.astro`
-`src/components/layout/Footer.astro`
+`src/components/layout/Footer.astro` — **452 lines**
 
-| Line | Element | Current Content | Editable Type |
-|------|---------|----------------|---------------|
-| 11 | `<h3>` | "J Land Contracting INC" | text |
-| 12 | `<p>` | "Deeply rooted in a family legacy…" | text |
-| 18 | `<div>` bg-image | Location icon SVG | image |
-| 19 | `<div>` bg-image | Phone icon SVG | image |
-| 20 | `<div>` bg-image | Email icon SVG | image |
-| 23 | `<p>` | "3636 Glenoble Court, Jefferson, MD 21755" | text |
-| 24 | `<p>` | "(410) 292-0801" | text |
-| 25 | `<p>` | "info@jlandgroup.com" | text |
-| 33 | `<h4>` | "Quick Links" | text |
-| 35–41 | `<a>` (×7) | Nav link texts (Home, Services, About Us, etc.) | text |
-| 47 | `<h4>` | "Our Services" | text |
-| 49–52 | `<a>` (×4) | Service link texts (Roofing, Siding, Gutters, etc.) | text |
-| 58 | `<h4>` | "Stay Updated" | text |
-| 59 | `<p>` | "Subscribe to our newsletter…" | text |
-| 73 | `<button>` | "Subscribe" | text |
-| 84 | `<p>` | "© 2025 J Land Contracting. All Rights Reserved." | text |
-| 89 | `<div>` bg-image | Facebook social icon SVG | image |
-| 90 | `<div>` bg-image | Twitter social icon SVG | image |
-| 91 | `<div>` bg-image | Instagram social icon SVG | image |
-| 92 | `<div>` bg-image | LinkedIn social icon SVG | image |
-| 97 | `<a>` | "Privacy Policy" | text |
-| 99 | `<a>` | "Terms of Service" | text |
+| Line | Element | data-key | Current Content | Editable Type | Status |
+|------|---------|----------|----------------|---------------|--------|
+| 49 | `<h3>` | `footer_company_name` | "J Land Contracting INC" | text | ✅ Tagged |
+| 58 | `<p>` | `footer_company_description` | "Deeply rooted in a family legacy…" | text | ✅ Tagged |
+| 92 | `<p>` | `footer_address` | "3636 Glenoble Court, Jefferson, MD 21755" | text | ✅ Tagged |
+| 101 | `<p>` | `footer_phone` | "(410) 292-0801" | text | ✅ Tagged |
+| 110 | `<p>` | `footer_email` | "info@jlandgroup.com" | text | ✅ Tagged |
+| 126 | `<h4>` | `footer_quick_links_title` | "Quick Links" | text | ✅ Tagged |
+| 141 | `<span>` (×7) | `footer_link_home/services/about/projects/blog/financing/contact` | Nav links | text | ✅ Tagged |
+| 218 | `<h4>` | `footer_services_title` | "Our Services" | text | ✅ Tagged |
+| 233 | `<span>` (×4) | `footer_service_roofing/siding/gutters/restoration` | Service links | text | ✅ Tagged |
+| 277 | `<h4>` | `footer_newsletter_title` | "Stay Updated" | text | ✅ Tagged |
+| 286 | `<p>` | `footer_newsletter_description` | "Subscribe to our newsletter…" | text | ✅ Tagged |
+| 308 | `<span>` | `footer_newsletter_button` | "Subscribe" | text | ✅ Tagged |
+| 330 | `<p>` | `footer_copyright` | "© 2025 J Land Contracting. All Rights Reserved." | text | ✅ Tagged |
+| 369 | `<span>` | `footer_link_privacy` | "Privacy Policy" | text | ✅ Tagged |
+| 383 | `<span>` | `footer_link_terms` | "Terms of Service" | text | ✅ Tagged |
 
----
+**Props interface:**
+```typescript
+export interface Props {
+  socialLinks?: SocialLink[];  // { name, url, icon }
+}
+```
 
-## UI Components (Render Props — Editable at Usage Site)
+> ✅ **Fixed:** Social links are now prop-driven (passed from `Layout.astro` via `index.md` → `footer_social_links`). Defaults are kept as fallbacks.
 
-These components receive all content via props and render it into DOM elements. The `data-editable` tags should be applied either:
-1. **Inside the UI component** on the rendered DOM elements, or
-2. **At the call site** (parent component/page) if using CloudCannon data files.
-
-### `SectionHeader.astro`
-`src/components/ui/display/SectionHeader.astro`
-
-| Line | Element | Current Content | Editable Type |
-|------|---------|----------------|---------------|
-| 63/84 | `<Heading>` | `{title}` prop | text |
-| 78 | `<Text>` | `{displayRatingText}` prop | text |
-| 90 | `<div>` bg-image | `{decorativeImage}` prop | image |
-| 70–74 | `<div>` bg-image (×5) | Star rating icons | image |
-
-### `NumberedSection.astro`
-`src/components/ui/display/NumberedSection.astro`
-
-| Line | Element | Current Content | Editable Type |
-|------|---------|----------------|---------------|
-| 45 | `<Heading>` | `{number}` prop | text |
-| 57 | `<Heading>` | `{title}` prop | text |
-| 64 | `<Text>` | `{description}` prop | text |
-
-### `Card.astro`
-`src/components/ui/display/Card.astro`
-
-| Line | Element | Current Content | Editable Type |
-|------|---------|----------------|---------------|
-| 107 | `<div>` bg-image | `{backgroundImage}` prop (image variant) | image |
-| 113 | `<Heading>` | `{title}` prop (quote variant) | text |
-| 120 | `<img>` | `{image}` prop (service variant) | image |
-| 131 | `<Heading>` | `{title}` prop (service variant) | text |
-| 136 | `<Text>` | `{description}` prop (service variant) | text |
-| 146 | `<Text>` | `{feature}` items (features list) | text |
-| 161 | `<a>` text | `{buttonText}` prop | text |
-| 172 | `<Text>` | `{customerName}` prop (review variant) | text |
-| 181 | `<Text>` | `{location}` prop (review variant) | text |
-| 188 | `<Text>` | `{serviceType}` prop (review variant) | text |
-| 193 | `<Text>` | "Verified Customer" | text |
-| 199 | `<Text>` | `{reviewText}` prop (review variant) | text |
-| 204 | `<Text>` | `{timeAgo}` prop (review variant) | text |
-
-### `Statistics.astro`
-`src/components/ui/display/Statistics.astro`
-
-| Line | Element | Current Content | Editable Type |
-|------|---------|----------------|---------------|
-| 26 | `<div>` | `{stat.value}` | text |
-| 29 | `<div>` | `{stat.label}` | text |
-
-### `FeaturedTestimonial.astro`
-`src/components/ui/features/FeaturedTestimonial.astro`
-
-| Line | Element | Current Content | Editable Type |
-|------|---------|----------------|---------------|
-| 56 | `<Text>` | `{quote}` prop | text |
-| 60 | `CustomerProfile` name | `{customerName}` prop | text |
-| 61 | `CustomerProfile` location | `{location}` prop | text |
-| 62 | `CustomerProfile` avatarUrl | `{avatarUrl}` prop | image |
-
-### `CustomerProfile.astro`
-`src/components/ui/display/CustomerProfile.astro`
-
-| Line | Element | Current Content | Editable Type |
-|------|---------|----------------|---------------|
-| 52 | `<div>` bg-image | `{avatarUrl}` prop | image |
-| 56 | `<Text>` | `{name}` prop | text |
-| 59 | `<Text>` | `{location}` prop | text |
-
-### `Financing.astro`
-`src/components/ui/Financing.astro`
-
-| Line | Element | Current Content | Editable Type |
-|------|---------|----------------|---------------|
-| 7 | `<img>` | GreenSky header image | image |
-| 10 | `<img>` | Roofing product header image | image |
-| 14 | `<img>` | Plan 2521 financing button | image |
-| 19 | `<img>` | Plan 9991 financing button | image |
-| 24 | `<img>` | Plan 4158 financing button | image |
-| 28 | `<img>` | GreenSky footer/disclaimer image | image |
+**Untagged images in Footer:**
+| Line | Element | Current Content | Type |
+|------|---------|----------------|------|
+| 74 | `<div>` bg-image | Location icon SVG (motiffcontent) | image |
+| 79 | `<div>` bg-image | Phone icon SVG (motiffcontent) | image |
+| 84 | `<div>` bg-image | Email icon SVG (motiffcontent) | image |
+| 318 | `<div>` bg-image | Divider line SVG (motiffcontent) | image |
+| 349 | `<img>` (×4) | Social media icon SVGs (motiffcontent) | image (prop-driven) |
 
 ---
 
-## Page-Level Components
+## Section Components (props-only, no `data-editable` tags)
+
+### `Testimonials.astro`
+`src/components/sections/Testimonials.astro` — **171 lines**
+
+All content is received via props. **No `data-editable` tags present.**
+
+**Props interface:**
+```typescript
+export interface Props {
+  images?: any[];
+  testimonial?: any;
+  heading?: string;
+  featured_testimonial?: {
+    quote: string; customerName: string; location: string; rating: number; avatarUrl?: string;
+  };
+  highlight_heading?: string;
+  highlight_rating?: number;
+  highlight_total?: number;
+  reviews?: { name: string; location: string; rating: number; service?: string; time?: string; review?: string; }[];
+}
+```
+
+> Content sourced from `src/content/pages/index.md` → `testimonials_*` fields. Avatar URL from **Sanity CMS**. Project images from **Sanity CMS**.
+
+---
+
+### `AboutUs.astro`
+`src/components/sections/AboutUs.astro` — **154 lines**
+
+All content is received via props. **No `data-editable` tags present.**
+
+**Props interface:**
+```typescript
+export interface Props {
+  heading?: string;
+  history?: { title: string; description: string };
+  mission?: { title: string; description: string };
+  values?: { title: string; description: string };
+  stats?: { value: string; label: string }[];
+  commitment?: { title: string; text: string };
+  videoSrc?: string;  // ✅ Now a prop (was hardcoded)
+}
+```
+
+> ✅ **Fixed:** Video URL is now a prop (`about_video_src` in `index.md`). Default fallback to hardcoded Streamable URL.
+> Content sourced from `src/content/pages/index.md` → `about_*` fields.
+
+---
+
+### `Process.astro`
+`src/components/sections/Process.astro` — **106 lines**
+
+All content is received via props. **No `data-editable` tags present.**
+
+**Props interface:**
+```typescript
+export interface Props {
+  heading?: string;
+  steps?: { number: string; description: string }[];
+}
+```
+
+**Image (hardcoded):**
+| Line | Element | Content | Type |
+|------|---------|---------|------|
+| 98 | `Card` backgroundImage prop | `https://static.motiffcontent.com/...19843b29409c4f4...jpeg` | image |
+
+> Content sourced from `src/content/pages/index.md` → `process_*` fields.
+
+---
+
+### `Services.astro`
+`src/components/sections/Services.astro` — **~60 lines**
+
+All content is received via props. **No `data-editable` tags present.**
+
+**Props interface:**
+```typescript
+export interface Props {
+  variant: 'roofing' | 'construction' | 'showcase';
+  title: string;
+  decorativeImage?: string;
+  services: Service[];
+  columns?: 1 | 2 | 3 | 4;
+}
+```
+
+> Content sourced from service collections (`src/content/services/*.json`) and **Sanity CMS** (home page only).
+
+---
+
+### `Partners.astro`
+`src/components/sections/Partners.astro` — **~63 lines**
+
+**Props interface (refactored):**
+```typescript
+export interface Props {
+  partners?: { name: string; logo: string }[];
+}
+```
+
+> ✅ **Fixed:** Partner logos are now prop-driven via `index.md` → `partners[]` array. Previously 6 hardcoded `<img>` elements. Default fallback retained.
+> Content sourced from `src/content/pages/index.md` → `partners` field.
+
+---
+
+## Page-Level Components (Content Collection Driven)
+
+All page-level components pull content from `src/content/pages/*.md` via `getEntry("pages", "...")`. **None have `data-editable` tags.** Content is edited through the markdown frontmatter files.
+
+### `index.astro`
+`src/pages/index.astro` — **203 lines**
+
+**Content sources:**
+- `src/content/pages/index.md` (frontmatter for all text content)
+- **Sanity CMS** (hero video, testimonial avatar, project photos, roofing/construction service data)
+- `src/content/services/*.json` (service collection fallbacks)
+
+**Frontmatter fields in index.md:**
+| Field | Content | Section |
+|-------|---------|---------| 
+| `title` | "JLand Contracting - Devoted Roofing…" | SEO |
+| `description` | "Devoted roofing and construction…" | SEO |
+| `hero_heading` / `hero_heading_accent` | "Building Roofs. Restoring Trust." / "Serving with Purpose." | Hero |
+| `hero_subtitle` | "Guided by seriousness, integrity…" | Hero |
+| `hero_cta_primary` / `hero_cta_secondary` | CTA button text | Hero |
+| `hero_trust_indicators` | 3 items | Hero |
+| `about_heading` | "About Our Company" | AboutUs |
+| `about_history_title/description` | "Our History" / text | AboutUs |
+| `about_mission_title/description` | "Our Mission" / text | AboutUs |
+| `about_values_title/description` | "Our Values" / text | AboutUs |
+| `about_stats` | 3 stat items | AboutUs |
+| `about_commitment_title/text` | "Our Commitment to Excellence" / text | AboutUs |
+| `about_video_src` | Streamable video URL | AboutUs |
+| `process_title` | "Our Roofing Process" | Process |
+| `process_steps` | 5 step items | Process |
+| `testimonials_heading` | "What Our Clients Say" | Testimonials |
+| `testimonials_featured` | Quote + author + location + rating | Testimonials |
+| `testimonials_highlight_heading` / `_rating` / `_count` | "Customer Reviews" / 4.9 / 124 | Testimonials |
+| `testimonials_list` | 2 review items | Testimonials |
+| `partners` | 6 partner objects (name + logo URL) | Partners |
+| `footer_social_links` | 4 social link objects | Footer |
+| `faq_heading` / `faq_subtitle` / `faq_cta_text` / `faq_cta_button` | FAQ header text + CTA | FAQ |
+| `faq_sections` | 3 sections with 10 total Q&A items | FAQ |
+
+---
 
 ### `about.astro`
-`src/pages/about.astro`
+`src/pages/about.astro` — **649 lines**
 
-| Line | Element | Current Content | Editable Type |
-|------|---------|----------------|---------------|
-| 22 | `<div>` | "Family-Owned Since 2015" (badge) | text |
-| 24–27 | `<h1>` | "Craftsmanship That Stands the Test of Time" | text |
-| 28–31 | `<p>` | "Our devoted certification…" (subtitle) | text |
-| 38 | Button text | "Get Your Free Roof Inspection Now" | text |
-| 41 | Button text | "Learn More" | text |
-| 49 | `<span>` | "Licensed & Insured" | text |
-| 55 | `<span>` | "2000+ Happy Customers" | text |
-| 61 | `<span>` | "50-Year System Warranty" | text |
-| 75 | `SectionHeader` title | "Our Founding Story" | text |
-| 80 | `<p>` | "From a father's vision…" | text |
-| 85 | `<p>` | "Through diligent work…" (story p1) | text |
-| 89–91 | `<p>` | "JLand embodies…" (story p2) | text |
-| 94–97 | `<p>` | "Today, J Land Contracting…" (story p3) | text |
-| 102 | Button text | "See Our Roofing Projects" | text |
-| 115 | `<h3>` | "Danny Nam" | text |
-| 116 | `<p>` | "Founder & CEO" | text |
-| 120–121 | `<blockquote>` | "Every project is a chance…" | text |
-| 127 | `<div>` | "9+" | text |
-| 128 | `<div>` | "Years Experience" | text |
-| 131 | `<div>` | "500+" | text |
-| 132 | `<div>` | "Projects Completed" | text |
-| 135 | `<div>` | "100%" | text |
-| 136 | `<div>` | "Satisfaction Rate" | text |
-| 153 | `SectionHeader` title | "Our Core Values" | text |
-| 157–160 | `<p>` | "Our values are demonstrated…" | text |
-| 170 | `<h3>` | "Integrity First" | text |
-| 171–173 | `<p>` | "Whether seen or unseen…" | text |
-| 182 | `<h3>` | "Quality Obsessed" | text |
-| 183–185 | `<p>` | "Our devoted focus on ventilation…" | text |
-| 194 | `<h3>` | "Family Focused" | text |
-| 195–197 | `<p>` | "Your roof safeguards your family's legacy…" | text |
-| 206 | `<h3>` | "Community Rooted" | text |
-| 207–209 | `<p>` | "As Frederick residents…" | text |
-| 214–216 | `<h2>` | "Our Mission: Protecting What Matters Most" | text |
-| 217–221 | `<p>` | "We exist to deliver scientifically…" | text |
-| 229 | Button text | "Get Your Free Roof Inspection Now" | text |
-| 232 | Button text | "Learn More" | text |
-| 246 | `SectionHeader` title | "Meet Our Team" | text |
-| 250–252 | `<p>` | "Behind every successful project…" | text |
-| 258 | `<span>` | "JL" (avatar initials) | text |
-| 260 | `<h3>` | "Danny Nam" | text |
-| 261 | `<p>` | "Founder & CEO" | text |
-| 262–264 | `<p>` | Bio text | text |
-| 266 | Badge text | "Devoted to Excellence" | text |
-| 272 | `<span>` | "ML" (avatar initials) | text |
-| 274 | `<h3>` | "Maria Lopez" | text |
-| 275 | `<p>` | "Project Manager" | text |
-| 276–278 | `<p>` | Bio text | text |
-| 280 | Badge text | "PMP Certified" | text |
-| 286 | `<span>` | "DT" (avatar initials) | text |
-| 288 | `<h3>` | "David Thompson" | text |
-| 289 | `<p>` | "Lead Craftsman" | text |
-| 290–292 | `<p>` | Bio text | text |
-| 294 | Badge text | "United in Craftsmanship" | text |
-| 301 | Button text | "Meet Your Project Team" | text |
-| 314 | `SectionHeader` title | "Why Families Trust JLand Contracting" | text |
-| 318–320 | `<p>` | "Our credentials speak for themselves…" | text |
-| 325 | `<div>` | "500+" | text |
-| 326 | `<div>` | "Homes Protected" | text |
-| 329 | `<div>` | "9+" | text |
-| 330 | `<div>` | "Years Experience" | text |
-| 333 | `<div>` | "100%" | text |
-| 334 | `<div>` | "Satisfaction Rate" | text |
-| 337 | `<div>` | "24/7" | text |
-| 338 | `<div>` | "Emergency Service" | text |
-| 350 | `<h3>` | "Licensed & Insured" | text |
-| 352–354 | `<p>` | "Fully licensed, bonded…" | text |
-| 364 | `<h3>` | "Lifetime Warranty" | text |
-| 366–368 | `<p>` | "We stand behind our work…" | text |
-| 378 | `<h3>` | "Local Experts" | text |
-| 380–382 | `<p>` | "Born and raised in Frederick…" | text |
-| 395 | `SectionHeader` title | "What Our Neighbors Say" | text |
-| 399–401 | `<p>` | "Don't just take our word…" | text |
-| 425–427 | `<p>` | Testimonial 1 quote | text |
-| 430 | `<span>` | "SM" (initials) | text |
-| 433 | `<div>` | "Sarah Martinez" | text |
-| 434 | `<div>` | "Frederick, MD Homeowner" | text |
-| 459–461 | `<p>` | Testimonial 2 quote | text |
-| 464 | `<span>` | "RJ" (initials) | text |
-| 467 | `<div>` | "Robert Johnson" | text |
-| 468 | `<div>` | "Zachary Homeowner" | text |
-| 493–495 | `<p>` | Testimonial 3 quote | text |
-| 498 | `<span>` | "LW" (initials) | text |
-| 501 | `<div>` | "Lisa Williams" | text |
-| 502 | `<div>` | "Central Homeowner" | text |
-| 509 | Button text | "Read More Success Stories" | text |
-| 523 | `SectionHeader` title | "Strengthening Our Community" | text |
-| 527–529 | `<p>` | "We believe in giving back…" | text |
-| 534 | `<h3>` | "Local Partnerships" | text |
-| 543 | `<h4>` | "Habitat for Humanity" | text |
-| 544 | `<p>` | "Volunteer roofing to aid…" | text |
-| 554 | `<h4>` | "Local Schools" | text |
-| 555 | `<p>` | "Supporting education…" | text |
-| 565 | `<h4>` | "Emergency Response" | text |
-| 566 | `<p>` | "24/7 repairs for families…" | text |
-| 573 | `<h3>` | "Community Impact" | text |
-| 576 | `<div>` | "50+" | text |
-| 577 | `<div>` | "Volunteer Hours" | text |
-| 580 | `<div>` | "25+" | text |
-| 581 | `<div>` | "Families Helped" | text |
-| 584 | `<div>` | "$15K+" | text |
-| 585 | `<div>` | "Donated Services" | text |
-| 588 | `<div>` | "5+" | text |
-| 589 | `<div>` | "Local Partners" | text |
-| 594 | Button text | "Learn More About Our Impact" | text |
-| 607–609 | `<h2>` | "Ready to Protect Your Family's Future?" | text |
-| 610–612 | `<p>` | "Join hundreds of Frederick…" | text |
-| 617 | `<div>` | "FREE" | text |
-| 618 | `<div>` | "Detailed Inspection" | text |
-| 621 | `<div>` | "24/7" | text |
-| 622 | `<div>` | "Emergency Response" | text |
-| 625 | `<div>` | "100%" | text |
-| 626 | `<div>` | "Satisfaction Guarantee" | text |
-| 637 | Button text | "Get Your Free Roof Inspection Now" | text |
-| 640 | Button text | "Request an Estimate" | text |
-| 649 | text node | "Licensed & Insured" | text |
-| 655 | text node | "Lifetime Warranty" | text |
-| 661 | text node | "Local Experts" | text |
+**Content source:** `src/content/pages/about.md`
+
+| Category | Fields | Approx Count |
+|----------|--------|------|
+| SEO | `title`, `description` | 2 |
+| Hero | `badge`, `hero_heading`, `hero_heading_accent`, `hero_subtitle`, `cta_primary_text`, `cta_secondary_text/href`, `trust_indicators` | 8 |
+| Story | `story_heading`, `story_subtitle`, `story_paragraphs[]`, `story_button_text/href` | 5+ |
+| Founder | `founder_name`, `founder_role`, `founder_quote`, `founder_stats[]` | 4+ |
+| Values | `values_heading`, `values_subtitle`, `values_list[]` (title, description, icon) | 3+ |
+| Mission | `mission_heading`, `mission_description`, `mission_primary/secondary_text/href` | 5 |
+| Team | `team_heading`, `team_subtitle`, `team_members[]` (initials, name, role, bio, badge) | 3+ |
+| Expertise | `expertise_heading`, `expertise_subtitle`, `expertise_stats[]` | 3+ |
+| Community | `community_heading`, `community_subtitle`, `community_partners[]`, `community_stats_heading`, `community_stats[]`, `community_link_text/href` | 7+ |
+| Final CTA | `final_cta_heading`, `final_cta_subtitle`, `final_cta_benefits[]`, `final_cta_primary/secondary_text/href`, `final_cta_footer_items[]` | 7+ |
 
 ---
 
 ### `services.astro`
-`src/pages/services.astro`
+`src/pages/services.astro` — **469 lines**
 
-| Line | Element | Current Content | Editable Type |
-|------|---------|----------------|---------------|
-| 125 | `<div>` | "Professional Services" (badge) | text |
-| 127–130 | `<h1>` | "Expert Roofing & Construction Services" | text |
-| 131–134 | `<p>` | "Devoted roofing, construction…" | text |
-| 137 | Button text | "Get Your Free Estimate" | text |
-| 140 | Button text | "Call (410) 292-0801" | text |
-| 148 | `<span>` | "Licensed & Insured" | text |
-| 154 | `<span>` | "20+ Years Experience" | text |
-| 160 | `<span>` | "500+ Happy Customers" | text |
-| 172 | `<Heading>` | "Our Services" | text |
-| 175 | `<Text>` | "Professional roofing and construction…" | text |
-| 186 | `<div>` | "Residential" (badge) | text |
-| 219 | Button text | "View All Services" | text |
-| 232 | `<Heading>` | "Why Choose J Land Contracting?" | text |
-| 235 | `<Text>` | "Discover why homeowners…" | text |
-| 258 | `<Heading>` | "What Our Customers Say" | text |
-| 261 | `<Text>` | "Don't just take our word…" | text |
-| 265 | `<Text>` | "4.9/5 from 200+ reviews" | text |
-| 303 | Button text | "Read More Reviews" | text |
-| 315 | `<Heading>` | "Service Areas" | text |
-| 318 | `<Text>` | "We proudly serve Frederick…" | text |
-| 336 | Button text | "Get Service Quote" | text |
-| 342 | `<img>` | Service areas map SVG | image |
-| 357 | `<Heading>` | "Ready to Start Your Project?" | text |
-| 360 | `<Text>` | "Ready to start your project?…" | text |
-| 366 | `<Text>` | "Call Us Today" | text |
-| 367 | `<Text>` | "(410) 292-0801" | text |
-| 371 | `<Text>` | "Email Us" | text |
-| 372 | `<Text>` | "info@jlandgroup.com" | text |
-| 376 | `<Text>` | "Business Hours" | text |
-| 377 | `<Text>` | "Mon-Fri: 7AM-6PM" | text |
-| 388 | Button text | "Get Free Estimate" | text |
-| 396 | Button text | "Call Now" | text |
+**Content source:** `src/content/pages/services.md` + `src/content/services/*.json` (via `getCollection`)
+
+| Category | Fields | Approx Count |
+|----------|--------|------|
+| SEO | `title`, `description`, `seo_keywords` | 3 |
+| Hero | `badge`, `hero_heading`, `hero_heading_accent`, `hero_subtitle`, `cta/trust` | 9 |
+| Services | `services_heading`, `services_subtitle`, `roofing_description`, `construction_description` | 4 |
+| Why Choose | `why_choose_us_title/subtitle`, `why_choose_us_reasons[]` | 3+ |
+| Testimonials | `testimonials_heading/subtitle`, `testimonials_rating_text`, `testimonials_button_text`, `testimonials[]` | 5+ |
+| Service Areas | `service_areas_heading/subtitle`, `service_areas_button_text`, `service_areas_map_image`, `service_areas[]` | 5+ |
+| Contact CTA | `contact_cta_title/subtitle`, `contact_phone/email/hours`, `contact_cta_buttons[]` | 6+ |
+
+**⚠ Remaining hardcoded strings:**
+| Line | Content | Context |
+|------|---------|---------|
+| 228 | `"Residential"` | Badge label for each service category |
+| 268–269 | `"View All Services"` | Button text below service cards |
+| 419 | `"Call Us Today"` | Contact CTA section label |
+| 427 | `"Email Us"` | Contact CTA section label |
+| 435 | `"Business Hours"` | Contact CTA section label |
 
 ---
 
 ### `contact.astro` (page)
-`src/pages/contact.astro`
+`src/pages/contact.astro` — **297 lines**
 
-| Line | Element | Current Content | Editable Type |
-|------|---------|----------------|---------------|
-| 24 | `<div>` | "Ready to Help Since 2015" (badge) | text |
-| 26–29 | `<h1>` | "Let's Discuss Your Roofing Project" | text |
-| 30–33 | `<p>` | "Our devoted approach…" (subtitle) | text |
-| 36 | Button text | "Request an Estimate" | text |
-| 39 | Button text | "Learn More" | text |
-| 47 | `<span>` | "Integrity & Devotion" | text |
-| 53 | `<span>` | "24/7 Emergency Response" | text |
-| 59 | `<span>` | "Detailed Project Estimates" | text |
-| 71 | `<Heading>` | "Contact Information" | text |
-| 74 | `<Text>` | "Reach out to us…" | text |
-| 85 | `<Heading>` | "Call Us" | text |
-| 88–90 | `<Text>` | Business hours text | text |
-| 93 | Button text | "(410) 292-0801" | text |
-| 103 | `<Heading>` | "Email Us" | text |
-| 106 | `<Text>` | "Get a detailed response…" | text |
-| 109 | Button text | "info@jlandgroup.com" | text |
-| 119 | `<Heading>` | "Service Area" | text |
-| 122–124 | `<Text>` | Address text | text |
-| 127 | Button text | "View Service Areas" | text |
-| 139 | `<Heading>` | "Send Us a Message" | text |
-| 142 | `<Text>` | "Fill out the form below…" | text |
-| 150 | `<Text>` | "Your Name *" | text |
-| 156 | `<Text>` | "Email Address *" | text |
-| 165 | `<Text>` | "Phone Number *" | text |
-| 171 | `<Text>` | "Service Needed" | text |
-| 187 | `<Text>` | "Project Details *" | text |
-| 194 | Button text | "Send Message" | text |
-| 206 | `<Heading>` | "Our Service Areas" | text |
-| 209 | `<Text>` | "We proudly serve Maryland…" | text |
-| 216 | `<Heading>` | "Frederick County" | text |
-| 219 | `<Text>` | "Jefferson, Frederick, Middletown…" | text |
-| 225 | `<Heading>` | "Washington County" | text |
-| 228 | `<Text>` | "Hagerstown, Boonsboro…" | text |
-| 234 | `<Heading>` | "Montgomery County" | text |
-| 237 | `<Text>` | "Germantown, Gaithersburg…" | text |
-| 244 | `<Text>` | "Don't see your area listed?…" | text |
+**Content source:** `src/content/pages/contact.md`
+
+| Category | Fields | Approx Count |
+|----------|--------|------|
+| SEO | `title`, `description` | 2 |
+| Hero | `badge`, `hero_heading`, `hero_heading_accent`, `hero_subtitle`, CTAs, `trust_indicators` | 9 |
+| Contact Info | `contact_info_heading/subtitle`, `contact_cards[]` (icon, title, description, button_text, button_href) | 3+ |
+| Form | `form_heading/subtitle`, `form_submit_text`, `form_fields[]` (label, type, name, placeholder, required, options) | 4+ |
+| Service Areas | `service_areas_heading/subtitle`, `service_areas_footer`, `service_area_cards[]` (title, description) | 4+ |
+
+---
+
+### `blog.astro`
+`src/pages/blog.astro` — **457 lines**
+
+**Content source:** `src/content/pages/blog.md`
+
+| Category | Fields | Approx Count |
+|----------|--------|------|
+| SEO | `title`, `description` | 2 |
+| Hero | `badge`, `hero_heading`, `hero_heading_accent`, `hero_subtitle`, CTAs, `trust_indicators` | 9 |
+| Categories | `categories[]`, `category_labels` | 2 |
+| Articles | `blog_articles[]` (title, excerpt, date, category, slug) | 8 articles |
+| Sidebar | `sidebar_recent_posts_title`, `sidebar_categories_title/categories[]`, `sidebar_trust_title/items[]`, `sidebar_cta_title/text/button/href`, `sidebar_contact_title/info` | 10+ |
+| Bottom CTA | `bottom_cta_heading/text`, `bottom_cta_primary/secondary_text/href` | 5 |
+
+**⚠ Remaining hardcoded strings:**
+| Location | Content | Context |
+|----------|---------|---------|
+| Article cards | `"Read More →"` | Link text on each blog article card |
+| Empty state | `"No articles found matching…"` | Shown when no articles match filter |
+| Category labels | `"All Articles"` etc. | Defined in frontmatter `categories[]` ✅ |
+
+---
+
+### `financing.astro`
+`src/pages/financing.astro` — **169 lines**
+
+**Content source:** `src/content/pages/financing.md`
+
+| Category | Fields | Approx Count |
+|----------|--------|------|
+| SEO | `title`, `description` | 2 |
+| Hero | `badge`, `hero_heading`, `hero_heading_accent`, `hero_subtitle`, `trust_indicators` | 5 |
+| Financing | `financing_badge`, `financing_heading`, `financing_subtitle` | 3 |
+| Guidelines | `guidelines_badge`, `guidelines_heading`, `guidelines_subtitle` | 3 |
+| CTA | `cta_heading`, `cta_subtitle`, `cta_buttons[]` | 3+ |
+
+> **Note:** The `FinancingComponent` and `UsageGuidelines` sub-components may contain their own hardcoded content (GreenSky financing images/text).
+
+---
+
+### `projects.astro`
+`src/pages/projects.astro` — **251 lines**
+
+**Content source:** `src/content/pages/projects.md` + `src/content/services/*.json`
+
+| Category | Fields | Approx Count |
+|----------|--------|------|
+| SEO | `title`, `description` | 2 |
+| Hero | `badge`, `hero_heading`, `hero_heading_accent`, `hero_subtitle`, CTAs, `trust_indicators` | 9 |
+| Showcase | `showcase_sections[]` (badge, heading, subtitle, data_source, cta_text, variant) | 3 sections |
+| CTA | `cta_section_heading`, `cta_section_subtitle`, `cta_section_buttons[]` | 3+ |
+
+> **Note:** Project card data (titles, descriptions, images, locations, testimonials) comes from the JSON files, not the `.md` frontmatter.
+
+**Hardcoded structured data (LD+JSON, line 230–250):** Business name, address, phone, and service area are hardcoded in the inline `<script type="application/ld+json">` block.
+
+---
+
+### `resources.astro`
+`src/pages/resources.astro` — **289 lines**
+
+**Content source:** `src/content/pages/resources.md`
+
+| Category | Fields | Approx Count |
+|----------|--------|------|
+| SEO | `title`, `description` | 2 |
+| Hero | `badge`, `hero_heading`, `hero_heading_accent`, `hero_subtitle`, CTAs, `trust_indicators` | 9 |
+| Blog Section | `blog_section_heading/subtitle`, `blog_cards[]` (title, description, icon, button_text, button_href) | 3+ |
+| Science Section | `science_section_heading/subtitle`, `science_cards[]` (title, description, icon), `science_cta_text/href` | 4+ |
+| Tools Section | `tools_section_heading/subtitle`, `tools_cards[]` (title, description, icon, button_text, button_href) | 3+ |
+| Bottom CTA | `bottom_cta_heading/text`, `bottom_cta_buttons[]` | 3+ |
+
+---
+
+## UI Components (Render Props)
+
+These components receive all content via props and render it into DOM elements. They do **not** have `data-editable` tags internally.
+
+### `SectionHeader.astro`
+`src/components/ui/display/SectionHeader.astro`
+- Renders: `{title}` as heading, `{decorativeImage}` as image, star rating
+
+### `Card.astro`
+`src/components/ui/display/Card.astro`
+- Renders: Multiple variants (image, quote, service, review) with various props
+
+### `ProjectShowcaseCard.astro`
+`src/components/ui/display/ProjectShowcaseCard.astro`
+- Renders: Project title, location, description, materials, image, testimonial, details, CTA
+
+### `FeaturedTestimonial.astro`
+`src/components/ui/features/FeaturedTestimonial.astro`
+- Renders: `{quote}`, `{customerName}`, `{location}`, `{avatarUrl}`
+
+### `Financing.astro`
+`src/components/ui/Financing.astro`
+- Renders: GreenSky financing images (hardcoded URLs, no tags, no props)
+
+### `UsageGuidelines.astro`
+`src/components/ui/UsageGuidelines.astro`
+- Renders: GreenSky usage guideline content (likely hardcoded)
 
 ---
 
 ## Summary
 
-| Component Type | Count | Total Editable Text Fields | Total Editable Image Fields |
-|---------------|-------|---------------------------|----------------------------|
-| Section Components | 8 | ~75 | ~12 |
-| Layout Components | 2 | ~35 | ~9 |
-| UI Components | 7 | ~20 (rendered from props) | ~8 (rendered from props) |
-| Page Components | 3 | ~120 | ~1 |
-| **Total** | **20** | **~250** | **~30** |
+| Content Strategy | Components | Editable Fields |
+|-----------------|-----------|----------------|
+| `data-editable` tags (inline) | Hero, Contact (section), FAQ, Header, Footer | ~71 text + 1 image |
+| Content collection (`.md` frontmatter) | All 8 page files | ~300+ fields |
+| Sanity CMS | Home page (index.astro) | ~5 content types (video, avatar, photos, services) |
+| JSON collections | Service/project data | ~3 JSON files with service arrays |
+| Props only (no tags) | Testimonials, AboutUs, Process, Services, Partners | Content flows from pages |
 
-> **Important Architectural Note:** Many text/image values are passed as Astro component props (e.g., `SectionHeader title`, `NumberedSection description`, `Card image`). CloudCannon's `data-editable` attribute must be placed on the **rendered DOM element**, not on the Astro component tag. This means:
-> 1. Tags should go **inside** the UI components on the actual `<h1>`, `<p>`, `<img>`, `<div>` elements that render the prop values.
-> 2. Alternatively, content should be migrated to CloudCannon-compatible data files or content collections for structured editing.
+---
+
+## Remaining Gaps (Minor)
+
+| Gap | Location | Description | Priority |
+|-----|----------|-------------|----------|
+| Hardcoded labels | `services.astro` L228, L268, L419, L427, L435 | "Residential", "View All Services", "Call Us Today", "Email Us", "Business Hours" | Low |
+| Hardcoded "Read More" | `blog.astro` article cards | "Read More →" link text | Low |
+| Hardcoded LD+JSON | `projects.astro` L230–250 | Business name, address, phone in structured data | Low |
+| Hardcoded LD+JSON | `services.astro` L91–124 | Structured data with hardcoded business info | Low |
+| Financing sub-components | `Financing.astro`, `UsageGuidelines.astro` | GreenSky images/text likely hardcoded | Low |
+| Header logo image | `Header.astro` L13 | `/favicon.svg` path is hardcoded | Low |
+| Footer icon images | `Footer.astro` L74, L79, L84, L318 | Motiffcontent SVG URLs for icons/divider | Low |
+| Process card image | `Process.astro` L98 | Background image URL is hardcoded | Low |
+| Contact map URL | `Contact.astro` L35 | Google Maps iframe URL is hardcoded | Low |
+| Form placeholders | `Contact.astro` | Input placeholders ("John Smith", etc.) hardcoded | Low |
+
+> **All critical content is editable.** The remaining gaps are decorative elements, icon URLs, structured data, and a handful of UI label strings that rarely change.
+
+---
+
+## Changes Since Last Audit (2026-02-21)
+
+| Change | Before | After |
+|--------|--------|-------|
+| Partners logos | Hardcoded 6 `<img>` elements | ✅ Prop-driven via `index.md` → `partners[]` |
+| FAQ Q&A data | Hardcoded JS arrays (10 items) | ✅ Prop-driven via `index.md` → `faq_sections[]` |
+| Footer social links | Hardcoded 4 `<div>` bg-images | ✅ Prop-driven via `index.md` → `footer_social_links[]` |
+| AboutUs video URL | Hardcoded Streamable iframe | ✅ Prop-driven via `index.md` → `about_video_src` |
+| Sanity CMS documentation | Not documented | ✅ Now fully documented |
+| JSON collections | Not documented | ✅ Now fully documented |

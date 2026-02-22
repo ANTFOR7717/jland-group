@@ -2,104 +2,145 @@
 // FAQ Component - Refactored to use Tailwind CSS only
 // Complies with mandatory CSS framework requirements
 
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+export interface FAQSection {
+  title: string;
+  key: string;
+  items: FAQItem[];
+}
+
 export interface Props {
+  heading?: string;
+  subtitle?: string;
+  cta_text?: string;
+  cta_button?: string;
+  sections?: FAQSection[];
   class?: string;
 }
 
 const {
-  class: className = '',
+  heading = "Frequently Asked Questions",
+  subtitle = "Find answers to common questions about our roofing services, materials, and process.",
+  cta_text = "Still have questions?",
+  cta_button = "Learn More",
+  sections = [
+    {
+      title: "Roofing Materials",
+      key: "materials",
+      items: [
+        {
+          question: "What roofing materials do you recommend for our climate?",
+          answer:
+            "For your local climate, we recommend asphalt shingles for affordability and durability, metal roofing for longevity and energy efficiency, or tile roofing for extreme weather resistance. Each is selected with devotion to your weather patterns, budget, and preferences.",
+        },
+        {
+          question: "How do I choose between different roofing materials?",
+          answer:
+            "Consider factors like climate resistance, longevity, maintenance requirements, energy efficiency, and budget. We provide detailed comparisons and samples to help you make an informed decision. Our experts will assess your home's structure and recommend the best options for your specific needs.",
+        },
+        {
+          question: "Do you offer eco-friendly roofing options?",
+          answer:
+            "Yes! We offer recycled metal roofing, sustainable wood shingles, solar tiles, and cool roof materials that reduce energy consumption. These eco-friendly options not only minimize environmental impact but can also qualify for tax credits and reduce your energy bills significantly.",
+        },
+      ],
+    },
+    {
+      title: "Installation Process",
+      key: "installation",
+      items: [
+        {
+          question: "How long does a typical roof installation take?",
+          answer:
+            "Most residential roof installations take 1-3 days depending on size, complexity, and weather conditions. A typical single-family home can be completed in 1-2 days, while larger or more complex roofs may take up to a week. Our united team provides detailed timelines during consultation and updates throughout.",
+        },
+        {
+          question: "Do I need to be home during the roof installation?",
+          answer:
+            "While it's not required, we recommend being available for the initial walkthrough and final inspection. Our team is fully licensed and insured, so you can feel comfortable leaving during the work day. We'll communicate any important updates and ensure your property is secure at all times.",
+        },
+        {
+          question: "How do you protect my property during installation?",
+          answer:
+            "We use protective tarps, magnetic sweepers for nails, and careful debris management. Your landscaping, vehicles, and outdoor furniture are covered and protected. We also conduct daily cleanup and a final magnetic sweep to ensure your property is left clean and safe.",
+        },
+        {
+          question: "What happens if it rains during my roof installation?",
+          answer:
+            "We monitor weather closely and use temporary protective measures when needed. If rain is forecasted, we'll secure your roof with tarps and weatherproofing. Work may be paused for safety, but your home will remain protected throughout any weather delays.",
+        },
+      ],
+    },
+    {
+      title: "Warranty & Maintenance",
+      key: "warranty",
+      items: [
+        {
+          question: "What warranty do you offer on new roofs?",
+          answer:
+            "We provide comprehensive warranties including manufacturer material warranties (15-50 years depending on material) and our workmanship warranty (10 years). This covers installation defects, leaks, and structural issues with reliable integrity. All warranties are transferable to new homeowners, adding value to your property.",
+        },
+        {
+          question: "How often should I have my roof inspected?",
+          answer:
+            "We recommend professional roof inspections twice yearly (spring and fall) and after severe weather events. Regular inspections help identify minor issues before they become major problems, extending your roof's lifespan and maintaining warranty coverage.",
+        },
+        {
+          question: "What maintenance does a roof require?",
+          answer:
+            "Basic maintenance includes keeping gutters clean, removing debris, trimming overhanging branches, and checking for loose or damaged shingles. We offer maintenance packages that include regular cleaning, minor repairs, and detailed inspections to keep your roof in optimal condition.",
+        },
+      ],
+    },
+  ],
+  class: className = "",
   ...rest
 } = Astro.props;
 
-import Container from '../ui/layout/Container.astro';
-import Section from '../ui/layout/Section.astro';
-import Spacer from '../ui/layout/Spacer.astro';
-import ContentBlock from '../ui/display/ContentBlock.astro';
-import ContentGrid from '../ui/layout/ContentGrid.astro';
-import { Dropdown, SectionHeader, DecorativeLine, Button } from '../ui/index.js';
-import Heading from '../ui/display/Heading.astro';
-import Text from '../ui/display/Text.astro';
-
-// FAQ Data
-const roofingMaterialsFAQs = [
-  {
-    id: "materials-1",
-    question: "What roofing materials do you recommend for our climate?",
-    answer: "For your local climate, we recommend asphalt shingles for affordability and durability, metal roofing for longevity and energy efficiency, or tile roofing for extreme weather resistance. Each is selected with devotion to your weather patterns, budget, and preferences.",
-    maxWidth: "max-w-lg"
-  },
-  {
-    id: "materials-2",
-    question: "How do I choose between different roofing materials?",
-    answer: "Consider factors like climate resistance, longevity, maintenance requirements, energy efficiency, and budget. We provide detailed comparisons and samples to help you make an informed decision. Our experts will assess your home's structure and recommend the best options for your specific needs.",
-    maxWidth: "max-w-lg"
-  },
-  {
-    id: "materials-3",
-    question: "Do you offer eco-friendly roofing options?",
-    answer: "Yes! We offer recycled metal roofing, sustainable wood shingles, solar tiles, and cool roof materials that reduce energy consumption. These eco-friendly options not only minimize environmental impact but can also qualify for tax credits and reduce your energy bills significantly.",
-    maxWidth: "max-w-lg"
-  }
-];
-
-const installationProcessFAQs = [
-  {
-    id: "process-1",
-    question: "How long does a typical roof installation take?",
-    answer: "Most residential roof installations take 1-3 days depending on size, complexity, and weather conditions. A typical single-family home can be completed in 1-2 days, while larger or more complex roofs may take up to a week. Our united team provides detailed timelines during consultation and updates throughout.",
-    maxWidth: "max-w-md"
-  },
-  {
-    id: "process-2",
-    question: "Do I need to be home during the roof installation?",
-    answer: "While it's not required, we recommend being available for the initial walkthrough and final inspection. Our team is fully licensed and insured, so you can feel comfortable leaving during the work day. We'll communicate any important updates and ensure your property is secure at all times.",
-    maxWidth: "max-w-lg"
-  },
-  {
-    id: "process-3",
-    question: "How do you protect my property during installation?",
-    answer: "We use protective tarps, magnetic sweepers for nails, and careful debris management. Your landscaping, vehicles, and outdoor furniture are covered and protected. We also conduct daily cleanup and a final magnetic sweep to ensure your property is left clean and safe.",
-    maxWidth: "max-w-lg"
-  },
-  {
-    id: "process-4",
-    question: "What happens if it rains during my roof installation?",
-    answer: "We monitor weather closely and use temporary protective measures when needed. If rain is forecasted, we'll secure your roof with tarps and weatherproofing. Work may be paused for safety, but your home will remain protected throughout any weather delays.",
-    maxWidth: "max-w-lg"
-  }
-];
-
-const warrantyMaintenanceFAQs = [
-  {
-    id: "warranty-1",
-    question: "What warranty do you offer on new roofs?",
-    answer: "We provide comprehensive warranties including manufacturer material warranties (15-50 years depending on material) and our workmanship warranty (10 years). This covers installation defects, leaks, and structural issues with reliable integrity. All warranties are transferable to new homeowners, adding value to your property.",
-    maxWidth: "max-w-sm"
-  },
-  {
-    id: "warranty-2",
-    question: "How often should I have my roof inspected?",
-    answer: "We recommend professional roof inspections twice yearly (spring and fall) and after severe weather events. Regular inspections help identify minor issues before they become major problems, extending your roof's lifespan and maintaining warranty coverage.",
-    maxWidth: "max-w-sm"
-  },
-  {
-    id: "warranty-3",
-    question: "What maintenance does a roof require?",
-    answer: "Basic maintenance includes keeping gutters clean, removing debris, trimming overhanging branches, and checking for loose or damaged shingles. We offer maintenance packages that include regular cleaning, minor repairs, and detailed inspections to keep your roof in optimal condition.",
-    maxWidth: "max-w-sm"
-  }
-];
+import Container from "../ui/layout/Container.astro";
+import Section from "../ui/layout/Section.astro";
+import Spacer from "../ui/layout/Spacer.astro";
+import ContentBlock from "../ui/display/ContentBlock.astro";
+import ContentGrid from "../ui/layout/ContentGrid.astro";
+import {
+  Dropdown,
+  SectionHeader,
+  DecorativeLine,
+  Button,
+} from "../ui/index.js";
+import Heading from "../ui/display/Heading.astro";
+import Text from "../ui/display/Text.astro";
 ---
 
-<Section background="light" padding="sm" class={`py-8 sm:py-12 ${className}`} {...rest}>
+<Section
+  background="light"
+  padding="sm"
+  class={`py-8 sm:py-12 ${className}`}
+  {...rest}
+>
   <Container size="xl">
     <!-- FAQ Container with proper UI components -->
-    <ContentBlock maxWidth="max-w-6xl" class="mx-auto overflow-hidden font-montserrat flex flex-col items-stretch bg-background-light text-lg font-medium gap-2">
+    <ContentBlock
+      maxWidth="max-w-6xl"
+      class="mx-auto overflow-hidden font-montserrat flex flex-col items-stretch bg-background-light text-lg font-medium gap-2"
+    >
       <!-- Header Section -->
       <Spacer size="xl" direction="top">
         <ContentGrid columns={1} padding="lg" class="items-start min-h-11">
-          <Heading level={1} size="3xl" class="truncate w-full max-w-lg min-h-9 text-2xl sm:text-3xl md:text-4xl">
-            <span data-editable="source" data-path="src/components/sections/FAQ.astro" data-key="faq_heading">Frequently Asked Questions</span>
+          <Heading
+            level={1}
+            size="3xl"
+            class="truncate w-full max-w-lg min-h-9 text-2xl sm:text-3xl md:text-4xl"
+          >
+            <span
+              data-editable="source"
+              data-path="src/components/sections/FAQ.astro"
+              data-key="faq_heading">{heading}</span
+            >
           </Heading>
         </ContentGrid>
       </Spacer>
@@ -112,87 +153,84 @@ const warrantyMaintenanceFAQs = [
       <!-- Subtitle -->
       <Spacer size="xs" direction="top">
         <ContentGrid columns={1} padding="lg" class="items-start min-h-6">
-          <Text variant="body" color="secondary" class="truncate w-full max-w-2xl min-h-5 text-sm sm:text-base">
-            <span data-editable="source" data-path="src/components/sections/FAQ.astro" data-key="faq_subtitle">Find answers to common questions about our roofing services, materials, and process.</span>
+          <Text
+            variant="body"
+            color="secondary"
+            class="truncate w-full max-w-2xl min-h-5 text-sm sm:text-base"
+          >
+            <span
+              data-editable="source"
+              data-path="src/components/sections/FAQ.astro"
+              data-key="faq_subtitle">{subtitle}</span
+            >
           </Text>
         </ContentGrid>
       </Spacer>
 
-      <!-- Roofing Materials Section -->
-      <Spacer size="lg" direction="top">
-        <ContentGrid columns={1} padding="lg" class="items-start min-h-8">
-          <Heading level={3} size="lg" class="truncate w-72 min-h-6 font-semibold text-lg sm:text-xl">
-            <span data-editable="source" data-path="src/components/sections/FAQ.astro" data-key="faq_section_materials">Roofing Materials</span>
-          </Heading>
-        </ContentGrid>
-      </Spacer>
-      <Spacer size="xs" direction="top">
-        <ContentGrid columns={1} gap="sm" padding="lg" class="flex-col items-stretch">
-          {roofingMaterialsFAQs.map((faq) => (
-            <Dropdown 
-              id={faq.id}
-              title={faq.question}
-              content={faq.answer}
-              variant="faq"
-              maxWidth={faq.maxWidth}
-            />
-          ))}
-        </ContentGrid>
-      </Spacer>
-
-      <!-- Installation Process Section -->
-      <Spacer size="lg" direction="top">
-        <ContentGrid columns={1} padding="lg" class="items-start min-h-8">
-          <Heading level={3} size="lg" class="truncate w-72 min-h-6 font-semibold text-lg sm:text-xl">
-            <span data-editable="source" data-path="src/components/sections/FAQ.astro" data-key="faq_section_installation">Installation Process</span>
-          </Heading>
-        </ContentGrid>
-      </Spacer>
-      <Spacer size="xs" direction="top">
-        <ContentGrid columns={1} gap="sm" padding="lg" class="flex-col items-stretch">
-          {installationProcessFAQs.map((faq) => (
-            <Dropdown 
-              id={faq.id}
-              title={faq.question}
-              content={faq.answer}
-              variant="faq"
-              maxWidth={faq.maxWidth}
-            />
-          ))}
-        </ContentGrid>
-      </Spacer>
-
-      <!-- Warranty & Maintenance Section -->
-      <Spacer size="lg" direction="top">
-        <ContentGrid columns={1} padding="lg" class="items-start min-h-8">
-          <Heading level={3} size="lg" class="truncate w-72 min-h-6 font-semibold text-lg sm:text-xl">
-            <span data-editable="source" data-path="src/components/sections/FAQ.astro" data-key="faq_section_warranty">Warranty & Maintenance</span>
-          </Heading>
-        </ContentGrid>
-      </Spacer>
-      <Spacer size="xs" direction="top">
-        <ContentGrid columns={1} gap="sm" padding="lg" class="flex-col items-stretch">
-          {warrantyMaintenanceFAQs.map((faq) => (
-            <Dropdown 
-              id={faq.id}
-              title={faq.question}
-              content={faq.answer}
-              variant="faq"
-              maxWidth={faq.maxWidth}
-            />
-          ))}
-        </ContentGrid>
-      </Spacer>
+      <!-- FAQ Sections (dynamic) -->
+      {
+        sections.map((section, sectionIndex) => (
+          <Fragment>
+            <Spacer size="lg" direction="top">
+              <ContentGrid columns={1} padding="lg" class="items-start min-h-8">
+                <Heading
+                  level={3}
+                  size="lg"
+                  class="truncate w-72 min-h-6 font-semibold text-lg sm:text-xl"
+                >
+                  <span
+                    data-editable="source"
+                    data-path="src/components/sections/FAQ.astro"
+                    data-key={`faq_section_${section.key}`}
+                  >
+                    {section.title}
+                  </span>
+                </Heading>
+              </ContentGrid>
+            </Spacer>
+            <Spacer size="xs" direction="top">
+              <ContentGrid
+                columns={1}
+                gap="sm"
+                padding="lg"
+                class="flex-col items-stretch"
+              >
+                {section.items.map((faq, faqIndex) => (
+                  <Dropdown
+                    id={`${section.key}-${faqIndex + 1}`}
+                    title={faq.question}
+                    content={faq.answer}
+                    variant="faq"
+                    maxWidth="max-w-lg"
+                  />
+                ))}
+              </ContentGrid>
+            </Spacer>
+          </Fragment>
+        ))
+      }
 
       <!-- Contact Us Section -->
       <Spacer size="lg" direction="top">
         <ContentGrid columns={1} padding="lg" class="flex items-center">
           <div class="flex items-center gap-6 ml-auto">
             <Text variant="lead" color="primary" weight="medium">
-              <span data-editable="source" data-path="src/components/sections/FAQ.astro" data-key="faq_cta_text">Still have questions?</span>
+              <span
+                data-editable="source"
+                data-path="src/components/sections/FAQ.astro"
+                data-key="faq_cta_text">{cta_text}</span
+              >
             </Text>
-            <Button variant="primary" size="lg" class="min-h-14 w-56 text-white">
-              <span data-editable="source" data-path="src/components/sections/FAQ.astro" data-key="faq_cta_button">Learn More</span>
+            <Button
+              variant="primary"
+              size="lg"
+              class="min-h-14 w-56 text-white"
+            >
+              <span
+                data-editable="source"
+                data-path="src/components/sections/FAQ.astro"
+                data-key="faq_cta_button">{cta_button}</span
+              >
             </Button>
           </div>
         </ContentGrid>
