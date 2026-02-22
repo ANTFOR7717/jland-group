@@ -55,8 +55,14 @@ const pagesCollection = defineCollection({
   }).passthrough()
 });
 
+const dataCollection = defineCollection({
+  type: 'content',
+  schema: z.object({}).passthrough()
+});
+
 export const collections = {
   services: servicesCollection,
   testimonials: testimonialsCollection,
-  pages: pagesCollection
+  pages: pagesCollection,
+  data: dataCollection
 };

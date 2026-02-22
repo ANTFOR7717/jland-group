@@ -5,34 +5,51 @@ export interface SocialLink {
   url: string;
   icon: string;
 }
+
+export interface FooterLink {
+  label: string;
+  href: string;
+}
+
 export interface Props {
   socialLinks?: SocialLink[];
+  footer_company_name?: string;
+  footer_company_description?: string;
+  footer_address?: string;
+  footer_phone?: string;
+  footer_email?: string;
+  footer_quick_links_title?: string;
+  footer_quick_links?: FooterLink[];
+  footer_services_title?: string;
+  footer_services_links?: FooterLink[];
+  footer_newsletter_title?: string;
+  footer_newsletter_description?: string;
+  footer_newsletter_button?: string;
+  footer_copyright?: string;
+  footer_link_privacy?: string;
+  footer_link_terms?: string;
 }
 
 const {
-  socialLinks = [
-    {
-      name: "Facebook",
-      url: "#",
-      icon: "https://static.motiffcontent.com/private/resource/image/1984510688dc1de-4db560ab-a225-44ea-a18b-94e8dd6c23a0.svg",
-    },
-    {
-      name: "Twitter",
-      url: "#",
-      icon: "https://static.motiffcontent.com/private/resource/image/1984510688ddfda-bdc9fa85-2955-45df-8d5f-8829ac7d5b69.svg",
-    },
-    {
-      name: "Instagram",
-      url: "#",
-      icon: "https://static.motiffcontent.com/private/resource/image/1984510688e91a8-52cc4a7d-26bc-4aed-a1ad-78ea94370c98.svg",
-    },
-    {
-      name: "LinkedIn",
-      url: "#",
-      icon: "https://static.motiffcontent.com/private/resource/image/1984510688f11f4-d7206832-6d42-4170-a2c2-19221eec4bdb.svg",
-    },
-  ],
+  socialLinks = [],
+  footer_company_name = "",
+  footer_company_description = "",
+  footer_address = "",
+  footer_phone = "",
+  footer_email = "",
+  footer_quick_links_title = "",
+  footer_quick_links = [],
+  footer_services_title = "",
+  footer_services_links = [],
+  footer_newsletter_title = "",
+  footer_newsletter_description = "",
+  footer_newsletter_button = "",
+  footer_copyright = "",
+  footer_link_privacy = "",
+  footer_link_terms = "",
 } = Astro.props;
+
+const fp = "@file[src/content/data/site.md]";
 ---
 
 <footer class="text-white py-8 sm:py-12" style="background: #262327;">
@@ -44,25 +61,20 @@ const {
       <!-- Company Info -->
       <div class="col-span-1">
         <h3
-          data-editable="source"
-          data-path="src/components/layout/Footer.astro"
-          data-key="footer_company_name"
+          data-editable="text"
+          data-prop={`${fp}.footer_company_name`}
           class="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4"
           style="color: #F8F9FA;"
         >
-          J Land Contracting INC
+          {footer_company_name}
         </h3>
         <p
-          data-editable="source"
-          data-path="src/components/layout/Footer.astro"
-          data-key="footer_company_description"
+          data-editable="text"
+          data-prop={`${fp}.footer_company_description`}
           class="text-sm sm:text-base leading-5 sm:leading-6"
           style="color: #7D7877;"
         >
-          Deeply rooted in a family legacy of diligence and perseverance, J Land
-          Contracting provides devoted roofing, siding, and gutter services with
-          integrity and reliability, protecting homes and supporting
-          communities.
+          {footer_company_description}
         </p>
 
         <!-- Contact Icons and Info -->
@@ -87,31 +99,28 @@ const {
             </div>
             <div class="space-y-1 sm:space-y-2">
               <p
-                data-editable="source"
-                data-path="src/components/layout/Footer.astro"
-                data-key="footer_address"
+                data-editable="text"
+                data-prop={`${fp}.footer_address`}
                 class="text-sm sm:text-base leading-5 sm:leading-6"
                 style="color: #7D7877;"
               >
-                3636 Glenoble Court, Jefferson, MD 21755
+                {footer_address}
               </p>
               <p
-                data-editable="source"
-                data-path="src/components/layout/Footer.astro"
-                data-key="footer_phone"
+                data-editable="text"
+                data-prop={`${fp}.footer_phone`}
                 class="text-sm sm:text-base leading-5 sm:leading-6"
                 style="color: #7D7877;"
               >
-                (410) 292-0801
+                {footer_phone}
               </p>
               <p
-                data-editable="source"
-                data-path="src/components/layout/Footer.astro"
-                data-key="footer_email"
+                data-editable="text"
+                data-prop={`${fp}.footer_email`}
                 class="text-sm sm:text-base leading-5 sm:leading-6"
                 style="color: #7D7877;"
               >
-                info@jlandgroup.com
+                {footer_email}
               </p>
             </div>
           </div>
@@ -121,173 +130,84 @@ const {
       <!-- Quick Links -->
       <div class="col-span-1">
         <h4
-          data-editable="source"
-          data-path="src/components/layout/Footer.astro"
-          data-key="footer_quick_links_title"
+          data-editable="text"
+          data-prop={`${fp}.footer_quick_links_title`}
           class="text-base sm:text-lg font-semibold mb-4 sm:mb-6"
           style="color: #F8F9FA;"
         >
-          Quick Links
+          {footer_quick_links_title}
         </h4>
         <ul class="space-y-1 sm:space-y-2">
-          <li>
-            <a
-              href="/"
-              class="text-sm sm:text-base leading-5 sm:leading-6 hover:opacity-80"
-              style="color: #7D7877;"
-              ><span
-                data-editable="source"
-                data-path="src/components/layout/Footer.astro"
-                data-key="footer_link_home">Home</span
-              ></a>
-          </li>
-          <li>
-            <a
-              href="/services"
-              class="text-sm sm:text-base leading-5 sm:leading-6 hover:opacity-80"
-              style="color: #7D7877;"
-              ><span
-                data-editable="source"
-                data-path="src/components/layout/Footer.astro"
-                data-key="footer_link_services">Services</span
-              ></a>
-          </li>
-          <li>
-            <a
-              href="/about"
-              class="text-sm sm:text-base leading-5 sm:leading-6 hover:opacity-80"
-              style="color: #7D7877;"
-              ><span
-                data-editable="source"
-                data-path="src/components/layout/Footer.astro"
-                data-key="footer_link_about">About Us</span
-              ></a>
-          </li>
-          <li>
-            <a
-              href="/projects"
-              class="text-sm sm:text-base leading-5 sm:leading-6 hover:opacity-80"
-              style="color: #7D7877;"
-              ><span
-                data-editable="source"
-                data-path="src/components/layout/Footer.astro"
-                data-key="footer_link_projects">Projects</span
-              ></a>
-          </li>
-          <li>
-            <a
-              href="/blog"
-              class="text-sm sm:text-base leading-5 sm:leading-6 hover:opacity-80"
-              style="color: #7D7877;"
-              ><span
-                data-editable="source"
-                data-path="src/components/layout/Footer.astro"
-                data-key="footer_link_blog">Blog</span
-              ></a>
-          </li>
-          <li>
-            <a
-              href="/financing"
-              class="text-sm sm:text-base leading-5 sm:leading-6 hover:opacity-80"
-              style="color: #7D7877;"
-              ><span
-                data-editable="source"
-                data-path="src/components/layout/Footer.astro"
-                data-key="footer_link_financing">Financing</span
-              ></a>
-          </li>
-          <li>
-            <a
-              href="/contact"
-              class="text-sm sm:text-base leading-5 sm:leading-6 hover:opacity-80"
-              style="color: #7D7877;"
-              ><span
-                data-editable="source"
-                data-path="src/components/layout/Footer.astro"
-                data-key="footer_link_contact">Contact</span
-              ></a>
-          </li>
+          {
+            footer_quick_links.map((link, index) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="text-sm sm:text-base leading-5 sm:leading-6 hover:opacity-80"
+                  style="color: #7D7877;"
+                >
+                  <span
+                    data-editable="text"
+                    data-prop={`${fp}.footer_quick_links[${index}].label`}
+                  >
+                    {link.label}
+                  </span>
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </div>
 
       <!-- Our Services -->
       <div class="col-span-1">
         <h4
-          data-editable="source"
-          data-path="src/components/layout/Footer.astro"
-          data-key="footer_services_title"
+          data-editable="text"
+          data-prop={`${fp}.footer_services_title`}
           class="text-base sm:text-lg font-semibold mb-4 sm:mb-6"
           style="color: #F8F9FA;"
         >
-          Our Services
+          {footer_services_title}
         </h4>
         <ul class="space-y-1 sm:space-y-2">
-          <li>
-            <a
-              href="/services/roofing"
-              class="text-sm sm:text-base leading-5 sm:leading-6 hover:opacity-80"
-              style="color: #7D7877;"
-              ><span
-                data-editable="source"
-                data-path="src/components/layout/Footer.astro"
-                data-key="footer_service_roofing">Roofing</span
-              ></a>
-          </li>
-          <li>
-            <a
-              href="/services/siding"
-              class="text-sm sm:text-base leading-5 sm:leading-6 hover:opacity-80"
-              style="color: #7D7877;"
-              ><span
-                data-editable="source"
-                data-path="src/components/layout/Footer.astro"
-                data-key="footer_service_siding">Siding</span
-              ></a>
-          </li>
-          <li>
-            <a
-              href="/services/gutters"
-              class="text-sm sm:text-base leading-5 sm:leading-6 hover:opacity-80"
-              style="color: #7D7877;"
-              ><span
-                data-editable="source"
-                data-path="src/components/layout/Footer.astro"
-                data-key="footer_service_gutters">Gutters</span
-              ></a>
-          </li>
-          <li>
-            <a
-              href="/services/roof-restoration"
-              class="text-sm sm:text-base leading-5 sm:leading-6 hover:opacity-80"
-              style="color: #7D7877;"
-              ><span
-                data-editable="source"
-                data-path="src/components/layout/Footer.astro"
-                data-key="footer_service_restoration">Roof Restoration</span
-              ></a>
-          </li>
+          {
+            footer_services_links.map((link, index) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="text-sm sm:text-base leading-5 sm:leading-6 hover:opacity-80"
+                  style="color: #7D7877;"
+                >
+                  <span
+                    data-editable="text"
+                    data-prop={`${fp}.footer_services_links[${index}].label`}
+                  >
+                    {link.label}
+                  </span>
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </div>
 
       <!-- Newsletter Signup -->
       <div class="col-span-1">
         <h4
-          data-editable="source"
-          data-path="src/components/layout/Footer.astro"
-          data-key="footer_newsletter_title"
+          data-editable="text"
+          data-prop={`${fp}.footer_newsletter_title`}
           class="text-base sm:text-lg font-semibold mb-4 sm:mb-6"
           style="color: #F8F9FA;"
         >
-          Stay Updated
+          {footer_newsletter_title}
         </h4>
         <p
-          data-editable="source"
-          data-path="src/components/layout/Footer.astro"
-          data-key="footer_newsletter_description"
+          data-editable="text"
+          data-prop={`${fp}.footer_newsletter_description`}
           class="text-sm sm:text-base leading-5 sm:leading-6 mb-2 sm:mb-3"
           style="color: #7D7877;"
         >
-          Subscribe to our newsletter for tips and updates.
+          {footer_newsletter_description}
         </p>
 
         <form class="space-y-3">
@@ -303,9 +223,9 @@ const {
             style="background: #FDB813; color: #262327;"
           >
             <span
-              data-editable="source"
-              data-path="src/components/layout/Footer.astro"
-              data-key="footer_newsletter_button">Subscribe</span
+              data-editable="text"
+              data-prop={`${fp}.footer_newsletter_button`}
+              >{footer_newsletter_button}</span
             >
           </button>
         </form>
@@ -324,13 +244,12 @@ const {
       class="flex flex-col md:flex-row justify-between items-center pt-3 sm:pt-4 pb-6 sm:pb-8"
     >
       <p
-        data-editable="source"
-        data-path="src/components/layout/Footer.astro"
-        data-key="footer_copyright"
+        data-editable="text"
+        data-prop={`${fp}.footer_copyright`}
         class="text-sm sm:text-base leading-5 sm:leading-6 mb-3 sm:mb-4 md:mb-0"
         style="color: #7D7877;"
       >
-        © 2025 J Land Contracting. All Rights Reserved.
+        {footer_copyright}
       </p>
 
       <div class="flex items-center space-x-4">
@@ -363,10 +282,8 @@ const {
             href="/privacy"
             class="text-sm sm:text-base leading-5 sm:leading-6 hover:opacity-80"
             style="color: #7D7877;"
-            ><span
-              data-editable="source"
-              data-path="src/components/layout/Footer.astro"
-              data-key="footer_link_privacy">Privacy Policy</span
+            ><span data-editable="text" data-prop={`${fp}.footer_link_privacy`}
+              >{footer_link_privacy}</span
             ></a
           >
           <span
@@ -377,10 +294,8 @@ const {
             href="/terms"
             class="text-sm sm:text-base leading-5 sm:leading-6 hover:opacity-80"
             style="color: #7D7877;"
-            ><span
-              data-editable="source"
-              data-path="src/components/layout/Footer.astro"
-              data-key="footer_link_terms">Terms of Service</span
+            ><span data-editable="text" data-prop={`${fp}.footer_link_terms`}
+              >{footer_link_terms}</span
             ></a
           >
         </div>

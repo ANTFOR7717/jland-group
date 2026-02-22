@@ -1,6 +1,5 @@
 ---
 import { getEntry } from "astro:content";
-import Header from "../components/layout/Header.astro";
 import Hero from "../components/sections/Hero.astro";
 import Services from "../components/sections/Services.astro";
 import Testimonials from "../components/sections/Testimonials.astro";
@@ -87,6 +86,8 @@ if (!servicesData || !construction || !showcase) {
 }
 
 const page = (await getEntry("pages", "index"))!;
+const siteData = (await getEntry("data", "site"))!;
+const site = siteData.data as any;
 const {
 	title: pageTitle,
 	description: pageDescription,
@@ -129,7 +130,6 @@ const {
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-	<Header />
 	<Hero
 		videoSrc={heroVideo?.videoSrc}
 		heading={`${hero_heading}<br><span class="text-accent-primary">${hero_heading_accent}</span>`}
@@ -206,5 +206,19 @@ const {
 		cta_button={faq_cta_button}
 		sections={faq_sections}
 	/>
-	<Contact />
+	<Contact
+		contact_heading={site.contact_heading}
+		contact_subheading={site.contact_subheading}
+		contact_form_heading={site.contact_form_heading}
+		contact_label_name={site.contact_label_name}
+		contact_label_email={site.contact_label_email}
+		contact_label_phone={site.contact_label_phone}
+		contact_label_address={site.contact_label_address}
+		contact_label_message={site.contact_label_message}
+		contact_submit_button={site.contact_submit_button}
+		contact_call_label={site.contact_call_label}
+		contact_phone={site.contact_phone}
+		contact_email_label={site.contact_email_label}
+		contact_email={site.contact_email}
+	/>
 </Layout>

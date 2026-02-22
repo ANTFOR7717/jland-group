@@ -136,11 +136,7 @@ import Text from "../ui/display/Text.astro";
             size="3xl"
             class="truncate w-full max-w-lg min-h-9 text-2xl sm:text-3xl md:text-4xl"
           >
-            <span
-              data-editable="source"
-              data-path="src/components/sections/FAQ.astro"
-              data-key="faq_heading">{heading}</span
-            >
+            <span data-editable="text" data-prop="faq_heading">{heading}</span>
           </Heading>
         </ContentGrid>
       </Spacer>
@@ -158,10 +154,7 @@ import Text from "../ui/display/Text.astro";
             color="secondary"
             class="truncate w-full max-w-2xl min-h-5 text-sm sm:text-base"
           >
-            <span
-              data-editable="source"
-              data-path="src/components/sections/FAQ.astro"
-              data-key="faq_subtitle">{subtitle}</span
+            <span data-editable="text" data-prop="faq_subtitle">{subtitle}</span
             >
           </Text>
         </ContentGrid>
@@ -179,9 +172,8 @@ import Text from "../ui/display/Text.astro";
                   class="truncate w-72 min-h-6 font-semibold text-lg sm:text-xl"
                 >
                   <span
-                    data-editable="source"
-                    data-path="src/components/sections/FAQ.astro"
-                    data-key={`faq_section_${section.key}`}
+                    data-editable="text"
+                    data-prop={`faq_sections[${sectionIndex}].title`}
                   >
                     {section.title}
                   </span>
@@ -215,10 +207,8 @@ import Text from "../ui/display/Text.astro";
         <ContentGrid columns={1} padding="lg" class="flex items-center">
           <div class="flex items-center gap-6 ml-auto">
             <Text variant="lead" color="primary" weight="medium">
-              <span
-                data-editable="source"
-                data-path="src/components/sections/FAQ.astro"
-                data-key="faq_cta_text">{cta_text}</span
+              <span data-editable="text" data-prop="faq_cta_text"
+                >{cta_text}</span
               >
             </Text>
             <Button
@@ -226,10 +216,8 @@ import Text from "../ui/display/Text.astro";
               size="lg"
               class="min-h-14 w-56 text-white"
             >
-              <span
-                data-editable="source"
-                data-path="src/components/sections/FAQ.astro"
-                data-key="faq_cta_button">{cta_button}</span
+              <span data-editable="text" data-prop="faq_cta_button"
+                >{cta_button}</span
               >
             </Button>
           </div>
