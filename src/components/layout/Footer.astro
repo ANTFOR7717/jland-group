@@ -135,19 +135,20 @@ const {
         >
           {footer_quick_links_title}
         </h4>
-        <ul class="space-y-1 sm:space-y-2">
+        <ul
+          class="space-y-1 sm:space-y-2"
+          data-editable="array"
+          data-prop="footer_quick_links"
+        >
           {
-            footer_quick_links.map((link, index) => (
-              <li>
+            footer_quick_links.map((link) => (
+              <li data-editable="array-item">
                 <a
                   href={link.href}
                   class="text-sm sm:text-base leading-5 sm:leading-6 hover:opacity-80"
                   style="color: #7D7877;"
                 >
-                  <span
-                    data-editable="text"
-                    data-prop={`footer_quick_links[${index}].label`}
-                  >
+                  <span data-editable="text" data-prop="label">
                     {link.label}
                   </span>
                 </a>
@@ -167,19 +168,20 @@ const {
         >
           {footer_services_title}
         </h4>
-        <ul class="space-y-1 sm:space-y-2">
+        <ul
+          class="space-y-1 sm:space-y-2"
+          data-editable="array"
+          data-prop="footer_services_links"
+        >
           {
-            footer_services_links.map((link, index) => (
-              <li>
+            footer_services_links.map((link) => (
+              <li data-editable="array-item">
                 <a
                   href={link.href}
                   class="text-sm sm:text-base leading-5 sm:leading-6 hover:opacity-80"
                   style="color: #7D7877;"
                 >
-                  <span
-                    data-editable="text"
-                    data-prop={`footer_services_links[${index}].label`}
-                  >
+                  <span data-editable="text" data-prop="label">
                     {link.label}
                   </span>
                 </a>

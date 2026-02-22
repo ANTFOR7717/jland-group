@@ -39,14 +39,17 @@ const { logo_text = "", nav_items = [] } = Astro.props;
     <nav
       id="mobile-nav"
       class="hidden md:flex items-center gap-4 lg:gap-6 xl:gap-8 text-white font-semibold"
+      data-editable="array"
+      data-prop="header_nav"
     >
       {
-        nav_items.map((item, index) => (
+        nav_items.map((item) => (
           <a
             href={item.href}
             class="hover:text-accent-primary transition-colors"
+            data-editable="array-item"
           >
-            <span data-editable="text" data-prop={`header_nav[${index}].label`}>
+            <span data-editable="text" data-prop="label">
               {item.label}
             </span>
           </a>
