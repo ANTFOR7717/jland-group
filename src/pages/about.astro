@@ -1,7 +1,6 @@
 ---
 import { getEntry } from "astro:content";
 import Layout from "../layouts/Layout.astro";
-import Header from "../components/layout/Header.astro";
 import SectionHeader from "../components/ui/display/SectionHeader.astro";
 import Button from "../components/ui/buttons/Button.astro";
 import Container from "../components/ui/layout/Container.astro";
@@ -71,7 +70,6 @@ const iconMap: Record<string, string> = {
 ---
 
 <Layout title={title} description={description}>
-  <Header />
   <main>
     <!-- Hero Section -->
     <Section background="dark">

@@ -1,7 +1,6 @@
 ---
 import { getEntry } from "astro:content";
 import Layout from "../layouts/Layout.astro";
-import Header from "../components/layout/Header.astro";
 
 import SectionHeader from "../components/ui/display/SectionHeader.astro";
 import Card from "../components/ui/display/Card.astro";
@@ -56,8 +55,6 @@ const badgeIcons: Record<string, string> = {
 ---
 
 <Layout title={title}>
-  <Header />
-
   <!-- Hero Section -->
   <Section background="dark">
     <Container>
