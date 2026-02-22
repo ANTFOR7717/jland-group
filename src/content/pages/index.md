@@ -53,7 +53,7 @@ process_steps:
 testimonials_heading: "What Our Clients Say"
 testimonials_featured:
   quote: "Working with JLand Contracting has always been worry free. I have used them for years on every type of roofing issue from storm damage to homes completly destroyed by fire. They have always been on time, extremely professional and turn out a high quality product. This is the only exterior contractor we work with."
-  author: "Mark Owens"
+  customerName: "Mark Owens"
   location: "Westminster, MD"
   rating: 5
 testimonials_highlight_heading: "Customer Reviews"
