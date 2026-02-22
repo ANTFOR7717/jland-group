@@ -161,46 +161,49 @@ import Text from "../ui/display/Text.astro";
       </Spacer>
 
       <!-- FAQ Sections (dynamic) -->
-      {
-        sections.map((section, sectionIndex) => (
-          <Fragment>
-            <Spacer size="lg" direction="top">
-              <ContentGrid columns={1} padding="lg" class="items-start min-h-8">
-                <Heading
-                  level={3}
-                  size="lg"
-                  class="truncate w-72 min-h-6 font-semibold text-lg sm:text-xl"
+      <div data-editable="array" data-prop="faq_sections">
+        {
+          sections.map((section, sectionIndex) => (
+            <div data-editable="array-item">
+              <Spacer size="lg" direction="top">
+                <ContentGrid
+                  columns={1}
+                  padding="lg"
+                  class="items-start min-h-8"
                 >
-                  <span
-                    data-editable="text"
-                    data-prop={`faq_sections[${sectionIndex}].title`}
+                  <Heading
+                    level={3}
+                    size="lg"
+                    class="truncate w-72 min-h-6 font-semibold text-lg sm:text-xl"
                   >
-                    {section.title}
-                  </span>
-                </Heading>
-              </ContentGrid>
-            </Spacer>
-            <Spacer size="xs" direction="top">
-              <ContentGrid
-                columns={1}
-                gap="sm"
-                padding="lg"
-                class="flex-col items-stretch"
-              >
-                {section.items.map((faq, faqIndex) => (
-                  <Dropdown
-                    id={`${section.key}-${faqIndex + 1}`}
-                    title={faq.question}
-                    content={faq.answer}
-                    variant="faq"
-                    maxWidth="max-w-lg"
-                  />
-                ))}
-              </ContentGrid>
-            </Spacer>
-          </Fragment>
-        ))
-      }
+                    <span data-editable="text" data-prop="title">
+                      {section.title}
+                    </span>
+                  </Heading>
+                </ContentGrid>
+              </Spacer>
+              <Spacer size="xs" direction="top">
+                <ContentGrid
+                  columns={1}
+                  gap="sm"
+                  padding="lg"
+                  class="flex-col items-stretch"
+                >
+                  {section.items.map((faq, faqIndex) => (
+                    <Dropdown
+                      id={`${section.key}-${faqIndex + 1}`}
+                      title={faq.question}
+                      content={faq.answer}
+                      variant="faq"
+                      maxWidth="max-w-lg"
+                    />
+                  ))}
+                </ContentGrid>
+              </Spacer>
+            </div>
+          ))
+        }
+      </div>
 
       <!-- Contact Us Section -->
       <Spacer size="lg" direction="top">

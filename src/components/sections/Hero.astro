@@ -101,10 +101,12 @@ const {
       <!-- Trust Indicators -->
       <div
         class="flex flex-wrap justify-start gap-4 sm:gap-6 text-xs sm:text-sm text-white"
+        data-editable="array"
+        data-prop="hero_trust_indicators"
       >
         {
-          trust_indicators.map((indicator: string, index: number) => (
-            <div class="flex items-center gap-2">
+          trust_indicators.map((indicator: string) => (
+            <div class="flex items-center gap-2" data-editable="array-item">
               <svg
                 class="w-5 h-5 text-accent-primary"
                 fill="currentColor"
@@ -116,12 +118,7 @@ const {
                   clip-rule="evenodd"
                 />
               </svg>
-              <span
-                data-editable="text"
-                data-prop={`hero_trust_indicators[${index}]`}
-              >
-                {indicator}
-              </span>
+              <span>{indicator}</span>
             </div>
           ))
         }
