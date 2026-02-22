@@ -19,36 +19,7 @@ export interface Props {
   steps?: { number: string; description: string }[];
 }
 
-const {
-  heading = "Our Roofing Process",
-  steps = [
-    {
-      number: "01",
-      description:
-        "With integrity, we visit your home for a free roof assessment to ensure reliable protection.",
-    },
-    {
-      number: "02",
-      description:
-        "Devoted to your needs, you choose a day that aligns with your schedule.",
-    },
-    {
-      number: "03",
-      description:
-        "Our united team removes and collects old materials for responsible disposal, including recycling when possible.",
-    },
-    {
-      number: "04",
-      description:
-        "Devoted to excellence, we install your roof with drip edge, underlayment, shingles, and flashing.",
-    },
-    {
-      number: "05",
-      description:
-        "Accountable to our values, our team cleans your property of nails and debris before leaving.",
-    },
-  ],
-} = Astro.props;
+const { heading, steps } = Astro.props;
 ---
 
 <Section background="light" padding="md">

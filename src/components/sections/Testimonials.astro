@@ -34,38 +34,14 @@ export interface Props {
 }
 
 const {
-  images = [],
+  images,
   testimonial,
-  heading = "What Our Clients Say",
-  featured_testimonial = {
-    quote:
-      "Working with JLand Contracting has always been worry free. I have used them for years on every type of roofing issue from storm damage to homes completly destroyed by fire. They have always been on time, extremely professional and turn out a high quality product. This is the only exterior contractor we work with.",
-    customerName: "Mark Owens",
-    location: "Westminster, MD",
-    rating: 5,
-    avatarUrl: testimonial?.avatarURL,
-  },
-  highlight_heading = "Customer Reviews",
-  highlight_rating = 4.9,
-  highlight_total = 124,
-  reviews = [
-    {
-      name: "Jason Chung",
-      location: "Urbana, MD",
-      rating: 5,
-      service: "Roof Replacement",
-      time: "3 months ago",
-      text: "The roof replacement was clean and awesome! It was done in a day and a half! This looks like a company that you can definitely trust and rely on for roof replacement!",
-    },
-    {
-      name: "Matthew Marcus",
-      location: "Frederick, MD",
-      rating: 5,
-      service: "Commercial Roof",
-      time: "6 months ago",
-      text: "I could not have been happier with the job Danny and JLand Contracting completed for us. He was extremely helpful and friendly. The roof came out fantastic too. Thanks to him we got our roof replacement fully covered by our insurance! Thanks Danny!",
-    },
-  ],
+  heading,
+  featured_testimonial,
+  highlight_heading,
+  highlight_rating,
+  highlight_total,
+  reviews,
 } = Astro.props;
 ---
 

@@ -23,81 +23,12 @@ export interface Props {
 }
 
 const {
-  heading = "Frequently Asked Questions",
-  subtitle = "Find answers to common questions about our roofing services, materials, and process.",
-  cta_text = "Still have questions?",
-  cta_button = "Learn More",
-  sections = [
-    {
-      title: "Roofing Materials",
-      key: "materials",
-      items: [
-        {
-          question: "What roofing materials do you recommend for our climate?",
-          answer:
-            "For your local climate, we recommend asphalt shingles for affordability and durability, metal roofing for longevity and energy efficiency, or tile roofing for extreme weather resistance. Each is selected with devotion to your weather patterns, budget, and preferences.",
-        },
-        {
-          question: "How do I choose between different roofing materials?",
-          answer:
-            "Consider factors like climate resistance, longevity, maintenance requirements, energy efficiency, and budget. We provide detailed comparisons and samples to help you make an informed decision. Our experts will assess your home's structure and recommend the best options for your specific needs.",
-        },
-        {
-          question: "Do you offer eco-friendly roofing options?",
-          answer:
-            "Yes! We offer recycled metal roofing, sustainable wood shingles, solar tiles, and cool roof materials that reduce energy consumption. These eco-friendly options not only minimize environmental impact but can also qualify for tax credits and reduce your energy bills significantly.",
-        },
-      ],
-    },
-    {
-      title: "Installation Process",
-      key: "installation",
-      items: [
-        {
-          question: "How long does a typical roof installation take?",
-          answer:
-            "Most residential roof installations take 1-3 days depending on size, complexity, and weather conditions. A typical single-family home can be completed in 1-2 days, while larger or more complex roofs may take up to a week. Our united team provides detailed timelines during consultation and updates throughout.",
-        },
-        {
-          question: "Do I need to be home during the roof installation?",
-          answer:
-            "While it's not required, we recommend being available for the initial walkthrough and final inspection. Our team is fully licensed and insured, so you can feel comfortable leaving during the work day. We'll communicate any important updates and ensure your property is secure at all times.",
-        },
-        {
-          question: "How do you protect my property during installation?",
-          answer:
-            "We use protective tarps, magnetic sweepers for nails, and careful debris management. Your landscaping, vehicles, and outdoor furniture are covered and protected. We also conduct daily cleanup and a final magnetic sweep to ensure your property is left clean and safe.",
-        },
-        {
-          question: "What happens if it rains during my roof installation?",
-          answer:
-            "We monitor weather closely and use temporary protective measures when needed. If rain is forecasted, we'll secure your roof with tarps and weatherproofing. Work may be paused for safety, but your home will remain protected throughout any weather delays.",
-        },
-      ],
-    },
-    {
-      title: "Warranty & Maintenance",
-      key: "warranty",
-      items: [
-        {
-          question: "What warranty do you offer on new roofs?",
-          answer:
-            "We provide comprehensive warranties including manufacturer material warranties (15-50 years depending on material) and our workmanship warranty (10 years). This covers installation defects, leaks, and structural issues with reliable integrity. All warranties are transferable to new homeowners, adding value to your property.",
-        },
-        {
-          question: "How often should I have my roof inspected?",
-          answer:
-            "We recommend professional roof inspections twice yearly (spring and fall) and after severe weather events. Regular inspections help identify minor issues before they become major problems, extending your roof's lifespan and maintaining warranty coverage.",
-        },
-        {
-          question: "What maintenance does a roof require?",
-          answer:
-            "Basic maintenance includes keeping gutters clean, removing debris, trimming overhanging branches, and checking for loose or damaged shingles. We offer maintenance packages that include regular cleaning, minor repairs, and detailed inspections to keep your roof in optimal condition.",
-        },
-      ],
-    },
-  ],
-  class: className = "",
+  heading,
+  subtitle,
+  cta_text,
+  cta_button,
+  sections,
+  class: className,
   ...rest
 } = Astro.props;
 
