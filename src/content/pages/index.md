@@ -11,6 +11,10 @@ hero_trust_indicators:
   - "Integrity & Reliability"
   - "Devotion & Vision"
   - "Team Unity & Accountability"
+hero_form_success_heading: "Request Submitted!"
+hero_form_success_message: "A J Land team member will contact you shortly!"
+hero_form_success_subtext: "We typically respond within 2-4 hours during business hours."
+hero_form_submit: "GET QUOTE NOW"
 
 # About Section
 about_heading: "About Our Company"

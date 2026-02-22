@@ -20,6 +20,10 @@ export interface Props {
   cta_primary?: string;
   cta_secondary?: string;
   trust_indicators?: string[];
+  hero_form_success_heading?: string;
+  hero_form_success_message?: string;
+  hero_form_success_subtext?: string;
+  hero_form_submit?: string;
 }
 
 const {
@@ -35,6 +39,10 @@ const {
     "Devotion & Vision",
     "Team Unity & Accountability",
   ],
+  hero_form_success_heading = "Request Submitted!",
+  hero_form_success_message = "A J Land team member will contact you shortly!",
+  hero_form_success_subtext = "We typically respond within 2-4 hours during business hours.",
+  hero_form_submit = "GET QUOTE NOW",
 } = Astro.props;
 ---
 
@@ -50,18 +58,16 @@ const {
     <ContentBlock maxWidth="max-w-full md:max-w-[803px]">
       <!-- Main Heading -->
       <h1
-        data-editable="source"
-        data-path="src/components/sections/Hero.astro"
-        data-key="hero_heading"
+        data-editable="text"
+        data-prop="hero_heading"
         class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight max-w-[623px]"
         set:html={heading}
       />
 
       <!-- Subtitle -->
       <p
-        data-editable="source"
-        data-path="src/components/sections/Hero.astro"
-        data-key="hero_subtitle"
+        data-editable="text"
+        data-prop="hero_subtitle"
         class="text-base sm:text-lg md:text-xl text-white mb-6 sm:mb-8 leading-relaxed max-w-[640px]"
         set:html={subtitle}
       />
@@ -76,10 +82,8 @@ const {
           class="flex-1 sm:flex-none min-w-0 text-sm sm:text-base md:text-lg leading-tight whitespace-nowrap"
           data-psai-trigger="eea3332f-7784-4ba4-81d9-36b384371b29"
         >
-          <span
-            data-editable="source"
-            data-path="src/components/sections/Hero.astro"
-            data-key="hero_cta_primary">{cta_primary}</span
+          <span data-editable="text" data-prop="hero_cta_primary"
+            >{cta_primary}</span
           >
         </Button>
         <Button
@@ -88,10 +92,8 @@ const {
           size="lg"
           class="bg-white text-brand-primary border-white hover:bg-gray-100 flex-1 sm:flex-none min-w-0 text-sm sm:text-base md:text-lg leading-tight whitespace-nowrap"
         >
-          <span
-            data-editable="source"
-            data-path="src/components/sections/Hero.astro"
-            data-key="hero_cta_secondary">{cta_secondary}</span
+          <span data-editable="text" data-prop="hero_cta_secondary"
+            >{cta_secondary}</span
           >
         </Button>
       </div>
@@ -115,9 +117,8 @@ const {
                 />
               </svg>
               <span
-                data-editable="source"
-                data-path="src/components/sections/Hero.astro"
-                data-key={`hero_trust_${index + 1}`}
+                data-editable="text"
+                data-prop={`hero_trust_indicators[${index}]`}
               >
                 {indicator}
               </span>
@@ -172,35 +173,29 @@ const {
                 clip-rule="evenodd"></path>
             </svg>
             <h3
-              data-editable="source"
-              data-path="src/components/sections/Hero.astro"
-              data-key="hero_form_success_heading"
+              data-editable="text"
+              data-prop="hero_form_success_heading"
               class="font-bold text-brand-primary text-xl sm:text-2xl leading-tight"
             >
-              Request Submitted!
+              {hero_form_success_heading}
             </h3>
           </div>
 
           <!-- Personalized Contact Message -->
           <div class="space-y-3 max-w-sm mx-auto">
             <p
-              data-editable="source"
-              data-path="src/components/sections/Hero.astro"
-              data-key="hero_form_success_message"
+              data-editable="text"
+              data-prop="hero_form_success_message"
               class="text-brand-primary text-base sm:text-lg leading-relaxed font-medium"
             >
-              <span class="font-bold text-accent-primary"
-                >A J Land team member</span
-              ><br class="sm:hidden" />
-              <span class="sm:inline"> will contact you shortly!</span>
+              {hero_form_success_message}
             </p>
             <p
-              data-editable="source"
-              data-path="src/components/sections/Hero.astro"
-              data-key="hero_form_success_subtext"
+              data-editable="text"
+              data-prop="hero_form_success_subtext"
               class="text-brand-secondary text-sm sm:text-base leading-relaxed"
             >
-              We typically respond within 2-4 hours during business hours.
+              {hero_form_success_subtext}
             </p>
           </div>
         </div>
@@ -253,10 +248,8 @@ const {
           variant="primary"
           class="webLeadForm__submit w-full sm:w-auto min-h-[44px] sm:min-h-[48px]"
         >
-          <span
-            data-editable="source"
-            data-path="src/components/sections/Hero.astro"
-            data-key="hero_form_submit">GET QUOTE NOW</span
+          <span data-editable="text" data-prop="hero_form_submit"
+            >{hero_form_submit}</span
           >
         </Button>
 
