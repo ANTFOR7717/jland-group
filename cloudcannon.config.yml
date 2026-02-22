@@ -4,12 +4,13 @@ paths:
 
 collections_config:
   pages:
-    path: src/pages
-    glob: "**/*.astro"
+    path: src/content/pages
+    glob: "**/*.md"
     name: Pages
     singular_name: Page
     icon: notes
-    url: "/[relative_base_path]/[slug]/"
+    output: true
+    url: "/[slug]/"
     disable_url: false
     _enabled_editors:
       - visual
