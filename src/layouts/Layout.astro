@@ -14,9 +14,28 @@ const {
 	description = "Devoted roofing and construction services in Frederick, MD featuring integrity-driven certification and reliable 50-year warranties.",
 } = Astro.props;
 
-// Fetch global site data for Header, Footer, and shared components
-const siteData = (await getEntry("data", "site"))!;
-const site = siteData.data as any;
+// Fetch global data from the homepage content file
+const page = (await getEntry("pages", "index"))!;
+const {
+	header_logo_text,
+	header_nav,
+	footer_company_name,
+	footer_company_description,
+	footer_address,
+	footer_phone,
+	footer_email,
+	footer_quick_links_title,
+	footer_quick_links,
+	footer_services_title,
+	footer_services_links,
+	footer_newsletter_title,
+	footer_newsletter_description,
+	footer_newsletter_button,
+	footer_copyright,
+	footer_link_privacy,
+	footer_link_terms,
+	footer_social_links,
+} = page.data as any;
 ---
 
 <!doctype html>
@@ -36,27 +55,27 @@ const site = siteData.data as any;
 		<meta name="description" content={description} />
 	</head>
 	<body class="font-montserrat w-full min-h-screen">
-		<Header logo_text={site.header_logo_text} nav_items={site.header_nav} />
+		<Header logo_text={header_logo_text} nav_items={header_nav} />
 		<main>
 			<slot />
 		</main>
 		<Footer
-			socialLinks={site.footer_social_links}
-			footer_company_name={site.footer_company_name}
-			footer_company_description={site.footer_company_description}
-			footer_address={site.footer_address}
-			footer_phone={site.footer_phone}
-			footer_email={site.footer_email}
-			footer_quick_links_title={site.footer_quick_links_title}
-			footer_quick_links={site.footer_quick_links}
-			footer_services_title={site.footer_services_title}
-			footer_services_links={site.footer_services_links}
-			footer_newsletter_title={site.footer_newsletter_title}
-			footer_newsletter_description={site.footer_newsletter_description}
-			footer_newsletter_button={site.footer_newsletter_button}
-			footer_copyright={site.footer_copyright}
-			footer_link_privacy={site.footer_link_privacy}
-			footer_link_terms={site.footer_link_terms}
+			socialLinks={footer_social_links}
+			footer_company_name={footer_company_name}
+			footer_company_description={footer_company_description}
+			footer_address={footer_address}
+			footer_phone={footer_phone}
+			footer_email={footer_email}
+			footer_quick_links_title={footer_quick_links_title}
+			footer_quick_links={footer_quick_links}
+			footer_services_title={footer_services_title}
+			footer_services_links={footer_services_links}
+			footer_newsletter_title={footer_newsletter_title}
+			footer_newsletter_description={footer_newsletter_description}
+			footer_newsletter_button={footer_newsletter_button}
+			footer_copyright={footer_copyright}
+			footer_link_privacy={footer_link_privacy}
+			footer_link_terms={footer_link_terms}
 		/>
 	</body>
 </html>

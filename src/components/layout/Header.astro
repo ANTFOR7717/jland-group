@@ -8,8 +8,6 @@ export interface Props {
 }
 
 const { logo_text = "", nav_items = [] } = Astro.props;
-
-const fp = "@data[site]";
 ---
 
 <header class="absolute top-0 left-0 right-0 z-50 bg-transparent">
@@ -28,7 +26,7 @@ const fp = "@data[site]";
         />
         <span
           data-editable="text"
-          data-prop={`${fp}.header_logo_text`}
+          data-prop="header_logo_text"
           class="text-white">{logo_text}</span
         >
       </a>
@@ -48,10 +46,7 @@ const fp = "@data[site]";
             href={item.href}
             class="hover:text-accent-primary transition-colors"
           >
-            <span
-              data-editable="text"
-              data-prop={`${fp}.header_nav[${index}].label`}
-            >
+            <span data-editable="text" data-prop={`header_nav[${index}].label`}>
               {item.label}
             </span>
           </a>

@@ -15,10 +15,6 @@ collections_config:
     _enabled_editors:
       - visual
 
-data_config:
-  site:
-    path: src/content/data/site.yaml
-
 _enabled_editors:
   - visual
 

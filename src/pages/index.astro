@@ -86,8 +86,6 @@ if (!servicesData || !construction || !showcase) {
 }
 
 const page = (await getEntry("pages", "index"))!;
-const siteData = (await getEntry("data", "site"))!;
-const site = siteData.data as any;
 const {
 	title: pageTitle,
 	description: pageDescription,
@@ -126,6 +124,19 @@ const {
 	faq_cta_text,
 	faq_cta_button,
 	faq_sections,
+	contact_heading,
+	contact_subheading,
+	contact_form_heading,
+	contact_label_name,
+	contact_label_email,
+	contact_label_phone,
+	contact_label_address,
+	contact_label_message,
+	contact_submit_button,
+	contact_call_label,
+	contact_phone,
+	contact_email_label,
+	contact_email,
 } = page.data as any;
 ---
 
@@ -207,18 +218,18 @@ const {
 		sections={faq_sections}
 	/>
 	<Contact
-		contact_heading={site.contact_heading}
-		contact_subheading={site.contact_subheading}
-		contact_form_heading={site.contact_form_heading}
-		contact_label_name={site.contact_label_name}
-		contact_label_email={site.contact_label_email}
-		contact_label_phone={site.contact_label_phone}
-		contact_label_address={site.contact_label_address}
-		contact_label_message={site.contact_label_message}
-		contact_submit_button={site.contact_submit_button}
-		contact_call_label={site.contact_call_label}
-		contact_phone={site.contact_phone}
-		contact_email_label={site.contact_email_label}
-		contact_email={site.contact_email}
+		contact_heading={contact_heading}
+		contact_subheading={contact_subheading}
+		contact_form_heading={contact_form_heading}
+		contact_label_name={contact_label_name}
+		contact_label_email={contact_label_email}
+		contact_label_phone={contact_label_phone}
+		contact_label_address={contact_label_address}
+		contact_label_message={contact_label_message}
+		contact_submit_button={contact_submit_button}
+		contact_call_label={contact_call_label}
+		contact_phone={contact_phone}
+		contact_email_label={contact_email_label}
+		contact_email={contact_email}
 	/>
 </Layout>
