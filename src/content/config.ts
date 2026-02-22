@@ -56,7 +56,7 @@ const pagesCollection = defineCollection({
 });
 
 const dataCollection = defineCollection({
-  type: 'content',
+  type: 'data',
   schema: z.object({}).passthrough()
 });
 

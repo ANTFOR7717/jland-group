@@ -14,14 +14,10 @@ collections_config:
     disable_url: false
     _enabled_editors:
       - visual
-  data:
-    path: src/content/data
-    glob: "**/*.md"
-    name: Site Data
-    singular_name: Data File
-    icon: settings
-    _enabled_editors:
-      - data
+
+data_config:
+  site:
+    path: src/content/data/site.yaml
 
 _enabled_editors:
   - visual
