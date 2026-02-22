@@ -43,8 +43,16 @@ const pagesCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
-    publishDate: z.date().optional()
-  })
+    badge: z.string().optional(),
+    hero_heading: z.string().optional(),
+    hero_heading_accent: z.string().optional(),
+    hero_subtitle: z.string().optional(),
+    cta_primary_text: z.string().optional(),
+    cta_primary_href: z.string().optional(),
+    cta_secondary_text: z.string().optional(),
+    cta_secondary_href: z.string().optional(),
+    trust_indicators: z.array(z.string()).optional(),
+  }).passthrough()
 });
 
 export const collections = {

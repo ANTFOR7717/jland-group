@@ -1,23 +1,71 @@
 ---
 // AboutUs Component - Pixel-perfect implementation from Motiff design
-import { Container, Section, SectionHeader, ContentBlock, Card, Layout, DecorativeLine, Statistics, NumberedSection } from '../ui/index.js';
-import Heading from '../ui/display/Heading.astro';
-import Text from '../ui/display/Text.astro';
+import {
+  Container,
+  Section,
+  SectionHeader,
+  ContentBlock,
+  Card,
+  Layout,
+  DecorativeLine,
+  Statistics,
+  NumberedSection,
+} from "../ui/index.js";
+import Heading from "../ui/display/Heading.astro";
+import Text from "../ui/display/Text.astro";
+
+export interface Props {
+  heading?: string;
+  history?: { title: string; description: string };
+  mission?: { title: string; description: string };
+  values?: { title: string; description: string };
+  stats?: { value: string; label: string }[];
+  commitment?: { title: string; text: string };
+}
+
+const {
+  heading = "About Our Company",
+  history = {
+    title: "Our History",
+    description:
+      "Founded on a family legacy of hard work and perseverance, J Land Contracting draws from an immigrant's journey of diligence and overcoming challenges. Reborn in 2010 after the 2008 economic setbacks, we are committed to giving back – using our profits to assist those in need with essential roof repairs and replacements, ensuring communities thrive.",
+  },
+  mission = {
+    title: "Our Mission",
+    description:
+      "We inform and guide homeowners through every step, building confidence and trust with transparent expertise and flawless execution. From preemptive maintenance to full restorations, we provide peace of mind, turning potential nightmares into lasting solutions while contributing to humanitarian efforts and community well-being.",
+  },
+  values = {
+    title: "Our Values",
+    description:
+      "Integrity and reliability define our approach, with superior craftsmanship delivered in every detail, regardless of oversight. We foster growth through visionary discipline, while team unity and accountability build a supportive environment that promotes personal development and meaningful contributions to our clients and communities.",
+  },
+  stats = [
+    { value: "15+", label: "Years Experience" },
+    { value: "2,000+", label: "Projects Completed" },
+    { value: "100%", label: "Customer Satisfaction" },
+  ],
+  commitment = {
+    title: "Our Commitment to Excellence",
+    text: "Through 15+ years of hands-on experience and thousands of projects, we deliver expert knowledge of roofing systems, insurance processes, and quality installations that exceed expectations. Backed by certifications and a focus on ethical service, we ensure every client receives reliable support, comprehensive warranties, and the assurance of a job done right – fostering trust and long-term satisfaction.",
+  },
+} = Astro.props;
 ---
 
 <Section background="light" padding="sm" class="py-8 sm:py-12">
-  <Container size="full" class="overflow-hidden gap-1.5 flex flex-col items-stretch font-inter text-base font-normal px-4 md:px-8">
-    
+  <Container
+    size="full"
+    class="overflow-hidden gap-1.5 flex flex-col items-stretch font-inter text-base font-normal px-4 md:px-8"
+  >
     <!-- Main Title -->
-    <SectionHeader 
-      title="About Our Company" 
-      level={1} 
-      size="4xl" 
-      alignment="center" 
-      spacing="lg" 
+    <SectionHeader
+      title={heading}
+      level={1}
+      size="4xl"
+      alignment="center"
+      spacing="lg"
       decorativeImage="https://static.motiffcontent.com/private/resource/image/19847a91b1c45aa-f9b7ad44-c36a-47e5-a05e-5ab2e2f83806.svg"
     />
-
 
     <!-- Main Content Area -->
     <Layout
@@ -35,34 +83,28 @@ import Text from '../ui/display/Text.astro';
         <!-- Section 01 -->
         <NumberedSection
           number="01"
-          title="Our History"
-          description="Founded on a family legacy of hard work and perseverance, J Land Contracting draws from an immigrant's journey of diligence and overcoming challenges. Reborn in 2010 after the 2008 economic setbacks, we are committed to giving back – using our profits to assist those in need with essential roof repairs and replacements, ensuring communities thrive."
+          title={history.title}
+          description={history.description}
         />
 
         <!-- Section 02 -->
         <NumberedSection
           number="02"
-          title="Our Mission"
-          description="We inform and guide homeowners through every step, building confidence and trust with transparent expertise and flawless execution. From preemptive maintenance to full restorations, we provide peace of mind, turning potential nightmares into lasting solutions while contributing to humanitarian efforts and community well-being."
+          title={mission.title}
+          description={mission.description}
         />
 
         <!-- Section 03 -->
         <NumberedSection
           number="03"
-          title="Our Values"
-          description="Integrity and reliability define our approach, with superior craftsmanship delivered in every detail, regardless of oversight. We foster growth through visionary discipline, while team unity and accountability build a supportive environment that promotes personal development and meaningful contributions to our clients and communities."
+          title={values.title}
+          description={values.description}
         />
 
         <!-- Stats Section -->
-        <Statistics
-          stats={[
-            { value: "15+", label: "Years Experience" },
-            { value: "2,000+", label: "Projects Completed" },
-            { value: "100%", label: "Customer Satisfaction" }
-          ]}
-        />
+        <Statistics stats={stats} />
       </div>
-      
+
       <!-- Right Column - Image -->
 <div slot="right" class="flex items-center justify-center h-full">
   <Card class="w-full lg:w-[608px] p-0 overflow-hidden rounded-2xl">
@@ -80,15 +122,32 @@ import Text from '../ui/display/Text.astro';
 
     <!-- Commitment Section -->
     <Container size="xl" class="mt-8 sm:mt-12 flex justify-center">
-      <Card variant="default" class="gap-3 flex flex-col items-stretch p-4 md:p-8">
-        <Heading level={2} size="2xl" color="default" class="text-center mt-[33px] mx-auto">
-          Our Commitment to Excellence
+      <Card
+        variant="default"
+        class="gap-3 flex flex-col items-stretch p-4 md:p-8"
+      >
+        <Heading
+          level={2}
+          size="2xl"
+          color="default"
+          class="text-center mt-[33px] mx-auto"
+        >
+          {commitment.title}
         </Heading>
-        <Text variant="body" color="secondary" class="text-center mx-auto max-w-prose min-h-[72px]">
-          Through 15+ years of hands-on experience and thousands of projects, we deliver expert knowledge of roofing systems, insurance processes, and quality installations that exceed expectations. Backed by certifications and a focus on ethical service, we ensure every client receives reliable support, comprehensive warranties, and the assurance of a job done right – fostering trust and long-term satisfaction.
+        <Text
+          variant="body"
+          color="secondary"
+          class="text-center mx-auto max-w-prose min-h-[72px]"
+        >
+          {commitment.text}
         </Text>
-        <DecorativeLine variant="accent" width="lg" alignment="center" class="mt-1 mb-[33px]" />
+        <DecorativeLine
+          variant="accent"
+          width="lg"
+          alignment="center"
+          class="mt-1 mb-[33px]"
+        />
       </Card>
     </Container>
-   </Container>
- </Section>
+  </Container>
+</Section>

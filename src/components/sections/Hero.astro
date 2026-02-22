@@ -1,111 +1,210 @@
 ---
-import { Button, Badge } from '../ui/index.js';
-import { Input, Form, Card } from '../ui/index.js';
-import { ContentGrid, ContentBlock } from '../ui/index.js';
-import { HeroSection, TrustIndicator, TrustIndicatorGroup } from '../ui/index.js';
+import { Button, Badge } from "../ui/index.js";
+import { Input, Form, Card } from "../ui/index.js";
+import { ContentGrid, ContentBlock } from "../ui/index.js";
+import {
+  HeroSection,
+  TrustIndicator,
+  TrustIndicatorGroup,
+} from "../ui/index.js";
 // Note: Heading and Text require direct imports due to TypeScript compatibility
-import Heading from '../ui/display/Heading.astro';
-import Text from '../ui/display/Text.astro';
+import Heading from "../ui/display/Heading.astro";
+import Text from "../ui/display/Text.astro";
 
 export interface Props {
   videoSrc?: string;
   hero_financing_image_src?: string;
   hero_financing_image_alt?: string;
+  heading?: string;
+  subtitle?: string;
+  cta_primary?: string;
+  cta_secondary?: string;
+  trust_indicators?: string[];
 }
 
 const {
   videoSrc,
   hero_financing_image_src = "https://www.greensky.com/merchantkit/images/finance_buttons/headers/header_640.jpg?v=3.0.612",
   hero_financing_image_alt = "Financing Options from GreenSky",
+  heading = 'Building Roofs. Restoring Trust.<br><span class="text-accent-primary">Serving with Purpose.</span>',
+  subtitle = "Guided by seriousness, integrity, and perfection. <br/>J Land Contracting protects families across Maryland with craft devoted roofing services.\n        We're your neighbors, committed to reliable craftsmanship and meaningful commitments in every installation.",
+  cta_primary = "Get Your Free Roof Inspection Now",
+  cta_secondary = "View Our Projects",
+  trust_indicators = [
+    "Integrity & Reliability",
+    "Devotion & Vision",
+    "Team Unity & Accountability",
+  ],
 } = Astro.props;
 ---
 
-
 <HeroSection videoSrc={videoSrc}>
   <!-- Main Content Area -->
-  <ContentGrid columns={2} gap="lg" padding="lg" class="mt-12 sm:mt-5 justify-center">
+  <ContentGrid
+    columns={2}
+    gap="lg"
+    padding="lg"
+    class="mt-12 sm:mt-5 justify-center"
+  >
     <!-- Left Content -->
     <ContentBlock maxWidth="max-w-full md:max-w-[803px]">
-
       <!-- Main Heading -->
-      <h1 data-editable="source" data-path="src/components/sections/Hero.astro" data-key="hero_heading" class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight max-w-[623px]">
-        Building Roofs. Restoring Trust.<br>
-        <span class="text-accent-primary">Serving with Purpose.</span>
-      </h1>
-      
+      <h1
+        data-editable="source"
+        data-path="src/components/sections/Hero.astro"
+        data-key="hero_heading"
+        class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight max-w-[623px]"
+        set:html={heading}
+      />
+
       <!-- Subtitle -->
-      <p data-editable="source" data-path="src/components/sections/Hero.astro" data-key="hero_subtitle" class="text-base sm:text-lg md:text-xl text-white mb-6 sm:mb-8 leading-relaxed max-w-[640px]">
-        Guided by seriousness, integrity, and perfection. <br/>J Land Contracting protects families across Maryland with craft devoted roofing services.
-        We're your neighbors, committed to reliable craftsmanship and meaningful commitments in every installation.
-      </p>
-      
+      <p
+        data-editable="source"
+        data-path="src/components/sections/Hero.astro"
+        data-key="hero_subtitle"
+        class="text-base sm:text-lg md:text-xl text-white mb-6 sm:mb-8 leading-relaxed max-w-[640px]"
+        set:html={subtitle}
+      />
+
       <!-- CTA Buttons -->
-      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center sm:justify-start items-center sm:items-start mb-6 sm:mb-8 w-full">
-        <Button 
-          variant="primary" 
-          size="lg" 
+      <div
+        class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center sm:justify-start items-center sm:items-start mb-6 sm:mb-8 w-full"
+      >
+        <Button
+          variant="primary"
+          size="lg"
           class="flex-1 sm:flex-none min-w-0 text-sm sm:text-base md:text-lg leading-tight whitespace-nowrap"
           data-psai-trigger="eea3332f-7784-4ba4-81d9-36b384371b29"
         >
-          <span data-editable="source" data-path="src/components/sections/Hero.astro" data-key="hero_cta_primary">Get Your Free Roof Inspection Now</span>
+          <span
+            data-editable="source"
+            data-path="src/components/sections/Hero.astro"
+            data-key="hero_cta_primary">{cta_primary}</span
+          >
+        </Button>
+        <Button
+          href="/projects"
+          variant="primary"
+          size="lg"
+          class="bg-white text-brand-primary border-white hover:bg-gray-100 flex-1 sm:flex-none min-w-0 text-sm sm:text-base md:text-lg leading-tight whitespace-nowrap"
+        >
+          <span
+            data-editable="source"
+            data-path="src/components/sections/Hero.astro"
+            data-key="hero_cta_secondary">{cta_secondary}</span
+          >
         </Button>
       </div>
-      
+
       <!-- Trust Indicators -->
-      <div class="flex flex-wrap justify-start gap-4 sm:gap-6 text-xs sm:text-sm text-white">
-        <div class="flex items-center gap-2">
-          <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-          </svg>
-          <span data-editable="source" data-path="src/components/sections/Hero.astro" data-key="hero_trust_1">Integrity & Reliability</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-          </svg>
-          <span data-editable="source" data-path="src/components/sections/Hero.astro" data-key="hero_trust_2">Devotion & Vision</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-          </svg>
-          <span data-editable="source" data-path="src/components/sections/Hero.astro" data-key="hero_trust_3">Team Unity & Accountability</span>
-        </div>
+      <div
+        class="flex flex-wrap justify-start gap-4 sm:gap-6 text-xs sm:text-sm text-white"
+      >
+        {
+          trust_indicators.map((indicator: string, index: number) => (
+            <div class="flex items-center gap-2">
+              <svg
+                class="w-5 h-5 text-accent-primary"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <span
+                data-editable="source"
+                data-path="src/components/sections/Hero.astro"
+                data-key={`hero_trust_${index + 1}`}
+              >
+                {indicator}
+              </span>
+            </div>
+          ))
+        }
       </div>
     </ContentBlock>
-    
+
     <!-- Quote Form -->
-    <Card variant="quote" quoteWidth="lg" class="mt-6 sm:mt-8 md:mt-0 mx-auto md:mx-0 pb-4 sm:pb-0 w-full max-w-none sm:max-w-md mb-8">
-      <form id="webLeadFormElem" class="flex flex-col gap-4 sm:gap-5 lg:gap-6 w-full relative">
+    <Card
+      variant="quote"
+      quoteWidth="lg"
+      class="mt-6 sm:mt-8 md:mt-0 mx-auto md:mx-0 pb-4 sm:pb-0 w-full max-w-none sm:max-w-md mb-8"
+    >
+      <form
+        id="webLeadFormElem"
+        class="flex flex-col gap-4 sm:gap-5 lg:gap-6 w-full relative"
+      >
         <!-- Success message -->
-        <div id="webLeadFormMessageElem" class="hidden flex flex-col items-center justify-center text-center p-8 bg-white border-2 border-accent-primary rounded-xl min-h-[320px] shadow-accent" role="alert">
+        <div
+          id="webLeadFormMessageElem"
+          class="hidden flex flex-col items-center justify-center text-center p-8 bg-white border-2 border-accent-primary rounded-xl min-h-[320px] shadow-accent"
+          role="alert"
+        >
           <!-- Person Icon -->
-          <div class="w-20 h-20 bg-accent-primary/10 rounded-full flex items-center justify-center mb-6">
-            <svg class="w-10 h-10 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+          <div
+            class="w-20 h-20 bg-accent-primary/10 rounded-full flex items-center justify-center mb-6"
+          >
+            <svg
+              class="w-10 h-10 text-accent-primary"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                clip-rule="evenodd"></path>
             </svg>
           </div>
-          
+
           <!-- Success Message -->
           <div class="flex items-center justify-center gap-3 mb-6">
-            <svg class="w-6 h-6 text-state-success flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+            <svg
+              class="w-6 h-6 text-state-success flex-shrink-0"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                clip-rule="evenodd"></path>
             </svg>
-            <h3 data-editable="source" data-path="src/components/sections/Hero.astro" data-key="hero_form_success_heading" class="font-bold text-brand-primary text-xl sm:text-2xl leading-tight">Request Submitted!</h3>
+            <h3
+              data-editable="source"
+              data-path="src/components/sections/Hero.astro"
+              data-key="hero_form_success_heading"
+              class="font-bold text-brand-primary text-xl sm:text-2xl leading-tight"
+            >
+              Request Submitted!
+            </h3>
           </div>
-          
+
           <!-- Personalized Contact Message -->
           <div class="space-y-3 max-w-sm mx-auto">
-            <p data-editable="source" data-path="src/components/sections/Hero.astro" data-key="hero_form_success_message" class="text-brand-primary text-base sm:text-lg leading-relaxed font-medium">
-              <span class="font-bold text-accent-primary">A J Land team member</span><br class="sm:hidden">
+            <p
+              data-editable="source"
+              data-path="src/components/sections/Hero.astro"
+              data-key="hero_form_success_message"
+              class="text-brand-primary text-base sm:text-lg leading-relaxed font-medium"
+            >
+              <span class="font-bold text-accent-primary"
+                >A J Land team member</span
+              ><br class="sm:hidden" />
               <span class="sm:inline"> will contact you shortly!</span>
             </p>
-            <p data-editable="source" data-path="src/components/sections/Hero.astro" data-key="hero_form_success_subtext" class="text-brand-secondary text-sm sm:text-base leading-relaxed">
+            <p
+              data-editable="source"
+              data-path="src/components/sections/Hero.astro"
+              data-key="hero_form_success_subtext"
+              class="text-brand-secondary text-sm sm:text-base leading-relaxed"
+            >
               We typically respond within 2-4 hours during business hours.
             </p>
           </div>
         </div>
-        
+
         <Input
           type="text"
           placeholder="Full Name"
@@ -127,10 +226,10 @@ const {
           required
           class="min-h-[44px] sm:min-h-[48px]"
         />
-        
+
         <!-- Service Selector -->
-        <select 
-          name="service" 
+        <select
+          name="service"
           required
           class="appearance-none bg-white rounded-lg border border-gray-300 px-3 py-3 sm:px-4 sm:py-3 md:px-4 md:py-4 w-full text-base sm:text-lg focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-200 focus:ring-yellow-400 focus:ring-opacity-50 hover:border-gray-400 min-h-[48px] bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 fill=%27none%27 viewBox=%270 0 20 20%27%3E%3Cpath stroke=%27%236b7280%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%271.5%27 d=%27M6 8l4 4 4-4%27/%3E%3C/svg%3E')] bg-[length:1.5em_1.5em] bg-[right_0.5rem_center] bg-no-repeat pr-10"
         >
@@ -144,17 +243,21 @@ const {
           <option value="insurance-claim">Insurance Claim Assistance</option>
           <option value="commercial-project">Commercial Project</option>
         </select>
-        
+
         <!-- Hidden fields for CRM -->
         <input type="hidden" name="firstName" id="firstName" />
         <input type="hidden" name="lastName" id="lastName" />
-        
+
         <Button
           type="submit"
           variant="primary"
           class="webLeadForm__submit w-full sm:w-auto min-h-[44px] sm:min-h-[48px]"
         >
-          <span data-editable="source" data-path="src/components/sections/Hero.astro" data-key="hero_form_submit">GET QUOTE NOW</span>
+          <span
+            data-editable="source"
+            data-path="src/components/sections/Hero.astro"
+            data-key="hero_form_submit">GET QUOTE NOW</span
+          >
         </Button>
 
         <!-- GreenSky Financing Header -->
@@ -164,8 +267,10 @@ const {
               data-editable="image"
               data-prop-src="hero_financing_image_src"
               data-prop-alt="hero_financing_image_alt"
-              src={hero_financing_image_src || "https://www.greensky.com/merchantkit/images/finance_buttons/headers/header_640.jpg?v=3.0.612"}
-              alt={hero_financing_image_alt || "Financing Options from GreenSky"}
+              src={hero_financing_image_src ||
+                "https://www.greensky.com/merchantkit/images/finance_buttons/headers/header_640.jpg?v=3.0.612"}
+              alt={hero_financing_image_alt ||
+                "Financing Options from GreenSky"}
               tabindex="0"
               class="w-full max-w-[640px] h-auto rounded-lg shadow-sm hover:opacity-90 transition-opacity cursor-pointer"
             />
@@ -179,103 +284,116 @@ const {
 <script>
   function webLeadFormSubmit(event: Event) {
     event.preventDefault();
-    
+
     // Disable submit button
-    const submitButton = document.getElementsByClassName('webLeadForm__submit')[0] as HTMLButtonElement;
+    const submitButton = document.getElementsByClassName(
+      "webLeadForm__submit",
+    )[0] as HTMLButtonElement;
     if (submitButton) {
       submitButton.disabled = true;
     }
-    
+
     // Get form data
     const form = event.target as HTMLFormElement;
     const formData = new FormData(form);
-    
+
     // Handle name splitting for UI/UX (fullName not sent to CRM)
-    const fullName = formData.get('fullName') as string;
+    const fullName = formData.get("fullName") as string;
     if (fullName) {
       const nameParts = fullName.trim().split(/\s+/);
       if (nameParts.length === 1) {
         // Only one name provided
-        formData.set('firstName', nameParts[0]);
-        formData.set('lastName', '');
+        formData.set("firstName", nameParts[0]);
+        formData.set("lastName", "");
       } else {
         // Multiple names: all but last go to firstName, last goes to lastName
-        const lastName = nameParts.pop() || '';
-        const firstName = nameParts.join(' ');
-        formData.set('firstName', firstName);
-        formData.set('lastName', lastName);
+        const lastName = nameParts.pop() || "";
+        const firstName = nameParts.join(" ");
+        formData.set("firstName", firstName);
+        formData.set("lastName", lastName);
       }
     }
-    
+
     // Remove fullName from submission (UI/UX only)
-    formData.delete('fullName');
-    
+    formData.delete("fullName");
+
     // Add message field from service selector
-    const serviceValue = formData.get('service') as string;
+    const serviceValue = formData.get("service") as string;
     if (serviceValue) {
       // Convert service value to readable message
       const serviceMessages: { [key: string]: string } = {
-        'roof-inspection': 'I would like to schedule a free roof inspection.',
-        'roof-repair': 'I need roof repair services.',
-        'roof-replacement': 'I am interested in roof replacement.',
-        'gutter-services': 'I need gutter services.',
-        'siding-services': 'I am interested in siding services.',
-        'emergency-repair': 'I have an emergency repair need.',
-        'insurance-claim': 'I need help with an insurance claim.',
-        'commercial-project': 'I am interested in commercial project services.'
+        "roof-inspection": "I would like to schedule a free roof inspection.",
+        "roof-repair": "I need roof repair services.",
+        "roof-replacement": "I am interested in roof replacement.",
+        "gutter-services": "I need gutter services.",
+        "siding-services": "I am interested in siding services.",
+        "emergency-repair": "I have an emergency repair need.",
+        "insurance-claim": "I need help with an insurance claim.",
+        "commercial-project": "I am interested in commercial project services.",
       };
-      
-      const message = serviceMessages[serviceValue] || `I am interested in ${serviceValue} services.`;
-      formData.set('message', message);
+
+      const message =
+        serviceMessages[serviceValue] ||
+        `I am interested in ${serviceValue} services.`;
+      formData.set("message", message);
     }
-    
+
     // Submit to CRM
-    const fetchPromise = fetch('https://leads.acculynx.com/api/leads/submit-new-lead?formID=9f1041d0-b33e-43b7-ac97-cecdc39af3b2', {
-      method: 'post',
-      mode: 'no-cors',
-      body: formData
-    });
-    
-    fetchPromise.then(response => {
-      console.log('WebLeadForm Submit Success');
-      console.log(response);
-      
-      // Show success message while maintaining form container size
-      const formElement = document.getElementById('webLeadFormElem');
-      const messageElement = document.getElementById('webLeadFormMessageElem');
-      
-      if (formElement && messageElement) {
-        // Hide all form inputs and button
-        const formInputs = formElement.querySelectorAll('input, select, button');
-        formInputs.forEach(input => {
-          const htmlInput = input as HTMLElement;
-          if (htmlInput.id !== 'firstName' && htmlInput.id !== 'lastName') { // Keep hidden fields
-            htmlInput.style.display = 'none';
-          }
-        });
-        
-        // Show success message
-        messageElement.classList.remove('hidden');
-        (messageElement as HTMLElement).style.display = 'flex';
-      }
-    })
-    .catch(error => {
-      console.log('WebLeadForm Submit Error: ' + error);
-      
-      // Re-enable submit button on error
-      if (submitButton) {
-        submitButton.disabled = false;
-      }
-    });
-    
+    const fetchPromise = fetch(
+      "https://leads.acculynx.com/api/leads/submit-new-lead?formID=9f1041d0-b33e-43b7-ac97-cecdc39af3b2",
+      {
+        method: "post",
+        mode: "no-cors",
+        body: formData,
+      },
+    );
+
+    fetchPromise
+      .then((response) => {
+        console.log("WebLeadForm Submit Success");
+        console.log(response);
+
+        // Show success message while maintaining form container size
+        const formElement = document.getElementById("webLeadFormElem");
+        const messageElement = document.getElementById(
+          "webLeadFormMessageElem",
+        );
+
+        if (formElement && messageElement) {
+          // Hide all form inputs and button
+          const formInputs = formElement.querySelectorAll(
+            "input, select, button",
+          );
+          formInputs.forEach((input) => {
+            const htmlInput = input as HTMLElement;
+            if (htmlInput.id !== "firstName" && htmlInput.id !== "lastName") {
+              // Keep hidden fields
+              htmlInput.style.display = "none";
+            }
+          });
+
+          // Show success message
+          messageElement.classList.remove("hidden");
+          (messageElement as HTMLElement).style.display = "flex";
+        }
+      })
+      .catch((error) => {
+        console.log("WebLeadForm Submit Error: " + error);
+
+        // Re-enable submit button on error
+        if (submitButton) {
+          submitButton.disabled = false;
+        }
+      });
+
     return false;
   }
-  
+
   // Attach event listener when DOM is loaded
-  document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('webLeadFormElem');
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("webLeadFormElem");
     if (form) {
-      form.addEventListener('submit', webLeadFormSubmit);
+      form.addEventListener("submit", webLeadFormSubmit);
     }
   });
 </script>

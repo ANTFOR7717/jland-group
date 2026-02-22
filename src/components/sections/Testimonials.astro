@@ -2,22 +2,80 @@
 // Testimonials Component - Two Column Layout
 // Refactored to use UI components and Tailwind CSS only
 
-import { Card, Container, CardGrid, ContentBlock } from '../ui/index.js';
-import { Layout, SectionHeader, Spacer } from '../ui/index.js';
-import { Section } from '../ui/index.js';
-import { ProjectGallery, FeaturedTestimonial } from '../ui/index.js';
+import { Card, Container, CardGrid, ContentBlock } from "../ui/index.js";
+import { Layout, SectionHeader, Spacer } from "../ui/index.js";
+import { Section } from "../ui/index.js";
+import { ProjectGallery, FeaturedTestimonial } from "../ui/index.js";
 // Note: Heading requires direct import due to TypeScript compatibility
-import Heading from '../ui/display/Heading.astro';
+import Heading from "../ui/display/Heading.astro";
 
 export interface Props {
   images?: any[];
   testimonial?: any;
+  heading?: string;
+  featured_testimonial?: {
+    quote: string;
+    customerName: string;
+    location: string;
+    rating: number;
+    avatarUrl?: string;
+  };
+  highlight_heading?: string;
+  highlight_rating?: number;
+  highlight_total?: number;
+  reviews?: {
+    name: string;
+    location: string;
+    rating: number;
+    service?: string;
+    time?: string;
+    review?: string;
+  }[];
 }
 
-const { images = [], testimonial } = Astro.props;
+const {
+  images = [],
+  testimonial,
+  heading = "What Our Clients Say",
+  featured_testimonial = {
+    quote:
+      "Working with JLand Contracting has always been worry free. I have used them for years on every type of roofing issue from storm damage to homes completly destroyed by fire. They have always been on time, extremely professional and turn out a high quality product. This is the only exterior contractor we work with.",
+    customerName: "Mark Owens",
+    location: "Westminster, MD",
+    rating: 5,
+    avatarUrl: testimonial?.avatarURL,
+  },
+  highlight_heading = "Customer Reviews",
+  highlight_rating = 4.9,
+  highlight_total = 124,
+  reviews = [
+    {
+      name: "Jason Chung",
+      location: "Urbana, MD",
+      rating: 5,
+      service: "Roof Replacement",
+      time: "3 months ago",
+      review:
+        "The roof replacement was clean and awesome! It was done in a day and a half! This looks like a company that you can definitely trust and rely on for roof replacement!",
+    },
+    {
+      name: "Matthew Marcus",
+      location: "Frederick, MD",
+      rating: 5,
+      service: "Commercial Roof",
+      time: "6 months ago",
+      review:
+        "I could not have been happier with the job Danny and JLand Contracting completed for us. He was extremely helpful and friendly. The roof came out fantastic too. Thanks to him we got our roof replacement fully covered by our insurance! Thanks Danny!",
+    },
+  ],
+} = Astro.props;
 ---
 
-<Section background="dark" padding="sm" style="padding: 0; padding-top: 2rem; padding-bottom: 2rem;">
+<Section
+  background="dark"
+  padding="sm"
+  style="padding: 0; padding-top: 2rem; padding-bottom: 2rem;"
+>
   <Layout
     variant="two-column"
     leftBackground="dark"
@@ -30,25 +88,35 @@ const { images = [], testimonial } = Astro.props;
     <!-- Left Column Content -->
     <div slot="left">
       <ContentBlock spacing="md" class="w-full max-w-none sm:max-w-[592px]">
-        <Heading level={2} size="2xl" color="white" class="text-xl sm:text-2xl md:text-3xl leading-7 sm:leading-8 md:leading-9">
-          <span data-editable="source" data-path="src/components/sections/Testimonials.astro" data-key="testimonials_heading">What Our Clients Say</span>
+        <Heading
+          level={2}
+          size="2xl"
+          color="white"
+          class="text-xl sm:text-2xl md:text-3xl leading-7 sm:leading-8 md:leading-9"
+        >
+          {heading}
         </Heading>
-        
+
         <!-- Featured Testimonial -->
-        <FeaturedTestimonial 
-          quote="Working with JLand Contracting has always been worry free. I have used them for years on every type of roofing issue from storm damage to homes completly destroyed by fire. They have always been on time, extremely professional and turn out a high quality product. This is the only exterior contractor we work with."
-          customerName="Mark Owens"
-          location="Westminster, MD"
-          avatarUrl={testimonial?.avatarURL}
-          rating={5}
+        <FeaturedTestimonial
+          quote={featured_testimonial.quote}
+          customerName={featured_testimonial.customerName}
+          location={featured_testimonial.location}
+          avatarUrl={featured_testimonial.avatarUrl}
+          rating={featured_testimonial.rating}
           variant="default"
         />
-        
+
         <!-- Recent Projects Section -->
         <Spacer size="md" direction="top">
           <div class="text-center">
-            <Heading level={3} size="md" color="white" class="text-sm sm:text-base md:text-lg leading-5 sm:leading-6 md:leading-7 mb-3 sm:mb-4">
-              <span data-editable="source" data-path="src/components/sections/Testimonials.astro" data-key="testimonials_projects_heading">Recent Projects</span>
+            <Heading
+              level={3}
+              size="md"
+              color="white"
+              class="text-sm sm:text-base md:text-lg leading-5 sm:leading-6 md:leading-7 mb-3 sm:mb-4"
+            >
+              Recent Projects
             </Heading>
           </div>
 
@@ -61,48 +129,41 @@ const { images = [], testimonial } = Astro.props;
         </Spacer>
       </ContentBlock>
     </div>
-    
+
     <!-- Right Column Content -->
     <div slot="right">
       <!-- Customer Reviews Header -->
       <Section background="transparent" padding="sm">
         <Container size="md" class="flex justify-center">
           <SectionHeader
-             title="Customer Reviews"
-             level={2}
-             size="xl"
-             showRating={true}
-             rating={4.9}
-             totalReviews={124}
-             layout="horizontal"
-             alignment="left"
-             spacing="sm"
-           />
+            title={highlight_heading}
+            level={2}
+            size="xl"
+            showRating={true}
+            rating={highlight_rating}
+            totalReviews={highlight_total}
+            layout="horizontal"
+            alignment="left"
+            spacing="sm"
+          />
         </Container>
       </Section>
-      
+
       <!-- Reviews List -->
       <CardGrid variant="testimonial" columns={1} gap="md" maxWidth="max-w-2xl">
-        {/* timeAgo="2 weeks ago" - implement later */}
-        <Card 
-          variant="review"
-          customerName="Jason Chung"
-          location="Urbana, MD"
-          rating={5}
-          serviceType="Roof Replacement"
-          timeAgo="3 months ago"
-          reviewText="The roof replacement was clean and awesome! It was done in a day and a half! This looks like a company that you can definitely trust and rely on for roof replacement!"
-        />
-        
-        <Card 
-          variant="review"
-          customerName="Matthew Marcus"
-          location="Frederick, MD"
-          rating={5}
-          serviceType="Commercial Roof"
-          timeAgo="6 months ago"
-          reviewText="I could not have been happier with the job Danny and JLand Contracting completed for us. He was extremely helpful and friendly. The roof came out fantastic too. Thanks to him we got our roof replacement fully covered by our insurance! Thanks Danny!"
-        />
+        {
+          reviews.map((review) => (
+            <Card
+              variant="review"
+              customerName={review.name}
+              location={review.location}
+              rating={review.rating}
+              serviceType={review.service}
+              timeAgo={review.time}
+              reviewText={review.review}
+            />
+          ))
+        }
       </CardGrid>
     </div>
   </Layout>

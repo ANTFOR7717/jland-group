@@ -1,23 +1,70 @@
 ---
 // AboutUs Component - Pixel-perfect implementation from Motiff design
-import { Container, Section, SectionHeader, ContentBlock, Card, Layout, DecorativeLine, Statistics, NumberedSection } from '../ui/index.js';
-import Heading from '../ui/display/Heading.astro';
-import Text from '../ui/display/Text.astro';
+import {
+  Container,
+  Section,
+  SectionHeader,
+  ContentBlock,
+  Card,
+  Layout,
+  DecorativeLine,
+  Statistics,
+  NumberedSection,
+} from "../ui/index.js";
+import Heading from "../ui/display/Heading.astro";
+import Text from "../ui/display/Text.astro";
+
+export interface Props {
+  heading?: string;
+  steps?: { number: string; description: string }[];
+}
+
+const {
+  heading = "Our Roofing Process",
+  steps = [
+    {
+      number: "01",
+      description:
+        "With integrity, we visit your home for a free roof assessment to ensure reliable protection.",
+    },
+    {
+      number: "02",
+      description:
+        "Devoted to your needs, you choose a day that aligns with your schedule.",
+    },
+    {
+      number: "03",
+      description:
+        "Our united team removes and collects old materials for responsible disposal, including recycling when possible.",
+    },
+    {
+      number: "04",
+      description:
+        "Devoted to excellence, we install your roof with drip edge, underlayment, shingles, and flashing.",
+    },
+    {
+      number: "05",
+      description:
+        "Accountable to our values, our team cleans your property of nails and debris before leaving.",
+    },
+  ],
+} = Astro.props;
 ---
 
 <Section background="light" padding="md">
-  <Container size="full" class="overflow-hidden gap-1.5 flex flex-col items-stretch font-inter text-base font-normal">
-    
+  <Container
+    size="full"
+    class="overflow-hidden gap-1.5 flex flex-col items-stretch font-inter text-base font-normal"
+  >
     <!-- Main Title -->
-    <SectionHeader 
-      title="Our Roofing Process" 
-      level={1} 
-      size="4xl" 
-      alignment="center" 
-      spacing="lg" 
+    <SectionHeader
+      title={heading}
+      level={1}
+      size="4xl"
+      alignment="center"
+      spacing="lg"
       decorativeImage="https://static.motiffcontent.com/private/resource/image/19847a91b1c45aa-f9b7ad44-c36a-47e5-a05e-5ab2e2f83806.svg"
     />
-
 
     <!-- Main Content Area -->
     <Layout
@@ -32,60 +79,27 @@ import Text from '../ui/display/Text.astro';
     >
       <!-- Left Column -->
       <div slot="left" class="mt-[9.16px] flex flex-col items-stretch">
-        <!-- Section 01 -->
-        <NumberedSection 
-          number="01" 
-          description="With integrity, we visit your home for a free roof assessment to ensure reliable protection."
-          spacing="none"
-          minHeight="lg"
-        />
-
-        <!-- Section 02 -->
-        <NumberedSection 
-          number="02" 
-          description="Devoted to your needs, you choose a day that aligns with your schedule."
-          spacing="none"
-          minHeight="lg"
-        />
-
-        <!-- Section 03 -->
-        <NumberedSection 
-          number="03" 
-          description="Our united team removes and collects old materials for responsible disposal, including recycling when possible."
-          spacing="none"
-          minHeight="lg"
-        />
-
-          <!-- Section 04 -->
-        <NumberedSection 
-          number="04" 
-          description="Devoted to excellence, we install your roof with drip edge, underlayment, shingles, and flashing."
-          spacing="none"
-          minHeight="lg"
-        />
-
-         <!-- Section 05 -->
-        <NumberedSection 
-          number="05" 
-          description="Accountable to our values, our team cleans your property of nails and debris before leaving."
-          spacing="none"
-          minHeight="lg"
-        />
-
-      
+        {
+          steps.map((step) => (
+            <NumberedSection
+              number={step.number}
+              description={step.description}
+              spacing="none"
+              minHeight="lg"
+            />
+          ))
+        }
       </div>
-      
+
       <!-- Right Column - Image -->
-      <Card 
+      <Card
         slot="right"
-        variant="image" 
-        backgroundImage="https://i.postimg.cc/PqWrPwqC/roofing_Process.jpg"
+        variant="image"
+        backgroundImage="https://static.motiffcontent.com/private/resource/image/19843b29409c4f4-4c8fe779-6edb-4dc8-9db0-30dd0af504c6.jpeg"
         width="w-full"
         height="h-auto"
         class="lg:w-[608px] lg:h-[600px]"
       />
     </Layout>
-
-  
-   </Container>
- </Section>
+  </Container>
+</Section>

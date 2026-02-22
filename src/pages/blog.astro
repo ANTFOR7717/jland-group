@@ -1,4 +1,5 @@
 ---
+import { getEntry } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/layout/Header.astro';
 import Button from '../components/ui/buttons/Button.astro';
@@ -7,105 +8,42 @@ import Section from '../components/ui/layout/Section.astro';
 import SectionHeader from '../components/ui/display/SectionHeader.astro';
 import Text from '../components/ui/display/Text.astro';
 
-const pageTitle = "The J Land Blog | Real Talk on Roofing from Frederick, MD";
-const pageDescription = "Real stories from the job site, honest advice, and the latest roofing news from Maryland's trusted family contractors. Straight talk—no fluff.";
+const page = (await getEntry('pages', 'blog'))!;
+const { 
+  title: pageTitle, 
+  description: pageDescription, 
+  badge, 
+  hero_heading, 
+  hero_heading_accent, 
+  hero_subtitle, 
+  cta_primary_text, 
+  cta_primary_href, 
+  cta_secondary_text, 
+  cta_secondary_href, 
+  trust_indicators, 
+  categories,
+  category_labels,
+  blog_articles,
+  sidebar_recent_posts_title,
+  sidebar_categories_title,
+  sidebar_categories,
+  sidebar_trust_title,
+  sidebar_trust_items,
+  sidebar_cta_title,
+  sidebar_cta_text,
+  sidebar_cta_button,
+  sidebar_cta_href,
+  sidebar_contact_title,
+  sidebar_contact_info,
+  bottom_cta_heading,
+  bottom_cta_text,
+  bottom_cta_primary_text,
+  bottom_cta_primary_href,
+  bottom_cta_secondary_text,
+  bottom_cta_secondary_href,
+} = page.data as any;
 
-// Sample blog articles data
-const blogArticles = [
-  {
-    id: 1,
-    title: "5 Warning Signs Your Roof Needs Immediate Attention",
-    excerpt: "Learn the critical indicators that your roof may need repairs or replacement before minor issues become major expenses. From curling shingles to water stains, know what to look for.",
-    category: "roofing",
-    date: "December 10, 2025",
-    image: null,
-    slug: "warning-signs-roof-needs-attention"
-  },
-  {
-    id: 2,
-    title: "How Storm Damage Insurance Claims Work in Maryland",
-    excerpt: "Navigate the insurance claims process with confidence. Our 15+ years of experience helping Maryland homeowners get the coverage they deserve.",
-    category: "storm-damage",
-    date: "December 5, 2025",
-    image: null,
-    slug: "storm-damage-insurance-claims-maryland"
-  },
-  {
-    id: 3,
-    title: "Choosing the Right Siding Material for Your Home",
-    excerpt: "Compare vinyl, fiber cement, and wood siding options. Learn which materials offer the best durability, aesthetics, and value for Maryland's climate.",
-    category: "siding",
-    date: "November 28, 2025",
-    image: null,
-    slug: "choosing-right-siding-material"
-  },
-  {
-    id: 4,
-    title: "Gutter Maintenance: Protecting Your Home's Foundation",
-    excerpt: "Proper gutter maintenance prevents costly foundation damage and water intrusion. Learn seasonal maintenance tips and when to consider gutter guards.",
-    category: "gutters",
-    date: "November 20, 2025",
-    image: null,
-    slug: "gutter-maintenance-foundation-protection"
-  },
-  {
-    id: 5,
-    title: "Preparing Your Roof for Winter: Essential Checklist",
-    excerpt: "Get your roof winter-ready with our comprehensive checklist. From inspections to ventilation checks, ensure your home is protected from harsh weather.",
-    category: "maintenance",
-    date: "November 15, 2025",
-    image: null,
-    slug: "preparing-roof-for-winter-checklist"
-  },
-  {
-    id: 6,
-    title: "Frederick County Roofing Regulations You Should Know",
-    excerpt: "Stay compliant with local building codes and permit requirements. A guide to Frederick County's roofing regulations for homeowners and contractors.",
-    category: "local-news",
-    date: "November 8, 2025",
-    image: null,
-    slug: "frederick-county-roofing-regulations"
-  },
-  {
-    id: 7,
-    title: "The Benefits of CertainTeed Certified Roofing Installation",
-    excerpt: "Discover why manufacturer certification matters. Learn how CertainTeed certified installation protects your investment with extended warranties.",
-    category: "roofing",
-    date: "November 1, 2025",
-    image: null,
-    slug: "certainteed-certified-roofing-benefits"
-  },
-  {
-    id: 8,
-    title: "Post-Storm Roof Inspection: What to Expect",
-    excerpt: "After severe weather, a professional inspection is crucial. Learn what our team looks for and how we document damage for insurance purposes.",
-    category: "storm-damage",
-    date: "October 25, 2025",
-    image: null,
-    slug: "post-storm-roof-inspection-guide"
-  }
-];
-
-const categories = [
-  { id: "all", label: "All Articles" },
-  { id: "roofing", label: "Roofing" },
-  { id: "siding", label: "Siding" },
-  { id: "gutters", label: "Gutters" },
-  { id: "storm-damage", label: "Storm Damage" },
-  { id: "maintenance", label: "Maintenance Tips" },
-  { id: "local-news", label: "Local News" }
-];
-
-const recentPosts = blogArticles.slice(0, 3);
-
-const categoryLabels: Record<string, string> = {
-  "roofing": "Roofing",
-  "siding": "Siding",
-  "gutters": "Gutters",
-  "storm-damage": "Storm Damage",
-  "maintenance": "Maintenance",
-  "local-news": "Local News"
-};
+const recentPosts = blog_articles.slice(0, 3);
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
@@ -117,44 +55,34 @@ const categoryLabels: Record<string, string> = {
       <div class="text-center max-w-4xl mx-auto">
         <div class="mb-6">
           <div class="inline-flex items-center justify-center mb-4 text-white bg-brand-primary px-4 py-2 rounded-full font-semibold">
-            Straight Talk from Our Crew
+            {badge}
           </div>
         </div>
         <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-          Insights &<br>
-          <span class="text-accent-primary">Blog Post</span>
+          {hero_heading}<br>
+          <span class="text-accent-primary">{hero_heading_accent}</span>
         </h1>
         <p class="text-xl text-white mb-8 leading-relaxed">
-          Real stories from the job site, honest advice from our team, and the latest news 
-          from Maryland's roofing industry. No fluff—just the stuff homeowners actually need to know.
+          {hero_subtitle}
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-          <Button href="/contact" variant="primary" size="lg">
-            Free Consultation
+          <Button href={cta_primary_href} variant="primary" size="lg">
+            {cta_primary_text}
           </Button>
-          <Button href="#articles" variant="primary" size="lg" class="bg-white text-brand-primary border-white hover:bg-gray-100">
-            Browse Articles
+          <Button href={cta_secondary_href} variant="primary" size="lg" class="bg-white text-brand-primary border-white hover:bg-gray-100">
+            {cta_secondary_text}
           </Button>
         </div>
         <div class="flex flex-wrap justify-center gap-6 text-sm text-white">
-          <div class="flex items-center gap-2">
-            <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-            </svg>
-            <span>Licensed & Insured</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-            </svg>
-            <span>CertainTeed Certified</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-            </svg>
-            <span>15+ Years Experience</span>
-          </div>
+            {trust_indicators?.map((indicator: string) => (
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span>{indicator}</span>
+            </div>
+            ))}
+
         </div>
       </div>
     </Container>
@@ -170,7 +98,7 @@ const categoryLabels: Record<string, string> = {
           <!-- Category Filter -->
           <div class="mb-8">
             <div class="flex flex-wrap gap-2" id="category-filters">
-              {categories.map((cat) => (
+              {categories?.map((cat: any) => (
                 <button
                   data-category={cat.id}
                   class="category-btn px-5 py-2.5 rounded-lg font-semibold text-sm transition-all duration-200 border shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-accent-primary focus:ring-offset-2"
@@ -184,7 +112,7 @@ const categoryLabels: Record<string, string> = {
 
           <!-- Article Grid -->
           <div class="grid md:grid-cols-2 gap-6" id="articles-grid">
-            {blogArticles.map((article) => (
+            {blog_articles?.map((article: any) => (
               <article 
                 class="article-card bg-white rounded-2xl shadow-lg border border-brand-border overflow-hidden group hover:shadow-xl transition-shadow duration-300"
                 data-category={article.category}
@@ -199,7 +127,7 @@ const categoryLabels: Record<string, string> = {
                   <!-- Category Badge -->
                   <div class="absolute top-4 left-4">
                     <span class="px-3 py-1.5 bg-accent-primary text-brand-primary text-xs font-bold rounded-lg shadow-sm">
-                      {categoryLabels[article.category]}
+                      {category_labels[article.category]}
                     </span>
                   </div>
                 </div>
@@ -251,10 +179,10 @@ const categoryLabels: Record<string, string> = {
               <svg class="w-5 h-5 mr-3 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
               </svg>
-              Recent Posts
+              {sidebar_recent_posts_title}
             </h3>
             <div class="space-y-4">
-              {recentPosts.map((post) => (
+              {recentPosts?.map((post: any) => (
                 <a 
                   href={`/blog/${post.slug}`}
                   class="block group py-2 border-b border-gray-100 last:border-0"
@@ -274,33 +202,17 @@ const categoryLabels: Record<string, string> = {
               <svg class="w-5 h-5 mr-3 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z"></path>
               </svg>
-              Service Categories
+              {sidebar_categories_title}
             </h3>
             <nav class="space-y-1">
-              <a href="/services#roofing" class="flex items-center text-brand-secondary hover:text-accent-primary transition-colors py-3 border-b border-gray-100">
-                <svg class="w-4 h-4 mr-3 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                </svg>
-                Roofing Services
-              </a>
-              <a href="/services#siding" class="flex items-center text-brand-secondary hover:text-accent-primary transition-colors py-3 border-b border-gray-100">
-                <svg class="w-4 h-4 mr-3 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                </svg>
-                Siding & Exteriors
-              </a>
-              <a href="/services#gutters" class="flex items-center text-brand-secondary hover:text-accent-primary transition-colors py-3 border-b border-gray-100">
-                <svg class="w-4 h-4 mr-3 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                </svg>
-                Gutter Systems
-              </a>
-              <a href="/services#storm" class="flex items-center text-brand-secondary hover:text-accent-primary transition-colors py-3">
-                <svg class="w-4 h-4 mr-3 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                </svg>
-                Storm Restoration
-              </a>
+              {sidebar_categories?.map((cat: any) => (
+                <a href={cat.href} class="flex items-center text-brand-secondary hover:text-accent-primary transition-colors py-3 border-b border-gray-100 last:border-0">
+                  <svg class="w-4 h-4 mr-3 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  {cat.label}
+                </a>
+              ))}
             </nav>
           </div>
 
@@ -310,53 +222,35 @@ const categoryLabels: Record<string, string> = {
               <svg class="w-5 h-5 mr-3 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
               </svg>
-              Why Trust Us
+              {sidebar_trust_title}
             </h3>
             <div class="space-y-4">
-              <div class="flex items-center">
-                <div class="w-12 h-12 bg-state-success rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                  <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                  </svg>
+              {sidebar_trust_items?.map((item: any) => (
+                <div class="flex items-center">
+                  <div class={`w-12 h-12 ${item.color} rounded-full flex items-center justify-center mr-4 flex-shrink-0`}>
+                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      {item.icon === 'shield' && <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>}
+                      {item.icon === 'certificate' && <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>}
+                      {item.icon === 'users' && <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>}
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="font-semibold text-brand-primary">{item.title}</p>
+                    <p class="text-sm text-brand-secondary">{item.subtitle}</p>
+                  </div>
                 </div>
-                <div>
-                  <p class="font-semibold text-brand-primary">Licensed & Insured</p>
-                  <p class="text-sm text-brand-secondary">Full coverage protection</p>
-                </div>
-              </div>
-              <div class="flex items-center">
-                <div class="w-12 h-12 bg-accent-primary rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                  <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                  </svg>
-                </div>
-                <div>
-                  <p class="font-semibold text-brand-primary">CertainTeed Certified</p>
-                  <p class="text-sm text-brand-secondary">Manufacturer-backed quality</p>
-                </div>
-              </div>
-              <div class="flex items-center">
-                <div class="w-12 h-12 bg-accent-secondary rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                  <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
-                  </svg>
-                </div>
-                <div>
-                  <p class="font-semibold text-brand-primary">Family Owned</p>
-                  <p class="text-sm text-brand-secondary">Serving Maryland since 2015</p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
 
           <!-- CTA Widget -->
           <div class="bg-brand-primary rounded-2xl shadow-xl p-8 text-center">
-            <h3 class="text-2xl font-bold text-white mb-4">Free Consultation</h3>
+            <h3 class="text-2xl font-bold text-white mb-4">{sidebar_cta_title}</h3>
             <p class="text-white/90 mb-6 leading-relaxed">
-              Get expert advice on your roofing or construction project. No obligation, just honest guidance.
+              {sidebar_cta_text}
             </p>
-            <Button href="/contact" variant="primary" size="md" class="w-full justify-center">
-              Schedule Now
+            <Button href={sidebar_cta_href} variant="primary" size="md" class="w-full justify-center">
+              {sidebar_cta_button}
             </Button>
           </div>
 
@@ -366,7 +260,7 @@ const categoryLabels: Record<string, string> = {
               <svg class="w-5 h-5 mr-3 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
               </svg>
-              Contact Us
+              {sidebar_contact_title}
             </h3>
             <div class="space-y-4">
               <div class="flex items-start">
@@ -374,8 +268,8 @@ const categoryLabels: Record<string, string> = {
                   <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
                 </svg>
                 <div>
-                  <p class="font-semibold text-brand-primary">(410) 292-0801</p>
-                  <p class="text-sm text-brand-secondary">Mon-Fri 8am-5pm</p>
+                  <p class="font-semibold text-brand-primary">{sidebar_contact_info.phone}</p>
+                  <p class="text-sm text-brand-secondary">{sidebar_contact_info.hours}</p>
                 </div>
               </div>
               <div class="flex items-start">
@@ -384,7 +278,7 @@ const categoryLabels: Record<string, string> = {
                   <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
                 </svg>
                 <div>
-                  <p class="font-semibold text-brand-primary">info@jlandgroup.com</p>
+                  <p class="font-semibold text-brand-primary">{sidebar_contact_info.email}</p>
                 </div>
               </div>
               <div class="flex items-start">
@@ -392,8 +286,8 @@ const categoryLabels: Record<string, string> = {
                   <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
                 </svg>
                 <div>
-                  <p class="font-semibold text-brand-primary">Service Areas</p>
-                  <p class="text-sm text-brand-secondary">Frederick, Montgomery, Carroll, Washington Counties</p>
+                  <p class="font-semibold text-brand-primary">{sidebar_contact_info.areas_title}</p>
+                  <p class="text-sm text-brand-secondary">{sidebar_contact_info.areas_list}</p>
                 </div>
               </div>
             </div>
@@ -408,18 +302,17 @@ const categoryLabels: Record<string, string> = {
     <Container>
       <div class="text-center max-w-4xl mx-auto">
         <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-white">
-          Ready for Your <span class="text-accent-primary">Roofing Project?</span>
+          {bottom_cta_heading?.split('Lighting')[0]} {bottom_cta_heading?.includes('Roofing Project') && 'Ready for Your'} <span class="text-accent-primary">{bottom_cta_heading?.includes('Roofing Project') ? 'Roofing Project?' : ''}</span>
         </h2>
         <p class="text-xl mb-8 text-white leading-relaxed">
-          Let our devoted team guide you through every step of your roofing journey with peace of mind. 
-          From initial consultation to project completion, we're here to help protect your home.
+          {bottom_cta_text}
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button href="/contact" variant="primary" size="lg">
-            Schedule Free Consultation
+          <Button href={bottom_cta_primary_href} variant="primary" size="lg">
+            {bottom_cta_primary_text}
           </Button>
-          <Button href="tel:2404567890" variant="primary" size="lg" class="bg-white text-brand-primary border-white hover:bg-gray-100">
-            Call (410) 292-0801
+          <Button href={bottom_cta_secondary_href} variant="primary" size="lg" class="bg-white text-brand-primary border-white hover:bg-gray-100">
+            {bottom_cta_secondary_text}
           </Button>
         </div>
       </div>

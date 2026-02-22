@@ -1,164 +1,201 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/layout/Header.astro';
+import { getEntry } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/layout/Header.astro";
 
-import { 
-  Container, 
-  Section, 
-  Button, 
-  Card, 
-  CardGrid, 
-  Icon, 
-  FeaturedTestimonial, 
-  StarRating 
-} from '../components/ui';
-import Heading from '../components/ui/display/Heading.astro';
-import Text from '../components/ui/display/Text.astro';
+import {
+  Container,
+  Section,
+  Button,
+  Card,
+  CardGrid,
+  Icon,
+  FeaturedTestimonial,
+  StarRating,
+} from "../components/ui";
+import Heading from "../components/ui/display/Heading.astro";
+import Text from "../components/ui/display/Text.astro";
 
 // Import services data from existing collections
-import { getCollection } from 'astro:content';
-const allServices = await getCollection('services');
-const roofingServices = allServices.find(service => service.id === 'roofing')?.data;
-const constructionServices = allServices.find(service => service.id === 'construction')?.data;
+import { getCollection } from "astro:content";
+const allServices = await getCollection("services");
+const roofingServices = allServices.find(
+  (service) => service.id === "roofing",
+)?.data;
+const constructionServices = allServices.find(
+  (service) => service.id === "construction",
+)?.data;
 
-// Define page data structure
-const hero = {
-  title: "Professional Roofing & Construction Services",
-  subtitle: "Expert roofing, construction, and exterior services throughout Frederick, MD and surrounding areas. Licensed, insured, and backed by 20+ years of experience.",
-  ctaPrimary: { text: "Get Free Estimate", href: "#contact" },
-  ctaSecondary: { text: "Call (410) 292-0801", href: "tel:+14102920801" }
-};
+const page = (await getEntry("pages", "services"))!;
+const {
+  title: seoTitle,
+  description: seoDescription,
+  badge,
+  hero_heading,
+  hero_heading_accent,
+  hero_subtitle,
+  cta_primary_text,
+  cta_primary_href,
+  cta_secondary_text,
+  cta_secondary_href,
+  trust_indicators,
+  seo_keywords,
+  services_heading,
+  services_subtitle,
+  roofing_description,
+  construction_description,
+  why_choose_us_title,
+  why_choose_us_subtitle,
+  why_choose_us_reasons,
+  testimonials_heading,
+  testimonials_subtitle,
+  testimonials_rating_text,
+  testimonials_button_text,
+  testimonials,
+  service_areas_heading,
+  service_areas_subtitle,
+  service_areas_button_text,
+  service_areas_map_image,
+  service_areas,
+  contact_cta_title,
+  contact_cta_subtitle,
+  contact_phone,
+  contact_email,
+  contact_hours,
+  contact_cta_buttons,
+} = page.data as any;
 
 const serviceCategories = [
   {
     title: roofingServices?.title || "Roofing Services",
-    description: "Complete roofing solutions from repairs to full replacements using premium materials and expert craftsmanship.",
-    services: (roofingServices?.services || []).map(service => {
-      if (service.title.toLowerCase().includes('roof inspection')) {
+    description: roofing_description,
+    services: (roofingServices?.services || []).map((service: any) => {
+      if (service.title.toLowerCase().includes("roof inspection")) {
         return {
           ...service,
-          buttonText: 'Get Your Free Roof Inspection Now',
-          psaiTrigger: "eea3332f-7784-4ba4-81d9-36b384371b29"
+          buttonText: "Get Your Free Roof Inspection Now",
+          psaiTrigger: "eea3332f-7784-4ba4-81d9-36b384371b29",
         };
       }
       return service;
-    })
+    }),
   },
   {
-    title: constructionServices?.title || "Construction Services", 
-    description: "Full-service construction solutions for residential and commercial projects with attention to detail and quality.",
-    services: constructionServices?.services || []
-  }
+    title: constructionServices?.title || "Construction Services",
+    description: construction_description,
+    services: constructionServices?.services || [],
+  },
 ];
-
-const whyChooseUs = {
-  title: "Why Choose J Land Contracting?",
-  reasons: [
-    { title: "Integrity & Reliability", description: "Guided by moral excellence, ensuring reliable protection for your home.", icon: "shield" },
-    { title: "Devotion & Vision", description: "20+ years devoted to visionary craftsmanship guided by integrity.", icon: "star" },
-    { title: "Team Unity", description: "United team stands behind work with accountable warranties.", icon: "verified" },
-    { title: "Community Rooted", description: "Local devotion to Maryland's weather and building needs.", icon: "location" },
-    { title: "Free Estimates", description: "Transparent, no-obligation estimates with faithful guidance.", icon: "calculator" },
-    { title: "Humanitarian Response", description: "24/7 service for urgent needs, aiding those in crisis.", icon: "clock" }
-  ]
-};
-
-const serviceAreas = ["Frederick, MD", "Jefferson, MD", "Urbana, MD", "Mount Airy, MD", "New Market, MD", "Monrovia, MD", "Ijamsville, MD", "Walkersville, MD"];
-
-const contact = {
-  title: "Ready to Start Your Project?",
-  phone: "(410) 292-0801",
-  email: "info@jlandgroup.com",
-  hours: "Mon-Fri: 7AM-6PM"
-};
 
 // Structured data for services
 const servicesStructuredData = {
   "@context": "https://schema.org",
   "@type": "Service",
-  "provider": {
+  provider: {
     "@type": "LocalBusiness",
-    "name": "J Land Group",
-    "address": {
+    name: "J Land Group",
+    address: {
       "@type": "PostalAddress",
-      "streetAddress": "3636 Glenoble Court",
-      "addressLocality": "Jefferson",
-      "addressRegion": "MD",
-      "postalCode": "21755"
+      streetAddress: "3636 Glenoble Court",
+      addressLocality: "Jefferson",
+      addressRegion: "MD",
+      postalCode: "21755",
     },
-    "telephone": "+1-301-555-0123"
+    telephone: "+1-301-555-0123",
   },
-  "serviceType": serviceCategories.flatMap((cat: any) => cat.services.map((service: any) => service.title)),
-  "areaServed": serviceAreas,
-  "hasOfferCatalog": {
+  serviceType: serviceCategories.flatMap((cat: any) =>
+    cat.services.map((service: any) => service.title),
+  ),
+  areaServed: service_areas,
+  hasOfferCatalog: {
     "@type": "OfferCatalog",
-    "name": "Construction and Roofing Services",
-    "itemListElement": serviceCategories.flatMap((cat: any, catIndex: number) => 
+    name: "Construction and Roofing Services",
+    itemListElement: serviceCategories.flatMap((cat: any, catIndex: number) =>
       cat.services.map((service: any, serviceIndex: number) => ({
         "@type": "Offer",
-        "itemOffered": {
+        itemOffered: {
           "@type": "Service",
-          "name": service.title,
-          "description": service.description
-        }
-      }))
-    )
-  }
+          name: service.title,
+          description: service.description,
+        },
+      })),
+    ),
+  },
 };
 ---
 
 <Layout>
   <Fragment slot="head">
-    <title>Professional Roofing & Construction Services in Frederick, MD</title>
-    <meta name="description" content="J Land Group provides expert roofing, construction, and exterior services throughout Frederick, MD and surrounding areas. Licensed, insured, and backed by 20+ years of experience." />
-    <meta name="keywords" content="roofing services Frederick MD, roof repair, roof replacement, construction services, exterior contractors, licensed roofers Maryland" />
+    <title>{seoTitle}</title>
+    <meta name="description" content={seoDescription} />
+    <meta name="keywords" content={seo_keywords} />
     <link rel="canonical" href={`${Astro.site}${Astro.url.pathname}`} />
-    <script type="application/ld+json" set:html={JSON.stringify(servicesStructuredData)} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(servicesStructuredData)}
+    />
   </Fragment>
-  
+
   <Header />
   <!-- Hero Section -->
   <Section background="dark">
     <Container>
       <div class="text-center max-w-4xl mx-auto">
         <div class="mb-6">
-          <div class="inline-flex items-center justify-center mb-4 text-white bg-brand-primary px-4 py-2 rounded-full font-semibold">Professional Services</div>
+          <div
+            class="inline-flex items-center justify-center mb-4 text-white bg-brand-primary px-4 py-2 rounded-full font-semibold"
+          >
+            {badge}
+          </div>
         </div>
-        <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-          Expert Roofing &<br>
-          <span class="text-accent-primary">Construction Services</span>
+        <h1
+          class="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight"
+        >
+          {hero_heading}<br />
+          <span class="text-accent-primary">{hero_heading_accent}</span>
         </h1>
         <p class="text-xl text-white mb-8 leading-relaxed">
-          Devoted roofing, construction, and exterior services throughout Frederick, MD and surrounding areas.
-          Guided by integrity and 20+ years of faithful experience delivering reliable results.
+          {hero_subtitle}
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-          <Button href="#contact" variant="primary" size="lg" class="text-center text-sm sm:text-base">
-            Get Your Free Estimate
+        <div
+          class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8"
+        >
+          <Button
+            href={cta_primary_href}
+            variant="primary"
+            size="lg"
+            class="text-center text-sm sm:text-base"
+          >
+            {cta_primary_text}
           </Button>
-          <Button href="tel:+14102920801" variant="primary" size="lg" class="bg-white text-brand-primary border-white hover:bg-gray-100 text-center text-sm sm:text-base">
-            Call (410) 292-0801
+          <Button
+            href={cta_secondary_href}
+            variant="primary"
+            size="lg"
+            class="bg-white text-brand-primary border-white hover:bg-gray-100 text-center text-sm sm:text-base"
+          >
+            {cta_secondary_text}
           </Button>
         </div>
         <div class="flex flex-wrap justify-center gap-6 text-sm text-white">
-          <div class="flex items-center gap-2">
-            <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-            </svg>
-            <span>Licensed & Insured</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-            </svg>
-            <span>20+ Years Experience</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-            </svg>
-            <span>500+ Happy Customers</span>
-          </div>
+          {
+            trust_indicators?.map((indicator: string) => (
+              <div class="flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-accent-primary"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span>{indicator}</span>
+              </div>
+            ))
+          }
         </div>
       </div>
     </Container>
@@ -168,59 +205,72 @@ const servicesStructuredData = {
   <Section class="py-20 bg-background-light">
     <Container>
       <div class="text-center mb-12">
-           <Heading level={2} size="3xl" class="mb-4 font-bold text-brand-primary">
-             Our Services
-           </Heading>
-           <Text variant="lead" class="text-brand-secondary max-w-3xl mx-auto">
-             Professional roofing and construction services for your home or business
-           </Text>
-         </div>
+        <Heading level={2} size="3xl" class="mb-4 font-bold text-brand-primary">
+          {services_heading}
+        </Heading>
+        <Text variant="lead" class="text-brand-secondary max-w-3xl mx-auto">
+          {services_subtitle}
+        </Text>
+      </div>
 
-      {serviceCategories.map((category: any, index: number) => (
-        <div class="mb-20 last:mb-0">
-          <div class="text-center mb-12">
- <div class="inline-flex items-center bg-brand-primary/10 text-brand-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
-                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+      {
+        serviceCategories.map((category: any, index: number) => (
+          <div class="mb-20 last:mb-0">
+            <div class="text-center mb-12">
+              <div class="inline-flex items-center bg-brand-primary/10 text-brand-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                <svg
+                  class="w-4 h-4 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
                   <path d="M1 11V23H23V11L12 2L1 11ZM13 21H11V15H13V21ZM15 14H9V12H15V14Z" />
                 </svg>
                 Residential
               </div>
-            <Heading level={3} size="2xl" class="mb-4 font-bold text-brand-primary">
-              {category.title}
-            </Heading>
-            <Text variant="lead" class="text-brand-secondary max-w-2xl mx-auto">
-              {category.description}
-            </Text>
+              <Heading
+                level={3}
+                size="2xl"
+                class="mb-4 font-bold text-brand-primary"
+              >
+                {category.title}
+              </Heading>
+              <Text
+                variant="lead"
+                class="text-brand-secondary max-w-2xl mx-auto"
+              >
+                {category.description}
+              </Text>
+            </div>
+
+            <CardGrid columns={3} gap="lg" class="mb-8">
+              {category.services.map((service: any, serviceIndex: number) => (
+                <Card
+                  variant="service"
+                  title={service.title}
+                  description={service.description}
+                  image={service.image}
+                  features={service.features}
+                  buttonText={service.buttonText}
+                  buttonHref={service.buttonHref}
+                  cta={{ text: service.buttonText, href: service.buttonHref }}
+                  class="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                />
+              ))}
+            </CardGrid>
+
+            <div class="text-center">
+              <Button
+                variant="primary"
+                size="lg"
+                href="#contact"
+                class="font-semibold px-8 py-4 text-center text-sm sm:text-base"
+              >
+                View All Services
+              </Button>
+            </div>
           </div>
-          
-          <CardGrid columns={3} gap="lg" class="mb-8">
-            {category.services.map((service: any, serviceIndex: number) => (
-              <Card 
-                variant="service"
-                title={service.title}
-                description={service.description}
-                image={service.image}
-                features={service.features}
-                buttonText={service.buttonText}
-                buttonHref={service.buttonHref}
-                cta={{ text: service.buttonText, href: service.buttonHref }}
-                class="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-              />
-            ))}
-          </CardGrid>
-          
-          <div class="text-center">
-            <Button 
-              variant="primary" 
-              size="lg" 
-              href="#contact"
-              class="font-semibold px-8 py-4 text-center text-sm sm:text-base"
-            >
-              View All Services
-            </Button>
-          </div>
-        </div>
-      ))}
+        ))
+      }
     </Container>
   </Section>
 
@@ -229,23 +279,25 @@ const servicesStructuredData = {
     <Container>
       <div class="text-center mb-16">
         <Heading level={2} size="3xl" class="mb-4 font-bold text-brand-primary">
-          {whyChooseUs.title}
+          {why_choose_us_title}
         </Heading>
         <Text variant="lead" class="text-brand-secondary max-w-3xl mx-auto">
-          Discover why homeowners and businesses trust us for their construction and roofing needs.
+          {why_choose_us_subtitle}
         </Text>
       </div>
-      
+
       <CardGrid columns={3} gap="lg">
-        {whyChooseUs.reasons.map((reason: any) => (
-          <Card 
-            variant="default"
-            title={reason.title}
-            description={reason.description}
-            icon={reason.icon}
-            class="text-center p-8 hover:shadow-lg transition-shadow duration-300"
-          />
-        ))}
+        {
+          why_choose_us_reasons?.map((reason: any) => (
+            <Card
+              variant="default"
+              title={reason.title}
+              description={reason.description}
+              icon={reason.icon}
+              class="text-center p-8 hover:shadow-lg transition-shadow duration-300"
+            />
+          ))
+        }
       </CardGrid>
     </Container>
   </Section>
@@ -255,52 +307,42 @@ const servicesStructuredData = {
     <Container>
       <div class="text-center mb-16">
         <Heading level={2} size="3xl" class="mb-4 font-bold text-white">
-          What Our Customers Say
+          {testimonials_heading}
         </Heading>
         <Text variant="lead" class="text-gray-300 max-w-3xl mx-auto mb-6">
-          Don't just take our word for it - hear from our satisfied customers
+          {testimonials_subtitle}
         </Text>
         <div class="flex items-center justify-center gap-2">
           <StarRating rating={5} size="lg" />
-          <Text class="text-white font-semibold ml-2">4.9/5 from 200+ reviews</Text>
+          <Text class="text-white font-semibold ml-2"
+            >{testimonials_rating_text}</Text
+          >
         </div>
       </div>
-      
+
       <CardGrid columns={3} gap="lg">
-        <FeaturedTestimonial
-          quote="Our team's devotion ensured reliable roof replacement, providing peace of mind and lasting protection."
-          customerName="Satisfied Client"
-          location="Frederick, MD"
-          avatarUrl=""
-          rating={5}
-          variant="dark"
-        />
-        <FeaturedTestimonial
-          quote="United efforts delivered accountable service, transforming our roof with visionary integrity."
-          customerName="Satisfied Client"
-          location="Frederick, MD"
-          avatarUrl=""
-          rating={5}
-          variant="dark"
-        />
-        <FeaturedTestimonial
-          quote="From start to finish, our devotion provided trustworthy results and community-rooted care."
-          customerName="Satisfied Client"
-          location="Jefferson, MD"
-          avatarUrl=""
-          rating={5}
-          variant="dark"
-        />
+        {
+          testimonials?.map((t: any) => (
+            <FeaturedTestimonial
+              quote={t.quote}
+              customerName={t.customer_name}
+              location={t.location}
+              avatarUrl=""
+              rating={t.rating}
+              variant="dark"
+            />
+          ))
+        }
       </CardGrid>
-      
+
       <div class="text-center mt-12">
-        <Button 
-          variant="secondary" 
-          size="lg" 
+        <Button
+          variant="secondary"
+          size="lg"
           href="#contact"
           class="bg-white text-brand-primary hover:bg-gray-100 font-semibold px-8 py-4 text-center text-sm sm:text-base"
         >
-          Read More Reviews
+          {testimonials_button_text}
         </Button>
       </div>
     </Container>
@@ -311,36 +353,42 @@ const servicesStructuredData = {
     <Container>
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <Heading level={2} size="3xl" class="mb-6 font-bold text-brand-primary">
-          Service Areas
-        </Heading>
-        <Text variant="lead" class="mb-8 text-brand-secondary">
-          We proudly serve Frederick, MD and surrounding communities with professional roofing and construction services.
-        </Text>
-          
+          <Heading
+            level={2}
+            size="3xl"
+            class="mb-6 font-bold text-brand-primary"
+          >
+            {service_areas_heading}
+          </Heading>
+          <Text variant="lead" class="mb-8 text-brand-secondary">
+            {service_areas_subtitle}
+          </Text>
+
           <div class="grid grid-cols-2 gap-4 mb-8">
-            {serviceAreas.map((area: any) => (
-              <div class="flex items-center space-x-2">
-                <Icon name="location" class="w-5 h-5 text-accent-primary" />
-                <Text class="font-medium text-brand-primary">{area}</Text>
-              </div>
-            ))}
+            {
+              service_areas?.map((area: string) => (
+                <div class="flex items-center space-x-2">
+                  <Icon name="location" class="w-5 h-5 text-accent-primary" />
+                  <Text class="font-medium text-brand-primary">{area}</Text>
+                </div>
+              ))
+            }
           </div>
-          
-          <Button 
-            variant="primary" 
-            size="lg" 
+
+          <Button
+            variant="primary"
+            size="lg"
             href="#contact"
             class="font-semibold text-center text-sm sm:text-base"
           >
-            Get Service Quote
+            {service_areas_button_text}
           </Button>
         </div>
-        
+
         <div class="relative">
-          <img 
-            src="https://static.motiffcontent.com/private/resource/image/198452f61239b99-57820389-60c4-4a5e-8ad9-f5faebfec786.svg" 
-            alt="Service areas map" 
+          <img
+            src={service_areas_map_image}
+            alt="Service areas map"
             class="w-full h-auto rounded-lg shadow-lg"
             loading="lazy"
           />
@@ -350,55 +398,71 @@ const servicesStructuredData = {
   </Section>
 
   <!-- Contact CTA Section -->
-  <Section class="py-20 bg-gradient-to-r from-brand-primary to-brand-secondary text-white">
+  <Section
+    class="py-20 bg-gradient-to-r from-brand-primary to-brand-secondary text-white"
+  >
     <Container>
       <div class="max-w-4xl mx-auto text-center">
         <Heading level={2} size="3xl" class="mb-6 font-bold">
-          {contact.title}
+          {contact_cta_title}
         </Heading>
         <Text variant="lead" class="mb-8 text-white/90">
-          Ready to start your project? Get in touch with our devoted team for peace of mind today.
+          {contact_cta_subtitle}
         </Text>
-        
+
         <div class="grid md:grid-cols-3 gap-8 mb-12">
           <div class="text-center">
-            <Icon name="phone" class="w-8 h-8 mx-auto mb-4 text-accent-primary" />
+            <Icon
+              name="phone"
+              class="w-8 h-8 mx-auto mb-4 text-accent-primary"
+            />
             <Text class="font-semibold mb-2">Call Us Today</Text>
-            <Text class="text-white/90">{contact.phone}</Text>
+            <Text class="text-white/90">{contact_phone}</Text>
           </div>
           <div class="text-center">
-            <Icon name="email" class="w-8 h-8 mx-auto mb-4 text-accent-primary" />
+            <Icon
+              name="email"
+              class="w-8 h-8 mx-auto mb-4 text-accent-primary"
+            />
             <Text class="font-semibold mb-2">Email Us</Text>
-            <Text class="text-white/90">{contact.email}</Text>
+            <Text class="text-white/90">{contact_email}</Text>
           </div>
           <div class="text-center">
-            <Icon name="clock" class="w-8 h-8 mx-auto mb-4 text-accent-primary" />
+            <Icon
+              name="clock"
+              class="w-8 h-8 mx-auto mb-4 text-accent-primary"
+            />
             <Text class="font-semibold mb-2">Business Hours</Text>
-            <Text class="text-white/90">{contact.hours}</Text>
+            <Text class="text-white/90">{contact_hours}</Text>
           </div>
         </div>
-        
+
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button 
-            variant="secondary" 
-            size="lg" 
-            href="#contact"
-            class="bg-white text-brand-primary hover:bg-gray-100 font-semibold px-8 py-4 text-center text-sm sm:text-base"
-          >
-            Get Free Estimate
-          </Button>
-          <Button 
-            variant="link" 
-            size="lg" 
-            href="tel:+13015550123"
-            class="text-white hover:text-white font-semibold border border-white px-8 py-4 hover:bg-white/10 text-center text-sm sm:text-base"
-          >
-            Call Now
-          </Button>
+          {
+            contact_cta_buttons?.map((btn: any) =>
+              btn.variant === "white" ? (
+                <Button
+                  variant="secondary"
+                  size="lg"
+                  href={btn.href}
+                  class="bg-white text-brand-primary hover:bg-gray-100 font-semibold px-8 py-4 text-center text-sm sm:text-base"
+                >
+                  {btn.text}
+                </Button>
+              ) : (
+                <Button
+                  variant="link"
+                  size="lg"
+                  href={btn.href}
+                  class="text-white hover:text-white font-semibold border border-white px-8 py-4 hover:bg-white/10 text-center text-sm sm:text-base"
+                >
+                  {btn.text}
+                </Button>
+              ),
+            )
+          }
         </div>
       </div>
     </Container>
   </Section>
-  
-  
 </Layout>

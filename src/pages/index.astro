@@ -1,24 +1,24 @@
 ---
-import { getEntry } from 'astro:content';
-import Header from '../components/layout/Header.astro';
-import Hero from '../components/sections/Hero.astro';
-import Services from '../components/sections/Services.astro';
-import Testimonials from '../components/sections/Testimonials.astro';
-import Process from '../components/sections/Process.astro';
-import Partners from '../components/sections/Partners.astro';
+import { getEntry } from "astro:content";
+import Header from "../components/layout/Header.astro";
+import Hero from "../components/sections/Hero.astro";
+import Services from "../components/sections/Services.astro";
+import Testimonials from "../components/sections/Testimonials.astro";
+import Process from "../components/sections/Process.astro";
+import Partners from "../components/sections/Partners.astro";
 
-import Layout from '../layouts/Layout.astro';
-import Contact from '../components/sections/Contact.astro';
-import FAQ from '../components/sections/FAQ.astro';
-import AboutUs from '../components/sections/AboutUs.astro';
-import { client } from '../lib/sanity/client';
-import { combineServiceData } from '../lib/helpers';
+import Layout from "../layouts/Layout.astro";
+import Contact from "../components/sections/Contact.astro";
+import FAQ from "../components/sections/FAQ.astro";
+import AboutUs from "../components/sections/AboutUs.astro";
+import { client } from "../lib/sanity/client";
+import { combineServiceData } from "../lib/helpers";
 
 // Fetch services data at page level
 const [servicesData, construction, showcase] = await Promise.all([
-  getEntry('services', 'roofing'),
-  getEntry('services', 'construction'),
-  getEntry('services', 'showcase')
+	getEntry("services", "roofing"),
+	getEntry("services", "construction"),
+	getEntry("services", "showcase"),
 ]);
 
 // Fetch all Sanity data in a single optimized query
@@ -33,46 +33,156 @@ const sanityData = await client.fetch(`{
 // Process the fetched data
 const heroVideo = sanityData.heroVideo;
 const testimonialIcon = sanityData.testimonialIcon;
-const allProjectImages = (sanityData.projectPhotos as any[]).map(p => ({ url: p.url, alt: p.alt }));
-const constructionServicesContent =  (sanityData.constructionServices as any[]).map(p => ({ title: p.title, description: p.description, buttonText: p.buttonText, buttonHref: p.buttonHref }));
-const constructionServicesImages = (sanityData.projectPhotos as any[]).filter(p => p.tags?.includes("construction-services")).map(p => ({ image: p.url, imageAlt: p.alt, tags: p.tags }));
-const recentProjectImages = (sanityData.projectPhotos as any[]).filter(p => p.tags?.includes("recent-project")).map(p => ({ url: p.url, alt: p.alt }));
-const roofingServicesImages = (sanityData.projectPhotos as any[]).filter(p => p.tags?.includes("roofing-services")).map(p => ({ image: p.url, imageAlt: p.alt, tags: p.tags }));
-const roofingServicesContent = (sanityData.roofingServices as any[]).map(p => ({ title: p.title, description: p.description, buttonText: p.buttonText, buttonHref: p.buttonHref }));
+const allProjectImages = (sanityData.projectPhotos as any[]).map((p) => ({
+	url: p.url,
+	alt: p.alt,
+}));
+const constructionServicesContent = (
+	sanityData.constructionServices as any[]
+).map((p) => ({
+	title: p.title,
+	description: p.description,
+	buttonText: p.buttonText,
+	buttonHref: p.buttonHref,
+}));
+const constructionServicesImages = (sanityData.projectPhotos as any[])
+	.filter((p) => p.tags?.includes("construction-services"))
+	.map((p) => ({ image: p.url, imageAlt: p.alt, tags: p.tags }));
+const recentProjectImages = (sanityData.projectPhotos as any[])
+	.filter((p) => p.tags?.includes("recent-project"))
+	.map((p) => ({ url: p.url, alt: p.alt }));
+const roofingServicesImages = (sanityData.projectPhotos as any[])
+	.filter((p) => p.tags?.includes("roofing-services"))
+	.map((p) => ({ image: p.url, imageAlt: p.alt, tags: p.tags }));
+const roofingServicesContent = (sanityData.roofingServices as any[]).map(
+	(p) => ({
+		title: p.title,
+		description: p.description,
+		buttonText: p.buttonText,
+		buttonHref: p.buttonHref,
+	}),
+);
 
-const roofingServices = combineServiceData(roofingServicesContent, roofingServicesImages).map(service => {
-  if (service.title.toLowerCase().includes('roof inspection')) {
-    return {
-      ...service,
-      buttonText: 'Get Your Free Roof Inspection Now',
-      psaiTrigger: "eea3332f-7784-4ba4-81d9-36b384371b29"
-    };
-  }
-  return service;
+const roofingServices = combineServiceData(
+	roofingServicesContent,
+	roofingServicesImages,
+).map((service) => {
+	if (service.title.toLowerCase().includes("roof inspection")) {
+		return {
+			...service,
+			buttonText: "Get Your Free Roof Inspection Now",
+			psaiTrigger: "eea3332f-7784-4ba4-81d9-36b384371b29",
+		};
+	}
+	return service;
 });
-const constructionServices = combineServiceData(constructionServicesContent, constructionServicesImages);
+const constructionServices = combineServiceData(
+	constructionServicesContent,
+	constructionServicesImages,
+);
 
 // Validate results in one place
 if (!servicesData || !construction || !showcase) {
-  throw new Error('One or more services data entries are missing');
+	throw new Error("One or more services data entries are missing");
 }
+
+const page = (await getEntry("pages", "index"))!;
+const {
+	title: pageTitle,
+	description: pageDescription,
+	hero_heading,
+	hero_heading_accent,
+	hero_subtitle,
+	hero_cta_primary,
+	hero_cta_secondary,
+	hero_trust_indicators,
+	about_heading,
+	about_history_title,
+	about_history_description,
+	about_mission_title,
+	about_mission_description,
+	about_values_title,
+	about_values_description,
+	about_stats,
+	about_commitment_title,
+	about_commitment_text,
+	process_title,
+	process_steps,
+	testimonials_heading,
+	testimonials_featured,
+	testimonials_highlight_heading,
+	testimonials_rating,
+	testimonials_count,
+	testimonials_list,
+} = page.data as any;
 ---
 
-<Layout title="JLand Contracting - Devoted Roofing & Construction Services" description="Devoted roofing and construction services in Frederick, MD featuring integrity-driven craftsmanship, reliable warranties, and devoted long-term performance for homes and businesses.">
+<Layout title={pageTitle} description={pageDescription}>
 	<Header />
-	<Hero videoSrc={heroVideo?.videoSrc} />
+	<Hero
+		videoSrc={heroVideo?.videoSrc}
+		heading={`${hero_heading}<br><span class="text-accent-primary">${hero_heading_accent}</span>`}
+		subtitle={hero_subtitle}
+		cta_primary={hero_cta_primary}
+		cta_secondary={hero_cta_secondary}
+		trust_indicators={hero_trust_indicators}
+	/>
 	<Partners />
-	<Testimonials images={recentProjectImages} testimonial={testimonialIcon} />
-	<Process />
-		<Services
+	<Testimonials
+		images={recentProjectImages}
+		testimonial={testimonialIcon}
+		heading={testimonials_heading}
+		featured_testimonial={{
+			...testimonials_featured,
+			avatarUrl: testimonialIcon?.avatarURL,
+		}}
+		highlight_heading={testimonials_highlight_heading}
+		highlight_rating={testimonials_rating}
+		highlight_total={testimonials_count}
+		reviews={testimonials_list}
+	/>
+	<Services
+		columns={3}
+		variant="roofing"
+		title={"Our Roofing Services"}
+		decorativeImage={servicesData.data.decorativeImage}
+		services={roofingServices}
+	/>
+	<Process heading={process_title} steps={process_steps} />
+	<Services
 		columns={3}
 		variant="construction"
 		title={construction.data.title}
 		decorativeImage={construction.data.decorativeImage}
 		services={constructionServices}
-		/>
-	<AboutUs/>
-	 <FAQ />
-	 <Contact />
-
+	/>
+	<AboutUs
+		heading={about_heading}
+		history={{
+			title: about_history_title,
+			description: about_history_description,
+		}}
+		mission={{
+			title: about_mission_title,
+			description: about_mission_description,
+		}}
+		values={{
+			title: about_values_title,
+			description: about_values_description,
+		}}
+		stats={about_stats}
+		commitment={{
+			title: about_commitment_title,
+			text: about_commitment_text,
+		}}
+	/>
+	<Services
+		columns={2}
+		variant="showcase"
+		title={showcase.data.title}
+		decorativeImage={showcase.data.decorativeImage}
+		services={showcase.data.services}
+	/>
+	<FAQ />
+	<Contact />
 </Layout>

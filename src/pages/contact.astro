@@ -1,132 +1,149 @@
 ---
 // Contact Page - J Land Contracting
-// Following content-consistency-guidelines.md and page-creation.md requirements
-// Hero section matches about.astro patterns exactly
-import Layout from '../layouts/Layout.astro';
-import Section from '../components/ui/layout/Section.astro';
-import Container from '../components/ui/layout/Container.astro';
-import Heading from '../components/ui/display/Heading.astro';
-import Text from '../components/ui/display/Text.astro';
-import Button from '../components/ui/buttons/Button.astro';
-import Input from '../components/ui/forms/Input.astro';
-import Form from '../components/ui/forms/Form.astro';
-import Card from '../components/ui/display/Card.astro';
-import Icon from '../components/ui/display/Icon.astro';
-import ContentBlock from '../components/ui/display/ContentBlock.astro';
+// Content sourced from src/content/pages/contact.md
+import { getEntry } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import Section from "../components/ui/layout/Section.astro";
+import Container from "../components/ui/layout/Container.astro";
+import Heading from "../components/ui/display/Heading.astro";
+import Text from "../components/ui/display/Text.astro";
+import Button from "../components/ui/buttons/Button.astro";
+import Input from "../components/ui/forms/Input.astro";
+import Form from "../components/ui/forms/Form.astro";
+import Card from "../components/ui/display/Card.astro";
+import Icon from "../components/ui/display/Icon.astro";
+import ContentBlock from "../components/ui/display/ContentBlock.astro";
+
+const page = (await getEntry("pages", "contact"))!;
+const {
+  title,
+  description,
+  badge,
+  hero_heading,
+  hero_heading_accent,
+  hero_subtitle,
+  cta_primary_text,
+  cta_primary_href,
+  cta_secondary_text,
+  cta_secondary_href,
+  trust_indicators,
+  contact_info_heading,
+  contact_info_subtitle,
+  contact_cards,
+  form_heading,
+  form_subtitle,
+  form_submit_text,
+  form_fields,
+  service_areas_heading,
+  service_areas_subtitle,
+  service_areas_footer,
+  service_area_cards,
+} = page.data as any;
 ---
 
-<Layout title="Contact Us - J Land Contracting | Devoted Roofing Services" description="Contact JLand Contracting for devoted roofing services in Frederick, MD. Guided by integrity and vision with reliable warranties. Get your Free Roof Inspection Now.">
-	<!-- Hero Section -->
-	<Section background="dark">
-		<Container>
-			<div class="text-center max-w-4xl mx-auto">
-				<div class="mb-6">
-					<div class="inline-flex items-center justify-center mb-4 text-white bg-brand-primary px-4 py-2 rounded-full font-semibold">Ready to Help Since 2015</div>
-				</div>
-				<h1 class="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-					Let's Discuss Your<br>
-					<span class="text-accent-primary">Roofing Project</span>
-				</h1>
-				<p class="text-xl text-white mb-8 leading-relaxed">
-					Our devoted approach to ventilation, water shedding, and material selection ensures your roof delivers optimal performance for 30+ years.
-					Contact us to discuss how our vision and reliable warranties protect your investment.
-				</p>
-				<div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-					<Button href="tel:+14102920801" variant="primary" size="lg" class="text-center text-sm sm:text-base">
-						Request an Estimate
-					</Button>
-					<Button href="mailto:info@jlandgroup.com" variant="primary" size="lg" class="bg-white text-brand-primary border-white hover:bg-gray-100 text-center text-sm sm:text-base">
-						Learn More
-					</Button>
-				</div>
-				<div class="flex flex-wrap justify-center gap-6 text-sm text-white">
-					<div class="flex items-center gap-2">
-						<svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
-							<path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-						</svg>
-						<span>Integrity & Devotion</span>
-					</div>
-					<div class="flex items-center gap-2">
-						<svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
-							<path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-						</svg>
-						<span>24/7 Emergency Response</span>
-					</div>
-					<div class="flex items-center gap-2">
-						<svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
-							<path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-						</svg>
-						<span>Detailed Project Estimates</span>
-					</div>
-				</div>
-			</div>
-		</Container>
-	</Section>
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <Section background="dark">
+    <Container>
+      <div class="text-center max-w-4xl mx-auto">
+        <div class="mb-6">
+          <div
+            class="inline-flex items-center justify-center mb-4 text-white bg-brand-primary px-4 py-2 rounded-full font-semibold"
+          >
+            {badge}
+          </div>
+        </div>
+        <h1
+          class="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight"
+        >
+          {hero_heading}<br />
+          <span class="text-accent-primary">{hero_heading_accent}</span>
+        </h1>
+        <p class="text-xl text-white mb-8 leading-relaxed">
+          {hero_subtitle}
+        </p>
+        <div
+          class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8"
+        >
+          <Button
+            href={cta_primary_href}
+            variant="primary"
+            size="lg"
+            class="text-center text-sm sm:text-base"
+          >
+            {cta_primary_text}
+          </Button>
+          <Button
+            href={cta_secondary_href}
+            variant="primary"
+            size="lg"
+            class="bg-white text-brand-primary border-white hover:bg-gray-100 text-center text-sm sm:text-base"
+          >
+            {cta_secondary_text}
+          </Button>
+        </div>
+        <div class="flex flex-wrap justify-center gap-6 text-sm text-white">
+          {
+            trust_indicators?.map((indicator: string) => (
+              <div class="flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-accent-primary"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span>{indicator}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </Container>
+  </Section>
 
   <!-- Contact Information Section -->
   <Section background="light" padding="lg">
     <Container size="lg">
       <div class="text-center mb-12">
         <Heading level={2} size="3xl" class="mb-4">
-          Contact Information
+          {contact_info_heading}
         </Heading>
         <Text variant="lead" color="muted" class="max-w-2xl mx-auto">
-          Reach out to us through any of these convenient methods. We're here to help with all your exterior needs.
+          {contact_info_subtitle}
         </Text>
       </div>
-      
+
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Phone -->
-        <Card class="text-center p-8">
-          <div class="bg-brand-primary rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-            <Icon name="phone-contact" size="lg" class="text-white" />
-          </div>
-          <Heading level={3} size="lg" class="mb-2">
-            Call Us
-          </Heading>
-          <Text color="muted" class="mb-4">
-            Monday - Friday: 7:00 AM - 6:00 PM<br>
-            Saturday: 8:00 AM - 4:00 PM<br>
-            Sunday: Emergency Only
-          </Text>
-          <Button variant="primary" href="tel:+14102920801" class="text-center text-sm sm:text-base">
-            (410) 292-0801
-          </Button>
-        </Card>
-        
-        <!-- Email -->
-        <Card class="text-center p-8">
-          <div class="bg-brand-primary rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-            <Icon name="email-contact" size="lg" class="text-white" />
-          </div>
-          <Heading level={3} size="lg" class="mb-2">
-            Email Us
-          </Heading>
-          <Text color="muted" class="mb-4">
-            Get a detailed response within 24 hours. Perfect for project inquiries and estimates.
-          </Text>
-          <Button variant="primary" href="mailto:info@jlandgroup.com" class="text-center text-sm sm:text-base">
-            info@jlandgroup.com
-          </Button>
-        </Card>
-        
-        <!-- Location -->
-        <Card class="text-center p-8">
-          <div class="bg-brand-primary rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-            <Icon name="location" size="lg" class="text-white" />
-          </div>
-          <Heading level={3} size="lg" class="mb-2">
-            Service Area
-          </Heading>
-          <Text color="muted" class="mb-4">
-            3636 Glenoble Court<br>
-            Jefferson, MD 21755<br>
-            Serving Maryland & Surrounding Areas
-          </Text>
-          <Button variant="secondary" href="#service-areas" class="text-center text-sm sm:text-base">
-            View Service Areas
-          </Button>
-        </Card>
+        {
+          contact_cards?.map((card: any) => (
+            <Card class="text-center p-8">
+              <div class="bg-brand-primary rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <Icon name={card.icon} size="lg" class="text-white" />
+              </div>
+              <Heading level={3} size="lg" class="mb-2">
+                {" "}
+                {card.title}{" "}
+              </Heading>
+              <Text
+                color="muted"
+                class="mb-4"
+                set:html={card.description.replace(/\n/g, "<br />")}
+              />
+              <Button
+                variant={card.icon === "location" ? "secondary" : "primary"}
+                href={card.button_href}
+                class="text-center text-sm sm:text-base"
+              >
+                {card.button_text}
+              </Button>
+            </Card>
+          ))
+        }
       </div>
     </Container>
   </Section>
@@ -135,63 +152,103 @@ import ContentBlock from '../components/ui/display/ContentBlock.astro';
   <Section background="white" padding="lg">
     <Container size="md">
       <div class="text-center mb-12">
-        <Heading level={2} size="3xl" class="mb-4">
-          Send Us a Message
-        </Heading>
+        <Heading level={2} size="3xl" class="mb-4"> {form_heading} </Heading>
         <Text variant="lead" color="muted" class="max-w-2xl mx-auto">
-          Fill out the form below and we'll get back to you within 24 hours with a detailed response.
+          {form_subtitle}
         </Text>
       </div>
-      
+
       <Form variant="default" class="space-y-6">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <ContentBlock maxWidth="w-full" spacing="sm">
-            <Text variant="small" weight="medium" color="default" class="block mb-2">
-              Your Name *
-            </Text>
-            <Input type="text" name="name" placeholder="John Smith" class="w-full" required />
-          </ContentBlock>
-          <ContentBlock maxWidth="w-full" spacing="sm">
-            <Text variant="small" weight="medium" color="default" class="block mb-2">
-              Email Address *
-            </Text>
-            <Input type="email" name="email" placeholder="john@example.com" class="w-full" required />
-          </ContentBlock>
+          {
+            form_fields
+              ?.filter((f: any) => f.type !== "textarea" && f.type !== "select")
+              .map((field: any) => (
+                <ContentBlock maxWidth="w-full" spacing="sm">
+                  <Text
+                    variant="small"
+                    weight="medium"
+                    color="default"
+                    class="block mb-2"
+                  >
+                    {field.label}
+                  </Text>
+                  <Input
+                    type={field.type}
+                    name={field.name}
+                    placeholder={field.placeholder}
+                    class="w-full"
+                    required={field.required}
+                  />
+                </ContentBlock>
+              ))
+          }
         </div>
-        
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <ContentBlock maxWidth="w-full" spacing="sm">
-            <Text variant="small" weight="medium" color="default" class="block mb-2">
-              Phone Number *
-            </Text>
-            <Input type="tel" name="phone" placeholder="(410) 292-0801" class="w-full" required />
-          </ContentBlock>
-          <ContentBlock maxWidth="w-full" spacing="sm">
-            <Text variant="small" weight="medium" color="default" class="block mb-2">
-              Service Needed
-            </Text>
-            <select name="service" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-primary focus:border-transparent">
-              <option value="">Select a service</option>
-              <option value="roofing">Roofing</option>
-              <option value="siding">Siding</option>
-              <option value="gutters">Gutters & Downspouts</option>
-              <option value="windows">Windows & Doors</option>
-              <option value="emergency">Emergency Repair</option>
-              <option value="other">Other</option>
-            </select>
-          </ContentBlock>
+          {
+            form_fields
+              ?.filter((f: any) => f.type === "select")
+              .map((field: any) => (
+                <ContentBlock maxWidth="w-full" spacing="sm">
+                  <Text
+                    variant="small"
+                    weight="medium"
+                    color="default"
+                    class="block mb-2"
+                  >
+                    {field.label}
+                  </Text>
+                  <select
+                    name={field.name}
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-primary focus:border-transparent"
+                  >
+                    {field.options?.map((opt: any) => (
+                      <option value={opt.value}>{opt.label}</option>
+                    ))}
+                  </select>
+                </ContentBlock>
+              ))
+          }
         </div>
-        
-        <ContentBlock maxWidth="w-full" spacing="sm">
-          <Text variant="small" weight="medium" color="default" class="block mb-2">
-            Project Details *
-          </Text>
-          <Input type="textarea" name="message" placeholder="Please describe your project, including any specific concerns, timeline, and budget considerations..." rows={6} class="w-full min-h-[146px]" required />
-        </ContentBlock>
-        
-        <ContentBlock class="flex justify-center mt-8" maxWidth="w-full" spacing="sm">
-          <Button variant="primary" size="lg" type="submit" class="text-center text-sm sm:text-base">
-            Send Message
+
+        {
+          form_fields
+            ?.filter((f: any) => f.type === "textarea")
+            .map((field: any) => (
+              <ContentBlock maxWidth="w-full" spacing="sm">
+                <Text
+                  variant="small"
+                  weight="medium"
+                  color="default"
+                  class="block mb-2"
+                >
+                  {field.label}
+                </Text>
+                <Input
+                  type="textarea"
+                  name={field.name}
+                  placeholder={field.placeholder}
+                  rows={6}
+                  class="w-full min-h-[146px]"
+                  required={field.required}
+                />
+              </ContentBlock>
+            ))
+        }
+
+        <ContentBlock
+          class="flex justify-center mt-8"
+          maxWidth="w-full"
+          spacing="sm"
+        >
+          <Button
+            variant="primary"
+            size="lg"
+            type="submit"
+            class="text-center text-sm sm:text-base"
+          >
+            {form_submit_text}
           </Button>
         </ContentBlock>
       </Form>
@@ -203,45 +260,35 @@ import ContentBlock from '../components/ui/display/ContentBlock.astro';
     <Container size="lg">
       <div class="text-center mb-12">
         <Heading level={2} size="3xl" class="mb-4">
-          Our Service Areas
+          {service_areas_heading}
         </Heading>
         <Text variant="lead" color="muted" class="max-w-2xl mx-auto">
-          We proudly serve Maryland and surrounding areas with professional exterior services.
+          {service_areas_subtitle}
         </Text>
       </div>
-      
+
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <Card class="p-6">
-          <Heading level={3} size="lg" class="mb-3">
-            Frederick County
-          </Heading>
-          <Text color="muted">
-            Jefferson, Frederick, Middletown, Myersville, and surrounding communities
-          </Text>
-        </Card>
-        
-        <Card class="p-6">
-          <Heading level={3} size="lg" class="mb-3">
-            Washington County
-          </Heading>
-          <Text color="muted">
-            Hagerstown, Boonsboro, Sharpsburg, and surrounding areas
-          </Text>
-        </Card>
-        
-        <Card class="p-6">
-          <Heading level={3} size="lg" class="mb-3">
-            Montgomery County
-          </Heading>
-          <Text color="muted">
-            Germantown, Gaithersburg, Rockville, and nearby communities
-          </Text>
-        </Card>
+        {
+          service_area_cards?.map((area: any) => (
+            <Card class="p-6">
+              <Heading level={3} size="lg" class="mb-3">
+                {" "}
+                {area.title}{" "}
+              </Heading>
+              <Text color="muted">{area.description}</Text>
+            </Card>
+          ))
+        }
       </div>
-      
+
       <div class="text-center mt-8">
         <Text color="muted">
-          Don't see your area listed? <Button variant="link" href="tel:+14102920801" class="text-center text-sm sm:text-base">Call us</Button> to check if we service your location.
+          {service_areas_footer}
+          <Button
+            variant="link"
+            href="tel:+14102920801"
+            class="text-center text-sm sm:text-base">Call us</Button
+          >
         </Text>
       </div>
     </Container>

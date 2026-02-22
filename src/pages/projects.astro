@@ -1,275 +1,250 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/layout/Header.astro';
+import { getEntry } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/layout/Header.astro";
 
-import SectionHeader from '../components/ui/display/SectionHeader.astro';
-import Card from '../components/ui/display/Card.astro';
-import CardGrid from '../components/ui/display/CardGrid.astro';
-import ProjectShowcaseCard from '../components/ui/display/ProjectShowcaseCard.astro';
-import Button from '../components/ui/buttons/Button.astro';
-import Container from '../components/ui/layout/Container.astro';
-import Section from '../components/ui/layout/Section.astro';
-import Heading from '../components/ui/display/Heading.astro';
-import Text from '../components/ui/display/Text.astro';
+import SectionHeader from "../components/ui/display/SectionHeader.astro";
+import Card from "../components/ui/display/Card.astro";
+import CardGrid from "../components/ui/display/CardGrid.astro";
+import ProjectShowcaseCard from "../components/ui/display/ProjectShowcaseCard.astro";
+import Button from "../components/ui/buttons/Button.astro";
+import Container from "../components/ui/layout/Container.astro";
+import Section from "../components/ui/layout/Section.astro";
+import Heading from "../components/ui/display/Heading.astro";
+import Text from "../components/ui/display/Text.astro";
 
 // Import project data
-import roofingProjects from '../content/services/roofing.json';
-import constructionProjects from '../content/services/construction.json';
-import showcaseProjects from '../content/services/showcase.json';
+import roofingProjects from "../content/services/roofing.json";
+import constructionProjects from "../content/services/construction.json";
+import showcaseProjects from "../content/services/showcase.json";
 
-const metadata = {
-  title: 'Our Projects - J Land Contracting',
-  description: 'Explore our portfolio of devoted roofing, siding, and construction projects, guided by integrity and vision across the region.',
+const page = (await getEntry("pages", "projects"))!;
+const {
+  title,
+  description,
+  badge,
+  hero_heading,
+  hero_heading_accent,
+  hero_subtitle,
+  cta_primary_text,
+  cta_primary_href,
+  cta_secondary_text,
+  cta_secondary_href,
+  trust_indicators,
+  showcase_sections,
+  cta_section_heading,
+  cta_section_subtitle,
+  cta_section_buttons,
+} = page.data as any;
+
+// Map data sources to project data
+const dataSourceMap: Record<string, any> = {
+  roofing: roofingProjects,
+  construction: constructionProjects,
+  services: showcaseProjects,
+};
+
+// Badge icons per section
+const badgeIcons: Record<string, string> = {
+  "Residential Roofing":
+    '<path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"></path>',
+  "Exterior Siding":
+    '<path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>',
+  "Commercial Construction":
+    '<path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm2 3a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"></path>',
 };
 ---
 
-<Layout title="Our Projects - J Land Group">
+<Layout title={title}>
   <Header />
-  
-    <!-- Hero Section -->
-    <Section background="dark">
-      <Container>
-        <div class="text-center max-w-4xl mx-auto">
-          <div class="mb-6">
-            <div class="inline-flex items-center justify-center mb-4 text-white bg-brand-primary px-4 py-2 rounded-full font-semibold">20+ Years of Excellence</div>
+
+  <!-- Hero Section -->
+  <Section background="dark">
+    <Container>
+      <div class="text-center max-w-4xl mx-auto">
+        <div class="mb-6">
+          <div
+            class="inline-flex items-center justify-center mb-4 text-white bg-brand-primary px-4 py-2 rounded-full font-semibold"
+          >
+            {badge}
           </div>
-          <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            Our Project Portfolio,<br>
-            <span class="text-accent-primary">Built to Last</span>
-          </h1>
-          <p class="text-xl text-white mb-8 leading-relaxed">
-            Explore our portfolio of devoted roofing, siding, and commercial projects throughout Frederick, MD and surrounding areas. Each reflects our integrity in craftsmanship and accountable satisfaction.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-            <Button href="#contact" variant="primary" size="lg">
-              Start Your Project
-            </Button>
-            <Button href="tel:+14102920801" variant="primary" size="lg" class="bg-white text-brand-primary border-white hover:bg-gray-100">
-              Call (410) 292-0801
-            </Button>
-          </div>
-          <div class="flex flex-wrap justify-center gap-6 text-sm text-white">
-            <div class="flex items-center gap-2">
-              <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              <span>Integrity & Reliability</span>
+        </div>
+        <h1
+          class="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight"
+        >
+          {hero_heading}<br />
+          <span class="text-accent-primary">{hero_heading_accent}</span>
+        </h1>
+        <p class="text-xl text-white mb-8 leading-relaxed">
+          {hero_subtitle}
+        </p>
+        <div
+          class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8"
+        >
+          <Button href={cta_primary_href} variant="primary" size="lg">
+            {cta_primary_text}
+          </Button>
+          <Button
+            href={cta_secondary_href}
+            variant="primary"
+            size="lg"
+            class="bg-white text-brand-primary border-white hover:bg-gray-100"
+          >
+            {cta_secondary_text}
+          </Button>
+        </div>
+        <div class="flex flex-wrap justify-center gap-6 text-sm text-white">
+          {
+            trust_indicators?.map((indicator: string) => (
+              <div class="flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-accent-primary"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span>{indicator}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Showcase Sections (dynamically rendered from frontmatter) -->
+  {
+    showcase_sections?.map((section: any, sectionIndex: number) => {
+      const projects = dataSourceMap[section.data_source];
+      const bgClass =
+        section.variant === "light" ? "bg-background-light py-20" : "py-20";
+      const badgeColorClass =
+        sectionIndex === 1
+          ? "bg-brand-secondary/10 text-brand-secondary"
+          : "bg-brand-primary/10 text-brand-primary";
+      return (
+        <Section class={bgClass}>
+          <Container>
+            <div class="text-center mb-20">
+              <div
+                class={`inline-flex items-center ${badgeColorClass} px-4 py-2 rounded-full text-sm font-semibold mb-6`}
+              >
+                <svg
+                  class="w-4 h-4 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <Fragment
+                    set:html={
+                      badgeIcons[section.badge] ||
+                      badgeIcons["Residential Roofing"]
+                    }
+                  />
+                </svg>
+                {section.badge}
+              </div>
+              <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-8">
+                {section.heading}
+              </h2>
+              <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                {section.subtitle}
+              </p>
             </div>
-            <div class="flex items-center gap-2">
-              <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              <span>Devotion & Vision</span>
+
+            <div class="space-y-12">
+              {projects?.services?.map((project: any, index: number) => (
+                <ProjectShowcaseCard
+                  project={{
+                    title: project.title,
+                    location: project.location,
+                    description: project.description,
+                    materials: project.materials,
+                    image: project.image || "/images/projects/placeholder.jpg",
+                    testimonial: project.testimonial
+                      ? {
+                          quote: project.testimonial.quote,
+                          author: project.testimonial.author,
+                          role: project.testimonial.role,
+                        }
+                      : undefined,
+                    details: {
+                      duration: project.duration,
+                      size: project.size,
+                      challenge: project.challenge,
+                    },
+                    cta: {
+                      text: section.cta_text,
+                      href: "#contact",
+                    },
+                  }}
+                  variant={index === 0 ? "featured" : "default"}
+                  imagePosition={
+                    index % 2 === 0
+                      ? sectionIndex === 2
+                        ? "left"
+                        : "left"
+                      : "right"
+                  }
+                />
+              ))}
             </div>
-            <div class="flex items-center gap-2">
-              <svg class="w-5 h-5 text-accent-primary" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              <span>Team Unity & Accountability</span>
-            </div>
-          </div>
-        </div>
-      </Container>
-    </Section>
+          </Container>
+        </Section>
+      );
+    })
+  }
 
-    <!-- Asphalt Shingles Showcase -->
-    <Section class="py-20">
-      <Container>
-        <div class="text-center mb-20">
-          <div class="inline-flex items-center bg-brand-primary/10 text-brand-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
-            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
-            </svg>
-            Residential Roofing
-          </div>
-          <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-8">
-            Asphalt Shingles Showcase
-          </h2>
-          <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            Discover our devoted asphalt shingle installations that combine durability with appeal,
-            backed by faithful expertise and united team efforts.
-          </p>
+  <!-- Contact CTA -->
+  <Section class="bg-brand-secondary py-16">
+    <Container>
+      <div class="text-center max-w-3xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+          {cta_section_heading}
+        </h2>
+        <p class="text-xl text-gray-100 mb-8">
+          {cta_section_subtitle}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          {
+            cta_section_buttons?.map((btn: any) => (
+              <Button
+                variant={btn.variant}
+                size="lg"
+                class="text-center text-sm sm:text-base"
+              >
+                {btn.text}
+              </Button>
+            ))
+          }
         </div>
-        
-        <div class="space-y-12">
-          {roofingProjects.services.map((project: any, index: number) => (
-            <ProjectShowcaseCard 
-              project={{
-                title: project.title,
-                location: project.location,
-                description: project.description,
-                materials: project.materials,
-                image: project.image || '/images/projects/roofing-placeholder.jpg',
-                testimonial: project.testimonial ? {
-                  quote: project.testimonial.quote,
-                  author: project.testimonial.author,
-                  role: project.testimonial.role
-                } : undefined,
-                details: {
-                  duration: project.duration,
-                  size: project.size,
-                  challenge: project.challenge
-                },
-                cta: {
-                  text: 'View Project Details',
-                  href: '#contact'
-                }
-              }}
-              variant={index === 0 ? 'featured' : 'default'}
-              imagePosition={index % 2 === 0 ? 'left' : 'right'}
-            />
-          ))}
-        </div>
-      </Container>
-    </Section>
-
-    <!-- Siding Projects Display -->
-    <Section class="bg-background-light py-20">
-      <Container>
-        <div class="text-center mb-20">
-          <div class="inline-flex items-center bg-brand-secondary/10 text-brand-secondary px-4 py-2 rounded-full text-sm font-semibold mb-6">
-            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
-            </svg>
-            Exterior Siding
-          </div>
-          <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-8">
-            Siding Projects Display
-          </h2>
-          <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            Explore our reliable siding solutions that enhance protection and appeal,
-            transforming homes with devoted materials and accountable craftsmanship.
-          </p>
-        </div>
-        
-        <div class="space-y-12">
-          {constructionProjects.services.map((project: any, index: number) => (
-            <ProjectShowcaseCard 
-              project={{
-                title: project.title,
-                location: project.location,
-                description: project.description,
-                materials: project.materials,
-                image: project.image || '/images/projects/siding-placeholder.jpg',
-                testimonial: project.testimonial ? {
-                  quote: project.testimonial.quote,
-                  author: project.testimonial.author,
-                  role: project.testimonial.role
-                } : undefined,
-                details: {
-                  duration: project.duration,
-                  size: project.size,
-                  challenge: project.challenge
-                },
-                cta: {
-                  text: 'Learn More',
-                  href: '#contact'
-                }
-              }}
-              variant='default'
-              imagePosition={index % 2 === 0 ? 'right' : 'left'}
-            />
-          ))}
-        </div>
-      </Container>
-    </Section>
-
-    <!-- Commercial Projects Section -->
-    <Section class="py-20">
-      <Container>
-        <div class="text-center mb-20">
-          <div class="inline-flex items-center bg-gray-900/10 text-gray-900 px-4 py-2 rounded-full text-sm font-semibold mb-6">
-            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm2 3a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
-            </svg>
-            Commercial Construction
-          </div>
-          <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-8">
-            Commercial Projects Section
-          </h2>
-          <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            Discover our visionary commercial roofing and construction projects that demonstrate our devotion
-            in handling complex installations with team unity, delivering reliable results on time and within budget.
-          </p>
-        </div>
-        
-        <div class="space-y-12">
-          {showcaseProjects.services.map((project: any, index: number) => (
-            <ProjectShowcaseCard 
-              project={{
-                title: project.title,
-                location: project.location,
-                description: project.description,
-                materials: project.materials,
-                image: project.image || '/images/projects/commercial-placeholder.jpg',
-                testimonial: project.testimonial ? {
-                  quote: project.testimonial.quote,
-                  author: project.testimonial.author,
-                  role: project.testimonial.role
-                } : undefined,
-                details: {
-                  duration: project.duration,
-                  size: project.size,
-                  challenge: project.challenge
-                },
-                cta: {
-                  text: 'View Case Study',
-                  href: '#contact'
-                }
-              }}
-              variant={index === 0 ? 'featured' : 'default'}
-              imagePosition={index % 2 === 0 ? 'left' : 'right'}
-            />
-          ))}
-        </div>
-      </Container>
-    </Section>
-
-    <!-- Contact CTA -->
-    <Section class="bg-brand-secondary py-16">
-      <Container>
-        <div class="text-center max-w-3xl mx-auto">
-          <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
-            Ready to Start Your Project?
-          </h2>
-          <p class="text-xl text-gray-100 mb-8">
-            Get a free consultation and quote for your roofing, siding, or construction project.
-            We're here to bring your vision to life with devoted craftsmanship you can trust.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="primary" size="lg" class="text-center text-sm sm:text-base">
-              Get Free Quote
-            </Button>
-            <Button variant="secondary" size="lg" class="text-center text-sm sm:text-base">
-              Call (410) 292-0801
-            </Button>
-          </div>
-        </div>
-      </Container>
-    </Section>
-  </main>
-  
-  
+      </div>
+    </Container>
+  </Section>
 </Layout>
 
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Our Projects | J Land Contracting",
-  "description": "Explore our portfolio of roofing, siding, and commercial construction projects in Jefferson, MD and surrounding areas.",
-  "url": "https://jlandcontracting.com/projects",
-  "mainEntity": {
-    "@type": "LocalBusiness",
-    "name": "J Land Contracting INC",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Jefferson, MD",
-      "postalCode": "21755",
-      "addressCountry": "US"
-    },
-    "telephone": "(410) 292-0801",
-    "serviceArea": "Jefferson, MD and surrounding areas"
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Our Projects | J Land Contracting",
+    "description": "Explore our portfolio of roofing, siding, and commercial construction projects in Jefferson, MD and surrounding areas.",
+    "url": "https://jlandcontracting.com/projects",
+    "mainEntity": {
+      "@type": "LocalBusiness",
+      "name": "J Land Contracting INC",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Jefferson, MD",
+        "postalCode": "21755",
+        "addressCountry": "US"
+      },
+      "telephone": "(410) 292-0801",
+      "serviceArea": "Jefferson, MD and surrounding areas"
+    }
   }
-}
 </script>
