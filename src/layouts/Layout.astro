@@ -14,8 +14,8 @@ const {
 	description = "Devoted roofing and construction services in Frederick, MD featuring integrity-driven certification and reliable 50-year warranties.",
 } = Astro.props;
 
-// Fetch global data from the homepage content file
-const page = (await getEntry("pages", "index"))!;
+// Fetch global layout data (header/footer) from the layout content file
+const layoutPage = (await getEntry("pages", "layout"))!;
 const {
 	header_logo_text,
 	header_nav,
@@ -35,7 +35,7 @@ const {
 	footer_link_privacy,
 	footer_link_terms,
 	footer_social_links,
-} = page.data as any;
+} = layoutPage.data as any;
 ---
 
 <!doctype html>

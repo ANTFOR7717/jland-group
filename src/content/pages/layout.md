@@ -1,0 +1,76 @@
+---
+title: Layout
+header_logo_text: J LAND CONTRACTING
+header_nav:
+  - label: Services
+    href: /services
+  - label: About
+    href: /about
+  - label: Projects
+    href: /projects
+  - label: Blog
+    href: /blog
+  - label: Financing
+    href: /financing
+  - label: Resources
+    href: /resources
+  - label: Contact
+    href: /contact
+footer_company_name: J Land Contracting INC
+footer_company_description: >-
+  Deeply rooted in a family legacy of diligence and perseverance, J Land
+  Contracting provides devoted roofing, siding, and gutter services with
+  integrity and reliability, protecting homes and supporting communities.
+footer_address: 3636 Glenoble Court, Jefferson, MD 21755
+footer_phone: (410) 292-0801
+footer_email: info@jlandgroup.com
+footer_quick_links_title: Quick Links
+footer_quick_links:
+  - label: Home
+    href: /
+  - label: Services
+    href: /services
+  - label: About Us
+    href: /about
+  - label: Projects
+    href: /projects
+  - label: Blog
+    href: /blog
+  - label: Financing
+    href: /financing
+  - label: Contact
+    href: /contact
+footer_services_title: Our Services
+footer_services_links:
+  - label: Roofing
+    href: /services/roofing
+  - label: Siding
+    href: /services/siding
+  - label: Gutters
+    href: /services/gutters
+  - label: Roof Restoration
+    href: /services/roof-restoration
+footer_newsletter_title: Stay Updated
+footer_newsletter_description: Subscribe to our newsletter for tips and updates.
+footer_newsletter_button: Subscribe
+footer_copyright: © 2025 J Land Contracting. All Rights Reserved.
+footer_link_privacy: Privacy Policy
+footer_link_terms: Terms of Service
+footer_social_links:
+  - name: Facebook
+    url: '#'
+    icon: >-
+      https://static.motiffcontent.com/private/resource/image/1984510688dc1de-4db560ab-a225-44ea-a18b-94e8dd6c23a0.svg
+  - name: Twitter
+    url: '#'
+    icon: >-
+      https://static.motiffcontent.com/private/resource/image/1984510688ddfda-bdc9fa85-2955-45df-8d5f-8829ac7d5b69.svg
+  - name: Instagram
+    url: '#'
+    icon: >-
+      https://static.motiffcontent.com/private/resource/image/1984510688e91a8-52cc4a7d-26bc-4aed-a1ad-78ea94370c98.svg
+  - name: LinkedIn
+    url: '#'
+    icon: >-
+      https://static.motiffcontent.com/private/resource/image/1984510688f11f4-d7206832-6d42-4170-a2c2-19221eec4bdb.svg
+---

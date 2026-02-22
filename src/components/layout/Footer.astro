@@ -60,7 +60,7 @@ const {
       <div class="col-span-1">
         <h3
           data-editable="text"
-          data-prop={`footer_company_name`}
+          data-prop="@file[src/content/pages/layout.md].footer_company_name"
           class="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4"
           style="color: #F8F9FA;"
         >
@@ -68,7 +68,7 @@ const {
         </h3>
         <p
           data-editable="text"
-          data-prop={`footer_company_description`}
+          data-prop="@file[src/content/pages/layout.md].footer_company_description"
           class="text-sm sm:text-base leading-5 sm:leading-6"
           style="color: #7D7877;"
         >
@@ -98,7 +98,7 @@ const {
             <div class="space-y-1 sm:space-y-2">
               <p
                 data-editable="text"
-                data-prop={`footer_address`}
+                data-prop="@file[src/content/pages/layout.md].footer_address"
                 class="text-sm sm:text-base leading-5 sm:leading-6"
                 style="color: #7D7877;"
               >
@@ -106,7 +106,7 @@ const {
               </p>
               <p
                 data-editable="text"
-                data-prop={`footer_phone`}
+                data-prop="@file[src/content/pages/layout.md].footer_phone"
                 class="text-sm sm:text-base leading-5 sm:leading-6"
                 style="color: #7D7877;"
               >
@@ -114,7 +114,7 @@ const {
               </p>
               <p
                 data-editable="text"
-                data-prop={`footer_email`}
+                data-prop="@file[src/content/pages/layout.md].footer_email"
                 class="text-sm sm:text-base leading-5 sm:leading-6"
                 style="color: #7D7877;"
               >
@@ -129,7 +129,7 @@ const {
       <div class="col-span-1">
         <h4
           data-editable="text"
-          data-prop={`footer_quick_links_title`}
+          data-prop="@file[src/content/pages/layout.md].footer_quick_links_title"
           class="text-base sm:text-lg font-semibold mb-4 sm:mb-6"
           style="color: #F8F9FA;"
         >
@@ -138,7 +138,7 @@ const {
         <ul
           class="space-y-1 sm:space-y-2"
           data-editable="array"
-          data-prop="footer_quick_links"
+          data-prop="@file[src/content/pages/layout.md].footer_quick_links"
         >
           {
             footer_quick_links.map((link) => (
@@ -162,7 +162,7 @@ const {
       <div class="col-span-1">
         <h4
           data-editable="text"
-          data-prop={`footer_services_title`}
+          data-prop="@file[src/content/pages/layout.md].footer_services_title"
           class="text-base sm:text-lg font-semibold mb-4 sm:mb-6"
           style="color: #F8F9FA;"
         >
@@ -171,7 +171,7 @@ const {
         <ul
           class="space-y-1 sm:space-y-2"
           data-editable="array"
-          data-prop="footer_services_links"
+          data-prop="@file[src/content/pages/layout.md].footer_services_links"
         >
           {
             footer_services_links.map((link) => (
@@ -195,7 +195,7 @@ const {
       <div class="col-span-1">
         <h4
           data-editable="text"
-          data-prop={`footer_newsletter_title`}
+          data-prop="@file[src/content/pages/layout.md].footer_newsletter_title"
           class="text-base sm:text-lg font-semibold mb-4 sm:mb-6"
           style="color: #F8F9FA;"
         >
@@ -203,7 +203,7 @@ const {
         </h4>
         <p
           data-editable="text"
-          data-prop={`footer_newsletter_description`}
+          data-prop="@file[src/content/pages/layout.md].footer_newsletter_description"
           class="text-sm sm:text-base leading-5 sm:leading-6 mb-2 sm:mb-3"
           style="color: #7D7877;"
         >
@@ -222,7 +222,9 @@ const {
             class="w-full px-4 py-2 rounded font-medium text-base leading-6 text-center hover:opacity-90"
             style="background: #FDB813; color: #262327;"
           >
-            <span data-editable="text" data-prop={`footer_newsletter_button`}
+            <span
+              data-editable="text"
+              data-prop="@file[src/content/pages/layout.md].footer_newsletter_button"
               >{footer_newsletter_button}</span
             >
           </button>
@@ -243,7 +245,7 @@ const {
     >
       <p
         data-editable="text"
-        data-prop={`footer_copyright`}
+        data-prop="@file[src/content/pages/layout.md].footer_copyright"
         class="text-sm sm:text-base leading-5 sm:leading-6 mb-3 sm:mb-4 md:mb-0"
         style="color: #7D7877;"
       >
@@ -280,7 +282,9 @@ const {
             href="/privacy"
             class="text-sm sm:text-base leading-5 sm:leading-6 hover:opacity-80"
             style="color: #7D7877;"
-            ><span data-editable="text" data-prop={`footer_link_privacy`}
+            ><span
+              data-editable="text"
+              data-prop="@file[src/content/pages/layout.md].footer_link_privacy"
               >{footer_link_privacy}</span
             ></a
           >
@@ -292,7 +296,9 @@ const {
             href="/terms"
             class="text-sm sm:text-base leading-5 sm:leading-6 hover:opacity-80"
             style="color: #7D7877;"
-            ><span data-editable="text" data-prop={`footer_link_terms`}
+            ><span
+              data-editable="text"
+              data-prop="@file[src/content/pages/layout.md].footer_link_terms"
               >{footer_link_terms}</span
             ></a
           >

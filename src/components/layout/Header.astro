@@ -26,7 +26,7 @@ const { logo_text = "", nav_items = [] } = Astro.props;
         />
         <span
           data-editable="text"
-          data-prop="header_logo_text"
+          data-prop="@file[src/content/pages/layout.md].header_logo_text"
           class="text-white">{logo_text}</span
         >
       </a>
@@ -40,7 +40,7 @@ const { logo_text = "", nav_items = [] } = Astro.props;
       id="mobile-nav"
       class="hidden md:flex items-center gap-4 lg:gap-6 xl:gap-8 text-white font-semibold"
       data-editable="array"
-      data-prop="header_nav"
+      data-prop="@file[src/content/pages/layout.md].header_nav"
     >
       {
         nav_items.map((item) => (
